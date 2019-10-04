@@ -7,29 +7,40 @@ class Filters extends Component {
     userFilter: "all",
     dateStart: "",
     dateEnd: "",
+
+
     foodDrinks: true,
     cultureArts: true,
     sports: true,
     party: true,
     hikes: true,
     nature: true,
-    other: true
+    other: true,
+
+    
+    "Food & Drinks": true,
+    "Culture & Arts": true,
+    "Hikes": true,
+    "Nature": true,
+    "Party": true,
+    "Sports": true,
+    "Others":true
   };
 
   handleSubmit = event => {
-    event.preventDefault(); 
-    console.log(this.state)
+    event.preventDefault();
+    console.log(this.state);
   };
 
   handleChange = event => {
     const name = event.target.name;
-    const value = event.target.type==="checkbox"
-      ? event.target.checked
-      : event.target.value;
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
     this.setState({
       [name]: value
     });
-    console.log(event.target.type, event.target.checked,name)
   };
 
   render() {
@@ -57,7 +68,7 @@ class Filters extends Component {
             <label htmlFor="showTrips">Trips</label>
           </div>
           <div>
-          <label htmlFor="userFilter">Show:</label>
+            <label htmlFor="userFilter">Show:</label>
             <select
               id="userFilter"
               name="userFilter"
@@ -82,68 +93,82 @@ class Filters extends Component {
               </option>
             </select>
           </div>
-          <div>Dates</div>
+          <div>
+            <h2>Show by date</h2>
+            <label htmlFor="dateStart">From:</label>
+            <input
+              type="date"
+              id="dateStart"
+              name="dateStart"
+              value={this.state.dateStart} onChange={this.handleChange}></input>
+            <label htmlFor="dateStart" >To:</label>
+            <input
+              type="date"
+              id="dateEnd"
+              name="dateEnd"
+              value={this.state.dateEnd} onChange={this.handleChange}></input>
+          </div>
           <h2>Categories</h2>
           <div style={{ display: "flex" }}>
-            <div style={{flex: "1" }}>
-            <input
-              type="checkbox"
-              name="foodDrinks"
-              id="foodDrinks"
-              checked={this.state.foodDrinks}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="foodDrinks">Food & Drinks</label> <br/>
-            <input
-              type="checkbox"
-              name="cultureArts"
-              id="cultureArts"
-              checked={this.state.cultureArts}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="cultureArts">Culture & Arts</label> <br/>
-            <input
-              type="checkbox"
-              name="sports"
-              id="sports"
-              checked={this.state.sports}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="sports">Sports</label> <br/>
-            <input
-              type="checkbox"
-              name="party"
-              id="party"
-              checked={this.state.party}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="party">Party</label>
+            <div style={{ flex: "1" }}>
+              <input
+                type="checkbox"
+                name="foodDrinks"
+                id="foodDrinks"
+                checked={this.state.foodDrinks}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="foodDrinks">Food & Drinks</label> <br />
+              <input
+                type="checkbox"
+                name="cultureArts"
+                id="cultureArts"
+                checked={this.state.cultureArts}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="cultureArts">Culture & Arts</label> <br />
+              <input
+                type="checkbox"
+                name="sports"
+                id="sports"
+                checked={this.state.sports}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="sports">Sports</label> <br />
+              <input
+                type="checkbox"
+                name="party"
+                id="party"
+                checked={this.state.party}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="party">Party</label>
             </div>
-            <div style={{flex: "1" }}>
-            <input
-              type="checkbox"
-              name="hikes"
-              id="hikes"
-              checked={this.state.hikes}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="hikes">Hikes</label> <br/>
-            <input
-              type="checkbox"
-              name="nature"
-              id="nature"
-              checked={this.state.nature}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="nature">Nature</label> <br/>
-            <input
-              type="checkbox"
-              name="other"
-              id="other"
-              checked={this.state.other}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="other">Other</label>
+            <div style={{ flex: "1" }}>
+              <input
+                type="checkbox"
+                name="hikes"
+                id="hikes"
+                checked={this.state.hikes}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="hikes">Hikes</label> <br />
+              <input
+                type="checkbox"
+                name="nature"
+                id="nature"
+                checked={this.state.nature}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="nature">Nature</label> <br />
+              <input
+                type="checkbox"
+                name="other"
+                id="other"
+                checked={this.state.other}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="other">Other</label>
             </div>
           </div>
           <button>Apply</button>
