@@ -43,8 +43,10 @@ class App extends React.Component {
           path="/login"
           render={props => <Login setUser={this.setUser} {...props} />}
         />
-        <Route exact path="/auth/:id" component={TestProfile} />
-        <Route exact path="/update-profile" component={UpdateProfile} />
+        <Switch>
+          <Route exact path="/auth/:id" component={TestProfile} />
+          <Route exact path="/update-profile" component={UpdateProfile} />
+        </Switch>
       </div>
     );
   }

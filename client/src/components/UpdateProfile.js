@@ -44,6 +44,7 @@ export default class UpdateProfile extends Component {
   };
 
   render() {
+    console.log(data);
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="userName">Username: {this.state.username} </label>
@@ -65,17 +66,12 @@ export default class UpdateProfile extends Component {
         <input
           type="text"
           onChange={this.handleChange}
-          placeholder="What kind of traveller are you? What's your current location? What do you love to do?"
+          // placeholder="What kind of traveller are you? What's your current location? What do you love to do?"
           // name="travelInterests"
           // id="travelInterests"
           value={this.state.travelInterests}
         />
-        <Link to={`/auth/:id`}>
-          <button type="submit">Save and view your profile</button>
-        </Link>
-        <Link to={`/`}>
-          <button type="submit">Save and explore places</button>
-        </Link>
+        <button type="submit">Save</button>
       </form>
     );
   }
