@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import CreateProfile from "./CreateProfile";
+import UpdateProfile from "./UpdateProfile";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -78,10 +78,10 @@ export default class TestProfile extends Component {
             style={{ width: "100%" }}
           />
         </div>
-        <Link to={`/create-profile`}>
+        <Link to={`/update-profile`}>
           <button type="button">Edit</button>
         </Link>
-        {/* <Button to={`/create-profile`}>Edit</Button> */}
+        {/* <Button to={`/update-profile`}>Edit</Button> */}
         <div>
           <p>Score: {user.score}</p>
           <p>Followers: {user.followers}</p>

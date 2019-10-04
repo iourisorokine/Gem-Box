@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Button } from "react-bootstrap";
-import CreateProfile from "./CreateProfile";
+import UpdateProfile from "./UpdateProfile";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -60,7 +60,7 @@ export default class Profile extends Component {
     };
 
     return (
-      <div>
+      <div class="ProfilePageDetails mx-auto">
         <div>
           <h1>{user.username}</h1>
         </div>
