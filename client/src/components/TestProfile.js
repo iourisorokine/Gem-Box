@@ -6,16 +6,14 @@ import axios from "axios";
 
 export default class TestProfile extends Component {
   state = {
-    username: "Anna",
-    profilePic:
-      "https://icon-library.net/images/profile-picture-icon/profile-picture-icon-0.jpg",
-    score: "3",
-    followers: "25",
-    following: "10",
-    discovered: "5",
-    explored: "12",
-    travelInterests:
-      "I love to explore the world getting to know the different countries by discovering hidden places and local recommendations."
+    username: "",
+    profilePic: "",
+    score: "",
+    followers: "",
+    following: "",
+    discovered: "",
+    explored: "",
+    travelInterests: ""
   };
 
   componentDidMount() {
