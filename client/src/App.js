@@ -1,10 +1,12 @@
 import React from "react";
 import "./App.css";
-import { Route } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Landing from "./components/Landing";
-import ExplorePlaces from "./components/ExplorePlaces"
+import ExplorePlaces from "./components/ExplorePlaces";
+import UpdateProfile from "./components/UpdateProfile";
+import TestProfile from "./components/TestProfile";
+import { Switch, Route } from "react-router-dom";
 
 class App extends React.Component {
   state = {
@@ -18,18 +20,18 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     return (
       <div className="App">
         the app renders here
-        {this.state.user?(
-        <>
-          <ExplorePlaces user={this.state.user} setUser={this.setUser}/>
-        </>
-        )
-        :(
+        {this.state.user ? (
           <>
-          <Landing user={this.state.user} setUser={this.setUser} /></>
+            <ExplorePlaces user={this.state.user} setUser={this.setUser} />
+          </>
+        ) : (
+          <>
+            <Landing user={this.state.user} setUser={this.setUser} />
+          </>
         )}
         <Route
           exact
@@ -41,6 +43,8 @@ class App extends React.Component {
           path="/login"
           render={props => <Login setUser={this.setUser} {...props} />}
         />
+        <Route exact path="/auth/:id" component={TestProfile} />
+        <Route exact path="/update-profile" component={UpdateProfile} />
       </div>
     );
   }

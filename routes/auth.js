@@ -1,13 +1,28 @@
 const express = require("express");
+const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-const passport = require("passport");
+const bcryptSalt = 10;
+
+router.get("/login", (req, res, next) => {
+  res.render("auth/login", { message: req.flash("error") });
+});
+
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/auth/login",
+    failureFlash: true,
+    passReqToCallback: true
+  })
+);
 
 // POST api/auth/signup
 router.post("/signup", (req, res) => {
   const { username, password } = req.body;
-  console.log(req.body)
+  console.log(req.body);
 
   if (!password || password.length < 8) {
     return res
@@ -31,13 +46,13 @@ router.post("/signup", (req, res) => {
 
       return User.create({ username: username, password: hash }).then(
         dbUser => {
-          req.login(dbUser, err=>{
-            if(err){
+          req.login(dbUser, err => {
+            if (err) {
               return res
-              .status(500)
-              .json({message: "error while creating user"})
+                .status(500)
+                .json({ message: "error while creating user" });
             }
-          })
+          });
           res.json(dbUser);
         }
       );
