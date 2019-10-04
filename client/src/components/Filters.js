@@ -7,24 +7,14 @@ class Filters extends Component {
     userFilter: "all",
     dateStart: "",
     dateEnd: "",
-
-
+    displayFilters: "block",
     foodDrinks: true,
     cultureArts: true,
     sports: true,
     party: true,
     hikes: true,
     nature: true,
-    other: true,
-
-    
-    "Food & Drinks": true,
-    "Culture & Arts": true,
-    "Hikes": true,
-    "Nature": true,
-    "Party": true,
-    "Sports": true,
-    "Others":true
+    other: true
   };
 
   handleSubmit = event => {
@@ -41,11 +31,13 @@ class Filters extends Component {
     this.setState({
       [name]: value
     });
+    console.log(this.state);
   };
 
   render() {
+    const displayFilters=this.state.displayFilters;
     return (
-      <div>
+      <div style={{border:"1px solid black", display:{displayFilters}}}>
         <h1>Filter by</h1>
         <form onSubmit={this.handleSubmit}>
           <div>
@@ -100,13 +92,15 @@ class Filters extends Component {
               type="date"
               id="dateStart"
               name="dateStart"
-              value={this.state.dateStart} onChange={this.handleChange}></input>
-            <label htmlFor="dateStart" >To:</label>
+              value={this.state.dateStart}
+              onChange={this.handleChange}></input>
+            <label htmlFor="dateStart">To:</label>
             <input
               type="date"
               id="dateEnd"
               name="dateEnd"
-              value={this.state.dateEnd} onChange={this.handleChange}></input>
+              value={this.state.dateEnd}
+              onChange={this.handleChange}></input>
           </div>
           <h2>Categories</h2>
           <div style={{ display: "flex" }}>
