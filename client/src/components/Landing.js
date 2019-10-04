@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {logout} from '../services/api'
 import { Alert } from "react-bootstrap";
 
-class Home extends Component {
+class Landing extends Component {
   state={
     user: null
   }
@@ -14,29 +13,23 @@ class Home extends Component {
     })
   }
 
-  handleLogout = props=>{
-    console.log("LOGOUT PROPS: ",props)
-    logout().then(()=>{
-      props.setUser(null);
-    })
-  }
-
   render() {
     console.log("HOME PROPS: ", this.props);
     return (
       <div>
-      <p>This is home page, dummy version</p>
-        {this.props.user?(<>
-        <p>Hello {this.props.user.username}!</p>
-
-        <Link onClick={()=>this.handleLogout(this.props)}>Logout</Link>
-        </>):(
+      <h1>Gem Box</h1>
+      <h2>Get inspired</h2>
+      <h2>Find places</h2>
+      <h2>Share discoveries</h2>
           <>
         <p>no user</p>
+        <p>
         <Link to="/Login">Login</Link>
+        </p>  
+        <p>
         <Link to="/Signup">Signup</Link>
+        </p>
         </>
-        )}
         {this.state.message && (
             <Alert variant="danger">{this.state.message}</Alert>
           )}
@@ -45,4 +38,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Landing;

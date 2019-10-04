@@ -1,12 +1,10 @@
 import React from "react";
 import "./App.css";
-import Filters from "./components/Filters";
-import ExplorePlaces from "./components/ExplorePlaces";
 import { Route } from "react-router-dom";
-// import { start } from "repl";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import Home from "./components/Home";
+import Landing from "./components/Landing";
+import ExplorePlaces from "./components/ExplorePlaces"
 
 class App extends React.Component {
   state = {
@@ -24,7 +22,15 @@ class App extends React.Component {
     return (
       <div className="App">
         the app renders here
-        <Home user={this.state.user} setUser={this.setUser} />
+        {this.state.user?(
+        <>
+          <ExplorePlaces user={this.state.user} setUser={this.setUser}/>
+        </>
+        )
+        :(
+          <>
+          <Landing user={this.state.user} setUser={this.setUser} /></>
+        )}
         <Route
           exact
           path="/signup"
@@ -35,8 +41,6 @@ class App extends React.Component {
           path="/login"
           render={props => <Login setUser={this.setUser} {...props} />}
         />
-        {/* <Filters />
-        <ExplorePlaces /> */}
       </div>
     );
   }
