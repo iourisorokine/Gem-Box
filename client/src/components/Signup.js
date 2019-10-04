@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { signup } from "../services/api";
+import {Link} from 'react-router-dom';
 
 export default class Signup extends Component {
   state = {
@@ -23,7 +24,6 @@ export default class Signup extends Component {
     const { username, password } = this.state;
 
     signup(username, password).then(data => {
-      console.log(data)
       if (data.message) {
         this.setState({
           message: data.message,
@@ -34,7 +34,7 @@ export default class Signup extends Component {
         // successfully signed up
         // update the state for the parent component
         this.props.setUser(data);
-        this.props.history.push("/");
+        this.props.history.push("/update-profile");
       }
     });
   };

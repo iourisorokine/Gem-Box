@@ -21,7 +21,7 @@ require("./configs/passport");
 // IF YOU STILL DIDN'T, GO TO 'configs/passport.js' AND UN-COMMENT OUT THE WHOLE FILE
 
 mongoose
-  .connect("mongodb://localhost/project-management-server", {
+  .connect("mongodb://localhost/gembox-database", {
     useNewUrlParser: true
   })
   .then(x => {
@@ -87,6 +87,9 @@ app.locals.title = "Express - Generated with IronGenerator";
 
 const index = require("./routes/index");
 app.use("/", index);
+
+const userRoutes = require("./routes/user");
+app.use("/api/user", userRoutes);
 
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);

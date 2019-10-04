@@ -32,20 +32,41 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {
+router.patch("/:id", (req, res) => {
   const { username, profilePic, travelInterests } = req.body;
-
+  const userId=req.params.id;
+  console.log('########',req.params.id,'#################');
   User.findByIdAndUpdate(
-    req.user._id,
+    userId,
     { username, profilePic, travelInterests },
     { new: true }
   )
     .then(user => {
+      console.log('########',user);
       res.json(user);
     })
     .catch(err => {
       res.json(err);
     });
 });
+
+/*
+router.put("/:id", (req, res) => {
+  const { title, description } = req.body;
+
+  Project.findByIdAndUpdate(
+    req.params.id,
+    { title, description },
+    // { new: true } ensures that we are getting the updated document in the .then callback
+    { new: true }
+  )
+    .then(project => {
+      res.json(project);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+*/
 
 module.exports = router;

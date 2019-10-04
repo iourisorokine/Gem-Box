@@ -70,12 +70,7 @@ export default class UpdateProfile extends Component {
           // id="travelInterests"
           value={this.state.travelInterests}
         />
-        <Link to={`/auth/:id`}>
-          <button type="submit">Save and view your profile</button>
-        </Link>
-        <Link to={`/`}>
-          <button type="submit">Save and explore places</button>
-        </Link>
+        <button type="submit">Save</button>
       </form>
     );
   }
