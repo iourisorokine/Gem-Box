@@ -50,23 +50,5 @@ router.patch("/:id", (req, res) => {
     });
 });
 
-/*
-router.put("/:id", (req, res) => {
-  const { title, description } = req.body;
-
-  Project.findByIdAndUpdate(
-    req.params.id,
-    { title, description },
-    // { new: true } ensures that we are getting the updated document in the .then callback
-    { new: true }
-  )
-    .then(project => {
-      res.json(project);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
-*/
 
 module.exports = router;

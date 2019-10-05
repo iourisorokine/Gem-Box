@@ -6,7 +6,12 @@ import Landing from "./components/Landing";
 import ExplorePlaces from "./components/ExplorePlaces";
 import UpdateProfile from "./components/UpdateProfile";
 import TestProfile from "./components/TestProfile";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Menu from "./components/Menu";
+import Profile from "./components/Profile";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
 
 class App extends React.Component {
   state = {
@@ -24,15 +29,10 @@ class App extends React.Component {
     return (
       <div className="App">
         the app renders here
-        {this.state.user ? (
-          <>
-            <ExplorePlaces user={this.state.user} setUser={this.setUser} />
-          </>
-        ) : (
-          <>
-            <Landing user={this.state.user} setUser={this.setUser} />
-          </>
-        )}
+        <Menu user={this.state.user} setUser={this.setUser} />
+        {this.state.user&&
+           ( <Landing user={this.state.user} setUser={this.setUser} />
+)}
         <Route
           exact
           path="/signup"
@@ -45,6 +45,12 @@ class App extends React.Component {
         />
         <Route exact path="/auth/:id" component={TestProfile} />
         <Route exact path="/update-profile" component={UpdateProfile} />
+        <Route exact path="/profile" component={Profile} />
+        <Route
+          exact
+          path="/explore-places"
+          render={props => <ExplorePlaces user={this.state.user} {...props} />}
+        />
       </div>
     );
   }

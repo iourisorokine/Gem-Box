@@ -16,12 +16,12 @@ class Landing extends Component {
   render() {
     console.log("HOME PROPS: ", this.props);
     return (
-      <div>
+      <div style={{border:"1px solid blue"}}>
       <h1>Gem Box</h1>
       <h2>Get inspired</h2>
       <h2>Find places</h2>
       <h2>Share discoveries</h2>
-          <>
+        <>
         <p>no user</p>
         <p>
         <Link to="/Login">Login</Link>

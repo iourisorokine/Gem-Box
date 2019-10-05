@@ -19,13 +19,13 @@ const GemSchema = new Schema(
     category: {
       type: String,
       enum: [
-        "Food & Drinks",
-        "Culture & Arts",
-        "Hikes",
-        "Nature",
-        "Party",
-        "Sports",
-        "Others"
+        "foodDrinks",
+        "cultureArts",
+        "hikes",
+        "nature",
+        "party",
+        "sports",
+        "others"
       ]
     },
 
