@@ -9,7 +9,6 @@ import TestProfile from "./components/TestProfile";
 import { Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import Profile from "./components/Profile";
-import CreateGem from "./components/CreateGem";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
@@ -34,7 +33,6 @@ class App extends React.Component {
         {!this.state.user && (
           <Landing user={this.state.user} setUser={this.setUser} />
         )}
-        <CreateGem />
         <Route
           exact
           path="/signup"

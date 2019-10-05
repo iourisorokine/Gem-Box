@@ -3,11 +3,12 @@ import { logout } from "../services/api";
 import Filters from "./Filters";
 import MapGems from "./MapGems";
 import axios from "axios";
+import CreateGem from "./CreateGem";
 
 class ExplorePlaces extends Component {
   state = {
-      displayFilters: false,
-      filterStatus:{
+    displayFilters: false,
+    filterStatus: {
       gemsData: null,
       showGems: true,
       showTrips: true,
@@ -21,17 +22,17 @@ class ExplorePlaces extends Component {
       hikes: true,
       nature: true,
       other: true
-      }
+    }
   };
 
-  getGemsData=()=>{
-    axios.get('/api/gem').then(gems=>{
-      console.log(gems.data)
+  getGemsData = () => {
+    axios.get("/api/gem").then(gems => {
+      console.log(gems.data);
       this.setState({
-        gemsData:gems.data
-      })
-    })
-  }
+        gemsData: gems.data
+      });
+    });
+  };
 
   handleChange = event => {
     const name = event.target.name;
@@ -40,7 +41,7 @@ class ExplorePlaces extends Component {
         ? event.target.checked
         : event.target.value;
     this.setState({
-      filterStatus:{...this.state.filterStatus,[name]: value}
+      filterStatus: { ...this.state.filterStatus, [name]: value }
     });
   };
 
@@ -58,22 +59,22 @@ class ExplorePlaces extends Component {
     });
   };
 
-  handleFilterSubmit=event=>{
-    event.preventDefault()
-    console.log(event)
+  handleFilterSubmit = event => {
+    event.preventDefault();
+    console.log(event);
     this.setState({
       displayFilters: false
-    })
-    this.getGemsData()
-  }
+    });
+    this.getGemsData();
+  };
 
   render() {
-    let gemsFiltered=[];
-    if(this.state.gemsData){
-    const gemsToFilter=this.state.gemsData;
-    gemsFiltered=gemsToFilter.filter(gem=>{
-      return this.state.filterStatus[gem.category]===true;
-    })
+    let gemsFiltered = [];
+    if (this.state.gemsData) {
+      const gemsToFilter = this.state.gemsData;
+      gemsFiltered = gemsToFilter.filter(gem => {
+        return this.state.filterStatus[gem.category] === true;
+      });
     }
     console.log(this.state);
     return (
@@ -82,10 +83,15 @@ class ExplorePlaces extends Component {
           <button onClick={this.toggleFilters}>Show filters</button>
           {this.state.displayFilters && (
             <>
-              <Filters handleFilterChange={this.handleChange} handleFilterSubmit={this.handleFilterSubmit} filterStatus={this.state.filterStatus}/>
+              <Filters
+                handleFilterChange={this.handleChange}
+                handleFilterSubmit={this.handleFilterSubmit}
+                filterStatus={this.state.filterStatus}
+              />
             </>
           )}
-          <MapGems gems={gemsFiltered}/>
+          <MapGems gems={gemsFiltered} />
+          <CreateGem />
         </div>
       </div>
     );

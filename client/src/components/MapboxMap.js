@@ -5,10 +5,8 @@ import MapGL, {
   GeolocateControl
 } from "react-map-gl";
 
-const TOKEN =
-  "pk.eyJ1IjoiaW91cmkiLCJhIjoiY2swaTRnZGxnMDhyYjNmbXp1cTh4aGY0YSJ9.MmEIAiv3ZCEZzc_VLtZnCg";
 
-// const TOKEN = process.env.MAPBOX_TOKEN;
+const TOKEN = process.env.MAPBOX_TOKEN;
 
 const geolocateStyle = {
   float: "left",
