@@ -83,6 +83,20 @@ export class CreateGem extends Component {
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           mapStyle="mapbox://styles/mapbox/streets-v10"
           captureDoubleClick={false}
+          doubleClickZoom={false}
+          onDblClick={event => {
+            this.setState({
+              /*  viewport: {
+                longitude: event.lngLat[0],
+                latitude: event.lngLat[1]
+              }, */
+              marker: {
+                longitude: event.lngLat[0],
+                latitude: event.lngLat[1]
+              }
+            });
+            console.log("onclickevent", event.lngLat);
+          }}
         >
           <Marker
             latitude={this.state.marker.latitude}
