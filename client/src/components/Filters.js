@@ -1,26 +1,17 @@
 import React, { Component } from "react";
 
+
 class Filters extends Component {
   state = {
-    showGems: true,
-    showTrips: true,
-    userFilter: "all",
-    dateStart: "",
-    dateEnd: "",
-    displayFilters: "block",
-    foodDrinks: true,
-    cultureArts: true,
-    sports: true,
-    party: true,
-    hikes: true,
-    nature: true,
-    other: true
+    gemsData: null,
+    filterStatus:{}
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log(this.state);
-  };
+  // handleSubmit = event => {
+  //   event.preventDefault();
+  //   console.log(this.state);
+  //   this.getGemsData();
+  // };
 
   handleChange = event => {
     const name = event.target.name;
@@ -31,22 +22,20 @@ class Filters extends Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state);
   };
 
   render() {
-    const displayFilters=this.state.displayFilters;
     return (
-      <div style={{border:"1px solid black", display:{displayFilters}}}>
+      <div style={{border:"1px solid black"}}>
         <h1>Filter by</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.handleFilterSubmit}>
           <div>
             <input
               type="checkbox"
               name="showGems"
               id="showGems"
-              checked={this.state.showGems}
-              onChange={this.handleChange}
+              checked={this.props.filterStatus.showGems}
+              onChange={this.props.handleFilterChange}
             />
             <label htmlFor="showGems">Gems</label>
             <br />
@@ -54,8 +43,8 @@ class Filters extends Component {
               type="checkbox"
               name="showTrips"
               id="showTrips"
-              checked={this.state.showTrips}
-              onChange={this.handleChange}
+              checked={this.props.filterStatus.showTrips}
+              onChange={this.props.handleFilterChange}
             />
             <label htmlFor="showTrips">Trips</label>
           </div>
@@ -64,23 +53,23 @@ class Filters extends Component {
             <select
               id="userFilter"
               name="userFilter"
-              onChange={this.handleChange}>
+              onChange={this.props.handleFilterChange}>
               <option
                 value="All"
                 name="userFilter"
-                onChange={this.handleChange}>
+                onChange={this.props.handleFilterChange}>
                 All
               </option>
               <option
                 value="liked"
                 name="userFilter"
-                onChange={this.handleChange}>
+                onChange={this.props.handleFilterChange}>
                 Liked
               </option>
               <option
                 value="mine"
                 name="userFilter"
-                onChange={this.handleChange}>
+                onChange={this.props.handleFilterChange}>
                 Mine
               </option>
             </select>
@@ -92,15 +81,15 @@ class Filters extends Component {
               type="date"
               id="dateStart"
               name="dateStart"
-              value={this.state.dateStart}
-              onChange={this.handleChange}></input>
+              value={this.props.filterStatus.dateStart}
+              onChange={this.props.handleFilterChange}></input>
             <label htmlFor="dateStart">To:</label>
             <input
               type="date"
               id="dateEnd"
               name="dateEnd"
-              value={this.state.dateEnd}
-              onChange={this.handleChange}></input>
+              value={this.props.filterStatus.dateEnd}
+              onChange={this.props.handleFilterChange}></input>
           </div>
           <h2>Categories</h2>
           <div style={{ display: "flex" }}>
@@ -109,32 +98,32 @@ class Filters extends Component {
                 type="checkbox"
                 name="foodDrinks"
                 id="foodDrinks"
-                checked={this.state.foodDrinks}
-                onChange={this.handleChange}
+                checked={this.props.filterStatus.foodDrinks}
+                onChange={this.props.handleFilterChange}
               />
               <label htmlFor="foodDrinks">Food & Drinks</label> <br />
               <input
                 type="checkbox"
                 name="cultureArts"
                 id="cultureArts"
-                checked={this.state.cultureArts}
-                onChange={this.handleChange}
+                checked={this.props.filterStatus.cultureArts}
+                onChange={this.props.handleFilterChange}
               />
               <label htmlFor="cultureArts">Culture & Arts</label> <br />
               <input
                 type="checkbox"
                 name="sports"
                 id="sports"
-                checked={this.state.sports}
-                onChange={this.handleChange}
+                checked={this.props.filterStatus.sports}
+                onChange={this.props.handleFilterChange}
               />
               <label htmlFor="sports">Sports</label> <br />
               <input
                 type="checkbox"
                 name="party"
                 id="party"
-                checked={this.state.party}
-                onChange={this.handleChange}
+                checked={this.props.filterStatus.party}
+                onChange={this.props.handleFilterChange}
               />
               <label htmlFor="party">Party</label>
             </div>
@@ -143,24 +132,24 @@ class Filters extends Component {
                 type="checkbox"
                 name="hikes"
                 id="hikes"
-                checked={this.state.hikes}
-                onChange={this.handleChange}
+                checked={this.props.filterStatus.hikes}
+                onChange={this.props.handleFilterChange}
               />
               <label htmlFor="hikes">Hikes</label> <br />
               <input
                 type="checkbox"
                 name="nature"
                 id="nature"
-                checked={this.state.nature}
-                onChange={this.handleChange}
+                checked={this.props.filterStatus.nature}
+                onChange={this.props.handleFilterChange}
               />
               <label htmlFor="nature">Nature</label> <br />
               <input
                 type="checkbox"
                 name="other"
                 id="other"
-                checked={this.state.other}
-                onChange={this.handleChange}
+                checked={this.props.filterStatus.other}
+                onChange={this.props.handleFilterChange}
               />
               <label htmlFor="other">Other</label>
             </div>

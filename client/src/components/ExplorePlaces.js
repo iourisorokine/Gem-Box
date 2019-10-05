@@ -1,12 +1,48 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { logout } from "../services/api";
-
+import Filters from "./Filters";
+import MapGems from "./MapGems";
+import axios from "axios";
 
 class ExplorePlaces extends Component {
-  state={
-    filtersStyle:{display: "none"}
+  state = {
+      displayFilters: false,
+      filterStatus:{
+      gemsData: null,
+      showGems: true,
+      showTrips: true,
+      userFilter: "all",
+      dateStart: "",
+      dateEnd: "",
+      foodDrinks: true,
+      cultureArts: true,
+      sports: true,
+      party: true,
+      hikes: true,
+      nature: true,
+      other: true
+      }
+  };
+
+  getGemsData=()=>{
+    axios.get('/api/gem').then(gems=>{
+      console.log(gems.data)
+      this.setState({
+        gemsData:gems.data
+      })
+    })
   }
+
+  handleChange = event => {
+    const name = event.target.name;
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
+    this.setState({
+      filterStatus:{...this.state.filterStatus,[name]: value}
+    });
+  };
 
   handleLogout = props => {
     console.log("LOGOUT PROPS: ", props);
@@ -15,24 +51,42 @@ class ExplorePlaces extends Component {
     });
   };
 
-  toggleFilters=()=>{
-    const filtersNewStyle=(this.state.filtersStyle==={display: "none"})?{display: "block"}:{display:"none"}
+  toggleFilters = () => {
+    const displayFilters = this.state.displayFilters ? false : true;
     this.setState({
-      filtersStyle:filtersNewStyle
+      displayFilters
+    });
+  };
+
+  handleFilterSubmit=event=>{
+    event.preventDefault()
+    console.log(event)
+    this.setState({
+      displayFilters: false
     })
+    this.getGemsData()
   }
 
   render() {
+    let gemsFiltered=[];
+    if(this.state.gemsData){
+    const gemsToFilter=this.state.gemsData;
+    gemsFiltered=gemsToFilter.filter(gem=>{
+      return this.state.filterStatus[gem.category]===true;
+    })
+    }
+    console.log(this.state);
     return (
       <div>
         <div>
-        <button onClick={this.toggleFilters}>
-        Show filters
-        </button>
+          <button onClick={this.toggleFilters}>Show filters</button>
+          {this.state.displayFilters && (
+            <>
+              <Filters handleFilterChange={this.handleChange} handleFilterSubmit={this.handleFilterSubmit} filterStatus={this.state.filterStatus}/>
+            </>
+          )}
+          <MapGems gems={gemsFiltered}/>
         </div>
-        <p>Map with Gems will be shown here</p>
-        {this.props.user&&(<p>Hello {this.props.user.username}</p>)}
-        <Link onClick={() => this.handleLogout(this.props)}>Logout</Link>
       </div>
     );
   }
