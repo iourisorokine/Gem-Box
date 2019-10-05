@@ -30,7 +30,11 @@ class App extends React.Component {
     return (
       <div className="App">
         the app renders here
-        <Menu user={this.state.user} setUser={this.setUser} />
+        <Route
+          render={(props) => (
+            <Menu user={this.state.user} setUser={this.setUser} {...props} />
+          )}
+        />
         {!this.state.user && (
           <Landing user={this.state.user} setUser={this.setUser} />
         )}

@@ -8,11 +8,11 @@ class Menu extends React.Component {
     user: null
   };
 
-  handleLogout = props => {
+  handleLogout = (props) => {
     console.log("LOGOUT PROPS: ", props);
     logout().then(() => {
       props.setUser(null);
-      // this.props.history.push("/");
+      this.props.history.push("/logout");
     });
   };
 
@@ -28,28 +28,22 @@ class Menu extends React.Component {
       <Navbar bg="light" expand="lg">
         <Nav className="mr-auto">
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/">
-              Home
-            </NavDropdown.Item>
+            <NavDropdown.Item href="/">Home</NavDropdown.Item>
             <NavDropdown.Item href="/explore-places">
-            Explore places
+              Explore places
             </NavDropdown.Item>
             {this.props.user ? (
               <>
-                <NavDropdown.Item href="/profile">
-                  Profile
-                </NavDropdown.Item>
+                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <Link onClick={() => this.handleLogout(this.props)}>Logout</Link>
+                <Link onClick={() => this.handleLogout(this.props)}>
+                  Logout
+                </Link>
               </>
             ) : (
               <>
-                <NavDropdown.Item href="/login">
-                Login
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/signup">
-                  Signup
-                </NavDropdown.Item>
+                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
               </>
             )}
           </NavDropdown>
