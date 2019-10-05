@@ -6,6 +6,7 @@ import Landing from "./components/Landing";
 import ExplorePlaces from "./components/ExplorePlaces";
 import UpdateProfile from "./components/UpdateProfile";
 import TestProfile from "./components/TestProfile";
+import Logout from "./components/Logout";
 import { Switch, Route } from "react-router-dom";
 
 class App extends React.Component {
@@ -13,7 +14,7 @@ class App extends React.Component {
     user: this.props.user
   };
 
-  setUser = user => {
+  setUser = (user) => {
     this.setState({
       user: user
     });
@@ -26,7 +27,28 @@ class App extends React.Component {
         the app renders here
         {this.state.user ? (
           <>
-            <ExplorePlaces user={this.state.user} setUser={this.setUser} />
+            <Route
+              exact
+              path="/logout"
+              render={(props) => (
+                <Logout
+                  setUser={this.setUser}
+                  user={this.state.user}
+                  {...props}
+                />
+              )}
+            />
+            } />
+            <Route
+              path="/profile"
+              render={(props) => (
+                <ExplorePlaces
+                  setUser={this.setUser}
+                  user={this.state.user}
+                  {...props}
+                />
+              )}
+            />
           </>
         ) : (
           <>
@@ -36,14 +58,15 @@ class App extends React.Component {
         <Route
           exact
           path="/signup"
-          render={props => <Signup setUser={this.setUser} {...props} />}
+          render={(props) => <Signup setUser={this.setUser} {...props} />}
         />
         <Route
           exact
           path="/login"
-          render={props => <Login setUser={this.setUser} {...props} />}
+          render={(props) => <Login setUser={this.setUser} {...props} />}
         />
         <Route exact path="/auth/:id" component={TestProfile} />
+        <Route path="/logout" component={Logout} />
         <Route exact path="/update-profile" component={UpdateProfile} />
       </div>
     );

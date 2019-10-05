@@ -24,12 +24,12 @@ mongoose
   .connect("mongodb://localhost/gembox-database", {
     useNewUrlParser: true
   })
-  .then(x => {
+  .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Error connecting to mongo", err);
   });
 
@@ -90,6 +90,9 @@ app.use("/", index);
 
 const userRoutes = require("./routes/user");
 app.use("/api/user", userRoutes);
+
+const wisdomRoutes = require("./routes/wisdom");
+app.use("/api/wisdom", wisdomRoutes);
 
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);

@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { logout } from "../services/api";
 
 class ExplorePlaces extends Component {
-  handleLogout = props => {
+  handleLogout = (props) => {
     console.log("LOGOUT PROPS: ", props);
     logout().then(() => {
       props.setUser(null);
+      props.history.push("/logout");
     });
   };
 

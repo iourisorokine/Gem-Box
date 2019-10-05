@@ -9,7 +9,7 @@ export default class Login extends Component {
     message: ""
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
 
     this.setState({
@@ -17,13 +17,12 @@ export default class Login extends Component {
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     const { username, password } = this.state;
 
-    login(username, password).then(data => {
-      console.log(data)
+    login(username, password).then((data) => {
       if (data.message) {
         this.setState({
           message: data.message,
@@ -69,6 +68,12 @@ export default class Login extends Component {
           )}
           <Button type="submit">Login</Button>
         </Form>
+        <a href="http://localhost:5555/api/auth/google">
+          <button>Login with Google</button>
+        </a>
+        <a href="http://localhost:5555/api/auth/facebook">
+          <button>Login with Facebook</button>
+        </a>
       </>
     );
   }

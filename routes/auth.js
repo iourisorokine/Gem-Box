@@ -5,20 +5,6 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-router.get("/login", (req, res, next) => {
-  res.render("auth/login", { message: req.flash("error") });
-});
-
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/auth/login",
-    failureFlash: true,
-    passReqToCallback: true
-  })
-);
-
 // POST api/auth/signup
 router.post("/signup", (req, res) => {
   const { username, password } = req.body;
@@ -81,6 +67,37 @@ router.post("/login", (req, res) => {
     });
   })(req, res);
 });
+
+// Facebook Authentification Route
+
+router.get("/facebook", passport.authenticate("facebook"));
+
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: "http://localhost:3000/profile", //check if dynamic possible
+    failureRedirect: "http://localhost:3000/login"
+  })
+);
+
+// Google Authentification Route
+
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["https://www.googleapis.com/auth/plus.login"]
+  })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "http://localhost:3000/login"
+  }),
+  function(req, res) {
+    res.redirect("http://localhost:3000/profile");
+  }
+);
 
 // DELETE /api/auth/logout
 router.delete("/logout", (req, res) => {

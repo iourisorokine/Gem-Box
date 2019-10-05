@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { signup } from "../services/api";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-export default class Signup extends Component {
+export default class Signup extends React.Component {
   state = {
     username: "",
     password: "",
@@ -69,6 +69,12 @@ export default class Signup extends Component {
           )}
           <Button type="submit">Signup</Button>
         </Form>
+        <a href="http://localhost:5555/api/auth/google">
+          <button>Sign in Google</button>
+        </a>
+        <a href="http://localhost:5555/api/auth/facebook">
+          <button>Sign in with Facebook</button>
+        </a>
       </>
     );
   }
