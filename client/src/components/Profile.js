@@ -6,59 +6,19 @@ import axios from "axios";
 
 export default class Profile extends Component {
   state = {
-    username: "",
-    profilePic: "",
-    score: "",
-    followers: "",
-    following: "",
-    discovered: "",
-    explored: "",
-    travelInterests: ""
+    user: null
   };
 
   componentDidMount() {
-    const userId = this.props.match.params.id;
-
-    return axios
-      .get(`/api/users/${userId}`)
-      .then(response => {
-        const {
-          username,
-          profilePic,
-          score,
-          followers,
-          following,
-          discovered,
-          explored,
-          travelInterests
-        } = response.data;
-        this.setSate({
-          username,
-          profilePic,
-          score,
-          followers,
-          following,
-          discovered,
-          explored,
-          travelInterests
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.setState({
+      user: this.props.user
+    })
   }
-  render() {
-    const user = {
-      userName: this.state.username,
-      profilePic: this.state.profilePic,
-      score: this.state.score,
-      followers: this.state.followers,
-      following: this.state.following,
-      discovered: this.state.discovered,
-      explored: this.state.explored,
-      travelInterests: this.state.travelInterests
-    };
 
+  render() {
+    console.log("Profile user state: ", this.state)
+    const user=this.state.user
+    if(!user) return (<>No user!</>)
     return (
       <div class="ProfilePageDetails mx-auto">
         <div>

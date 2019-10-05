@@ -30,8 +30,8 @@ class App extends React.Component {
       <div className="App">
         the app renders here
         <Menu user={this.state.user} setUser={this.setUser} />
-        {this.state.user&&
-           ( <Landing user={this.state.user} setUser={this.setUser} />
+        {!this.state.user&&
+        ( <Landing user={this.state.user} setUser={this.setUser} />
 )}
         <Route
           exact
@@ -45,7 +45,7 @@ class App extends React.Component {
         />
         <Route exact path="/auth/:id" component={TestProfile} />
         <Route exact path="/update-profile" component={UpdateProfile} />
-        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/profile" render={props => <Profile user={this.state.user} {...props} />} />
         <Route
           exact
           path="/explore-places"

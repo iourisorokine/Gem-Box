@@ -31,7 +31,7 @@ class ExplorePlaces extends Component {
         </button>
         </div>
         <p>Map with Gems will be shown here</p>
-        <p>Hello {this.props.user.username}!</p>
+        {this.props.user&&(<p>Hello {this.props.user.username}</p>)}
         <Link onClick={() => this.handleLogout(this.props)}>Logout</Link>
       </div>
     );
