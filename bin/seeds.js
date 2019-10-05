@@ -47,10 +47,11 @@ let gems = [
     title: "Niagara Waterfall",
     description: "we captured this amazing picture of the world famous marvel",
     good_to_know: "water is cold",
+
     image_url:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
-    category: "nature",
+    category: "Nature",
     visitedDate: "",
     timestamps: {
       createdAt: "created_at",
@@ -62,10 +63,11 @@ let gems = [
     title: "This super spot",
     description: "That's a very cool spot, we just ca't believe that",
     good_to_know: "Spot spot spot",
+
     image_url:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
-    category: "nature",
+    category: "Nature",
     visitedDate: "",
     timestamps: {
       createdAt: "created_at",
@@ -77,10 +79,11 @@ let gems = [
     title: "Hiking in the Mountains",
     description: "That's a very cool spot, we just ca't believe that",
     good_to_know: "for advanced hickers only",
+
     image_url:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
-    category: "hikes",
+    category: "Hikes",
     visitedDate: "",
     timestamps: {
       createdAt: "created_at",
@@ -92,10 +95,11 @@ let gems = [
     title: "Hiking in the Mountains",
     description: "That's a very cool spot, we just ca't believe that",
     good_to_know: "for advanced hickers only",
+
     image_url:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
-    category: "hikes",
+    category: "Hikes",
     visitedDate: "",
     timestamps: {
       createdAt: "created_at",
@@ -108,10 +112,11 @@ let gems = [
     description:
       "Discover the history and cultureof locals and ravel trough time",
     good_to_know: "20usd admission fee",
+
     image_url:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
-    category: "cultureArts",
+    category: "Culture & Arts",
     visitedDate: "",
     timestamps: {
       createdAt: "created_at",
@@ -119,7 +124,6 @@ let gems = [
     }
   }
 ];
-/*
 User.deleteMany()
   .then(() => {
     return User.create(users);
@@ -153,7 +157,6 @@ Wisdom.deleteMany()
     mongoose.disconnect();
     throw err;
   });
-  */
 Gem.deleteMany()
   .then(() => {
     return Gem.create(gems);

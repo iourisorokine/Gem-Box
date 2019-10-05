@@ -26,7 +26,7 @@ class ExplorePlaces extends Component {
   };
 
   getGemsData = () => {
-    axios.get("/api/gem").then(gems => {
+    axios.get("/api/gem").then((gems) => {
       console.log(gems.data);
       this.setState({
         gemsData: gems.data
@@ -34,7 +34,7 @@ class ExplorePlaces extends Component {
     });
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const name = event.target.name;
     const value =
       event.target.type === "checkbox"
@@ -45,10 +45,11 @@ class ExplorePlaces extends Component {
     });
   };
 
-  handleLogout = props => {
+  handleLogout = (props) => {
     console.log("LOGOUT PROPS: ", props);
     logout().then(() => {
       props.setUser(null);
+      props.history.push("/logout");
     });
   };
 
@@ -59,7 +60,7 @@ class ExplorePlaces extends Component {
     });
   };
 
-  handleFilterSubmit = event => {
+  handleFilterSubmit = (event) => {
     event.preventDefault();
     console.log(event);
     this.setState({
@@ -72,7 +73,7 @@ class ExplorePlaces extends Component {
     let gemsFiltered = [];
     if (this.state.gemsData) {
       const gemsToFilter = this.state.gemsData;
-      gemsFiltered = gemsToFilter.filter(gem => {
+      gemsFiltered = gemsToFilter.filter((gem) => {
         return this.state.filterStatus[gem.category] === true;
       });
     }

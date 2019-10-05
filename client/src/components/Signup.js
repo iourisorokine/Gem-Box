@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { signup } from "../services/api";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-export default class Signup extends Component {
+export default class Signup extends React.Component {
   state = {
-    username: "",
+    email: "",
     password: "",
     message: ""
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
 
     this.setState({
@@ -18,16 +18,16 @@ export default class Signup extends Component {
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
-    signup(username, password).then(data => {
+    signup(email, password).then((data) => {
       if (data.message) {
         this.setState({
           message: data.message,
-          username: "",
+          email: "",
           password: ""
         });
       } else {
@@ -45,13 +45,13 @@ export default class Signup extends Component {
         <h2>Signup</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor="username">Username: </Form.Label>
+            <Form.Label htmlFor="email">Email: </Form.Label>
             <Form.Control
               type="text"
-              name="username"
-              value={this.state.username}
+              name="email"
+              value={this.state.email}
               onChange={this.handleChange}
-              id="username"
+              id="email"
             />
           </Form.Group>
           <Form.Group>
@@ -69,6 +69,12 @@ export default class Signup extends Component {
           )}
           <Button type="submit">Signup</Button>
         </Form>
+        <a href="http://localhost:5555/api/auth/google">
+          <button>Sign in Google</button>
+        </a>
+        <a href="http://localhost:5555/api/auth/facebook">
+          <button>Sign in with Facebook</button>
+        </a>
       </>
     );
   }

@@ -4,12 +4,12 @@ import { login } from "../services/api";
 
 export default class Login extends Component {
   state = {
-    username: "",
+    email: "",
     password: "",
     message: ""
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
 
     this.setState({
@@ -17,17 +17,16 @@ export default class Login extends Component {
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
-    login(username, password).then(data => {
-      console.log(data)
+    login(email, password).then((data) => {
       if (data.message) {
         this.setState({
           message: data.message,
-          username: "",
+          email: "",
           password: ""
         });
       } else {
@@ -45,13 +44,13 @@ export default class Login extends Component {
         <h2>Login</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor="username">Username: </Form.Label>
+            <Form.Label htmlFor="email">Email: </Form.Label>
             <Form.Control
               type="text"
-              name="username"
-              value={this.state.username}
+              name="email"
+              value={this.state.email}
               onChange={this.handleChange}
-              id="username"
+              id="email"
             />
           </Form.Group>
           <Form.Group>
@@ -69,6 +68,12 @@ export default class Login extends Component {
           )}
           <Button type="submit">Login</Button>
         </Form>
+        <a href="http://localhost:5555/api/auth/google">
+          <button>Login with Google</button>
+        </a>
+        <a href="http://localhost:5555/api/auth/facebook">
+          <button>Login with Facebook</button>
+        </a>
       </>
     );
   }

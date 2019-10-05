@@ -3,6 +3,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF; }
+  color: #00b7ff; }
+
+.ProfilePageDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
 
 /*# sourceMappingURL=style.css.map */
