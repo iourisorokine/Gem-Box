@@ -7,43 +7,38 @@ const bcryptSalt = 10;
 
 // POST api/auth/signup
 router.post("/signup", (req, res) => {
-  const { username, password } = req.body;
-  console.log(req.body);
+  const { email, password } = req.body;
 
   if (!password || password.length < 8) {
     return res
       .status(400)
       .json({ message: "Your password must be 8 char. min." });
   }
-  if (!username) {
-    return res.status(400).json({ message: "Your username cannot be empty" });
+  if (!email) {
+    return res.status(400).json({ message: "Your email cannot be empty" });
   }
 
-  User.findOne({ username: username })
-    .then(found => {
+  User.findOne({ email: email })
+    .then((found) => {
       if (found) {
-        return res
-          .status(400)
-          .json({ message: "This username is already taken" });
+        return res.status(400).json({ message: "This email is already taken" });
       }
 
       const salt = bcrypt.genSaltSync();
       const hash = bcrypt.hashSync(password, salt);
 
-      return User.create({ username: username, password: hash }).then(
-        dbUser => {
-          req.login(dbUser, err => {
-            if (err) {
-              return res
-                .status(500)
-                .json({ message: "error while creating user" });
-            }
-          });
-          res.json(dbUser);
-        }
-      );
+      return User.create({ email: email, password: hash }).then((dbUser) => {
+        req.login(dbUser, (err) => {
+          if (err) {
+            return res
+              .status(500)
+              .json({ message: "error while creating user" });
+          }
+        });
+        res.json(dbUser);
+      });
     })
-    .catch(err => {
+    .catch((err) => {
       res.json(err);
     });
 });
@@ -57,7 +52,7 @@ router.post("/login", (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "Wrong credentials" });
     }
-    req.login(user, err => {
+    req.login(user, (err) => {
       if (err) {
         return res
           .status(500)

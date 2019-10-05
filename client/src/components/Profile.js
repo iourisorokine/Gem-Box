@@ -21,7 +21,7 @@ export default class Profile extends Component {
 
     return axios
       .get(`/api/users/${userId}`)
-      .then(response => {
+      .then((response) => {
         const {
           username,
           profilePic,
@@ -43,7 +43,7 @@ export default class Profile extends Component {
           travelInterests
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }

@@ -28,6 +28,16 @@ class App extends React.Component {
         {this.state.user ? (
           <>
             <Route
+              path="/profile"
+              render={(props) => (
+                <ExplorePlaces
+                  setUser={this.setUser}
+                  user={this.state.user}
+                  {...props}
+                />
+              )}
+            />
+            <Route
               exact
               path="/logout"
               render={(props) => (
@@ -38,23 +48,17 @@ class App extends React.Component {
                 />
               )}
             />
-            } />
-            <Route
-              path="/profile"
-              render={(props) => (
-                <ExplorePlaces
-                  setUser={this.setUser}
-                  user={this.state.user}
-                  {...props}
-                />
-              )}
-            />
           </>
         ) : (
-          <>
-            <Landing user={this.state.user} setUser={this.setUser} />
-          </>
+          <></>
         )}
+        <Route
+          exact
+          path="/"
+          user={this.state.user}
+          setUser={this.setUser}
+          component={Landing}
+        />
         <Route
           exact
           path="/signup"
@@ -66,7 +70,7 @@ class App extends React.Component {
           render={(props) => <Login setUser={this.setUser} {...props} />}
         />
         <Route exact path="/auth/:id" component={TestProfile} />
-        <Route path="/logout" component={Logout} />
+        <Route exact path="/logout" component={Logout} />
         <Route exact path="/update-profile" component={UpdateProfile} />
       </div>
     );
