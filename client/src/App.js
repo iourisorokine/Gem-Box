@@ -9,7 +9,8 @@ import TestProfile from "./components/TestProfile";
 import { Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import Profile from "./components/Profile";
-
+import CreateGem from "./components/CreateGem";
+import "mapbox-gl/dist/mapbox-gl.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
@@ -30,9 +31,10 @@ class App extends React.Component {
       <div className="App">
         the app renders here
         <Menu user={this.state.user} setUser={this.setUser} />
-        {!this.state.user&&
-        ( <Landing user={this.state.user} setUser={this.setUser} />
-)}
+        {!this.state.user && (
+          <Landing user={this.state.user} setUser={this.setUser} />
+        )}
+        <CreateGem />
         <Route
           exact
           path="/signup"
@@ -45,7 +47,11 @@ class App extends React.Component {
         />
         <Route exact path="/auth/:id" component={TestProfile} />
         <Route exact path="/update-profile" component={UpdateProfile} />
-        <Route exact path="/profile" render={props => <Profile user={this.state.user} {...props} />} />
+        <Route
+          exact
+          path="/profile"
+          render={props => <Profile user={this.state.user} {...props} />}
+        />
         <Route
           exact
           path="/explore-places"

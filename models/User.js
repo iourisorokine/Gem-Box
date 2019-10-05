@@ -23,7 +23,7 @@ const UserSchema = new Schema(
     following: Array,
     profilePic: {
       type: String,
-      default: "../public/images/defaultprofilepic.png"
+      default: "../client/public/images/defaultprofilepic.png"
     },
     score: Number,
     travelInterests: String,
