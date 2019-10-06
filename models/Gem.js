@@ -8,14 +8,16 @@ const GemSchema = new Schema(
       required: true
     },
     description: String,
-    good_to_know: String,
+    goodToKnow: String,
 
-    image_url: {
+    imageUrl: {
       type: String,
       default: "some default url we need to add for image"
     },
     creator: { type: Schema.Types.ObjectId, ref: "User" },
     discovery: Boolean,
+    latitude: Number,
+    longitude: Number,
     category: {
       type: String,
       enum: [

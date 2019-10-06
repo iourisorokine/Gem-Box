@@ -16,12 +16,6 @@ class Menu extends React.Component {
     });
   };
 
-  componentDidMount = () => {
-    this.setState({
-      user: this.props.user
-    });
-  };
-
   render() {
     console.log("Menu Props: ", this.props);
     return (

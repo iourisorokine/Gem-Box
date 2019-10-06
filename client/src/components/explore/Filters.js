@@ -3,28 +3,13 @@ import React, { Component } from "react";
 
 class Filters extends Component {
   state = {
+    displayFilters: false,
     gemsData: null,
     filterStatus:{}
   };
 
-  // handleSubmit = event => {
-  //   event.preventDefault();
-  //   console.log(this.state);
-  //   this.getGemsData();
-  // };
-
-  // handleChange = event => {
-  //   const name = event.target.name;
-  //   const value =
-  //     event.target.type === "checkbox"
-  //       ? event.target.checked
-  //       : event.target.value;
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // };
-
   render() {
+    
     return (
       <div style={{border:"1px solid black"}}>
         <h1>Filter by</h1>

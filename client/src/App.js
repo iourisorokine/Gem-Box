@@ -29,10 +29,11 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log("App state: ",this.state);
+    console.log("App props: ",this.props);
     return (
       <div className="App">
-        <Menu />
+        <Route render={props => <Menu setUser={this.setUser} {...props} />}/>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route

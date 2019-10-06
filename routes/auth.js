@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 
 // POST api/auth/signup
 router.post("/signup", (req, res) => {
-  const {unsername, password } = req.body;
+  const {username, password } = req.body;
 
   if (!password || password.length < 8) {
     return res
@@ -44,9 +44,7 @@ router.post("/signup", (req, res) => {
 
 // POST /api/auth/login
 router.post("/login", (req, res) => {
-  console.log(req.body)
   passport.authenticate("local", (err, user) => {
-    console.log(user)
     if (err) {
       return res.status(500).json({ message: "Error while authenticating" });
     }

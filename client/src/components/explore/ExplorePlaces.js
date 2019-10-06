@@ -3,13 +3,13 @@ import { logout } from "../../services/api";
 import Filters from "./Filters";
 import MapGems from "./MapGems";
 import axios from "axios";
-import CreateGem from "../create/CreateGem";
+import SetGem from "../create/SetGem";
 
 class ExplorePlaces extends Component {
   state = {
     displayFilters: false,
+    gemsData: null,
     filterStatus: {
-      gemsData: null,
       showGems: true,
       showTrips: true,
       userFilter: "all",
@@ -33,6 +33,10 @@ class ExplorePlaces extends Component {
       });
     });
   };
+
+  componentDidMount=()=>{
+    if(!this.state.gemsData) this.getGemsData();
+  }
 
   handleChange = (event) => {
     const name = event.target.name;
@@ -79,20 +83,20 @@ class ExplorePlaces extends Component {
     }
     console.log(this.state);
     return (
-      <div>
+      <div >
         <div>
           <button onClick={this.toggleFilters}>Show filters</button>
           {this.state.displayFilters && (
             <>
               <Filters
+                style={{position:"fixed"}}
                 handleFilterChange={this.handleChange}
                 handleFilterSubmit={this.handleFilterSubmit}
                 filterStatus={this.state.filterStatus}
               />
             </>
           )}
-          <MapGems gems={gemsFiltered} />
-          <CreateGem />
+          <MapGems gems={gemsFiltered}/>
         </div>
       </div>
     );
