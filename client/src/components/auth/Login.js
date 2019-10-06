@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { login } from "../services/api";
+import { login } from "../../services/api";
 
 export default class Login extends Component {
   state = {
-    email: "",
+    username: "",
     password: "",
     message: ""
   };
@@ -20,13 +20,13 @@ export default class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, password } = this.state;
+    const { username, password } = this.state;
 
-    login(email, password).then((data) => {
+    login(username, password).then((data) => {
       if (data.message) {
         this.setState({
           message: data.message,
-          email: "",
+          username: "",
           password: ""
         });
       } else {
@@ -44,13 +44,13 @@ export default class Login extends Component {
         <h2>Login</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor="email">Email: </Form.Label>
+            <Form.Label htmlFor="username">User Name: </Form.Label>
             <Form.Control
               type="text"
-              name="email"
-              value={this.state.email}
+              name="username"
+              value={this.state.username}
               onChange={this.handleChange}
-              id="email"
+              id="username"
             />
           </Form.Group>
           <Form.Group>

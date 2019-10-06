@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { signup } from "../services/api";
+import { signup } from "../../services/api";
 import { Link } from "react-router-dom";
 
 export default class Signup extends React.Component {
   state = {
-    email: "",
+    username: "",
     password: "",
     message: ""
   };
@@ -21,20 +21,20 @@ export default class Signup extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, password } = this.state;
+    const { username, password } = this.state;
 
-    signup(email, password).then((data) => {
+    signup(username, password).then((data) => {
       if (data.message) {
         this.setState({
           message: data.message,
-          email: "",
+          username: "",
           password: ""
         });
       } else {
         // successfully signed up
         // update the state for the parent component
         this.props.setUser(data);
-        this.props.history.push("/update-profile");
+        this.props.history.push("/profile");
       }
     });
   };
@@ -45,13 +45,13 @@ export default class Signup extends React.Component {
         <h2>Signup</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor="email">Email: </Form.Label>
+            <Form.Label htmlFor="username">User Name: </Form.Label>
             <Form.Control
               type="text"
-              name="email"
-              value={this.state.email}
+              name="username"
+              value={this.state.username}
               onChange={this.handleChange}
-              id="email"
+              id="username"
             />
           </Form.Group>
           <Form.Group>

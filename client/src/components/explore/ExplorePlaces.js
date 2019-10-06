@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { logout } from "../services/api";
+import { logout } from "../../services/api";
 import Filters from "./Filters";
 import MapGems from "./MapGems";
 import axios from "axios";
-import CreateGem from "./CreateGem";
+import CreateGem from "../create/CreateGem";
 
 class ExplorePlaces extends Component {
   state = {

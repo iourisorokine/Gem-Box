@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 
-class Landing extends Component {
+class Home extends Component {
   state={
     user: null
   }
@@ -38,4 +38,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default Home;

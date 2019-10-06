@@ -1,5 +1,5 @@
 import React from "react";
-import { getQuote } from "../services/api";
+import { getQuote } from "../../services/api";
 
 export default class Logout extends React.Component {
   state = {

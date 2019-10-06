@@ -7,13 +7,12 @@ import ReactMapGL, {
   GeolocateControl,
   NavigationControl
 } from "react-map-gl";
-
 import Geocoder from "react-mapbox-gl-geocoder";
 
-export class CreateGem extends Component {
+export class SetGem extends Component {
   state = {
     viewport: {
-      width: "100vw",
+      width: "100%",
       height: "100vh",
       latitude: 52.520008,
       longitude: 13.404954,
@@ -164,5 +163,4 @@ export class CreateGem extends Component {
     );
   }
 }
-
-export default CreateGem;
+export default SetGem

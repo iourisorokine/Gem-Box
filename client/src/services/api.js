@@ -3,10 +3,10 @@ import axios from "axios";
 const signup = (email, password) => {
   return axios
     .post("/api/auth/signup", { email, password })
-    .then((response) => {
+    .then(response => {
       return response.data;
     })
-    .catch((err) => {
+    .catch(err => {
       return err.response.data;
     });
 };
@@ -14,10 +14,10 @@ const signup = (email, password) => {
 const login = (email, password) => {
   return axios
     .post("/api/auth/login", { email, password })
-    .then((response) => {
+    .then(response => {
       return response.data;
     })
-    .catch((err) => {
+    .catch(err => {
       return err.response.data;
     });
 };
@@ -25,10 +25,10 @@ const login = (email, password) => {
 const logout = () => {
   return axios
     .delete("/api/auth/logout")
-    .then((response) => {
+    .then(response => {
       return response.data;
     })
-    .catch((err) => {
+    .catch(err => {
       return err.response.data;
     });
 };
@@ -36,10 +36,10 @@ const logout = () => {
 const getQuote = () => {
   return axios
     .get("/api/wisdom")
-    .then((response) => {
+    .then(response => {
       return response.data;
     })
-    .catch((err) => {
+    .catch(err => {
       return err.resonse.data;
     });
 };
