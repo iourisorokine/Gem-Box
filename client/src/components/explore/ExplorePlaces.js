@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { logout } from "../../services/api";
 import Filters from "./Filters";
 import MapGems from "./MapGems";
 import axios from "axios";
-import SetGem from "../create/SetGem";
+import {Button} from "react-bootstrap";
 
 class ExplorePlaces extends Component {
   state = {
@@ -13,8 +12,8 @@ class ExplorePlaces extends Component {
       showGems: true,
       showTrips: true,
       userFilter: "all",
-      dateStart: "",
-      dateEnd: "",
+      dateStart: "2019-01-01",
+      dateEnd: "2019-12-31",
       foodDrinks: true,
       cultureArts: true,
       sports: true,
@@ -49,14 +48,6 @@ class ExplorePlaces extends Component {
     });
   };
 
-  handleLogout = (props) => {
-    console.log("LOGOUT PROPS: ", props);
-    logout().then(() => {
-      props.setUser(null);
-      props.history.push("/logout");
-    });
-  };
-
   toggleFilters = () => {
     const displayFilters = this.state.displayFilters ? false : true;
     this.setState({
@@ -77,19 +68,18 @@ class ExplorePlaces extends Component {
     let gemsFiltered = [];
     if (this.state.gemsData) {
       const gemsToFilter = this.state.gemsData;
+      const filter=this.state.filterStatus;
       gemsFiltered = gemsToFilter.filter((gem) => {
-        return this.state.filterStatus[gem.category] === true;
+        return filter[gem.category] === true&&filter.dateStart<=gem.created_at.slice(0,10)&&gem.created_at.slice(0,10)<=filter.dateEnd;
       });
     }
-    console.log(this.state);
     return (
       <div >
         <div>
-          <button onClick={this.toggleFilters}>Show filters</button>
+          <Button onClick={this.toggleFilters}>Show filters</Button>
           {this.state.displayFilters && (
             <>
               <Filters
-                style={{position:"fixed"}}
                 handleFilterChange={this.handleChange}
                 handleFilterSubmit={this.handleFilterSubmit}
                 filterStatus={this.state.filterStatus}

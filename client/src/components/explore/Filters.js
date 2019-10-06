@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Button} from "react-bootstrap";
 
 
 class Filters extends Component {
@@ -9,9 +10,9 @@ class Filters extends Component {
   };
 
   render() {
-    
+
     return (
-      <div style={{border:"1px solid black"}}>
+      <div style={{border:"1px solid black", zIndex:"20"}}>
         <h1>Filter by</h1>
         <form onSubmit={this.props.handleFilterSubmit}>
           <div>
@@ -139,7 +140,7 @@ class Filters extends Component {
               <label htmlFor="other">Other</label>
             </div>
           </div>
-          <button>Apply</button>
+          <Button>Apply</Button>
         </form>
       </div>
     );

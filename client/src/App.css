@@ -4,7 +4,7 @@ body {
 }
 .App {
   text-align: center;
-  max-width: 500px;
+  max-width: 700px;
   margin: auto;
 }
 
@@ -42,12 +42,18 @@ body {
   width:100px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
-.gem-marker p{
-  background-color: rgba(255,255,255,0.8);
+.gem-label{
+  padding: 3px;
+  background-color: rgba(255,255,255,0.7);
+  border: solid 1px #333;
+  z-index: 10;
+}
+
+.gem-label p{
   margin: 0;
   padding: 0;
   font-size: 12px;
@@ -55,7 +61,7 @@ body {
   font-weight: bold;
 }
 
-.gem-market img{
+.gem-marker img{
   width: 50px;
   height: 50px;
 }
