@@ -8,9 +8,10 @@ const GemSchema = new Schema(
       required: true
     },
     description: String,
-    good_to_know: String,
-
-    image_url: {
+    goodToKnow: String,
+    latitude: Number,
+    longitude: Number,
+    imageUrl: {
       type: String,
       default: "some default url we need to add for image"
     },
@@ -28,7 +29,6 @@ const GemSchema = new Schema(
         "others"
       ]
     },
-
     visitedDate: {
       type: Date,
       //   default: Date.now()

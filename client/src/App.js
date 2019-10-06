@@ -22,7 +22,7 @@ class App extends React.Component {
     user: this.props.user
   };
 
-  setUser = user => {
+  setUser = (user) => {
     this.setState({
       user: user
     });
@@ -32,18 +32,18 @@ class App extends React.Component {
     console.log(this.state);
     return (
       <div className="App">
-        <Menu />
+        <Route render={(props) => <Menu setUser={this.setUser} {...props} />} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route
             exact
             path="/login"
-            render={props => <Login setUser={this.setUser} {...props} />}
+            render={(props) => <Login setUser={this.setUser} {...props} />}
           />
           <Route
             exact
             path="/signup"
-            render={props => <Signup setUser={this.setUser} {...props} />}
+            render={(props) => <Signup setUser={this.setUser} {...props} />}
           />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/logout" component={Logout} />
@@ -57,76 +57,6 @@ class App extends React.Component {
         </Switch>
       </div>
     );
-    //   <div className="App">
-    //     the app renders here
-    //     <Route
-    //       render={(props) => (
-    //         <Menu user={this.state.user} setUser={this.setUser} {...props} />
-    //       )}
-    //     />
-    //     {/* {!this.state.user && (
-    //       <Landing user={this.state.user} setUser={this.setUser} />
-    //     )} */}
-    //     {this.state.user ? (
-    //       <>
-    //         <Route
-    //           path="/profile"
-    //           render={(props) => (
-    //             <ExplorePlaces
-    //               setUser={this.setUser}
-    //               user={this.state.user}
-    //               {...props}
-    //             />
-    //           )}
-    //         />
-    //         <Route
-    //           exact
-    //           path="/logout"
-    //           render={(props) => (
-    //             <Logout
-    //               setUser={this.setUser}
-    //               user={this.state.user}
-    //               {...props}
-    //             />
-    //           )}
-    //         />
-    //       </>
-    //     ) : (
-    //       <></>
-    //     )}
-    //     <Route
-    //       exact
-    //       path="/"
-    //       user={this.state.user}
-    //       setUser={this.setUser}
-    //       component={Landing}
-    //     />
-    //     <Route
-    //       exact
-    //       path="/signup"
-    //       render={(props) => <Signup setUser={this.setUser} {...props} />}
-    //     />
-    //     <Route
-    //       exact
-    //       path="/login"
-    //       render={(props) => <Login setUser={this.setUser} {...props} />}
-    //     />
-    //     <Route exact path="/auth/:id" component={TestProfile} />
-    //     <Route exact path="/logout" component={Logout} />
-    //     <Route exact path="/update-profile" component={UpdateProfile} />
-    //     <Route
-    //       exact
-    //       path="/profile"
-    //       render={(props) => <Profile user={this.state.user} {...props} />}
-    //     />
-    //     <Route
-    //       exact
-    //       path="/explore-places"
-    //       render={(props) => (
-    //         <ExplorePlaces user={this.state.user} {...props} />
-    //       )}
-    //     />
-    //   </div>
   }
 }
 

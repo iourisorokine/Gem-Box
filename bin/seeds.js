@@ -51,8 +51,10 @@ let gems = [
     image_url:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
-    category: "Nature",
+    category: "nature",
     visitedDate: "",
+    latitude: 59.913868,
+    longitude: 10.752245,
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
@@ -62,13 +64,15 @@ let gems = [
   {
     title: "This super spot",
     description: "That's a very cool spot, we just ca't believe that",
-    good_to_know: "Spot spot spot",
+    goodToKnow: "Spot spot spot",
 
-    image_url:
+    imageUrl:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
-    category: "Nature",
+    category: "nature",
     visitedDate: "",
+    latitude: 39.758602,
+    longitude: -104.997437,
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
@@ -78,13 +82,15 @@ let gems = [
   {
     title: "Hiking in the Mountains",
     description: "That's a very cool spot, we just ca't believe that",
-    good_to_know: "for advanced hickers only",
+    goodToKnow: "for advanced hickers only",
 
-    image_url:
+    imageUrl:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
-    category: "Hikes",
+    category: "hikes",
     visitedDate: "",
+    latitude: 50.937531,
+    longitude: 6.960279,
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
@@ -94,13 +100,15 @@ let gems = [
   {
     title: "Hiking in the Mountains",
     description: "That's a very cool spot, we just ca't believe that",
-    good_to_know: "for advanced hickers only",
+    goodToKnow: "for advanced hickers only",
 
-    image_url:
+    imageUrl:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
-    category: "Hikes",
+    category: "hikes",
     visitedDate: "",
+    latitude: 39.08252,
+    longitude: -94.582306,
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
@@ -111,13 +119,15 @@ let gems = [
     title: "The History museum",
     description:
       "Discover the history and cultureof locals and ravel trough time",
-    good_to_know: "20usd admission fee",
+    goodToKnow: "20usd admission fee",
 
-    image_url:
+    imageUrl:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
-    category: "Culture & Arts",
+    category: "cultureArts",
     visitedDate: "",
+    latitude: 55.755825,
+    longitude: 37.617298,
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
