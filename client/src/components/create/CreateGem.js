@@ -63,7 +63,7 @@ class CreateGem extends React.Component {
     return (
       <div>
         {/* <GemWelcome/> */}
-        {/* <SetGem createGem={this.createGem} /> */}
+        <SetGem createGem={this.createGem} />
         {/* <CheckGem /> */}
         {/* <AddExperience
           locationname={this.state.locationname}
