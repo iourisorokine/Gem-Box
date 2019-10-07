@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Filters from "./Filters";
 import MapGems from "./MapGems";
 import axios from "axios";
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 class ExplorePlaces extends Component {
   state = {
@@ -25,7 +25,7 @@ class ExplorePlaces extends Component {
   };
 
   getGemsData = () => {
-    axios.get("/api/gem").then((gems) => {
+    axios.get("/api/gem").then(gems => {
       console.log(gems.data);
       this.setState({
         gemsData: gems.data
@@ -33,11 +33,11 @@ class ExplorePlaces extends Component {
     });
   };
 
-  componentDidMount=()=>{
-    if(!this.state.gemsData) this.getGemsData();
-  }
+  componentDidMount = () => {
+    if (!this.state.gemsData) this.getGemsData();
+  };
 
-  handleChange = (event) => {
+  handleChange = event => {
     const name = event.target.name;
     const value =
       event.target.type === "checkbox"
@@ -55,7 +55,7 @@ class ExplorePlaces extends Component {
     });
   };
 
-  handleFilterSubmit = (event) => {
+  handleFilterSubmit = event => {
     event.preventDefault();
     console.log(event);
     this.setState({
@@ -68,26 +68,32 @@ class ExplorePlaces extends Component {
     let gemsFiltered = [];
     if (this.state.gemsData) {
       const gemsToFilter = this.state.gemsData;
-      const filter=this.state.filterStatus;
-      gemsFiltered = gemsToFilter.filter((gem) => {
-        return filter[gem.category] === true&&filter.dateStart<=gem.created_at.slice(0,10)&&gem.created_at.slice(0,10)<=filter.dateEnd;
+      const filter = this.state.filterStatus;
+      gemsFiltered = gemsToFilter.filter(gem => {
+        return (
+          filter.showGems&&
+          filter[gem.category] === true &&
+          filter.dateStart <= gem.created_at.slice(0, 10) &&
+          gem.created_at.slice(0, 10) <= filter.dateEnd
+        );
       });
     }
     return (
-      <div >
-        <div>
-          <Button onClick={this.toggleFilters}>Show filters</Button>
-          {this.state.displayFilters && (
-            <>
-              <Filters
-                handleFilterChange={this.handleChange}
-                handleFilterSubmit={this.handleFilterSubmit}
-                filterStatus={this.state.filterStatus}
-              />
-            </>
-          )}
-          <MapGems gems={gemsFiltered}/>
-        </div>
+      <div className="explore-places">
+        {this.state.displayFilters ? (
+          <>
+            <Filters
+              handleFilterChange={this.handleChange}
+              handleFilterSubmit={this.handleFilterSubmit}
+              filterStatus={this.state.filterStatus}
+            />
+          </>
+        ) : (
+          <Button className="filter-toggle-button" onClick={this.toggleFilters}>
+            <i className="fas fa-filter"></i>
+          </Button>
+        )}
+        <MapGems gems={gemsFiltered} />
       </div>
     );
   }

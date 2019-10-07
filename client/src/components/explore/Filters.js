@@ -12,7 +12,7 @@ class Filters extends Component {
   render() {
 
     return (
-      <div style={{border:"1px solid black", zIndex:"20"}}>
+      <div className="filters-block">
         <h1>Filter by</h1>
         <form onSubmit={this.props.handleFilterSubmit}>
           <div>
@@ -140,7 +140,7 @@ class Filters extends Component {
               <label htmlFor="other">Other</label>
             </div>
           </div>
-          <Button type="submit">Apply</Button>
+          <Button type="submit">Apply & Close</Button>
         </form>
       </div>
     );

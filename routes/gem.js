@@ -34,19 +34,20 @@ router.get("/", (req, res) => {
 });
 
 
-/*
-router.get("/:id", (req, res) => {
-  const id = req.params.userId;
 
-  User.findById(id)
-    .then(user => {
-      res.json(user);
+router.get("/:gemId", (req, res) => {
+  const id = req.params.gemId;
+
+  Gem.findById(id)
+    .then(gem => {
+      res.json(gem);
     })
     .catch(err => {
       res.json(err);
     });
 });
 
+/*
 router.patch("/:id", (req, res) => {
   const { username, profilePic, travelInterests } = req.body;
   const userId=req.params.id;

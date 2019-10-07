@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import GemOnMap from "./GemOnMap";
 import ReactMapGL, { Popup } from "react-map-gl";
+import GemDetails from "./GemDetails"
 
 class MapGems extends Component {
   state = {
@@ -12,42 +14,60 @@ class MapGems extends Component {
       longitude: 13.404954,
       zoom: 6
     },
-    popupInfo: null
+    gemSelectedInfo: null,
+    displayDetails: false
   };
 
   openPopup = (gemData) => {
-    const{latitude, longitude, imageUrl, title, created_at,_id}=gemData
     this.setState({
-      popupInfo: {
-        latitude,
-        longitude,
-        imageUrl,
-        title,
-        _id,
-        created_at: created_at.slice(0,10)
+      gemSelectedInfo: {
+        ...gemData
       }
     });
   };
 
+  closeDetails=()=>{
+    this.setState({
+      displayDetails: false
+    })
+  }
+
+  openDetails=()=>{
+    console.log("clicked")
+    this.setState({
+      displayDetails: true
+    })
+  }
+
+  setUserLocation = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+       let setUserLocation = {
+           lat: position.coords.latitude,
+           long: position.coords.longitude
+        };
+        this.setState({
+          userLocation: setUserLocation
+       });
+    });
+  };
+
   renderPopup = () => {
-    const { popupInfo } = this.state;
-    console.log(popupInfo);
-    const gemUrl=(popupInfo)?`/gem/${popupInfo._id}`:"#";
+    const { gemSelectedInfo } = this.state;
     return (
-      popupInfo && (
+      gemSelectedInfo && (
         <Popup
           className="gem-popup"
           tipSize={5}
           anchor="top"
-          latitude={popupInfo.latitude}
-          longitude={popupInfo.longitude}
+          latitude={gemSelectedInfo.latitude}
+          longitude={gemSelectedInfo.longitude}
           closeOnClick={false}
-          onClose={() => this.setState({ popupInfo: null })}>
+          onClose={() => this.setState({ gemSelectedInfo: null })}>
           <div>
-            <img className="gem-popup-img" src={popupInfo.imageUrl} alt=""/>
-            <p className="gem-popup-title">{popupInfo.title}</p>
-            <p className="gem-popup-date">{popupInfo.created_at}</p>
-            <a className="gem-popup-link" href={gemUrl}>Explore</a>
+            <img className="gem-popup-img" src={gemSelectedInfo.imageUrl} alt=""/>
+            <p className="gem-popup-title">{gemSelectedInfo.title}</p>
+            <p className="gem-popup-date">{gemSelectedInfo.created_at.slice(0,10)}</p>
+            <button onClick={this.openDetails} className="gem-popup-link">Explore</button>
           </div>
         </Popup>
       )
@@ -57,23 +77,18 @@ class MapGems extends Component {
   render() {
     const gemsToRender = this.props.gems.map(gem => {
       return (
-        <div>
-          <GemOnMap data={gem} openPopup={this.openPopup} />
-        </div>
+          <GemOnMap key={gem._id} data={gem} openPopup={this.openPopup} />
       );
     });
-
+    console.log(this.state.displayDetails)
     return (
       <div style={{ border: "1px solid green" }}>
+        {this.state.displayDetails&&(<><GemDetails data={this.state.gemSelectedInfo} closeDetails={this.closeDetails}/></>)}
         <ReactMapGL
           {...this.state.viewport}
           onViewportChange={viewport =>
             this.setState({
-              viewport: viewport,
-              marker: {
-                longitude: viewport.longitude,
-                latitude: viewport.latitude
-              }
+              viewport: viewport
             })
           }
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}

@@ -29,11 +29,9 @@ class App extends React.Component {
   };
 
   render() {
-    console.log("App state: ",this.state);
-    console.log("App props: ",this.props);
     return (
       <div className="App">
-        <Route render={(props) => <Menu setUser={this.setUser} {...props} />} />
+        <Route render={(props) => <Menu user={this.state.user} setUser={this.setUser} {...props} />} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route
@@ -51,12 +49,11 @@ class App extends React.Component {
             path="/profile"
             render={(props) => <Profile setUser={this.setUser} {...props} user={this.state.user} />}
           />
-          {/* <Route exact path="/profile" component={Profile} /> */}
           <Route exact path="/logout" component={Logout} />
           <Route path="/profile/:profileId" component={Profile} />
           <Route path="/trip/:tripId" component={TripDetails} />
           <Route exact path="/explore-places" component={ExplorePlaces} />
-          <Route path="/gem/:gemId" component={GemDetails} />
+          {/* <Route path="/gem/:gemId" component={GemDetails} /> */}
           <Route exact path="/create-gem" component={CreateGem} />
           <Route exact path="/about-us" component={AboutUs} />
           <Route path="/" component={NotFound} />

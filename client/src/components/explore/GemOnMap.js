@@ -2,19 +2,9 @@ import React from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
 const GemOnMap = props => {
-  const categoriesStrings = {
-    foodDrinks: "Food & Drinks",
-    cultureArts: "Culture & Arts",
-    hikes: "Hikes",
-    nature: "Nature",
-    party: "Party",
-    sports: "Sports",
-    others: "Other"
-  };
-
 
   return (
-    <div key={props.data._id}>
+    <div>
         <Marker
           latitude={props.data.latitude}
           longitude={props.data.longitude}

@@ -1,13 +1,13 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 import { logout } from "../../services/api";
 
 class Menu extends React.Component {
   state = {
-    user: null
+    user: this.props.user
   };
 
-  handleLogout = (props) => {
+  handleLogout = props => {
     console.log("LOGOUT PROPS: ", props);
     logout().then(() => {
       props.setUser(null);
@@ -16,22 +16,29 @@ class Menu extends React.Component {
   };
 
   render() {
-    console.log("Menu Props: ", this.props);
+    console.log("Menu state: ", this.state);
+    console.log("Menu props: ", this.props);
     return (
-      <Navbar bg="light" expand="lg">
-        <Nav className="mr-auto">
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/">Home</NavDropdown.Item>
-            <NavDropdown.Item href="/explore-places">Explore places</NavDropdown.Item>
-            <NavDropdown.Item href="/create-gem">Create Gem</NavDropdown.Item>
-                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
-                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-                <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-      </Navbar>
+      <DropdownButton
+        id="dropdown-basic-button"
+        className="main-menu"
+        title="☰">
+        <Dropdown.Item href="/">Home</Dropdown.Item>
+        <Dropdown.Item href="/explore-places">Explore places</Dropdown.Item>
+        {this.state.user ? (
+          <>
+            <Dropdown.Item href="/create-gem">Create Gem</Dropdown.Item>
+            <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item href="/logout">Logout</Dropdown.Item>
+          </>
+        ) : (
+          <>
+            <Dropdown.Item href="/login">Login</Dropdown.Item>
+            <Dropdown.Item href="/signup">Signup</Dropdown.Item>
+          </>
+        )}
+      </DropdownButton>
     );
   }
 }
