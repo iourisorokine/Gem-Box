@@ -9,12 +9,12 @@ const Gem = require("../models/Gem");
 const bcryptSalt = 10;
 mongoose
   .connect("mongodb://localhost/gembox-database", { useNewUrlParser: true })
-  .then(x => {
+  .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Error connecting to mongo", err);
   });
 let users = [
@@ -138,7 +138,7 @@ let gems = [
     }
   }
 ];
-/*
+
 User.deleteMany()
   .then(() => {
     return User.create(users);
@@ -172,20 +172,20 @@ Wisdom.deleteMany()
     mongoose.disconnect();
     throw err;
   });
-  */
+
 Gem.deleteMany()
   .then(() => {
     return Gem.create(gems);
   })
-  .then(gems => {
+  .then((gems) => {
     console.log(`${gems.length} gems created with the following id:`);
-    console.log(gems.map(u => u._id));
+    console.log(gems.map((u) => u._id));
   })
   .then(() => {
     // Close properly the connection to Mongoose
     mongoose.disconnect();
   })
-  .catch(err => {
+  .catch((err) => {
     mongoose.disconnect();
     throw err;
   });

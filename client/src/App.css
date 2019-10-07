@@ -114,11 +114,11 @@ body {
   box-shadow: 2px 2px 4px #bbb;
 }
 
-.gem-details{
+.gem-details {
   min-height: 100vh;
 }
 
-.gem-details-image{
+.gem-details-image {
   width: 90%;
   max-width: 700px;
   height: auto;
@@ -143,4 +143,37 @@ body {
 .item {
   display: flex;
   justify-content: space-between;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("https://images.unsplash.com/photo-1498889444388-e67ea62c464b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1601&q=80");
+  background-size: cover;
+}
+
+.header-box {
+  background-color: #4badb6;
+  opacity: 0.6;
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+.wisdom {
+  background-color: #4badb6;
+  padding: 20px;
+}
+
+.quote {
+  font-size: 36px;
+  color: white;
+  font-style: italic;
+}
+
+.author {
+  font-size: 26px;
+  color: white;
 }
