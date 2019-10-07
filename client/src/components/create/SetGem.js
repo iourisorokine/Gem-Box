@@ -64,14 +64,6 @@ export class SetGem extends Component {
         latitude: viewport.latitude
       }
     });
-
-    // if (!response.data.features.length) {
-    //   pindata[0] = "unknown";
-    // } else {
-    //   pindata[0] = response.data.features[2].place_name;
-    // }
-    // pindata[1] = [lngLat.lng, lngLat.lat];
-    // console.log(pindata);
   };
 
   render() {

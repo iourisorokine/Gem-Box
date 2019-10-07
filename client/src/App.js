@@ -49,12 +49,15 @@ class App extends React.Component {
             path="/profile"
             render={(props) => <Profile setUser={this.setUser} {...props} user={this.state.user} />}
           />
+          <Route 
+            exact path="/create-gem"
+            render={(props) => <CreateGem setUser={this.setUser} {...props} />}
+          />
           <Route exact path="/logout" component={Logout} />
           <Route path="/profile/:profileId" component={Profile} />
           <Route path="/trip/:tripId" component={TripDetails} />
           <Route exact path="/explore-places" component={ExplorePlaces} />
-          {/* <Route path="/gem/:gemId" component={GemDetails} /> */}
-          <Route exact path="/create-gem" component={CreateGem} />
+          <Route path="/gem/:gemId" component={GemDetails} />
           <Route exact path="/about-us" component={AboutUs} />
           <Route path="/" component={NotFound} />
         </Switch>
