@@ -8,6 +8,7 @@ import Logout from "./components/auth/Logout";
 import Home from "./components/global/Home";
 import ExplorePlaces from "./components/explore/ExplorePlaces";
 import Profile from "./components/profile/Profile";
+import UpdateProfile from "./components/profile/UpdateProfile";
 import TripDetails from "./components/explore/TripDetails";
 import GemDetails from "./components/explore/GemDetails";
 import CreateGem from "./components/create/CreateGem";
@@ -22,38 +23,55 @@ class App extends React.Component {
     user: this.props.user
   };
 
-  setUser = (user) => {
+  setUser = user => {
     this.setState({
       user: user
     });
   };
 
   render() {
-    console.log("App state: ",this.state);
-    console.log("App props: ",this.props);
+    console.log("App state: ", this.state);
+    console.log("App props: ", this.props);
     return (
       <div className="App">
-        <Route render={(props) => <Menu setUser={this.setUser} {...props} />} />
+        <Route render={props => <Menu setUser={this.setUser} {...props} />} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route
             exact
             path="/login"
-            render={(props) => <Login setUser={this.setUser} {...props} />}
+            render={props => <Login setUser={this.setUser} {...props} />}
           />
           <Route
             exact
             path="/signup"
-            render={(props) => <Signup setUser={this.setUser} {...props} />}
+            render={props => <Signup setUser={this.setUser} {...props} />}
           />
           <Route
             exact
             path="/profile"
-            render={(props) => <Profile setUser={this.setUser} {...props} user={this.state.user} />}
+            render={props => (
+              <Profile
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/update-profile"
+            render={props => (
+              <UpdateProfile
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+              />
+            )}
           />
           {/* <Route exact path="/profile" component={Profile} /> */}
           <Route exact path="/logout" component={Logout} />
-          <Route path="/profile/:profileId" component={Profile} />
+          {/* <Route path="/profile/:profileId" component={Profile} /> */}
           <Route path="/trip/:tripId" component={TripDetails} />
           <Route exact path="/explore-places" component={ExplorePlaces} />
           <Route path="/gem/:gemId" component={GemDetails} />

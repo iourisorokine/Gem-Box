@@ -21,10 +21,11 @@ router.post("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  const id = req.params.userId;
+  const id = req.params.id;
 
   User.findById(id)
     .then(user => {
+      console.log("user db", user);
       res.json(user);
     })
     .catch(err => {
@@ -32,23 +33,24 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/update", (req, res) => {
+  console.log("patch route body", req.body);
   const { username, profilePic, travelInterests } = req.body;
-  const userId=req.params.id;
-  console.log('########',req.params.id,'#################');
+
+  const userId = req.user._id;
+  console.log("########", req.user._id, "#################");
   User.findByIdAndUpdate(
     userId,
     { username, profilePic, travelInterests },
     { new: true }
   )
     .then(user => {
-      console.log('########',user);
+      console.log("########", user);
       res.json(user);
     })
     .catch(err => {
       res.json(err);
     });
 });
-
 
 module.exports = router;

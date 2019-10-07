@@ -24,12 +24,12 @@ mongoose
   .connect("mongodb://localhost/gembox-database", {
     useNewUrlParser: true
   })
-  .then((x) => {
+  .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
-  .catch((err) => {
+  .catch(err => {
     console.error("Error connecting to mongo", err);
   });
 
@@ -56,8 +56,8 @@ app.use(
   })
 );
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
+// app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
