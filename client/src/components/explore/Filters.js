@@ -140,7 +140,7 @@ class Filters extends Component {
               <label htmlFor="other">Other</label>
             </div>
           </div>
-          <Button>Apply</Button>
+          <Button type="submit">Apply</Button>
         </form>
       </div>
     );

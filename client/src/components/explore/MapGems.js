@@ -23,29 +23,37 @@ class MapGems extends Component {
     }
   };
 
-  renderPopup() {
-    const { popupInfo } = this.state;
-    console.log(popupInfo)
-    return (
-      popupInfo && (
-        <Popup
-          tipSize={5}
-          anchor="top"
-          longitude={53.520008}
-          latitude={14.404954}
-          closeOnClick={false}
-          onClose={() => this.setState({ popupInfo: null })}>
-          <div>Hello I am Popup</div>
-        </Popup>
-      )
-    );
+  openPopup=(lat, long)=>{
+    this.setState({
+      popupInfo: {
+        latitude: lat,
+        longitude: long
+      }
+    })
   }
+
+  renderPopup=()=> {
+    console.log("hello");
+    const {popupInfo} = this.state;
+    return (
+      popupInfo&&(
+      <Popup
+        tipSize={5}
+        anchor="top"
+        latitude={popupInfo.latitude}
+        longitude={popupInfo.longitude}
+        closeOnClick={false}
+        onClose={() => this.setState({ popupInfo: null })}>
+        <div>Hello I am Popup</div>
+      </Popup>)
+    );
+  };
 
   render() {
     const gemsToRender = this.props.gems.map(gem => {
       return (
         <div>
-          <GemOnMap data={gem} renderPopup={this.renderPopup}/>
+          <GemOnMap data={gem} openPopup={this.openPopup}/>
         </div>
       );
     });
@@ -66,16 +74,9 @@ class MapGems extends Component {
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           mapStyle="mapbox://styles/mapbox/streets-v10"
           captureDoubleClick={false}
-          doubleClickZoom={false}
-          onDblClick={event => {
-            this.setState({
-              marker: {
-                longitude: event.lngLat[0],
-                latitude: event.lngLat[1]
-              }
-            });
-          }}>
+          doubleClickZoom={false}>
           {gemsToRender}
+          {this.renderPopup()}
         </ReactMapGL>
       </div>
     );

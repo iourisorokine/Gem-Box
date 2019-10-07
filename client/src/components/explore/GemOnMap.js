@@ -11,7 +11,9 @@ const GemOnMap = props => {
     sports: "Sports",
     others: "Other"
   };
-  console.log("gem props: ",props)
+
+
+  console.log("gem props: ", props);
   return (
     <div>
       <>
@@ -21,12 +23,16 @@ const GemOnMap = props => {
           captureClick={false}
           draggable={false}
           offsetTop={-100}
-          offsetLeft={-50}
-          onClick={props.renderPopup}
-          >
+          offsetLeft={-50}>
           <div className="gem-marker">
             <div className="gem-label">
               <p>{props.data.title}</p>
+              <button
+                onClick={
+                  ()=>props.openPopup(props.data.latitude,props.data.longitude)
+                }>
+                click me
+              </button>
               <p style={{ color: "green" }}>
                 {categoriesStrings[props.data.category]}
               </p>
