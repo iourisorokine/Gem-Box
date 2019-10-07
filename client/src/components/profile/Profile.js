@@ -1,29 +1,32 @@
 import React, { Component } from "react";
-// import { Button } from "react-bootstrap";
-import UpdateProfile from "./UpdateProfile";
+import { Button } from "react-bootstrap";
+// import UpdateProfile from "./UpdateProfile";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 export default class Profile extends Component {
   state = {
-    user: null
+    user: this.props.user
   };
 
   componentDidMount() {
     if (!this.state.user) {
-      this.setState({
-        user: this.props.user
-      });
+      console.log("cop did", this.props.user.data);
+      this.setState(
+        {
+          user: this.props.user.data
+        },
+        () => console.log("updated state", this.state)
+      );
     }
   }
 
   render() {
-    console.log("Profile user state: ", this.state);
     const user = this.state.user;
     if (!user)
       return (
         <>
-          <p>This us the User Profile</p>
+          <p>This is the User Profile</p>
           <p> No user!</p>
         </>
       );
@@ -35,7 +38,10 @@ export default class Profile extends Component {
         <div>
           <img src="{user.profilePic}" alt="" />
         </div>
-        {/* <Button to={`/edit-profile`}>Edit</Button> */}
+        <Link to="/update-profile">
+          <Button type="button">Edit</Button>
+        </Link>
+        {/* <Button to={`/update-profile`}>Edit</Button> */}
         <div>
           <p>Score: {user.score}</p>
           <p>Followers: {user.followers}</p>

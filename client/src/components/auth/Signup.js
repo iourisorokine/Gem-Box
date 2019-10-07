@@ -10,7 +10,7 @@ export default class Signup extends React.Component {
     message: ""
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     const { name, value } = event.target;
 
     this.setState({
@@ -18,12 +18,16 @@ export default class Signup extends React.Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
 
     const { username, password } = this.state;
 
-    signup(username, password).then((data) => {
+    // usernameToProfile = (this.state.username)=>{
+    //   [username]
+    // };
+
+    signup(username, password).then(data => {
       if (data.message) {
         this.setState({
           message: data.message,

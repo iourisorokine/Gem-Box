@@ -8,6 +8,7 @@ import Logout from "./components/auth/Logout";
 import Home from "./components/global/Home";
 import ExplorePlaces from "./components/explore/ExplorePlaces";
 import Profile from "./components/profile/Profile";
+import UpdateProfile from "./components/profile/UpdateProfile";
 import TripDetails from "./components/explore/TripDetails";
 import GemDetails from "./components/explore/GemDetails";
 import CreateGem from "./components/create/CreateGem";
@@ -22,7 +23,7 @@ class App extends React.Component {
     user: this.props.user
   };
 
-  setUser = (user) => {
+  setUser = user => {
     this.setState({
       user: user
     });
@@ -37,24 +38,41 @@ class App extends React.Component {
           <Route
             exact
             path="/login"
-            render={(props) => <Login setUser={this.setUser} {...props} />}
+            render={props => <Login setUser={this.setUser} {...props} />}
           />
           <Route
             exact
             path="/signup"
-            render={(props) => <Signup setUser={this.setUser} {...props} />}
+            render={props => <Signup setUser={this.setUser} {...props} />}
           />
           <Route
             exact
             path="/profile"
-            render={(props) => <Profile setUser={this.setUser} {...props} user={this.state.user} />}
+            render={props => (
+              <Profile
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/update-profile"
+            render={props => (
+              <UpdateProfile
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+              />
+            )}
           />
           <Route 
             exact path="/create-gem"
             render={(props) => <CreateGem setUser={this.setUser} {...props} />}
           />
           <Route exact path="/logout" component={Logout} />
-          <Route path="/profile/:profileId" component={Profile} />
+          {/* <Route path="/profile/:profileId" component={Profile} /> */}
           <Route path="/trip/:tripId" component={TripDetails} />
           <Route exact path="/explore-places" component={ExplorePlaces} />
           <Route path="/gem/:gemId" component={GemDetails} />
