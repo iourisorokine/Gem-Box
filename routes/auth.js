@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 
 // POST api/auth/signup
 router.post("/signup", (req, res) => {
-  const {unsername, password } = req.body;
+  const { username, password } = req.body;
 
   if (!password || password.length < 8) {
     return res
@@ -18,7 +18,7 @@ router.post("/signup", (req, res) => {
   }
 
   User.findOne({ username: username })
-    .then((found) => {
+    .then(found => {
       if (found) {
         return res.status(400).json({ message: "This email is already taken" });
       }
@@ -26,34 +26,36 @@ router.post("/signup", (req, res) => {
       const salt = bcrypt.genSaltSync();
       const hash = bcrypt.hashSync(password, salt);
 
-      return User.create({ username: username, password: hash }).then((dbUser) => {
-        req.login(dbUser, (err) => {
-          if (err) {
-            return res
-              .status(500)
-              .json({ message: "error while creating user" });
-          }
-        });
-        res.json(dbUser);
-      });
+      return User.create({ username: username, password: hash }).then(
+        dbUser => {
+          req.login(dbUser, err => {
+            if (err) {
+              return res
+                .status(500)
+                .json({ message: "error while creating user" });
+            }
+          });
+          res.json(dbUser);
+        }
+      );
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
 
 // POST /api/auth/login
 router.post("/login", (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   passport.authenticate("local", (err, user) => {
-    console.log(user)
+    console.log(user);
     if (err) {
       return res.status(500).json({ message: "Error while authenticating" });
     }
     if (!user) {
       return res.status(400).json({ message: "Wrong credentials" });
     }
-    req.login(user, (err) => {
+    req.login(user, err => {
       if (err) {
         return res
           .status(500)

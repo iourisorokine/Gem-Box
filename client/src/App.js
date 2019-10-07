@@ -16,6 +16,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
+import UpdateProfile from "./components/profile/UpdateProfile";
 
 class App extends React.Component {
   state = {
@@ -45,8 +46,14 @@ class App extends React.Component {
             path="/signup"
             render={props => <Signup setUser={this.setUser} {...props} />}
           />
-          <Route exact path="/profile" component={Profile} />
+          <Route
+            exact
+            path="/profile"
+            render={props => <Profile setUser={this.setUser} {...props} />}
+          />
+          {/* <Route exact path="/profile" component={Profile} /> */}
           <Route exact path="/logout" component={Logout} />
+          <Route exact path="/update-profile" component={UpdateProfile} />
           <Route path="/profile/:profileId" component={Profile} />
           <Route path="/trip/:tripId" component={TripDetails} />
           <Route exact path="/explore-places" component={ExplorePlaces} />
