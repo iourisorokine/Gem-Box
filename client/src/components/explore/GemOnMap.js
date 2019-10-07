@@ -13,10 +13,8 @@ const GemOnMap = props => {
   };
 
 
-  console.log("gem props: ", props);
   return (
-    <div>
-      <>
+    <div key={props.data._id}>
         <Marker
           latitude={props.data.latitude}
           longitude={props.data.longitude}
@@ -25,12 +23,11 @@ const GemOnMap = props => {
           offsetTop={-30}
           offsetLeft={-15}>
           <div className="gem-marker" onClick={
-                  ()=>props.openPopup(props.data.latitude,props.data.longitude)
+                  ()=>props.openPopup(props.data)
                 }>
-            <img src="/images/blue_gem.png" alt="Gem" />
+            <img src="/images/blue_gem.png" alt="Gem"/>
           </div>
         </Marker>
-      </>
     </div>
   );
 };

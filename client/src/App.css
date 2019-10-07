@@ -37,16 +37,16 @@ body {
   background-position: center;
 }
 
-.gem-marker{
-  height:30px;
-  width:30px;
+.gem-marker {
+  height: 30px;
+  width: 30px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
 }
 
-.gem-marker img{
+.gem-marker img {
   width: 30px;
   height: 30px;
 }
@@ -57,4 +57,26 @@ body {
   bottom: 5%;
   right: 30%;
   border-radius: 5%;
+}
+
+.gem-popup{
+  box-shadow: 2px 2px 4px #bbb;
+}
+
+.gem-popup-img {
+  padding: 12px 0;
+  margin: 0;
+  width: 200px;
+  height: auto;
+}
+
+.gem-popup-title{
+  padding: 0;
+  margin: 0;
+}
+
+.gem-popup-date{
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
 }

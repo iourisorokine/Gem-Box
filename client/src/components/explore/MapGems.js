@@ -1,48 +1,56 @@
 import React, { Component } from "react";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import GemOnMap from "./GemOnMap";
-import ReactMapGL, {
-  Popup
-} from "react-map-gl";
+import ReactMapGL, { Popup } from "react-map-gl";
 
 class MapGems extends Component {
   state = {
     viewport: {
       width: "100%",
       height: "100vh",
-      latitude: 52.520008,
+      latitude: 53.520008,
       longitude: 13.404954,
       zoom: 6
     },
-    popupInfo: {
-      latitude: 53.520008,
-      longitude: 14.404954
-    }
+    popupInfo: null
   };
 
-  openPopup=(lat, long)=>{
+  openPopup = (gemData) => {
+    const{latitude, longitude, imageUrl, title, created_at,_id}=gemData
     this.setState({
       popupInfo: {
-        latitude: lat,
-        longitude: long
+        latitude,
+        longitude,
+        imageUrl,
+        title,
+        _id,
+        created_at: created_at.slice(0,10)
       }
-    })
-  }
+    });
+  };
 
-  renderPopup=()=> {
-    console.log("hello");
-    const {popupInfo} = this.state;
+  renderPopup = () => {
+    const { popupInfo } = this.state;
+    console.log(popupInfo);
+    const gemUrl=(popupInfo)?`/gem/${popupInfo._id}`:"#";
     return (
-      popupInfo&&(
-      <Popup
-        tipSize={5}
-        anchor="top"
-        latitude={popupInfo.latitude}
-        longitude={popupInfo.longitude}
-        closeOnClick={false}
-        onClose={() => this.setState({ popupInfo: null })}>
-        <div>Hello I am Popup</div>
-      </Popup>)
+      popupInfo && (
+        <Popup
+          className="gem-popup"
+          tipSize={5}
+          anchor="top"
+          latitude={popupInfo.latitude}
+          longitude={popupInfo.longitude}
+          closeOnClick={false}
+          onClose={() => this.setState({ popupInfo: null })}>
+          <div>
+            <img className="gem-popup-img" src={popupInfo.imageUrl} alt=""/>
+            <p className="gem-popup-title">{popupInfo.title}</p>
+            <p className="gem-popup-date">{popupInfo.created_at}</p>
+            <a className="gem-popup-link" href={gemUrl}>Explore</a>
+          </div>
+        </Popup>
+      )
     );
   };
 
@@ -50,7 +58,7 @@ class MapGems extends Component {
     const gemsToRender = this.props.gems.map(gem => {
       return (
         <div>
-          <GemOnMap data={gem} openPopup={this.openPopup}/>
+          <GemOnMap data={gem} openPopup={this.openPopup} />
         </div>
       );
     });
@@ -73,6 +81,7 @@ class MapGems extends Component {
           captureDoubleClick={false}
           doubleClickZoom={false}>
           {gemsToRender}
+          {this.renderPopup()}
         </ReactMapGL>
       </div>
     );
