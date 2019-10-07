@@ -1,5 +1,6 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import axios from "axios";
 import React, { Component } from "react";
 import ReactMapGL, {
   Marker,
@@ -7,6 +8,7 @@ import ReactMapGL, {
   GeolocateControl,
   NavigationControl
 } from "react-map-gl";
+
 import Geocoder from "react-mapbox-gl-geocoder";
 
 export class SetGem extends Component {
@@ -20,7 +22,6 @@ export class SetGem extends Component {
       bearing: 0,
       pitch: 0
     },
-
     marker: {
       markerClicked: false,
       latitude: 52.520008,
@@ -28,27 +29,32 @@ export class SetGem extends Component {
     }
   };
 
-  handleViewportChange = viewport => {
+  // here we lift up the state to CreateGem and update longitude, latitude and locationname
+  onSubmit = (event) => {
+    event.preventDefault();
+    let locationname = "";
+    axios
+      .get(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.state.marker.longitude},${this.state.marker.latitude}.json?access_token=` +
+          process.env.REACT_APP_MAPBOX_TOKEN
+      )
+      .then((response) => {
+        // console.log(response);
+        locationname = response.data.features[0].place_name;
+        this.props.createGem({
+          latitude: this.state.marker.latitude,
+          longitude: this.state.marker.longitude,
+          locationname: locationname
+        });
+      })
+      .catch((err) => console.log("Error in getting the locationname" + err));
+  };
+
+  handleViewportChange = (viewport) => {
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     });
   };
-  /* mapRef = React.createRef();
-
-  handleViewportChange = viewport => {
-    this.setState({
-      viewport: { ...this.state.viewport, ...viewport }
-    });
-  };
-
-  handleGeocoderViewportChange = viewport => {
-    const geocoderDefaultOverrides = { transitionDuration: 1000 };
-
-    return this.handleViewportChange({
-      ...viewport,
-      ...geocoderDefaultOverrides
-    });
-  }; */
 
   onSelected = (viewport, item) => {
     this.setState({
@@ -58,9 +64,14 @@ export class SetGem extends Component {
         latitude: viewport.latitude
       }
     });
-    console.log("Selected: ", item);
-    console.log(viewport);
-    console.log(viewport.longitude, viewport.latitude);
+
+    // if (!response.data.features.length) {
+    //   pindata[0] = "unknown";
+    // } else {
+    //   pindata[0] = response.data.features[2].place_name;
+    // }
+    // pindata[1] = [lngLat.lng, lngLat.lat];
+    // console.log(pindata);
   };
 
   render() {
@@ -70,7 +81,7 @@ export class SetGem extends Component {
       <>
         <ReactMapGL
           {...this.state.viewport}
-          onViewportChange={viewport =>
+          onViewportChange={(viewport) =>
             this.setState({
               viewport: viewport,
               marker: {
@@ -83,9 +94,9 @@ export class SetGem extends Component {
           mapStyle="mapbox://styles/mapbox/streets-v10"
           captureDoubleClick={false}
           doubleClickZoom={false}
-          onDblClick={event => {
+          onDblClick={(event) => {
             this.setState({
-              /*  viewport: {
+              /* viewport: {
                 longitude: event.lngLat[0],
                 latitude: event.lngLat[1]
               }, */
@@ -94,17 +105,17 @@ export class SetGem extends Component {
                 latitude: event.lngLat[1]
               }
             });
-            console.log("onclickevent", event.lngLat);
+            // console.log("onclickevent", event.lngLat);
           }}
         >
           <Marker
             latitude={this.state.marker.latitude}
             longitude={this.state.marker.longitude}
-            offsetTop={-10}
-            offsetLeft={-10}
+            offsetTop={-50}
+            offsetLeft={-25}
             captureClick={false}
             draggable={true}
-            onDragEnd={event =>
+            onDragEnd={(event) =>
               this.setState({
                 marker: {
                   longitude: event.lngLat[0],
@@ -135,7 +146,7 @@ export class SetGem extends Component {
           ) : null} */}
           <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
             <NavigationControl
-              onViewportChange={viewport => this.setState({ viewport })}
+              onViewportChange={(viewport) => this.setState({ viewport })}
             />
           </div>
           <div style={{ position: "absolute", right: "2vw", top: "4vh" }}>
@@ -145,12 +156,6 @@ export class SetGem extends Component {
             />
           </div>
           <div>
-            {/*   <Geocoder
-              mapRef={this.mapRef}
-              onViewportChange={this.handleGeocoderViewportChange}
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            /> */}
-
             <Geocoder
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               onSelected={this.onSelected}
@@ -158,9 +163,14 @@ export class SetGem extends Component {
               hideOnSelect={true}
             />
           </div>
+          <div className="setGem">
+            <button onClick={this.onSubmit}>
+              <strong>Create Gem &#129130;</strong>
+            </button>
+          </div>
         </ReactMapGL>
       </>
     );
   }
 }
-export default SetGem
+export default SetGem;

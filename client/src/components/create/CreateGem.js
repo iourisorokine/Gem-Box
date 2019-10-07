@@ -8,27 +8,46 @@ import AddExperience from "./AddExperience";
 import AddDiscovery from "./AddDiscovery";
 import GemSuccess from "./GemSuccess";
 import AddToTrip from "./AddToTrip";
-import GemList from "./GemList"
-import AddGemToTrip from "./AddGemToTrip"
+import GemList from "./GemList";
+import AddGemToTrip from "./AddGemToTrip";
 
 import Geocoder from "react-mapbox-gl-geocoder";
 
-class CreateGem extends Component {
-  render(){
-    return(
+class CreateGem extends React.Component {
+  state = {
+    stage: "GemWelcome",
+    title: "",
+    description: "",
+    goodToKnow: "",
+    imageUrl: "",
+    creator: "",
+    discovery: false,
+    category: "",
+    visitedDate: "",
+    latitude: 0,
+    longitude: 0,
+    locationname: ""
+  };
+
+  createGem = (gemInfos) => {
+    this.setState({ ...this.state, ...gemInfos });
+  };
+
+  render() {
+    console.log(this.state);
+    return (
       <div>
-        <h3>This is the Create Gem Section</h3>
-        <GemWelcome/>
-        <SetGem/>
-        <CheckGem/>
-        <AddExperience/>
+        {/* <GemWelcome/> */}
+        <SetGem createGem={this.createGem} />
+        {/* <CheckGem/>
+        <AddExperience />
         <AddDiscovery/>
         <GemSuccess/>
         <AddToTrip/>
         <GemList/>
-        <AddGemToTrip/>
+        <AddGemToTrip/> */}
       </div>
-    )
+    );
   }
 }
 

@@ -64,13 +64,22 @@ let gems = [
     title: "This super spot",
     description: "That's a very cool spot, we just ca't believe that",
     goodToKnow: "Spot spot spot",
+<<<<<<< HEAD
+=======
+
+>>>>>>> Add-Details-Gem
     imageUrl:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
     category: "nature",
     visitedDate: "",
+<<<<<<< HEAD
     latitude: 49.758602,
     longitude: 10.997437,
+=======
+    latitude: 39.758602,
+    longitude: -104.997437,
+>>>>>>> Add-Details-Gem
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
@@ -81,13 +90,21 @@ let gems = [
     title: "Hiking in the Mountains",
     description: "That's a very cool spot, we just ca't believe that",
     goodToKnow: "for advanced hickers only",
+<<<<<<< HEAD
+=======
+
+>>>>>>> Add-Details-Gem
     imageUrl:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
     category: "hikes",
     visitedDate: "",
     latitude: 50.937531,
+<<<<<<< HEAD
     longitude: 10.997437,
+=======
+    longitude: 6.960279,
+>>>>>>> Add-Details-Gem
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
@@ -98,13 +115,22 @@ let gems = [
     title: "Hiking in the Mountains",
     description: "That's a very cool spot, we just ca't believe that",
     goodToKnow: "for advanced hickers only",
+<<<<<<< HEAD
+=======
+
+>>>>>>> Add-Details-Gem
     imageUrl:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
     category: "hikes",
     visitedDate: "",
+<<<<<<< HEAD
     latitude: 45.08252,
     longitude: 9.997437,
+=======
+    latitude: 39.08252,
+    longitude: -94.582306,
+>>>>>>> Add-Details-Gem
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
@@ -116,13 +142,21 @@ let gems = [
     description:
       "Discover the history and cultureof locals and ravel trough time",
     goodToKnow: "20usd admission fee",
+<<<<<<< HEAD
+=======
+
+>>>>>>> Add-Details-Gem
     imageUrl:
       "https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg",
     discovery: true,
     category: "cultureArts",
     visitedDate: "",
     latitude: 55.755825,
+<<<<<<< HEAD
     longitude: 10.997437,
+=======
+    longitude: 37.617298,
+>>>>>>> Add-Details-Gem
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
