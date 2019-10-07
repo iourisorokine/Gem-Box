@@ -19,7 +19,6 @@ export default class AddDiscovery extends React.Component {
 
   handleChanges = (event) => {
     const { name, value } = event.target;
-    console.log(event.target.visitedDate);
     this.props.fetchGemInfo({
       [name]: value
     });
@@ -29,8 +28,8 @@ export default class AddDiscovery extends React.Component {
       this.setState(
         {
           isEnabled: this.props.checkStatus()
-        },
-        () => console.log("updated state", this.state)
+        }
+        // () => console.log("updated state", this.state)
       );
     }, 10);
   };
