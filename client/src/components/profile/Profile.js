@@ -35,6 +35,7 @@ export default class Profile extends Component {
         <div>
           <h1>{user.username}</h1>
         </div>
+
         <div>
           <img src="{user.profilePic}" alt="" />
         </div>
