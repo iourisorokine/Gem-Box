@@ -18,8 +18,6 @@ const GemSchema = new Schema(
     },
     creator: { type: Schema.Types.ObjectId, ref: "User" },
     discovery: Boolean,
-    latitude: Number,
-    longitude: Number,
     category: {
       type: String,
       enum: [
