@@ -19,6 +19,7 @@ const GemSchema = new Schema(
     discovery: Boolean,
     latitude: Number,
     longitude: Number,
+    locationName: String,
     category: {
       type: String,
       enum: [

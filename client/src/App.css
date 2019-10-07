@@ -37,16 +37,16 @@ body {
   background-position: center;
 }
 
-.gem-marker{
-  height:30px;
-  width:30px;
+.gem-marker {
+  height: 30px;
+  width: 30px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
 }
 
-.gem-marker img{
+.gem-marker img {
   width: 30px;
   height: 30px;
 }
@@ -57,4 +57,17 @@ body {
   bottom: 5%;
   right: 30%;
   border-radius: 5%;
+}
+
+.SuggestGem {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
 }
