@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 // import UpdateProfile from "./UpdateProfile";
 import { Link } from "react-router-dom";
-// import axios from "axios";
+
+import axios from "axios";
 
 export default class Profile extends Component {
   state = {
@@ -21,6 +22,11 @@ export default class Profile extends Component {
     }
   }
 
+  handleFollowClick(userId) {
+    console.log("called");
+    axios.put("/api/user/updateFollower", { id: userId });
+  }
+
   render() {
     const user = this.state.user;
     if (!user)
@@ -30,10 +36,20 @@ export default class Profile extends Component {
           <p> No user!</p>
         </>
       );
+
+    const isFollowing = user.following.includes(user.username);
     return (
       <div class="ProfilePageDetails mx-auto">
         <div>
           <h1>{user.username}</h1>
+          {user.username !== user.username && (
+            <Button
+              className="follow-button"
+              onClick={event => this.handleFollowClick(user._id)}
+            >
+              {isFollowing ? "Unfollow" : "Follow"}
+            </Button>
+          )}
         </div>
         <div>
           <img src="{user.profilePic}" alt="" />

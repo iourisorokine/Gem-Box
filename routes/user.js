@@ -53,4 +53,16 @@ router.patch("/update", (req, res) => {
     });
 });
 
+router.put("/updateFollower", (req, res) => {
+  console.log(req.body.id);
+  const { id } = req.body;
+  const userId = req.user._id;
+
+  User.findByIdAndUpdate(id, {
+    $push: { followers: userId }
+  });
+
+  User.findByIdAndUpdate(userId, { $push: { following: id } });
+});
+
 module.exports = router;
