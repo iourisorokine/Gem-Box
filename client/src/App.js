@@ -73,7 +73,7 @@ class App extends React.Component {
           />
           <Route exact path="/logout" component={Logout} />
           {/* <Route path="/profile/:profileId" component={Profile} /> */}
-          <Route path="/trip/:tripId" component={TripDetails} />
+          <Route path="/trip" component={TripDetails} />
           <Route exact path="/explore-places" component={ExplorePlaces} />
           <Route path="/gem/:gemId" component={GemDetails} />
           <Route exact path="/about-us" component={AboutUs} />
