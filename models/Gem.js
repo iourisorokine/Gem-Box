@@ -11,6 +11,7 @@ const GemSchema = new Schema(
     goodToKnow: String,
     latitude: Number,
     longitude: Number,
+    locationName: String,
     imageUrl: {
       type: String,
       default: "some default url we need to add for image"

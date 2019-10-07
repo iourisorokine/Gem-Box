@@ -1,11 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const Gem = require("../models/Gem");
+const uploader = require("../configs/cloudinary");
 
 // route to create a new gem
 router.post("/", (req, res) => {
-
- const {title, description, good_to_know,image_url="",category} = req.body
+  const {
+    title,
+    description,
+    good_to_know,
+    image_url = "",
+    category
+  } = req.body;
 
   Gem.create({
     title,
@@ -14,10 +20,10 @@ router.post("/", (req, res) => {
     image_url,
     category
   })
-    .then(gem => {
+    .then((gem) => {
       req.json(gem);
     })
-    .catch(err => {
+    .catch((err) => {
       res.json(err);
     });
 });
@@ -25,14 +31,60 @@ router.post("/", (req, res) => {
 // to get the list of all gems
 router.get("/", (req, res) => {
   Gem.find()
-    .then(gems => {
+    .then((gems) => {
       res.json(gems);
     })
-    .catch(err => {
+    .catch((err) => {
       res.json(err);
     });
 });
 
+// to push a new Gem
+router.post("/create", (req, res) => {
+  console.log("create fuction called");
+  let {
+    title,
+    description,
+    goodToKnow,
+    imageUrl,
+    creator,
+    discovery,
+    category,
+    visitedDate,
+    latitude,
+    longitude,
+    locationName
+  } = req.body;
+  Gem.create({
+    title,
+    description,
+    goodToKnow,
+    imageUrl,
+    creator,
+    discovery,
+    category,
+    visitedDate,
+    latitude,
+    longitude,
+    locationName
+  })
+    .then((newgem) => {
+      console.log("user created");
+      res.json(newgem);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+router.post("/add-image", uploader.single("imageUrl"), (req, res, next) => {
+  console.log(req.file);
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
+    return;
+  }
+  res.json({ secure_url: req.file.secure_url });
+});
 
 /*
 router.get("/:id", (req, res) => {

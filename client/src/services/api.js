@@ -44,4 +44,15 @@ const getQuote = () => {
     });
 };
 
-export { signup, login, logout, getQuote };
+const pushGem = (gemInfos) => {
+  return axios
+    .post("/api/gem/create", gemInfos)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
+export { signup, login, logout, getQuote, pushGem };
