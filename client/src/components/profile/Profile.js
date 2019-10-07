@@ -10,18 +10,23 @@ export default class Profile extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      user: this.props.user
-    });
+    if (!this.state.user) {
+      this.setState({
+        user: this.props.user
+      });
+    }
   }
 
   render() {
     console.log("Profile user state: ", this.state);
     const user = this.state.user;
-    if (!user) return (<>
-    <p>This us the User Profile</p>
-    <p> No user!</p>
-    </>);
+    if (!user)
+      return (
+        <>
+          <p>This us the User Profile</p>
+          <p> No user!</p>
+        </>
+      );
     return (
       <div class="ProfilePageDetails mx-auto">
         <div>
