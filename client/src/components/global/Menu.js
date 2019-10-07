@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { logout } from "../../services/api";
 
@@ -27,9 +26,7 @@ class Menu extends React.Component {
             <NavDropdown.Item href="/create-gem">Create Gem</NavDropdown.Item>
                 <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <Link onClick={() => this.handleLogout(this.props)}>
-                  Logout
-                </Link>
+                <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
                 <NavDropdown.Item href="/login">Login</NavDropdown.Item>
                 <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
           </NavDropdown>

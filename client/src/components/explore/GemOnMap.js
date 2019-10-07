@@ -22,21 +22,11 @@ const GemOnMap = props => {
           longitude={props.data.longitude}
           captureClick={false}
           draggable={false}
-          offsetTop={-100}
-          offsetLeft={-50}>
-          <div className="gem-marker">
-            <div className="gem-label">
-              <p>{props.data.title}</p>
-              <button
-                onClick={
+          offsetTop={-30}
+          offsetLeft={-15}>
+          <div className="gem-marker" onClick={
                   ()=>props.openPopup(props.data.latitude,props.data.longitude)
                 }>
-                click me
-              </button>
-              <p style={{ color: "green" }}>
-                {categoriesStrings[props.data.category]}
-              </p>
-            </div>
             <img src="/images/blue_gem.png" alt="Gem" />
           </div>
         </Marker>

@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import GemOnMap from "./GemOnMap";
 import ReactMapGL, {
-  Marker,
-  GeolocateControl,
-  NavigationControl,
   Popup
 } from "react-map-gl";
 
@@ -76,7 +73,6 @@ class MapGems extends Component {
           captureDoubleClick={false}
           doubleClickZoom={false}>
           {gemsToRender}
-          {this.renderPopup()}
         </ReactMapGL>
       </div>
     );
