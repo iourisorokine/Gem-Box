@@ -33,6 +33,7 @@ export class SetGem extends Component {
       viewport: { ...this.state.viewport, ...viewport }
     });
   };
+
   /* mapRef = React.createRef();
 
   handleViewportChange = viewport => {
@@ -85,7 +86,7 @@ export class SetGem extends Component {
           doubleClickZoom={false}
           onDblClick={event => {
             this.setState({
-              /*  viewport: {
+              /* viewport: {
                 longitude: event.lngLat[0],
                 latitude: event.lngLat[1]
               }, */
@@ -145,12 +146,6 @@ export class SetGem extends Component {
             />
           </div>
           <div>
-            {/*   <Geocoder
-              mapRef={this.mapRef}
-              onViewportChange={this.handleGeocoderViewportChange}
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            /> */}
-
             <Geocoder
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               onSelected={this.onSelected}
@@ -158,9 +153,14 @@ export class SetGem extends Component {
               hideOnSelect={true}
             />
           </div>
+          <div className="setGem">
+            <button>
+              <strong>Create Gem &#129130;</strong>
+            </button>
+          </div>
         </ReactMapGL>
       </>
     );
   }
 }
-export default SetGem
+export default SetGem;

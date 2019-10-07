@@ -4,8 +4,13 @@ const Gem = require("../models/Gem");
 
 // route to create a new gem
 router.post("/", (req, res) => {
-
- const {title, description, good_to_know,image_url="",category} = req.body
+  const {
+    title,
+    description,
+    good_to_know,
+    image_url = "",
+    category
+  } = req.body;
 
   Gem.create({
     title,
@@ -33,7 +38,7 @@ router.get("/", (req, res) => {
     });
 });
 
-
+router.post("/creategem", (req, res) => {});
 /*
 router.get("/:id", (req, res) => {
   const id = req.params.userId;
