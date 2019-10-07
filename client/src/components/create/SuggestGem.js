@@ -30,7 +30,7 @@ export default class SuggestGem extends Component {
     this.props.suggestGem({
       latitude: val.latitude,
       longitude: val.longitude,
-      locationName: val.locationname,
+      locationName: val.locationName,
       stage: "AddExperience"
     });
   };
