@@ -67,6 +67,12 @@ body {
   border-radius: 5%;
 }
 
+.generalBtn {
+  margin-top: 5vh;
+  background-color: #4badb6 !important;
+  border-color: #4bafb8 !important;
+}
+
 .gem-popup {
   box-shadow: 2px 2px 4px #bbb;
 }

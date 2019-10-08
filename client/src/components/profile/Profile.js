@@ -4,13 +4,16 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
+import Carousel from "react-bootstrap/Carousel";
 
 export default class Profile extends Component {
   state = {
-    user: this.props.user
+    user: this.props.user,
+    popularGems: []
   };
 
   componentDidMount() {
+    // console.log(this.props.user);
     if (!this.state.user) {
       console.log("cop did", this.props.user.data);
       this.setState(
@@ -20,6 +23,7 @@ export default class Profile extends Component {
         () => console.log("updated state", this.state)
       );
     }
+    this.getPopularGems();
   }
 
   handleFollowClick(userId) {
@@ -27,7 +31,36 @@ export default class Profile extends Component {
     axios.put("/api/user/updateFollower", { id: userId });
   }
 
+  getPopularGems = () => {
+    axios.get(`/api/user/${this.props.user._id}`).then(gems => {
+      console.log(gems.data);
+      this.setState({
+        popularGems: gems.data
+      });
+    });
+  };
+
+  displayPopularGems = () => {
+    return (
+      <Carousel>
+        {this.state.popularGems.map(gem => (
+          <Carousel.Item key={gem._id}>
+            <img className="d-block w-100" src={gem.imageUrl} alt="gem" />
+            <Carousel.Caption>
+              <h3 style={{ fontWeight: 900 }}>{gem.title}</h3>
+              <p style={{ fontWeight: 500 }}>{gem.locationName}</p>
+              <a className="generalBtn" href={`/gem/${gem._id}`}>
+                Explore
+              </a>
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    );
+  };
+
   render() {
+    console.log(this.state.popularGems);
     const user = this.state.user;
     if (!user)
       return (
@@ -39,7 +72,7 @@ export default class Profile extends Component {
 
     const isFollowing = user.following.includes(user.username);
     return (
-      <div class="ProfilePageDetails mx-auto">
+      <div className="ProfilePageDetails mx-auto">
         <div>
           <h1>{user.username}</h1>
           {user.username !== user.username && (
@@ -76,7 +109,7 @@ export default class Profile extends Component {
         </div>
         <div>
           <h2>Most popular gems</h2>
-          <p>Slider</p>
+          {this.displayPopularGems()}
         </div>
         <h2>Trips</h2>
         {/* <Link to={}>Trips</Link> */}
