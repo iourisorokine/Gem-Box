@@ -16,7 +16,7 @@ class MapGems extends Component {
       height: "100vh",
       latitude: 70.520008,
       longitude: 70.404954,
-      zoom: 8
+      zoom: 2
     },
     gemSelectedInfo: null,
     displayDetails: false,
@@ -32,7 +32,8 @@ class MapGems extends Component {
 
   closeDetails = () => {
     this.setState({
-      displayDetails: false
+      displayDetails: false,
+      gemSelectedInfo: null
     });
   };
 
