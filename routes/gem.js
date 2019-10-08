@@ -20,10 +20,10 @@ router.post("/", (req, res) => {
     image_url,
     category
   })
-    .then((gem) => {
+    .then(gem => {
       req.json(gem);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
@@ -31,10 +31,10 @@ router.post("/", (req, res) => {
 // to get the list of all gems
 router.get("/", (req, res) => {
   Gem.find()
-    .then((gems) => {
+    .then(gems => {
       res.json(gems);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
@@ -67,13 +67,13 @@ router.post("/create", (req, res) => {
     latitude,
     longitude,
     locationName,
-    likes:[]
+    likes: []
   })
-    .then((newgem) => {
+    .then(newgem => {
       console.log("user created");
       res.json(newgem);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
@@ -113,15 +113,9 @@ router.get("/:gemId", (req, res) => {
     });
 });
 
-
 router.put("/:gemId", (req, res) => {
   const { likes } = req.body;
-  console.log("#########Req Body: #######:", req.body)
-  console.log("#########Req Params: #######:", req.params)
-  Gem.findByIdAndUpdate(
-    req.params.gemId,
-    { likes: likes }
-  )
+  Gem.findByIdAndUpdate(req.params.gemId, { likes: likes }, { new: true })
     .then(gem => {
       res.json(gem);
     })
@@ -129,6 +123,5 @@ router.put("/:gemId", (req, res) => {
       res.json(err);
     });
 });
-
 
 module.exports = router;

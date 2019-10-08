@@ -42,16 +42,22 @@ class TripDetails extends Component {
   getRoute = () => {
     const mapboxApiAccessToken = process.env.REACT_APP_MAPBOX_TOKEN;
     const coordinates = this.state.tripStages.join(";");
-    let url = `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinates}.json?access_token=${mapboxApiAccessToken}`;
+    // https://api.mapbox.com/directions/v5/mapbox/cycling/-122.42,37.78;-77.03,38.91?steps=true&access_token=pk.eyJ1IjoiaW91cmkiLCJhIjoiY2swaTRnZGxnMDhyYjNmbXp1cTh4aGY0YSJ9.MmEIAiv3ZCEZzc_VLtZnCg
+    let url= `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinates}?steps=true&access_token=pk.eyJ1IjoiaW91cmkiLCJhIjoiY2swaTRnZGxnMDhyYjNmbXp1cTh4aGY0YSJ9.MmEIAiv3ZCEZzc_VLtZnCg`
+    let url3 = `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinates}.json?access_token=${mapboxApiAccessToken}`;
     axios
       .get(url)
       .then(response => {
-        console.log(response.data);
-        const points = response.data.waypoints.reduce(
-          (acc, val) => acc.concat([val.location]),
-          []
-        );
-        console.log(points);
+        console.log("Response data: ", response.data);
+        const points = response.data.routes[0].legs[0].steps.reduce(
+          (acc, val) => {
+            console.log("Acc: ", acc)
+            const newPoint= val.intersections[0].location
+            console.log("New Point: ",newPoint)
+            return acc.concat([newPoint])
+          },
+          []);
+        console.log("Points: ",points);
         this.setState({
           points
         });
@@ -63,11 +69,6 @@ class TripDetails extends Component {
 
   render() {
 
-    // const gemsToRender = this.props.gems.map(gem => {
-    //   return (
-    //       <GemOnMap key={gem._id} data={gem} openPopup={this.openPopup} />
-    //   );
-    // });
     let gemsToRender = [];
     console.log(this.state.tripStages)
     if (this.state.gemsData) {
@@ -82,7 +83,6 @@ class TripDetails extends Component {
       <div>
         <h2>Route details</h2>
         <button onClick={this.getRoute}>Get route</button>
-        {/* <div></div> */}
         <ReactMapGL
           {...this.state.viewport}
           onViewportChange={viewport =>

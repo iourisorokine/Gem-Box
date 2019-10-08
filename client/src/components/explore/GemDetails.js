@@ -7,7 +7,7 @@ export default class GemDetails extends Component {
     currentGemData: this.props.data,
     currentGemIndex: 0,
     experienceGemData: null,
-    creatorData: null,
+    creatorData: null
   };
 
   componentDidMount = () => {
@@ -17,8 +17,8 @@ export default class GemDetails extends Component {
   };
 
   handleLike = () => {
-    const likes = this.state.currentGemData.likes;
-    const userId=this.props.user._id;
+    const likes = [...this.state.currentGemData.likes];
+    const userId = this.props.user._id;
     if (!likes.includes(userId)) {
       likes.push(this.props.user._id);
     } else {
@@ -102,7 +102,8 @@ export default class GemDetails extends Component {
     const liked = currentGemData.likes.includes(this.props.user._id)
       ? true
       : false;
-    const likeClass=liked?"btn-unlike":"btn-like";
+    console.log("LIKED", liked);
+    const likeClass = liked ? "btn-unlike" : "btn-like";
     return (
       <div className="gem-details">
         <img
@@ -113,10 +114,7 @@ export default class GemDetails extends Component {
         <div className="flex-row-sides">
           {this.state.creatorData && <p>Created by {creatorData.username}</p>}
           <div>
-            <button className={likeClass}
-              onClick={() =>
-                this.handleLike()
-              }>
+            <button className={likeClass} onClick={() => this.handleLike()}>
               {liked ? <>Unlike</> : <>Like</>}
             </button>
             {currentGemData.likes.length}
