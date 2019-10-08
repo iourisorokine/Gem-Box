@@ -19,7 +19,7 @@ class MapGems extends Component {
       zoom: 8
     },
     gemSelectedInfo: null,
-    displayDetails: false
+    displayDetails: false,
   };
 
   openPopup = gemData => {

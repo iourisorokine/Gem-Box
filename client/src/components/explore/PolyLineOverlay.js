@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { CanvasOverlay } from "react-map-gl";
 
-export default class PolyLineOverlay extends Component {
+class PolyLineOverlay extends Component {
   _redraw = ({ width, height, ctx, isDragging, project, unproject }) => {
     const {
       points,
@@ -28,3 +28,5 @@ export default class PolyLineOverlay extends Component {
     return <CanvasOverlay redraw={this._redraw} />;
   }
 }
+
+export default PolyLineOverlay
