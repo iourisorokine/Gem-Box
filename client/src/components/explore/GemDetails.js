@@ -8,7 +8,6 @@ export default class GemDetails extends Component {
     currentGemIndex: 0,
     experienceGemData: null,
     creatorData: null,
-    liked: false
   };
 
   componentDidMount = () => {
@@ -17,13 +16,21 @@ export default class GemDetails extends Component {
     if (!this.state.experienceGemData) this.getExperienceGemData();
   };
 
-  handleLike = (gem, user) => {
-    const likes=gem.likes;
-    if (!gem.likes.includes(user._id)) likes.push(user._id);
-    const gemId=gem._id;
-    axios.put(`/api/gem/${gemId}`,{likes}).then(response=>{
-      console.log(response)
-    })
+  handleLike = () => {
+    const likes = this.state.currentGemData.likes;
+    const userId=this.props.user._id;
+    if (!likes.includes(userId)) {
+      likes.push(this.props.user._id);
+    } else {
+      likes.splice(likes.indexOf(userId), 1);
+    }
+    const gemId = this.state.currentGemData._id;
+    axios.put(`/api/gem/${gemId}`, { likes }).then(response => {
+      console.log(response);
+      this.setState({
+        currentGemData: { ...response.data, likes: response.data.likes }
+      });
+    });
   };
 
   getGemExperience = event => {
@@ -89,8 +96,13 @@ export default class GemDetails extends Component {
       others: "Others"
     };
     const currentGemData = this.state.currentGemData;
+    console.log(currentGemData);
     const creatorData = this.state.creatorData;
     if (!currentGemData) return <></>;
+    const liked = currentGemData.likes.includes(this.props.user._id)
+      ? true
+      : false;
+    const likeClass=liked?"btn-unlike":"btn-like";
     return (
       <div className="gem-details">
         <img
@@ -100,24 +112,27 @@ export default class GemDetails extends Component {
         />
         <div className="flex-row-sides">
           {this.state.creatorData && <p>Created by {creatorData.username}</p>}
-          <button
-            onClick={() =>
-              this.handleLike(this.state.currentGemData, this.props.user)
-            }>
-            Like
-          </button>
-          {currentGemData.likes.length}
-        </div>
-        {this.state.experienceGemData && (
-          <div className="flex-row-sides">
-            <button name="previous" onClick={this.getGemExperience}>
-              Previous
+          <div>
+            <button className={likeClass}
+              onClick={() =>
+                this.handleLike()
+              }>
+              {liked ? <>Unlike</> : <>Like</>}
             </button>
-            <button name="next" onClick={this.getGemExperience}>
-              Next
-            </button>
+            {currentGemData.likes.length}
           </div>
-        )}
+        </div>
+        {this.state.experienceGemData &&
+          this.state.experienceGemData.length > 1 && (
+            <div className="flex-row-sides">
+              <button name="previous" onClick={this.getGemExperience}>
+                Previous
+              </button>
+              <button name="next" onClick={this.getGemExperience}>
+                Next
+              </button>
+            </div>
+          )}
         <div className="flex-row-sides">
           <h3>{currentGemData.title}</h3>
           {currentGemData.locationName && <p>{currentGemData.locationName}</p>}

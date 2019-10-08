@@ -159,3 +159,16 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.btn-like{
+  color: #4bafb8;
+  background-color: white;
+  border-color: #4bafb8 !important;
+}
+
+.btn-unlike{
+  color: white;
+  background-color: #4badb6 !important;
+  border-color: #4bafb8 !important;
+}
+

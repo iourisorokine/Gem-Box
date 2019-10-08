@@ -8,6 +8,7 @@ class ExplorePlaces extends Component {
   state = {
     displayFilters: false,
     gemsData: null,
+    gemsToDisplay: null,
     filterStatus: {
       showGems: true,
       showTrips: true,
@@ -28,10 +29,31 @@ class ExplorePlaces extends Component {
     axios.get("/api/gem").then(gems => {
       console.log(gems.data);
       this.setState({
-        gemsData: gems.data
+        gemsData: gems.data,
+        gemsToDisplay: gems.data
       });
     });
   };
+
+  filterGems=event=>{
+    event.preventDefault();
+    const filter = this.state.filterStatus;
+    let gemsFiltered = this.state.gemsData.filter(gem => {
+        return (
+          filter.showGems &&
+          (filter.userFilter === "all" ||
+            (filter.userFilter === "liked"&&gem.likes.includes(this.props.user._id)) ||
+            (filter.userFilter === "mine"&&gem.creator===this.props.user._id)) &&
+          filter[gem.category] === true &&
+          filter.dateStart <= gem.created_at.slice(0, 10) &&
+          gem.created_at.slice(0, 10) <= filter.dateEnd
+        );
+      });
+      this.setState({
+        gemsToDisplay: gemsFiltered,
+        displayFilters: false
+      })
+    }
 
   componentDidMount = () => {
     if (!this.state.gemsData) this.getGemsData();
@@ -55,36 +77,16 @@ class ExplorePlaces extends Component {
     });
   };
 
-  handleFilterSubmit = event => {
-    event.preventDefault();
-    this.setState({
-      displayFilters: false
-    });
-    this.getGemsData();
-  };
-
   render() {
-    let gemsFiltered = [];
-    if (this.state.gemsData) {
-      const filter = this.state.filterStatus;
-      gemsFiltered = this.state.gemsData.filter(gem => {
-        return (
-          filter.showGems &&
-          filter[gem.category] === true &&
-          filter.dateStart <= gem.created_at.slice(0, 10) &&
-          gem.created_at.slice(0, 10) <= filter.dateEnd
-        );
-      });
-    }
-    console.log("gems data: ", this.state.gemsData);
-    console.log("gems filtered: ", gemsFiltered);
+    console.log("user props: ",this.props.user );
+    if(!this.state.gemsToDisplay) return <></>
     return (
       <div className="explore-places">
         {this.state.displayFilters ? (
           <>
             <Filters
               handleFilterChange={this.handleChange}
-              handleFilterSubmit={this.handleFilterSubmit}
+              handleFilterSubmit={this.filterGems}
               filterStatus={this.state.filterStatus}
             />
           </>
@@ -93,7 +95,7 @@ class ExplorePlaces extends Component {
             <i className="fas fa-filter"></i>
           </Button>
         )}
-        <MapGems gems={gemsFiltered} user={this.props.user}/>
+        <MapGems gems={this.state.gemsToDisplay} user={this.props.user} />
       </div>
     );
   }

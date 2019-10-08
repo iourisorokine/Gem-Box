@@ -30,7 +30,7 @@ const GemSchema = new Schema(
         "others"
       ]
     },
-    likes: [{type: String}],
+    likes: Array,
     visitedDate: {
       type: Date,
       //   default: Date.now()
