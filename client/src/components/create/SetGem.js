@@ -45,9 +45,9 @@ export class SetGem extends Component {
         this.props.fetchGemInfo({
           latitude: this.state.marker.latitude,
           longitude: this.state.marker.longitude,
-          locationName: locationName,
-          stage: "SuggestGem"
+          locationName: locationName
         });
+        this.props.setStage("SuggestGem");
       })
       .catch(err => console.log("Error in getting the locationname" + err));
   };

@@ -66,7 +66,8 @@ router.post("/create", (req, res) => {
     visitedDate,
     latitude,
     longitude,
-    locationName
+    locationName,
+    likes:[]
   })
     .then((newgem) => {
       console.log("user created");
@@ -86,11 +87,41 @@ router.post("/add-image", uploader.single("imageUrl"), (req, res, next) => {
   res.json({ secure_url: req.file.secure_url });
 });
 
+// gets all gems of a certain user
+router.get("/creator/:creatorId", (req, res) => {
+  const creatorId = req.params.creatorId;
+  console.log("querying the database with", creatorId);
+  Gem.find({ creator: creatorId })
+    .then((gem) => {
+      res.json(gem);
+      console.log("Got all your gems made", gem);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 
 router.get("/:gemId", (req, res) => {
   const id = req.params.gemId;
 
   Gem.findById(id)
+    .then((gem) => {
+      res.json(gem);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+
+router.put("/:gemId", (req, res) => {
+  const { likes } = req.body;
+  console.log("#########Req Body: #######:", req.body)
+  console.log("#########Req Params: #######:", req.params)
+  Gem.findByIdAndUpdate(
+    req.params.gemId,
+    { likes: likes }
+  )
     .then(gem => {
       res.json(gem);
     })
@@ -99,24 +130,5 @@ router.get("/:gemId", (req, res) => {
     });
 });
 
-/*
-router.patch("/:id", (req, res) => {
-  const { username, profilePic, travelInterests } = req.body;
-  const userId=req.params.id;
-  console.log('########',req.params.id,'#################');
-  User.findByIdAndUpdate(
-    userId,
-    { username, profilePic, travelInterests },
-    { new: true }
-  )
-    .then(user => {
-      console.log('########',user);
-      res.json(user);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
-*/
 
 module.exports = router;

@@ -24,12 +24,12 @@ mongoose
   .connect("mongodb://localhost/gembox-database", {
     useNewUrlParser: true
   })
-  .then(x => {
+  .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Error connecting to mongo", err);
   });
 
@@ -87,6 +87,9 @@ app.locals.title = "Express - Generated with IronGenerator";
 
 const index = require("./routes/index");
 app.use("/", index);
+
+const tripRoutes = require("./routes/trip");
+app.use("/api/trip", tripRoutes);
 
 const gemRoutes = require("./routes/gem");
 app.use("/api/gem", gemRoutes);

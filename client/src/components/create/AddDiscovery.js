@@ -38,9 +38,9 @@ export default class AddDiscovery extends React.Component {
     event.preventDefault();
     if (event.target.name === "yes") {
       this.props.fetchGemInfo({
-        stage: "GemSuccess",
         discovery: true
       });
+      this.props.setStage("GemSuccess");
       this.props.createGem();
     } else {
       this.setState({
@@ -60,9 +60,9 @@ export default class AddDiscovery extends React.Component {
       .then((response) => {
         this.props.fetchGemInfo({
           imageUrl: response.data.secure_url,
-          stage: "GemSuccess",
           discovery: true
         });
+        this.props.setStage("GemSuccess");
         this.props.createGem();
       })
       .catch((err) => {

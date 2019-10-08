@@ -10,26 +10,45 @@ import GemSuccess from "./GemSuccess";
 import AddToTrip from "./AddToTrip";
 import GemList from "./GemList";
 import AddGemToTrip from "./AddGemToTrip";
-import { pushGem } from "../../services/api.js";
+import {
+  pushGem,
+  requestTrips,
+  pushTrip,
+  specificGems,
+  updateTrip
+} from "../../services/api.js";
 import Geocoder from "react-mapbox-gl-geocoder";
 
 class CreateGem extends React.Component {
   state = {
-    stage: "SetGem",
-    title: "",
-    description: "",
-    goodToKnow: "",
-    imageUrl: "",
-    creator: this.props.user._id,
-    discovery: false,
-    category: "",
-    visitedDate: "",
-    latitude: 0,
-    longitude: 0,
-    locationName: ""
+    stage: "AddToTrip",
+    gem: {
+      title: "",
+      description: "",
+      goodToKnow: "",
+      imageUrl: "",
+      creator: this.props.user._id,
+      discovery: false,
+      category: "",
+      visitedDate: "",
+      latitude: 0,
+      longitude: 0,
+      locationName: "",
+      gemId: null
+    },
+    trip: {
+      tripId: null,
+      name: "",
+      creator: this.props.user._id,
+      selectedTrip: null,
+      allGems: [],
+      addedGems: [],
+      existingGems: []
+    }
   };
 
   checkStatus = () => {
+    console.log(this.state.gem);
     const consider = [
       "title",
       "description",
@@ -38,8 +57,8 @@ class CreateGem extends React.Component {
       "category",
       "locationName"
     ];
-    for (var key in this.state) {
-      if (this.state[key] === "" && consider.indexOf(key) !== -1) {
+    for (var key in this.state.gem) {
+      if (this.state.gem[key] === "" && consider.indexOf(key) !== -1) {
         return false;
       }
     }
@@ -47,35 +66,115 @@ class CreateGem extends React.Component {
   };
 
   createGem = () => {
-    let { ...pushObj } = this.state;
+    let { ...pushObj } = this.state.gem;
     delete pushObj.stage;
     if (pushObj.creator === "") pushObj.creator = null;
-    console.log("from CreateGem", pushObj);
-    pushGem(pushObj);
+    pushGem(pushObj).then((n) => {
+      this.setState({
+        gem: {
+          gemId: n._id
+        }
+      });
+    });
   };
 
   fetchGemInfo = (gemInfos) => {
-    this.setState({ ...this.state, ...gemInfos });
+    this.setState({ gem: { ...this.state.gem, ...gemInfos } });
+  };
+
+  createTrip = () => {
+    let { ...pushObj } = this.state.trip;
+    delete pushObj.stage;
+    if (pushObj.creator === "") pushObj.creator = null;
+    pushTrip(pushObj).then((n) => {
+      this.setState({
+        trip: {
+          tripId: n._id
+        }
+      });
+      console.log("created trip with state", this.state.trip);
+      requestTrips(this.props.user._id);
+    });
+  };
+
+  fetchTripInfo = (tripInfos) => {
+    this.setState({ trip: { ...this.state.trip, ...tripInfos } });
+  };
+
+  getTrips = () => {
+    requestTrips().then((n) => {
+      this.setState({
+        trip: {
+          tripId: n._id
+        }
+      });
+    });
+  };
+
+  selectTrip = (tripid, name, selectedGem) => {
+    specificGems(this.props.user._id).then((gemArray) => {
+      this.setState({
+        stage: "AddGemToTrip",
+        trip: {
+          selectedTrip: tripid,
+          allGems: gemArray,
+          name: name,
+          existingGems: ["5d9c95fc601535dd6b04d096"]
+          //here needs to be selectedGem
+        }
+      });
+    });
+  };
+
+  saveGemsInTrip = () => {
+    let { ...pushObj } = this.state.trip;
+    console.log("State Trip bevor query", this.state.trip);
+    if (pushObj.creator === "") pushObj.creator = null;
+    updateTrip(pushObj).then((n) => {
+      console.log("Request saveGemsTrip done");
+    });
+  };
+
+  updateGemStatus = (gemid, event) => {
+    let addedGemcopy = [...this.state.trip.existingGems];
+    if (addedGemcopy.indexOf(gemid) === -1) addedGemcopy.push(gemid);
+    else addedGemcopy.splice(addedGemcopy.indexOf(gemid), 1);
+    this.setState({
+      trip: {
+        ...this.state.trip,
+        existingGems: addedGemcopy
+      }
+    });
+  };
+
+  setStage = (stage) => {
+    this.setState({
+      stage: stage
+    });
   };
 
   changeStage = (stage) => {
     switch (stage) {
       case "GemWelcome":
-        return <GemWelcome />;
+        return <GemWelcome setStage={this.setStage} />;
       case "SetGem":
-        return <SetGem fetchGemInfo={this.fetchGemInfo} />;
+        return (
+          <SetGem fetchGemInfo={this.fetchGemInfo} setStage={this.setStage} />
+        );
       case "SuggestGem":
         return (
           <SuggestGem
-            locationName={this.state.locationName}
+            locationName={this.state.gem.locationName}
+            setStage={this.setStage}
             fetchGemInfo={this.fetchGemInfo}
           />
         );
       case "AddExperience":
         return (
           <AddExperience
-            locationName={this.state.locationName}
+            locationName={this.state.gem.locationName}
             fetchGemInfo={this.fetchGemInfo}
+            setStage={this.setStage}
             checkStatus={this.checkStatus}
             createGem={this.createGem}
           />
@@ -83,24 +182,46 @@ class CreateGem extends React.Component {
       case "AddDiscovery":
         return (
           <AddDiscovery
-            locationName={this.state.locationName}
+            locationName={this.state.gem.locationName}
             fetchGemInfo={this.fetchGemInfo}
+            setStage={this.setStage}
             checkStatus={this.checkStatus}
             createGem={this.createGem}
           />
         );
       case "GemSuccess":
-        return <GemSuccess />;
+        return (
+          <GemSuccess
+            gemId={this.state.gem.gemId}
+            setStage={this.setStage}
+            {...this.props}
+          />
+        );
       case "AddToTrip":
-        return <AddToTrip />;
-      case "GemList":
-        return <GemList />;
+        return (
+          <AddToTrip
+            fetchTripInfos={this.fetchTripInfo}
+            setStage={this.setStage}
+            createTrip={this.createTrip}
+            creatorid={this.props.user._id}
+            selectTrip={this.selectTrip}
+          />
+        );
+      // case "GemList":
+      //   return <GemList />;
       case "AddGemToTrip":
-        return <AddGemToTrip />;
+        return (
+          <AddGemToTrip
+            TripInfos={this.state.trip}
+            updateGemStatus={this.updateGemStatus}
+            saveGemsInTrip={this.saveGemsInTrip}
+            tripName={this.state.trip.name}
+          />
+        );
     }
   };
   render() {
-    console.log(this.props.user._id);
+    console.log(this.state.stage, this.state);
     return <div>{this.changeStage(this.state.stage)}</div>;
   }
 }
