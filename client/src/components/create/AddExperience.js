@@ -38,9 +38,7 @@ export default class AddExperience extends React.Component {
   noPicProceed = (event) => {
     event.preventDefault();
     if (event.target.name === "yes") {
-      this.props.fetchGemInfo({
-        stage: "GemSuccess"
-      });
+      this.props.setStage("GemSuccess");
       this.props.createGem();
     } else {
       this.setState({
@@ -59,9 +57,9 @@ export default class AddExperience extends React.Component {
       .post("/api/gem/add-image", uploadData)
       .then((response) => {
         this.props.fetchGemInfo({
-          imageUrl: response.data.secure_url,
-          stage: "GemSuccess"
+          imageUrl: response.data.secure_url
         });
+        this.props.setStage("GemSuccess");
         this.props.createGem();
       })
       .catch((err) => {

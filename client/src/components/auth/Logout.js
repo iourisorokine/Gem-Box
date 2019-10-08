@@ -18,10 +18,19 @@ export default class Logout extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
-        <div>{this.state.quote}</div>
-        <div>{this.state.author}</div>
+        <div className="wrapper">
+          <div className="header-box">
+            <h1>Happy Travel my Friend</h1>
+          </div>
+
+          <div className="wisdom">
+            <div className="quote">{this.state.quote}</div>
+            <div className="author">- {this.state.author}</div>
+          </div>
+        </div>
       </div>
     );
   }

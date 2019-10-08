@@ -124,10 +124,10 @@ body {
   box-shadow: 2px 2px 4px #bbb;
 }
 
-.gem-details{
+.gem-details {
   background-color: white;
   border: 1px solid black;
-  top:0;
+  top: 0;
   width: 100%;
   max-width: 700px;
   padding: 30px;
@@ -144,7 +144,7 @@ body {
   display: flex;
 }
 
-.flex-row-sides{
+.flex-row-sides {
   display: flex;
   justify-content: space-between;
 }
@@ -155,6 +155,7 @@ body {
   justify-content: space-between;
   align-content: space-between;
   height: 50vh;
+  padding-top: 40px;
 }
 
 /* .SuggestGem {
@@ -180,15 +181,77 @@ body {
   align-items: center;
 }
 
-.btn-like{
+.btn-like {
   color: #4bafb8;
   background-color: white;
   border-color: #4bafb8 !important;
 }
 
-.btn-unlike{
+.btn-unlike {
   color: white;
   background-color: #4badb6 !important;
   border-color: #4bafb8 !important;
 }
 
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("https://images.unsplash.com/photo-1498889444388-e67ea62c464b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1601&q=80");
+  background-size: cover;
+}
+
+.header-box {
+  background-color: #4badb6;
+  opacity: 0.6;
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+.wisdom {
+  background-color: #4badb6;
+  padding: 20px;
+}
+
+.quote {
+  font-size: 36px;
+  color: white;
+  font-style: italic;
+}
+
+.author {
+  font-size: 26px;
+  color: white;
+}
+
+.sharing-box {
+  display: flex;
+  justify-content: center;
+}
+
+.sharing-box div {
+  padding-right: 20px;
+}
+
+.triplist,
+.gemlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+}
+
+.btn-options {
+  width: 400px;
+  height: 100px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.gem-inactive {
+  background-color: white !important;
+  color: blue !important;
+}
