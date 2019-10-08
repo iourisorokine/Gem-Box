@@ -33,7 +33,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Route
-          render={(props) => (
+          render={props => (
             <Menu user={this.state.user} setUser={this.setUser} {...props} />
           )}
         />
@@ -78,8 +78,14 @@ class App extends React.Component {
           />
           <Route exact path="/logout" component={Logout} />
           {/* <Route path="/profile/:profileId" component={Profile} /> */}
-          <Route path="/trip/:tripId" component={TripDetails} />
-          <Route exact path="/explore-places" component={ExplorePlaces} />
+          <Route path="/trip" component={TripDetails} />
+          <Route
+            exact
+            path="/explore-places"
+            render={props => (
+              <ExplorePlaces setUser={this.setUser} {...props} />
+            )}
+          />
           <Route path="/gem/:gemId" component={GemDetails} />
           <Route exact path="/about-us" component={AboutUs} />
           <Route path="/" component={NotFound} />

@@ -67,9 +67,8 @@ class ExplorePlaces extends Component {
   render() {
     let gemsFiltered = [];
     if (this.state.gemsData) {
-      const gemsToFilter = this.state.gemsData;
       const filter = this.state.filterStatus;
-      gemsFiltered = gemsToFilter.filter(gem => {
+      gemsFiltered = this.state.gemsData.filter(gem => {
         return (
           filter.showGems&&
           filter[gem.category] === true &&

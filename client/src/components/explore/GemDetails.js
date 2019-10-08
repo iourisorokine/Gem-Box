@@ -4,7 +4,8 @@ import {Button} from "react-bootstrap";
 
 export default class GemDetails extends Component {
   state={
-    gemData: this.props.data
+    gemData: this.props.data,
+    creatorData: null
   }
 
   componentDidMount = () => {
@@ -27,6 +28,10 @@ export default class GemDetails extends Component {
       });
   }
 
+  getCreatorData=()=>{
+    
+  }
+
   render() {
     const categoryStrings={
     "foodDrinks":"Food & Drinks",
@@ -43,20 +48,25 @@ export default class GemDetails extends Component {
     return (
       <div className="gem-details">
         <img className="gem-details-image" src={gemData.imageUrl} alt=""/>
+        <p>Created by{gemData.title}</p>
         <div className="flex-row">
           <h3>{gemData.title}</h3>
           {gemData.location&&(<h4>{gemData.location}</h4>)}
         </div>
         <div className="flex-row">
           <h4>Category:</h4>
-          <p>{categoryStrings[gemData.category]}</p>
+          <h4>{categoryStrings[gemData.category]}</h4>
         </div>
         <div className="flex-row">
         <p><strong>Descriprion: </strong>{gemData.description}</p>
-        <p><strong>Good to know: </strong>{gemData.goodToKnow}</p>
-        <p><strong>Created: </strong>{gemData.created_at.slice(0,10)}</p>
         </div>
         <div className="flex-row">
+        <p><strong>Good to know: </strong>{gemData.goodToKnow}</p>
+        </div>
+        <div className="flex-row">
+        <p><strong>Created: </strong>{gemData.created_at.slice(0,10)}</p>
+        </div>
+        <div>
           <Button onClick={this.props.closeDetails}>Back to Map</Button>
         </div>
       </div>
