@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactMapGL from "react-map-gl";
 import PolyLineOverlay from "./PolyLineOverlay";
+import GemForTrip from "./GemForTrip";
 
 class TripDetails extends Component {
   state = {
@@ -30,6 +31,7 @@ class TripDetails extends Component {
   };
 
   addTripStage = coord => {
+    console.log("clicked")
     const currentStages = this.state.tripStages;
     currentStages.push(coord);
     this.setState({
@@ -60,18 +62,18 @@ class TripDetails extends Component {
   };
 
   render() {
+
+    // const gemsToRender = this.props.gems.map(gem => {
+    //   return (
+    //       <GemOnMap key={gem._id} data={gem} openPopup={this.openPopup} />
+    //   );
+    // });
     let gemsToRender = [];
+    console.log(this.state.tripStages)
     if (this.state.gemsData) {
-      gemsToRender = this.state.gemsData.map(el => {
-        const gemCoordinates =
-          el.latitude.toFixed(3) + "," + el.longitude.toFixed(3);
+      gemsToRender = this.state.gemsData.map(gem => {
         return (
-          <div
-            onClick={() => {
-              this.addTripStage(gemCoordinates);
-            }}>
-            <h6>{el.title}</h6>
-          </div>
+            <GemForTrip key={gem._id} data={gem} addToTrip={this.addTripStage}/>
         );
       });
     }
@@ -80,7 +82,7 @@ class TripDetails extends Component {
       <div>
         <h2>Route details</h2>
         <button onClick={this.getRoute}>Get route</button>
-        <div>{gemsToRender}</div>
+        {/* <div></div> */}
         <ReactMapGL
           {...this.state.viewport}
           onViewportChange={viewport =>
@@ -92,12 +94,9 @@ class TripDetails extends Component {
           mapStyle="mapbox://styles/mapbox/streets-v10"
           captureDoubleClick={false}
           doubleClickZoom={false}>
-          {/* <PloyLine positions={[
-    [-21.81884765625, 64.1297836764257],
-    [-19.79736328125, 64.1585310519412]]}
-  /> */}
-
           {this.state.points && <PolyLineOverlay points={this.state.points} />}
+          {gemsToRender}
+
         </ReactMapGL>
       </div>
     );
