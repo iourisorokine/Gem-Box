@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,900,900i&display=swap");
+* {
+  font-family: "Montserrat", sans-serif;
+}
 body {
   margin: 0;
   background: #000;
@@ -63,6 +67,12 @@ body {
   border-radius: 5%;
 }
 
+.generalBtn {
+  margin-top: 5vh;
+  background-color: #4badb6 !important;
+  border-color: #4bafb8 !important;
+}
+
 .gem-popup {
   box-shadow: 2px 2px 4px #bbb;
 }
@@ -114,18 +124,18 @@ body {
   box-shadow: 2px 2px 4px #bbb;
 }
 
-.gem-details{
+.gem-details {
   min-height: 100vh;
   padding: 30px;
 }
 
-.gem-details-image{
+.gem-details-image {
   width: 100%;
   max-width: 700px;
   height: auto;
 }
 
-.flex-row{
+.flex-row {
   display: flex;
 }
 
@@ -137,15 +147,25 @@ body {
   height: 50vh;
 }
 
-.SuggestGem {
+/* .SuggestGem {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
-  align-content: flex-start;
-  align-items: flex-start;
-}
+  align-content: center;
+  align-items: center;
+} */
 
 .item {
   display: flex;
   justify-content: space-between;
+  align-content: flex-start;
+  align-items: center;
+}
+
+.headingSetGem {
+  width: 100%;
+  background-color: #4badb6;
+  height: 10%;
+  color: white;
+  align-items: center;
 }

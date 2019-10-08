@@ -20,10 +20,12 @@ mongoose
 let users = [
   {
     username: "alice",
+    travelInterests: "Biking"
     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt))
   },
   {
     username: "bob",
+    travelInterests: "Mountaining"
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt))
   }
 ];
@@ -143,19 +145,19 @@ User.deleteMany()
   .then(() => {
     return User.create(users);
   })
-  .then((usersCreated) => {
+  .then(usersCreated => {
     console.log(`${usersCreated.length} users created with the following id:`);
-    console.log(usersCreated.map((u) => u._id));
+    console.log(usersCreated.map(u => u._id));
   })
   .then(() => {
     // Close properly the connection to Mongoose
     mongoose.disconnect();
   })
-  .catch((err) => {
+  .catch(err => {
     mongoose.disconnect();
     throw err;
-  });
-
+  }); */
+/*
 Wisdom.deleteMany()
   .then(() => {
     return Wisdom.create(wisdoms);
@@ -173,7 +175,7 @@ Wisdom.deleteMany()
     throw err;
   });
   */
-Gem.deleteMany()
+/* Gem.deleteMany()
   .then(() => {
     return Gem.create(gems);
   })
@@ -189,3 +191,4 @@ Gem.deleteMany()
     mongoose.disconnect();
     throw err;
   });
+ */
