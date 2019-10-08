@@ -85,7 +85,7 @@ export default class Profile extends Component {
           <h1>{user.username}</h1>
           {user.username !== user.username && (
             <Button
-              className="follow-button"
+              className="btn btn-primary btn-primary:hover btn-landingpage follow-button"
               onClick={event => this.handleFollowClick(user._id)}
             >
               {isFollowing ? "Unfollow" : "Follow"}
