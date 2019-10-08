@@ -45,11 +45,19 @@ export default class Profile extends Component {
       <Carousel>
         {this.state.popularGems.map(gem => (
           <Carousel.Item key={gem._id}>
-            <img className="d-block w-100" src={gem.imageUrl} alt="gem" />
+            <img
+              className="d-block w-100"
+              style={{ height: "40vh", objectFit: "cover" }}
+              src={gem.imageUrl}
+              alt="gem"
+            />
             <Carousel.Caption>
               <h3 style={{ fontWeight: 900 }}>{gem.title}</h3>
               <p style={{ fontWeight: 500 }}>{gem.locationName}</p>
-              <a className="generalBtn" href={`/gem/${gem._id}`}>
+              <a
+                className="btn btn-primary btn-primary:hover btn-landingpage generalBtn"
+                href={`/gem/${gem._id}`}
+              >
                 Explore
               </a>
             </Carousel.Caption>
@@ -77,7 +85,7 @@ export default class Profile extends Component {
           <h1>{user.username}</h1>
           {user.username !== user.username && (
             <Button
-              className="follow-button"
+              className="btn btn-primary btn-primary:hover btn-landingpage follow-button"
               onClick={event => this.handleFollowClick(user._id)}
             >
               {isFollowing ? "Unfollow" : "Follow"}
