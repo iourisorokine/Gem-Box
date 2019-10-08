@@ -35,18 +35,15 @@ router.get("/:id", (req, res) => {
 });
 
 router.patch("/update", (req, res) => {
-  console.log("patch route body", req.body);
   const { username, profilePic, travelInterests } = req.body;
 
   const userId = req.user._id;
-  console.log("########", req.user._id, "#################");
   User.findByIdAndUpdate(
     userId,
     { username, profilePic, travelInterests },
     { new: true }
   )
     .then(user => {
-      console.log("########", user);
       res.json(user);
     })
     .catch(err => {

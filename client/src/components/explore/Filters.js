@@ -41,7 +41,7 @@ class Filters extends Component {
               name="userFilter"
               onChange={this.props.handleFilterChange}>
               <option
-                value="All"
+                value="all"
                 name="userFilter"
                 onChange={this.props.handleFilterChange}>
                 All
