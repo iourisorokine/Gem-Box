@@ -124,12 +124,13 @@ body {
   height: auto;
 }
 
-.flex-column {
+.success-flex-column {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-content: space-between;
   height: 50vh;
+  padding-top: 40px;
 }
 
 .SuggestGem {
@@ -176,4 +177,34 @@ body {
 .author {
   font-size: 26px;
   color: white;
+}
+
+.sharing-box {
+  display: flex;
+  justify-content: center;
+}
+
+.sharing-box div {
+  padding-right: 20px;
+}
+
+.triplist,
+.gemlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+}
+
+.btn-options {
+  width: 400px;
+  height: 100px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.gem-inactive {
+  background-color: white !important;
+  color: blue !important;
 }

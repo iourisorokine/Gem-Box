@@ -32,16 +32,15 @@ export default class SuggestGem extends Component {
     this.props.fetchGemInfo({
       latitude: val.latitude,
       longitude: val.longitude,
-      locationName: val.locationName,
-      stage: "AddExperience"
+      locationName: val.locationName
     });
+    this.props.setStage("AddExperience");
   };
 
   handleRouteDiscovery = () => {
-    this.props.fetchGemInfo({
-      stage: "AddDiscovery"
-    });
+    this.props.setStage("AddDiscovery");
   };
+
   componentDidMount = () => {
     if (!this.state.gemsData) this.getGemsData();
   };
