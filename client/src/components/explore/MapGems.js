@@ -37,7 +37,6 @@ class MapGems extends Component {
   };
 
   openDetails = () => {
-    console.log("clicked");
     this.setState({
       displayDetails: true
     });
@@ -101,6 +100,7 @@ class MapGems extends Component {
           <>
             <GemDetails
               data={this.state.gemSelectedInfo}
+              user={this.props.user}
               closeDetails={this.closeDetails}
             />
           </>

@@ -20,7 +20,7 @@ class ExplorePlaces extends Component {
       party: true,
       hikes: true,
       nature: true,
-      other: true
+      others: true
     }
   };
 
@@ -57,7 +57,6 @@ class ExplorePlaces extends Component {
 
   handleFilterSubmit = event => {
     event.preventDefault();
-    console.log(event);
     this.setState({
       displayFilters: false
     });
@@ -70,13 +69,15 @@ class ExplorePlaces extends Component {
       const filter = this.state.filterStatus;
       gemsFiltered = this.state.gemsData.filter(gem => {
         return (
-          filter.showGems&&
+          filter.showGems &&
           filter[gem.category] === true &&
           filter.dateStart <= gem.created_at.slice(0, 10) &&
           gem.created_at.slice(0, 10) <= filter.dateEnd
         );
       });
     }
+    console.log("gems data: ", this.state.gemsData);
+    console.log("gems filtered: ", gemsFiltered);
     return (
       <div className="explore-places">
         {this.state.displayFilters ? (
@@ -92,7 +93,7 @@ class ExplorePlaces extends Component {
             <i className="fas fa-filter"></i>
           </Button>
         )}
-        <MapGems gems={gemsFiltered} />
+        <MapGems gems={gemsFiltered} user={this.props.user}/>
       </div>
     );
   }

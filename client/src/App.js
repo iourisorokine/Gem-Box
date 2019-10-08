@@ -83,7 +83,7 @@ class App extends React.Component {
             exact
             path="/explore-places"
             render={props => (
-              <ExplorePlaces setUser={this.setUser} {...props} />
+              <ExplorePlaces setUser={this.setUser} {...props} user={this.state.user}/>
             )}
           />
           <Route path="/gem/:gemId" component={GemDetails} />
