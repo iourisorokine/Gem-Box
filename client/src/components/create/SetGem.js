@@ -31,28 +31,28 @@ export class SetGem extends Component {
   };
 
   // here we lift up the state to CreateGem and update longitude, latitude and locationname
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
-    let locationname = "";
+    let locationName = "";
     axios
       .get(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.state.marker.longitude},${this.state.marker.latitude}.json?access_token=` +
           process.env.REACT_APP_MAPBOX_TOKEN
       )
-      .then(response => {
+      .then((response) => {
         console.log(response);
-        locationname = response.data.features[0].place_name;
-        this.props.createGem({
+        locationName = response.data.features[0].place_name;
+        this.props.fetchGemInfo({
           latitude: this.state.marker.latitude,
           longitude: this.state.marker.longitude,
-          locationName: locationname,
+          locationName: locationName,
           stage: "SuggestGem"
         });
       })
-      .catch(err => console.log("Error in getting the locationname" + err));
+      .catch((err) => console.log("Error in getting the locationname" + err));
   };
 
-  handleViewportChange = viewport => {
+  handleViewportChange = (viewport) => {
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     });
@@ -75,7 +75,7 @@ export class SetGem extends Component {
       <>
         <ReactMapGL
           {...this.state.viewport}
-          onViewportChange={viewport =>
+          onViewportChange={(viewport) =>
             this.setState({
               viewport: viewport,
               marker: {
@@ -88,7 +88,7 @@ export class SetGem extends Component {
           mapStyle="mapbox://styles/mapbox/streets-v10"
           captureDoubleClick={false}
           doubleClickZoom={false}
-          onDblClick={event => {
+          onDblClick={(event) => {
             this.setState({
               /* viewport: {
                 longitude: event.lngLat[0],
@@ -109,7 +109,7 @@ export class SetGem extends Component {
             offsetLeft={-25}
             captureClick={false}
             draggable={true}
-            onDragEnd={event =>
+            onDragEnd={(event) =>
               this.setState({
                 marker: {
                   longitude: event.lngLat[0],
@@ -140,7 +140,7 @@ export class SetGem extends Component {
           ) : null} */}
           <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
             <NavigationControl
-              onViewportChange={viewport => this.setState({ viewport })}
+              onViewportChange={(viewport) => this.setState({ viewport })}
             />
           </div>
           <div style={{ position: "absolute", right: "2vw", top: "4vh" }}>

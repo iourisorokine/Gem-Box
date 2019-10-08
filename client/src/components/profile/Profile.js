@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import Button from "@material-ui/core/Button";
 // import UpdateProfile from "./UpdateProfile";
 import { Link } from "react-router-dom";
 
@@ -54,10 +54,13 @@ export default class Profile extends Component {
         <div>
           <img src="{user.profilePic}" alt="" />
         </div>
+
         <Link to="/update-profile">
-          <Button type="button">Edit</Button>
+          <Button variant="contained" type="button">
+            Edit your profile
+          </Button>
         </Link>
-        {/* <Button to={`/update-profile`}>Edit</Button> */}
+
         <div>
           <p>Score: {user.score}</p>
           <p>Followers: {user.followers}</p>

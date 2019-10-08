@@ -20,13 +20,13 @@ class CreateGem extends React.Component {
     description: "",
     goodToKnow: "",
     imageUrl: "",
-    creator: this.props.setUser.name,
+    creator: this.props.user._id,
     discovery: false,
     category: "",
     visitedDate: "",
     latitude: 0,
     longitude: 0,
-    locationName: "Erkelenz"
+    locationName: ""
   };
 
   checkStatus = () => {
@@ -58,23 +58,37 @@ class CreateGem extends React.Component {
     this.setState({ ...this.state, ...gemInfos });
   };
 
-  changeStage = stage => {
+  changeStage = (stage) => {
     switch (stage) {
       case "GemWelcome":
         return <GemWelcome />;
       case "SetGem":
-        return <SetGem createGem={this.createGem} />;
+        return <SetGem fetchGemInfo={this.fetchGemInfo} />;
       case "SuggestGem":
         return (
           <SuggestGem
-            locationname={this.state.locationName}
-            suggestGem={this.createGem}
+            locationName={this.state.locationName}
+            fetchGemInfo={this.fetchGemInfo}
           />
         );
       case "AddExperience":
-        return <AddExperience />;
+        return (
+          <AddExperience
+            locationName={this.state.locationName}
+            fetchGemInfo={this.fetchGemInfo}
+            checkStatus={this.checkStatus}
+            createGem={this.createGem}
+          />
+        );
       case "AddDiscovery":
-        return <AddDiscovery />;
+        return (
+          <AddDiscovery
+            locationName={this.state.locationName}
+            fetchGemInfo={this.fetchGemInfo}
+            checkStatus={this.checkStatus}
+            createGem={this.createGem}
+          />
+        );
       case "GemSuccess":
         return <GemSuccess />;
       case "AddToTrip":
@@ -86,40 +100,8 @@ class CreateGem extends React.Component {
     }
   };
   render() {
-    console.log(this.state);
-    return (
-      <div>
-        {/* <GemWelcome/> */}
-        <SetGem createGem={this.createGem} />
-        {/* <CheckGem /> */}
-        {/* <AddExperience
-          locationname={this.state.locationname}
-          fetchGemInfo={this.fetchGemInfo}
-          checkStatus={this.checkStatus}
-          createGem={this.createGem}
-        /> */}
-        {this.state.stage === "GemSuccess" ? (
-          <GemSuccess />
-        ) : (
-          <AddExperience
-            locationname={this.state.locationname}
-            fetchGemInfo={this.fetchGemInfo}
-            checkStatus={this.checkStatus}
-            createGem={this.createGem}
-          />
-          // <AddDiscovery
-          //   locationname={this.state.locationname}
-          //   fetchGemInfo={this.fetchGemInfo}
-          //   checkStatus={this.checkStatus}
-          //   createGem={this.createGem}
-          // />
-        )}
-        {/* // <AddToTrip />
-        // <GemList />
-        // <AddGemToTrip /> */}
-      </div>
-    );
-    // return <div>{this.changeStage(this.state.stage)}</div>;
+    console.log(this.props.user._id);
+    return <div>{this.changeStage(this.state.stage)}</div>;
   }
 }
 
