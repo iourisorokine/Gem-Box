@@ -255,3 +255,71 @@ body {
   background-color: white !important;
   color: blue !important;
 }
+
+.profile-flexbox {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 90wh;
+}
+.headerinfo {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.profilpic {
+  padding: 20px;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.basiccounts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+.experiences-discoveries {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.travelinterests {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.populargems {
+  padding: 20px;
+}
+
+.trips {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.nameedit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.btn-triplist {
+  border-bottom: 1px solid black !important;
+  width: 100wh !important;
+  border-radius: 0 !important;
+  margin: 10px !important;
+}
+.btn-triplist a:focus {
+  text-decoration: none !important;
+  background-color: #4bafb8;
+}

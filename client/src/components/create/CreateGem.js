@@ -21,7 +21,7 @@ import Geocoder from "react-mapbox-gl-geocoder";
 
 class CreateGem extends React.Component {
   state = {
-    stage: "AddToTrip",
+    stage: "SetGem",
     gem: {
       title: "",
       description: "",
@@ -119,8 +119,7 @@ class CreateGem extends React.Component {
           selectedTrip: tripid,
           allGems: gemArray,
           name: name,
-          existingGems: ["5d9c95fc601535dd6b04d096"]
-          //here needs to be selectedGem
+          existingGems: selectedGem
         }
       });
     });

@@ -15,7 +15,6 @@ import CreateGem from "./components/create/CreateGem";
 import NotFound from "./components/global/NotFound";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "bootstrap/dist/css/bootstrap.css";
-
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 
@@ -24,7 +23,7 @@ class App extends React.Component {
     user: this.props.user
   };
 
-  setUser = user => {
+  setUser = (user) => {
     this.setState({
       user: user
     });
@@ -34,7 +33,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Route
-          render={props => (
+          render={(props) => (
             <Menu user={this.state.user} setUser={this.setUser} {...props} />
           )}
         />
@@ -43,17 +42,17 @@ class App extends React.Component {
           <Route
             exact
             path="/login"
-            render={props => <Login setUser={this.setUser} {...props} />}
+            render={(props) => <Login setUser={this.setUser} {...props} />}
           />
           <Route
             exact
             path="/signup"
-            render={props => <Signup setUser={this.setUser} {...props} />}
+            render={(props) => <Signup setUser={this.setUser} {...props} />}
           />
           <Route
             exact
             path="/profile"
-            render={props => (
+            render={(props) => (
               <Profile
                 setUser={this.setUser}
                 {...props}
@@ -64,7 +63,7 @@ class App extends React.Component {
           <Route
             exact
             path="/update-profile"
-            render={props => (
+            render={(props) => (
               <UpdateProfile
                 setUser={this.setUser}
                 {...props}
@@ -75,7 +74,7 @@ class App extends React.Component {
           <Route
             exact
             path="/create-gem"
-            render={props => <CreateGem {...props} user={this.state.user} />}
+            render={(props) => <CreateGem {...props} user={this.state.user} />}
           />
           <Route exact path="/logout" component={Logout} />
           {/* <Route path="/profile/:profileId" component={Profile} /> */}
@@ -83,8 +82,13 @@ class App extends React.Component {
           <Route
             exact
             path="/explore-places"
-            render={props => (
-              <ExplorePlaces setUser={this.setUser} {...props} user={this.state.user}/>
+            render={(props) => (
+              <ExplorePlaces
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+                referredbyProfile={this.state.referredbyProfile}
+              />
             )}
           />
           <Route path="/gem/:gemId" component={GemDetails} />
