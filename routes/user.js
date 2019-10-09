@@ -22,6 +22,19 @@ router.post("/", (req, res) => {
     });
 });
 
+router.get("/:creatorId", (req, res) => {
+  const creatorId = req.params.creatorId;
+  console.log("querying the database with", creatorId);
+  Gem.find({ creator: creatorId })
+    .then((gem) => {
+      res.json(gem);
+      console.log("Got all your gems made", gem);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   User.find({ _id: id })

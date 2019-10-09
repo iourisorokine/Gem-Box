@@ -17,15 +17,23 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
+import ShowProfileNew from "./components/profile/ShowProfileNew";
 
 class App extends React.Component {
   state = {
-    user: this.props.user
+    user: this.props.user,
+    creatorProfile: null
   };
 
   setUser = (user) => {
     this.setState({
       user: user
+    });
+  };
+
+  setUserProfile = (userid) => {
+    this.setState({
+      creatorProfile: userid
     });
   };
 
@@ -70,7 +78,6 @@ class App extends React.Component {
                 )}
               />
               <Route exact path="/logout" component={Logout} />
-              {/* <Route path="/profile/:profileId" component={Profile} /> */}
               <Route
                 exact
                 path="/explore-places"
@@ -94,6 +101,11 @@ class App extends React.Component {
                   />
                 )}
               />
+              <Route
+                path="/profile/:profileId"
+                component={ShowProfileNew}
+                creatorProfile={this.state.creatorProfile}
+              />
               <Route exact path="/trip" component={TripDetails} />
               <Route path="/trip/:tripId" component={TripDetails} />
               <Route
@@ -110,7 +122,6 @@ class App extends React.Component {
                   <GemDetails {...props} user={this.state.user} />
                 )}
               />
-              <Route path="/gem/:gemId" component={GemDetails} />
               <Route exact path="/about-us" component={AboutUs} />
               <Route component={NotFound} />
             </Switch>

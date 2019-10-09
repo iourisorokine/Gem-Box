@@ -13,6 +13,7 @@ export default class GemDetails extends Component {
   };
 
   componentDidMount = () => {
+    console.log("CreatorData", this.state.creatorData);
     if (this.state.currentGemData && !this.state.creatorData)
       this.getCreatorData();
     if (!this.state.experienceGemData) this.getExperienceGemData();
@@ -27,7 +28,7 @@ export default class GemDetails extends Component {
       likes.splice(likes.indexOf(userId), 1);
     }
     const gemId = this.state.currentGemData._id;
-    axios.put(`/api/gem/${gemId}`, { likes }).then(response => {
+    axios.put(`/api/gem/${gemId}`, { likes }).then((response) => {
       console.log(response);
       this.setState({
         currentGemData: { ...response.data, likes: response.data.likes }
@@ -35,7 +36,7 @@ export default class GemDetails extends Component {
     });
   };
 
-  getGemExperience = event => {
+  getGemExperience = (event) => {
     const { currentGemIndex, experienceGemData } = this.state;
     let newGemIndex = currentGemIndex;
     if (event.target.name === "previous" && currentGemIndex > 0)
@@ -55,17 +56,17 @@ export default class GemDetails extends Component {
   getExperienceGemData = () => {
     axios
       .get(`/api/gem/`)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         const { latitude, longitude } = this.state.currentGemData;
-        const experienceGemData = response.data.filter(gem => {
+        const experienceGemData = response.data.filter((gem) => {
           return gem.latitude === latitude && gem.longitude === longitude;
         });
         this.setState({
           experienceGemData
         });
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.response.status === 404) {
           this.setState({ error: "Not found" });
         }
@@ -73,16 +74,20 @@ export default class GemDetails extends Component {
   };
 
   getCreatorData = () => {
+    console.log(
+      "Here should be creator id included",
+      this.state.currentGemData
+    );
     const creatorId = this.state.currentGemData.creator;
     axios
       .get(`/api/user/${creatorId}`)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.setState({
           creatorData: response.data
         });
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.response.status === 404) {
           this.setState({ error: "Not found" });
         }
@@ -120,7 +125,15 @@ export default class GemDetails extends Component {
           alt=""
         />
         <div className="flex-row-sides">
-          {this.state.creatorData && <p>Created by {creatorData.username}</p>}
+          {this.state.creatorData && (
+            <p>
+              <button
+                onClick={this.setUserProfile(this.state.currentGemData.creator)}
+              >
+                Created by "Jörg"
+              </button>
+            </p>
+          )}
           <img src={gemIconUrl} alt="gem" height="30px" />
           <div>
             {this.props.user ? (
@@ -134,7 +147,8 @@ export default class GemDetails extends Component {
                     <i class="far fa-heart"></i>
                   </>
                 )}
-                </span>) : (
+              </span>
+            ) : (
               <>Likes: </>
             )}
             {currentGemData.likes.length}

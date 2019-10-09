@@ -88,18 +88,6 @@ router.post("/add-image", uploader.single("imageUrl"), (req, res, next) => {
 });
 
 // gets all gems of a certain user
-router.get("/creator/:creatorId", (req, res) => {
-  const creatorId = req.params.creatorId;
-  console.log("querying the database with", creatorId);
-  Gem.find({ creator: creatorId })
-    .then((gem) => {
-      res.json(gem);
-      console.log("Got all your gems made", gem);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
 
 router.get("/:gemId", (req, res) => {
   const id = req.params.gemId;
