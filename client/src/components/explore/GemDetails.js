@@ -199,7 +199,7 @@ export default class GemDetails extends Component {
             </div>
           </div>
         </div>
-        {this.props.closeDetails ? (
+        {!this.props.closeDetails ? (
           <div>
             <Link className="back-Link" to="/explore-places">
               Back to Map

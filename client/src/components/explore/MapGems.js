@@ -110,7 +110,7 @@ class MapGems extends Component {
     this.setUserLocation();
     return (
       <div className="page-wrapper">
-        {this.state.displayDetails && (
+        {this.state.displayDetails? (
           <>
             <GemDetails
               data={this.state.gemSelectedInfo}
@@ -118,7 +118,7 @@ class MapGems extends Component {
               closeDetails={this.closeDetails}
             />
           </>
-        )}
+        ):(
         <ReactMapGL
           {...this.state.viewport}
           onViewportChange={(viewport) =>
@@ -151,7 +151,7 @@ class MapGems extends Component {
           </div>
           {gemsToRender}
           {this.renderPopup()}
-        </ReactMapGL>
+        </ReactMapGL>)}
       </div>
     );
   }

@@ -123,7 +123,7 @@ class ExplorePlaces extends Component {
     return (
       <div className="explore-places page-wrapper">
         <div className="explore-places-map">
-          {this.state.displayFilters ? (
+          {this.state.displayFilters && (
             <>
               <Filters
                 handleFilterChange={this.handleChange}
@@ -133,15 +133,9 @@ class ExplorePlaces extends Component {
                 filterStatus={this.state.filterStatus}
               />
             </>
-          ) : (
-            <Button
-              className="filter-toggle-button"
-              onClick={this.toggleFilters}
-            >
-              <i className="fas fa-filter"></i>
-            </Button>
           )}
           <MapGems
+            toggleFilters={this.toggleFilters}
             gems={this.state.gemsToDisplay}
             user={this.props.user}
             gemSelectedInfo={this.state.gemSelectedInfo}
