@@ -33,7 +33,7 @@ class ExplorePlaces extends Component {
   };
 
   getGemsData = () => {
-    axios.get("/api/gem").then(gems => {
+    axios.get("/api/gem").then((gems) => {
       console.log(gems.data);
       this.setState({
         gemsData: gems.data,
@@ -42,11 +42,11 @@ class ExplorePlaces extends Component {
     });
   };
 
-  filterGems = event => {
+  filterGems = (event) => {
     event.preventDefault();
     const filter = this.state.filterStatus;
-    axios.get("/api/gem").then(foundGems => {
-      let gemsFiltered = foundGems.data.filter(gem => {
+    axios.get("/api/gem").then((foundGems) => {
+      let gemsFiltered = foundGems.data.filter((gem) => {
         return (
           filter.showGems &&
           (filter.userFilter.value === "all" ||
@@ -73,14 +73,14 @@ class ExplorePlaces extends Component {
     if (!this.state.gemsData) this.getGemsData();
   };
 
-  handleSelectChange = userFilter => {
+  handleSelectChange = (userFilter) => {
     this.setState({
       filterStatus: { ...this.state.filterStatus, userFilter: userFilter }
     });
     console.log(`Option selected:`, userFilter);
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     console.log(event.target);
     const name = event.target.name;
     const value =
