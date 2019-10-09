@@ -67,10 +67,10 @@ router.post("/create", (req, res) => {
     latitude,
     longitude,
     locationName,
-    likes:[]
+    likes: []
   })
     .then((newgem) => {
-      console.log("user created");
+      console.log("GEM created");
       res.json(newgem);
     })
     .catch((err) => {
@@ -113,22 +113,17 @@ router.get("/:gemId", (req, res) => {
     });
 });
 
-
 router.put("/:gemId", (req, res) => {
   const { likes } = req.body;
-  console.log("#########Req Body: #######:", req.body)
-  console.log("#########Req Params: #######:", req.params)
-  Gem.findByIdAndUpdate(
-    req.params.gemId,
-    { likes: likes }
-  )
-    .then(gem => {
+  console.log("#########Req Body: #######:", req.body);
+  console.log("#########Req Params: #######:", req.params);
+  Gem.findByIdAndUpdate(req.params.gemId, { likes: likes })
+    .then((gem) => {
       res.json(gem);
     })
-    .catch(err => {
+    .catch((err) => {
       res.json(err);
     });
 });
-
 
 module.exports = router;

@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.Landingpage {
+  background-image: url(../../src/jeremy-bishop-dvACrXUExLs-unsplash_cut.png);
+  text-align: center;
+  /* max-width: 700px; */
+  /* margin: auto; */
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.Logo {
+  margin-top: 10%;
+
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.Teaser {
+  padding-top: 5%;
+  margin-top: 7%;
+  background-color: rgba(40, 39, 39, 0.5);
+  /* opacity: 0.6; */
+  font-family: "Montserrat", sans-serif;
+  font-size: 22px;
+  color: whitesmoke;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* .TeaserText {
+  text-align: left;
+} */
+.TeaserTextContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.button {
+  background-color: none !important;
+}
+.generalBtn {
+  margin-top: 1rem;
+  background-color: #4badb6 !important;
+  border-color: #4bafb8 !important;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold !important;
+}
+.btn-primary:hover {
+  background-color: #61dfeb !important;
+}
+
+.btn-lp {
+  color: white !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  font-family: "Montserrat", sans-serif;
+}
+.btn-signup-login {
+  padding-top: 7%;
+}
+.btn-landingpage {
+  padding-top: 7%;
+}
+
+/* .btn-link {
+  text-decoration: underline;
+} */

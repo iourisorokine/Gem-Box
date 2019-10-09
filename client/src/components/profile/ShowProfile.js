@@ -12,7 +12,9 @@ export default class Profile extends Component {
   state = {
     user: this.props.user,
     popularGems: [],
-    trips: []
+    trips: [],
+    discoveries: 0,
+    experiences: 0
   };
 
   handleFollowClick(userId) {
@@ -23,19 +25,17 @@ export default class Profile extends Component {
   getPopularGems = () => {
     axios.get(`api/gem/creator/${this.props.user._id}`).then((gems) => {
       console.log(gems.data);
+      let discoveries = gems.data.filter((gems) => gems.discovery).length;
+      let experiences = gems.data.filter((gems) => !gems.discovery).length;
       this.setState({
-        popularGems: gems.data
+        popularGems: gems.data,
+        discoveries,
+        experiences
       });
     });
   };
 
   componentDidMount = () => {
-    // if (!this.state.user) {
-    //   console.log("cop did", this.props.user.data);
-    //   this.setState({
-    //     user: this.props.user.data
-    //   });
-    // }
     console.log("Component Mount + User id", this.state.user);
     requestTrips(this.state.user._id)
       .then((trips) => {
@@ -90,6 +90,7 @@ export default class Profile extends Component {
 
   render() {
     const user = this.props.user;
+    console.log("Here are the gem data", this.state.popularGems);
     // const isFollowing = if(!this.props.user.following.includes(this.props.user));
     if (!this.props.user)
       return (
@@ -109,8 +110,9 @@ export default class Profile extends Component {
                 onClick={this.props.changeComponent}
                 variant="contained"
                 type="button"
+                className="editprof"
               >
-                Edit your profile
+                Edit
               </Button>
             </div>
           </div>
@@ -125,15 +127,22 @@ export default class Profile extends Component {
             </div>
           </div>
           <div className="experiences-discoveries">
-            <p>Discoveries: 20</p>
-            <p>Experiences: 45</p>
+            <p>Discoveries {this.state.discoveries}</p>
+            <p>Experiences {this.state.experiences}</p>
           </div>
           <div className="travelinterests">
-            <Accordion defaultActiveKey="0">
+            <Accordion defaultActiveKey="1">
               <Card>
                 <Card.Header>
-                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                    Travelinterests
+                  <Accordion.Toggle
+                    className="accordion"
+                    as={Button}
+                    variant="link"
+                    eventKey="0"
+                  >
+                    <Button className="btn-triplist">
+                      Travelinterests &#10549;
+                    </Button>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
@@ -144,10 +153,12 @@ export default class Profile extends Component {
           </div>
           <div className="populargems">
             <h2>Most popular gems</h2>
+            <hr />
             <div className="gemlist">{this.displayPopularGems()}</div>
           </div>
           <div className="trips">
             <h2>All Trips</h2>
+            <hr />
             <div className="triplist">{this.showTrips()}</div>
           </div>
         </div>

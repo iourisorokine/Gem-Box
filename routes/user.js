@@ -62,14 +62,49 @@ router.patch("/update", (req, res) => {
 });
 
 router.put("/updateFollower", (req, res) => {
-  console.log(req.body.id);
-  const { id } = req.body;
-  const userId = req.user._id;
-  User.findByIdAndUpdate(id, {
-    $push: { followers: userId }
-  });
+  console.log("hi");
+  console.log(req.body._id);
+  const id = req.body.userId; //profil dem ich folgen möchte
+  const userId = req.user._id; //eingeloggter uiser
+  const userArr = req.body.user.following; //Loggedin userse Array
 
-  User.findByIdAndUpdate(userId, { $push: { following: id } });
+  if (userArr.includes(id)) {
+    User.findByIdAndUpdate(
+      id,
+      {
+        $pull: { followers: userId }
+      },
+      { new: true }
+    ).then((user) => {
+      console.log("new user gefollowed", user);
+      User.findByIdAndUpdate(
+        userId,
+        { $pull: { following: id } },
+        { new: true }
+      ).then((user) => {
+        console.log("new user loggedin", user);
+        res.json(user);
+      });
+    });
+  } else {
+    User.findByIdAndUpdate(
+      id,
+      {
+        $push: { followers: userId }
+      },
+      { new: true }
+    ).then((user) => {
+      console.log("new user gefollowed", user);
+      User.findByIdAndUpdate(
+        userId,
+        { $push: { following: id } },
+        { new: true }
+      ).then((user) => {
+        console.log("new user loggedin", user);
+        res.json(user);
+      });
+    });
+  }
 });
 
 module.exports = router;
