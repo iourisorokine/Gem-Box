@@ -107,7 +107,8 @@ class Home extends Component {
 
             {/* <Link to="/Login">Login</Link> */}
           </p>
-          <div className="btn-signup-login">
+          {!this.state.user&&
+          (<div className="btn-signup-login">
             <p>
               <Link className="btn btn-link btn-lp " to="/Signup">
                 Join the community
@@ -119,6 +120,7 @@ class Home extends Component {
               </Link>
             </p>
           </div>
+          )}
         </>
         {this.state.message && (
           <Alert variant="danger">{this.state.message}</Alert>

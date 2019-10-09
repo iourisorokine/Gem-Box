@@ -7,6 +7,10 @@ class Menu extends React.Component {
     user: this.props.user
   };
 
+  componentDidMount(){
+    if(!this.state.user) this.props.setUser();
+  }
+
   handleLogout = props => {
     console.log("LOGOUT PROPS: ", props);
     logout().then(() => {

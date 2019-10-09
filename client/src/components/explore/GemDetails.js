@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 export default class GemDetails extends Component {
   state = {
     currentGemData: this.props.data,
     currentGemIndex: 0,
     experienceGemData: null,
-    creatorData: null
+    creatorData: null,
+    fromProfile: this.props.fromProfile
   };
 
   componentDidMount = () => {
@@ -75,6 +77,7 @@ export default class GemDetails extends Component {
     axios
       .get(`/api/user/${creatorId}`)
       .then(response => {
+        console.log(response)
         this.setState({
           creatorData: response.data
         });
@@ -87,8 +90,7 @@ export default class GemDetails extends Component {
   };
 
   render() {
-    console.log(this.props, this.state);
-    console.log(this.props.user);
+    console.log("Gem details State: ", this.state);
     const categoryStrings = {
       foodDrinks: "Food & Drinks",
       cultureArts: "Culture & Arts",
@@ -99,6 +101,7 @@ export default class GemDetails extends Component {
       others: "Others"
     };
     const currentGemData = this.state.currentGemData;
+    const gemIconUrl=currentGemData.discovery?"images/blue_gem.png":"images/black_gem.png";
     console.log(currentGemData);
     const creatorData = this.state.creatorData;
     if (!currentGemData) return <></>;
@@ -115,6 +118,7 @@ export default class GemDetails extends Component {
         />
         <div className="flex-row-sides">
           {this.state.creatorData && <p>Created by {creatorData.username}</p>}
+          <img src={gemIconUrl} alt="gem" height="30px"/>
           <div>
             {this.props.user?(
             <button className={likeClass} onClick={() => this.handleLike()}>
@@ -160,9 +164,11 @@ export default class GemDetails extends Component {
             {currentGemData.created_at.slice(0, 10)}
           </p>
         </div>
-        <div>
+        {this.state.fromProfile?(        <div>
+          <Link to="/explore-places">Back to Map</Link>
+        </div>):(<div>
           <Button onClick={this.props.closeDetails}>Back to Map</Button>
-        </div>
+        </div>)}
       </div>
     );
   }

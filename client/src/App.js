@@ -34,7 +34,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route
+                exact
+                path="/"
+                render={props => <Home user={this.state.user} setUser={this.setUser}{...props} />}
+              />
           <>
             <Route
               render={props => (
@@ -88,6 +92,7 @@ class App extends React.Component {
               <Route exact path="/logout" component={Logout} />
               {/* <Route path="/profile/:profileId" component={Profile} /> */}
               <Route path="/trip/:tripId" component={TripDetails} />
+              <Route exact path="/trip" component={TripDetails} />
               <Route
                 exact
                 path="/explore-places"
