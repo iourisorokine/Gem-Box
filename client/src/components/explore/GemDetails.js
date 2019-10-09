@@ -99,10 +99,9 @@ export default class GemDetails extends Component {
     console.log(currentGemData);
     const creatorData = this.state.creatorData;
     if (!currentGemData) return <></>;
-    const liked = currentGemData.likes.includes(this.props.user._id)
+    const liked = (this.props.user&&currentGemData.likes.includes(this.props.user._id))
       ? true
       : false;
-    console.log("LIKED", liked);
     const likeClass = liked ? "btn-unlike" : "btn-like";
     return (
       <div className="gem-details">
@@ -114,9 +113,10 @@ export default class GemDetails extends Component {
         <div className="flex-row-sides">
           {this.state.creatorData && <p>Created by {creatorData.username}</p>}
           <div>
+            {this.props.user?(
             <button className={likeClass} onClick={() => this.handleLike()}>
               {liked ? <>Unlike</> : <>Like</>}
-            </button>
+            </button>):<>Likes: </> }
             {currentGemData.likes.length}
           </div>
         </div>

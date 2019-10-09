@@ -8,6 +8,7 @@ import ReactMapGL, {
   GeolocateControl
 } from "react-map-gl";
 import GemDetails from "./GemDetails";
+import { throws } from "assert";
 
 class MapGems extends Component {
   state = {
@@ -16,9 +17,9 @@ class MapGems extends Component {
       height: "100vh",
       latitude: 70.520008,
       longitude: 70.404954,
-      zoom: 8
+      zoom: 2
     },
-    gemSelectedInfo: null,
+    gemSelectedInfo: this.props.gemSelectedInfo,
     displayDetails: false,
   };
 
@@ -32,7 +33,8 @@ class MapGems extends Component {
 
   closeDetails = () => {
     this.setState({
-      displayDetails: false
+      displayDetails: false,
+      gemSelectedInfo: null
     });
   };
 

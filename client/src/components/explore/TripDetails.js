@@ -11,7 +11,7 @@ class TripDetails extends Component {
       height: "500px",
       latitude: 53.520008,
       longitude: 13.404954,
-      zoom: 6
+      zoom: 3
     },
     gemsData: null,
     tripStages: [],
