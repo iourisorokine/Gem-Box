@@ -121,27 +121,32 @@ class ExplorePlaces extends Component {
 
     if (!this.state.gemsToDisplay) return <></>;
     return (
-      <div className="explore-places">
-        {this.state.displayFilters ? (
-          <>
-            <Filters
-              handleFilterChange={this.handleChange}
-              handleSelectChange={this.handleSelectChange}
-              handleFilterSubmit={this.filterGems}
-              userFilterOptions={userFilterOptions}
-              filterStatus={this.state.filterStatus}
-            />
-          </>
-        ) : (
-          <Button className="filter-toggle-button" onClick={this.toggleFilters}>
-            <i className="fas fa-filter"></i>
-          </Button>
-        )}
-        <MapGems
-          gems={this.state.gemsToDisplay}
-          user={this.props.user}
-          gemSelectedInfo={this.state.gemSelectedInfo}
-        />
+      <div className="explore-places page-wrapper">
+        <div className="explore-places-map">
+          {this.state.displayFilters ? (
+            <>
+              <Filters
+                handleFilterChange={this.handleChange}
+                handleSelectChange={this.handleSelectChange}
+                handleFilterSubmit={this.filterGems}
+                userFilterOptions={userFilterOptions}
+                filterStatus={this.state.filterStatus}
+              />
+            </>
+          ) : (
+            <Button
+              className="filter-toggle-button"
+              onClick={this.toggleFilters}
+            >
+              <i className="fas fa-filter"></i>
+            </Button>
+          )}
+          <MapGems
+            gems={this.state.gemsToDisplay}
+            user={this.props.user}
+            gemSelectedInfo={this.state.gemSelectedInfo}
+          />
+        </div>
       </div>
     );
   }
