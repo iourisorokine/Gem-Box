@@ -21,10 +21,10 @@ class MapGems extends Component {
       zoom: 2
     },
     gemSelectedInfo: this.props.gemSelectedInfo,
-    displayDetails: false,
+    displayDetails: false
   };
 
-  openPopup = gemData => {
+  openPopup = (gemData) => {
     this.setState({
       gemSelectedInfo: {
         ...gemData
@@ -46,7 +46,7 @@ class MapGems extends Component {
   };
 
   setUserLocation = () => {
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation.getCurrentPosition((position) => {
       let userLocation = {
         lat: position.coords.latitude,
         long: position.coords.longitude
@@ -82,7 +82,8 @@ class MapGems extends Component {
           latitude={gemSelectedInfo.latitude}
           longitude={gemSelectedInfo.longitude}
           closeOnClick={false}
-          onClose={() => this.setState({ gemSelectedInfo: null })}>
+          onClose={() => this.setState({ gemSelectedInfo: null })}
+        >
           <div>
             <img
               className="gem-popup-img"
@@ -103,7 +104,7 @@ class MapGems extends Component {
   };
 
   render() {
-    const gemsToRender = this.props.gems.map(gem => {
+    const gemsToRender = this.props.gems.map((gem) => {
       return <GemOnMap key={gem._id} data={gem} openPopup={this.openPopup} />;
     });
     this.setUserLocation();
@@ -120,7 +121,7 @@ class MapGems extends Component {
         )}
         <ReactMapGL
           {...this.state.viewport}
-          onViewportChange={viewport =>
+          onViewportChange={(viewport) =>
             this.setState({
               viewport: viewport
             })
@@ -128,14 +129,15 @@ class MapGems extends Component {
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           mapStyle="mapbox://styles/mapbox/streets-v10"
           captureDoubleClick={false}
-          doubleClickZoom={false}>
+          doubleClickZoom={false}
+        >
           <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
             <NavigationControl
-              onViewportChange={viewport => this.setState({ viewport })}
+              onViewportChange={(viewport) => this.setState({ viewport })}
             />
           </div>
           <div>
-          <Geocoder
+            <Geocoder
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               onSelected={this.onGeocontrolSelected}
               viewport={this.state.viewport}

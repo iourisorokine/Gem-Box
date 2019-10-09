@@ -21,8 +21,7 @@ import ShowProfileNew from "./components/profile/ShowProfileNew";
 
 class App extends React.Component {
   state = {
-    user: this.props.user,
-    creatorProfile: null
+    user: this.props.user
   };
 
   setUser = (user) => {
@@ -32,6 +31,7 @@ class App extends React.Component {
   };
 
   setUserProfile = (userid) => {
+    console.log("HERE setUser called", userid);
     this.setState({
       creatorProfile: userid
     });
@@ -108,13 +108,6 @@ class App extends React.Component {
               />
               <Route exact path="/trip" component={TripDetails} />
               <Route path="/trip/:tripId" component={TripDetails} />
-              <Route
-                exact
-                path="/explore-places"
-                render={(props) => (
-                  <ExplorePlaces {...props} user={this.state.user} />
-                )}
-              />
               <Route
                 exact
                 path="/gem/:gemId"

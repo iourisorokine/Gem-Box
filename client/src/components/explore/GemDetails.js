@@ -95,7 +95,7 @@ export default class GemDetails extends Component {
   };
 
   render() {
-    console.log("Gem details State: ", this.state);
+    const profileLink = "/profile/" + this.state.currentGemData.creator;
     const categoryStrings = {
       foodDrinks: "Food & Drinks",
       cultureArts: "Culture & Arts",
@@ -125,15 +125,8 @@ export default class GemDetails extends Component {
           alt=""
         />
         <div className="flex-row-sides">
-          {this.state.creatorData && (
-            <p>
-              <button
-                onClick={this.setUserProfile(this.state.currentGemData.creator)}
-              >
-                Created by "Jörg"
-              </button>
-            </p>
-          )}
+          <a href={profileLink}>Created by "Jörg"</a>
+          {this.state.creatorData && <p></p>}
           <img src={gemIconUrl} alt="gem" height="30px" />
           <div>
             {this.props.user ? (
