@@ -143,12 +143,12 @@ export class SetGem extends Component {
               onViewportChange={viewport => this.setState({ viewport })}
             />
           </div>
-          <div style={{ position: "absolute", right: "2vw", top: "4vh" }}>
+          {/* <div style={{ position: "absolute", right: "2vw", top: "4vh" }}>
             <GeolocateControl
               positionOptions={{ enableHighAccuracy: true }}
               trackUserLocation={true}
             />
-          </div>
+          </div> */}
           <div>
             <Geocoder
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}

@@ -126,11 +126,10 @@ body {
   box-shadow: 2px 2px 4px #bbb;
 }
 
-<<<<<<< HEAD
-=======
 .gem-details {
   background-color: white;
   border: 1px solid black;
+  min-height: 85vh;
   top: 0;
   width: 100%;
   max-width: 700px;
@@ -140,7 +139,6 @@ body {
 
 .gem-details-image {
   width: 100%;
-  min-height: 100vh;
 }
 
 .gem-details-image {
@@ -149,7 +147,6 @@ body {
   height: auto;
 }
 
->>>>>>> 8e99d2819cb91eb159516fd4e0a21daabb5261ed
 .flex-row {
   display: flex;
 }
@@ -270,7 +267,6 @@ body {
   color: blue !important;
 }
 
-<<<<<<< HEAD
 .generalBtn {
   margin-top: 5vh;
   background-color: #4badb6 !important;
@@ -280,7 +276,8 @@ body {
 }
 .page-wrapper {
   width: 100vw;
-=======
+}
+
 .profile-flexbox {
   display: flex;
   flex-direction: column;
@@ -369,5 +366,4 @@ body {
 
 .editprof {
   font-size: 10px !important;
->>>>>>> 8e99d2819cb91eb159516fd4e0a21daabb5261ed
 }

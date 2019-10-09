@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "../../stylesheets/gemDetails.css";
 
 export default class GemDetails extends Component {
   state = {
@@ -37,7 +36,7 @@ export default class GemDetails extends Component {
       likes.splice(likes.indexOf(userId), 1);
     }
     const gemId = this.state.currentGemData._id;
-    axios.put(`/api/gem/${gemId}`, { likes }).then(response => {
+    axios.put(`/api/gem/${gemId}`, { likes }).then((response) => {
       console.log(response);
       this.setState({
         currentGemData: { ...response.data, likes: response.data.likes }
@@ -45,7 +44,7 @@ export default class GemDetails extends Component {
     });
   };
 
-  getGemExperience = event => {
+  getGemExperience = (event) => {
     const { currentGemIndex, experienceGemData } = this.state;
     let newGemIndex = currentGemIndex;
     if (event.target.name === "previous" && currentGemIndex > 0)
@@ -65,17 +64,17 @@ export default class GemDetails extends Component {
   getExperienceGemData = () => {
     axios
       .get(`/api/gem/`)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         const { latitude, longitude } = this.state.currentGemData;
-        const experienceGemData = response.data.filter(gem => {
+        const experienceGemData = response.data.filter((gem) => {
           return gem.latitude === latitude && gem.longitude === longitude;
         });
         this.setState({
           experienceGemData
         });
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.response.status === 404) {
           this.setState({ error: "Not found" });
         }
@@ -90,13 +89,13 @@ export default class GemDetails extends Component {
     const creatorId = this.state.currentGemData.creator;
     axios
       .get(`/api/user/${creatorId}`)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.setState({
           creatorData: response.data
         });
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.response.status === 404) {
           this.setState({ error: "Not found" });
         }
@@ -119,6 +118,7 @@ export default class GemDetails extends Component {
     const gemIconUrl = currentGemData.discovery
       ? "images/blue_gem.png"
       : "images/black_gem.png";
+    console.log(currentGemData);
     const creatorData = this.state.creatorData;
     if (!currentGemData) return <></>;
     const liked =
@@ -127,19 +127,16 @@ export default class GemDetails extends Component {
         : false;
     const likeClass = liked ? "btn-unlike" : "btn-like";
     return (
-      <div className="gem-details page-wrapper ">
-        <h3 className="gem-title">{currentGemData.title}</h3>
-
+      <div className="gem-details">
         <img
           className="gem-details-image"
           src={currentGemData.imageUrl}
           alt=""
         />
-        <div className="flex-row-sides creatorDataOnGem">
-          {this.state.creatorData && (
-            <p className="details-titles">Created by {creatorData.username}</p>
-          )}
-          <img src={gemIconUrl} alt="gem" height="20px" />
+        <div className="flex-row-sides">
+          <a href={profileLink}>Created by "Jörg"</a>
+          {this.state.creatorData && <p></p>}
+          <img src={gemIconUrl} alt="gem" height="30px" />
           <div>
             {this.props.user ? (
               <span className={likeClass} onClick={() => this.handleLike()}>
@@ -152,10 +149,10 @@ export default class GemDetails extends Component {
                     <i class="far fa-heart"></i> {currentGemData.likes.length}
                   </>
                 )}
-              </span>
-            ) : (
+                </span>) : (
               <>Likes: {currentGemData.likes.length}</>
             )}
+            
           </div>
         </div>
         {this.state.experienceGemData &&
@@ -169,55 +166,41 @@ export default class GemDetails extends Component {
               </button>
             </div>
           )}
-        <div className="gem-details-info">
-          <div className="flex-row-sides">
-            {currentGemData.locationName && (
-              <p>{currentGemData.locationName.substring(0, 30)}...</p>
-            )}
-          </div>
-
-          <div className="gem-divs">
-            <p className="details-titles">Descriprion: </p>
-            <p className="details-infos">{currentGemData.description}</p>
-          </div>
-          <div className="gem-divs">
-            <p className="details-titles">Good to know: </p>
-            <p className="details-infos">{currentGemData.goodToKnow}</p>
-          </div>
-          <div className="cat-creat-container">
-            <div className="gem-divs">
-              <p className="details-titles">Category: </p>
-              <p className="details-infos">
-                {categoryStrings[currentGemData.category]}
-              </p>
-            </div>
-            <div className="gem-divs">
-              <p className="details-titles">Created: </p>
-              <p className="details-infos">
-                {currentGemData.created_at.slice(0, 10)}
-              </p>
-            </div>
-          </div>
+        <div className="flex-row-sides">
+          <h3>{currentGemData.title}</h3>
+          {currentGemData.locationName && <p>{currentGemData.locationName}</p>}
         </div>
-        {this.props.closeDetails ? (
+        <div className="flex-row-sides">
+          <h4>Category:</h4>
+          <h4>{categoryStrings[currentGemData.category]}</h4>
+        </div>
+        <div className="flex-row">
+          <p>
+            <strong>Descriprion: </strong>
+            {currentGemData.description}
+          </p>
+        </div>
+        <div className="flex-row">
+          <p>
+            <strong>Good to know: </strong>
+            {currentGemData.goodToKnow}
+          </p>
+        </div>
+        <div className="flex-row">
+          <p>
+            <strong>Created: </strong>
+            {currentGemData.created_at.slice(0, 10)}
+          </p>
+        </div>
+        {this.state.fromProfile ? (
           <div>
-            <Link className="back-Link" to="/explore-places">
-              Back to Map
-            </Link>
+            <Link to="/explore-places">Back to Map</Link>
           </div>
         ) : (
           <div>
-            <Button
-              className="back-btn generalBtn"
-              onClick={this.props.closeDetails}
-            >
-              Back to Map
-            </Button>
+            <Button onClick={this.props.closeDetails}>Back to Map</Button>
           </div>
         )}
-        <div className="arrow-down">
-          <i className="fas fa-angle-down"></i>
-        </div>
       </div>
     );
   }
