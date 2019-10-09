@@ -115,9 +115,7 @@ router.get("/:gemId", (req, res) => {
 
 router.put("/:gemId", (req, res) => {
   const { likes } = req.body;
-  console.log("#########Req Body: #######:", req.body);
-  console.log("#########Req Params: #######:", req.params);
-  Gem.findByIdAndUpdate(req.params.gemId, { likes: likes })
+  Gem.findByIdAndUpdate(req.params.gemId, { likes: likes }, { new: true })
     .then(gem => {
       res.json(gem);
     })

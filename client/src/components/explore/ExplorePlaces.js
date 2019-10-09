@@ -4,11 +4,18 @@ import MapGems from "./MapGems";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 
+const userFilterOptions = [
+  { value: "all", label: "All" },
+  { value: "liked", label: "Liked" },
+  { value: "mine", label: "Mine" }
+];
+
 class ExplorePlaces extends Component {
   state = {
     displayFilters: false,
     gemsData: null,
     gemsToDisplay: null,
+    gemSelectedInfo: null,
     filterStatus: {
       showGems: true,
       showTrips: true,
@@ -41,9 +48,9 @@ class ExplorePlaces extends Component {
     let gemsFiltered = this.state.gemsData.filter(gem => {
         return (
           filter.showGems &&
-          (filter.userFilter === "all" ||
-            (filter.userFilter === "liked"&&gem.likes.includes(this.props.user._id)) ||
-            (filter.userFilter === "mine"&&gem.creator===this.props.user._id)) &&
+          (filter.userFilter.value === "all" ||
+            (filter.userFilter.value === "liked"&&gem.likes.includes(this.props.user._id)) ||
+            (filter.userFilter.value === "mine"&&gem.creator===this.props.user._id)) &&
           filter[gem.category] === true &&
           filter.dateStart <= gem.created_at.slice(0, 10) &&
           gem.created_at.slice(0, 10) <= filter.dateEnd
@@ -51,7 +58,8 @@ class ExplorePlaces extends Component {
       });
       this.setState({
         gemsToDisplay: gemsFiltered,
-        displayFilters: false
+        displayFilters: false,
+        gemSelectedInfo: null
       })
     }
 
@@ -59,12 +67,18 @@ class ExplorePlaces extends Component {
     if (!this.state.gemsData) this.getGemsData();
   };
 
+  handleSelectChange = userFilter => {
+    this.setState({ filterStatus:{...this.state.filterStatus, userFilter:userFilter} });
+    console.log(`Option selected:`, userFilter);
+  };
+
   handleChange = event => {
+    console.log(event.target)
     const name = event.target.name;
     const value =
       event.target.type === "checkbox"
         ? event.target.checked
-        : event.target.value;
+        :event.target.value;
     this.setState({
       filterStatus: { ...this.state.filterStatus, [name]: value }
     });
@@ -78,7 +92,7 @@ class ExplorePlaces extends Component {
   };
 
   render() {
-    console.log("user props: ",this.props.user );
+    console.log("filter state: ",this.state.filterStatus);
     if(!this.state.gemsToDisplay) return <></>
     return (
       <div className="explore-places">
@@ -86,7 +100,9 @@ class ExplorePlaces extends Component {
           <>
             <Filters
               handleFilterChange={this.handleChange}
+              handleSelectChange={this.handleSelectChange}
               handleFilterSubmit={this.filterGems}
+              userFilterOptions={userFilterOptions}
               filterStatus={this.state.filterStatus}
             />
           </>
@@ -95,7 +111,7 @@ class ExplorePlaces extends Component {
             <i className="fas fa-filter"></i>
           </Button>
         )}
-        <MapGems gems={this.state.gemsToDisplay} user={this.props.user} />
+        <MapGems gems={this.state.gemsToDisplay} user={this.props.user} gemSelectedInfo={this.state.gemSelectedInfo}/>
       </div>
     );
   }

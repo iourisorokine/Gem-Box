@@ -10,7 +10,7 @@ class Menu extends React.Component {
   handleLogout = props => {
     console.log("LOGOUT PROPS: ", props);
     logout().then(() => {
-      props.setUser(null);
+      this.props.setUser(null);
       this.props.history.push("/logout");
     });
   };
@@ -30,7 +30,7 @@ class Menu extends React.Component {
             <Dropdown.Item href="/create-gem">Create Gem</Dropdown.Item>
             <Dropdown.Item href="/profile">Profile</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item href="/logout">Logout</Dropdown.Item>
+            <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>
           </>
         ) : (
           <>
