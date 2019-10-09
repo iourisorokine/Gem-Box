@@ -35,9 +35,9 @@ router.get("/:creatorId", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/user/:id", (req, res) => {
   const id = req.params.id;
-  User.find({ _id: id })
+  User.findOne({ _id: id })
     .then((user) => {
       console.log("Here are the data for the user :", user);
       res.json(user);
@@ -76,10 +76,11 @@ router.patch("/update", (req, res) => {
 
 router.put("/updateFollower", (req, res) => {
   console.log("hi");
-  console.log(req.body._id);
-  const id = req.body.userId; //profil dem ich folgen möchte
+  console.log("Here is the User I want to follow", req.body.creatorId);
+  const id = req.body.creatorId; //profil dem ich folgen möchte
   const userId = req.user._id; //eingeloggter uiser
-  const userArr = req.body.user.following; //Loggedin userse Array
+  console.log("User making request", req.user);
+  const userArr = req.user.following; //Loggedin userse Array
 
   if (userArr.includes(id)) {
     User.findByIdAndUpdate(
