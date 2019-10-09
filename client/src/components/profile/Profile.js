@@ -10,11 +10,6 @@ export default class Profile extends Component {
   state = {
     ShowProfile: true,
     user: this.props.user,
-<<<<<<< HEAD
-    // popularGems: []
-    //userProfilId ---params
-=======
->>>>>>> 8e99d2819cb91eb159516fd4e0a21daabb5261ed
     userProfilId: "5d9b843efdd9bd1e03843772"
   };
 
@@ -53,7 +48,6 @@ export default class Profile extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
       <div className="ProfilePageDetails mx-auto">
         <div>
           <h1>{user.username}</h1>
@@ -75,39 +69,3 @@ export default class Profile extends Component {
             Edit your profile
           </Button>
         </Link>
-=======
-      <div>
-        {this.state.ShowProfile ? (
-          <ShowProfile
-            user={this.state.user}
-            changeComponent={this.changeComponent}
-          />
-        ) : (
-          <UpdateProfile
-            user={this.state.user}
-            changeComponent={this.changeComponent}
-            setUser={this.setUser}
-          />
->>>>>>> 8e99d2819cb91eb159516fd4e0a21daabb5261ed
-
-          // followButton Function
-          // console.log("user.following", user.following);
-          // const isFollowing = user.following.includes(this.state.userProfilId);
-          // return (
-          //   <div class="ProfilePageDetails mx-auto">
-          //     <div>
-          //       <h1>{user.username}</h1>
-          //       {/* {user.username !== user.username && ( */}
-          //       <Button
-          //         className="follow-button"
-          //         onClick={event =>
-          //           this.handleFollowClick("5d9b843efdd9bd1e03843772")
-          //         }
-          //       >
-          //         {isFollowing ? "Unfollow" : "Follow"}
-          //       </Button>
-        )}
-      </div>
-    );
-  }
-}
