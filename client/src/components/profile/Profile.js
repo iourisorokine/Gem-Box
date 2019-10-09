@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 // import UpdateProfile from "./UpdateProfile";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
 
@@ -10,6 +9,8 @@ export default class Profile extends Component {
   state = {
     user: this.props.user,
     popularGems: []
+    //userProfilId ---params
+    userProfilId: "5d9b843efdd9bd1e03843772",
   };
 
   componentDidMount() {
@@ -28,7 +29,17 @@ export default class Profile extends Component {
 
   handleFollowClick(userId) {
     console.log("called");
-    axios.put("/api/user/updateFollower", { id: userId });
+    axios
+      .put("/api/user/updateFollower", {
+        userId: userId,
+        user: this.state.user
+      })
+      .then(response => {
+        console.log(response);
+        this.setState({
+          user: response.data
+        });
+      });
   }
 
   getPopularGems = () => {
@@ -77,8 +88,8 @@ export default class Profile extends Component {
           <p> No user!</p>
         </>
       );
-
-    const isFollowing = user.following.includes(user.username);
+    console.log("user.following", user.following);
+    const isFollowing = user.following.includes(this.state.userProfilId);
     return (
       <div className="ProfilePageDetails mx-auto">
         <div>
