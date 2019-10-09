@@ -30,6 +30,46 @@ export class SetGem extends Component {
     }
   };
 
+  componentDidMount = () => {
+    const map = this.reactMap.getMap();
+    axios
+      .get(
+        "https://api.mapbox.com/directions/v5/mapbox/cycling/13.404954,52.520008;6.576124,52.637154?geometries=geojson&access_token=" +
+          process.env.REACT_APP_MAPBOX_TOKEN
+      )
+      .then(res => {
+        //console.log(res.data.routes[0].geometry.coordinates);
+        console.log(res.data);
+        map.on("load", () => {
+          //add the GeoJSON layer here
+          map.addLayer({
+            id: "route",
+            type: "line",
+            source: {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "LineString",
+                  coordinates: res.data.routes[0].geometry.coordinates
+                }
+              }
+            },
+            layout: {
+              "line-join": "round",
+              "line-cap": "round"
+            },
+            paint: {
+              "line-color": "#888",
+              "line-width": 2
+            }
+          });
+        });
+      });
+    console.log(map);
+  };
+
   // here we lift up the state to CreateGem and update longitude, latitude and locationname
   onSubmit = event => {
     event.preventDefault();
@@ -75,6 +115,7 @@ export class SetGem extends Component {
       <>
         <ReactMapGL
           {...this.state.viewport}
+          ref={reactMap => (this.reactMap = reactMap)}
           onViewportChange={viewport =>
             this.setState({
               viewport: viewport,
