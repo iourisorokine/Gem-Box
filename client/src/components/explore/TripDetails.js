@@ -39,36 +39,41 @@ class TripDetails extends Component {
     });
   };
 
-  getRoute = () => {
-    const mapboxApiAccessToken = process.env.REACT_APP_MAPBOX_TOKEN;
-    const coordinates = this.state.tripStages.join(";");
-    // https://api.mapbox.com/directions/v5/mapbox/cycling/-122.42,37.78;-77.03,38.91?steps=true&access_token=pk.eyJ1IjoiaW91cmkiLCJhIjoiY2swaTRnZGxnMDhyYjNmbXp1cTh4aGY0YSJ9.MmEIAiv3ZCEZzc_VLtZnCg
-    let url= `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinates}?steps=true&access_token=pk.eyJ1IjoiaW91cmkiLCJhIjoiY2swaTRnZGxnMDhyYjNmbXp1cTh4aGY0YSJ9.MmEIAiv3ZCEZzc_VLtZnCg`
-    let url3 = `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinates}.json?access_token=${mapboxApiAccessToken}`;
-    axios
-      .get(url)
-      .then(response => {
-        console.log("Response data: ", response.data);
-        const points = response.data.routes[0].legs[0].steps.reduce(
-          (acc, val) => {
-            console.log("Acc: ", acc)
-            const newPoint= val.intersections[0].location
-            console.log("New Point: ",newPoint)
-            return acc.concat([newPoint])
-          },
-          []);
-        console.log("Points: ",points);
-        this.setState({
-          points
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  getSimpleRoute=()=>{
+    this.setState({
+      points: this.state.tripStages
+    });
+  }
+
+  // getRoute = () => {
+  //   const mapboxApiAccessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+  //   const coordinates = this.state.tripStages.join(";");
+  //   // https://api.mapbox.com/directions/v5/mapbox/cycling/-122.42,37.78;-77.03,38.91?steps=true&access_token=pk.eyJ1IjoiaW91cmkiLCJhIjoiY2swaTRnZGxnMDhyYjNmbXp1cTh4aGY0YSJ9.MmEIAiv3ZCEZzc_VLtZnCg
+  //   let url= `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinates}?steps=true&access_token=pk.eyJ1IjoiaW91cmkiLCJhIjoiY2swaTRnZGxnMDhyYjNmbXp1cTh4aGY0YSJ9.MmEIAiv3ZCEZzc_VLtZnCg`
+  //   let url3 = `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinates}.json?access_token=${mapboxApiAccessToken}`;
+  //   axios
+  //     .get(url)
+  //     .then(response => {
+  //       console.log("Response data: ", response.data);
+  //       const points = response.data.routes[0].legs[0].steps.reduce(
+  //         (acc, val) => {
+  //           console.log("Acc: ", acc)
+  //           const newPoint= val.intersections[0].location
+  //           console.log("New Point: ",newPoint)
+  //           return acc.concat([newPoint])
+  //         },
+  //         []);
+  //       console.log("Points: ",points);
+  //       this.setState({
+  //         points
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
 
   render() {
-
     let gemsToRender = [];
     console.log(this.state.tripStages)
     if (this.state.gemsData) {
@@ -82,7 +87,7 @@ class TripDetails extends Component {
     return (
       <div>
         <h2>Route details</h2>
-        <button onClick={this.getRoute}>Get route</button>
+        <button onClick={this.getSimpleRoute}>Get route</button>
         <ReactMapGL
           {...this.state.viewport}
           onViewportChange={viewport =>

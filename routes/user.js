@@ -23,11 +23,11 @@ router.post("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const id = req.params.id;
-
-  Gem.find({ creator: id })
-    .then(gems => {
-      console.log("gems :", gems);
-      res.json(gems);
+  console.log("######User id :####", req.params, req.body)
+  User.findById( id )
+    .then(user => {
+      console.log("user :", user);
+      res.json(user);
     })
     .catch(err => {
       res.json(err);

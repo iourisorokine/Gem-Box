@@ -11,7 +11,6 @@ export default class Login extends Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
-
     this.setState({
       [name]: value
     });
@@ -33,7 +32,7 @@ export default class Login extends Component {
         // successfully signed up
         // update the state for the parent component
         this.props.setUser(data);
-        this.props.history.push("/");
+        this.props.history.push("/explore-places");
       }
     });
   };

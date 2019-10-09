@@ -47,35 +47,11 @@ class Filters extends Component {
           </div>
           <div>
             <Select
+              defaultValue="all"
               value={this.props.filterStatus.userFilter}
               onChange={this.props.handleSelectChange}
               options={this.props.userFilterOptions}
             />
-            {/* <label htmlFor="userFilter">Show:</label>
-            <select
-              id="userFilter"
-              name="userFilter"
-              onChange={this.props.handleFilterChange}>
-              <option
-                value="all"
-                name="userFilter"
-                selected={this.props.userFilter}
-                onChange={this.props.handleFilterChange}>
-                All
-              </option>
-              <option
-                value="liked"
-                name="userFilter"
-                onChange={this.props.handleFilterChange}>
-                Liked
-              </option>
-              <option
-                value="mine"
-                name="userFilter"
-                onChange={this.props.handleFilterChange}>
-                Mine
-              </option>
-            </select> */}
           </div>
           <div>
             <h2>Show by date</h2>

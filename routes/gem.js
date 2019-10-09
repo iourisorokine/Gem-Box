@@ -92,11 +92,11 @@ router.get("/creator/:creatorId", (req, res) => {
   const creatorId = req.params.creatorId;
   console.log("querying the database with", creatorId);
   Gem.find({ creator: creatorId })
-    .then((gem) => {
+    .then(gem => {
       res.json(gem);
       console.log("Got all your gems made", gem);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
@@ -105,10 +105,10 @@ router.get("/:gemId", (req, res) => {
   const id = req.params.gemId;
 
   Gem.findById(id)
-    .then((gem) => {
+    .then(gem => {
       res.json(gem);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
