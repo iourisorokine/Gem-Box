@@ -126,17 +126,17 @@ export default class GemDetails extends Component {
           {this.state.creatorData && (
             <p className="details-titles">Created by {creatorData.username}</p>
           )}
-          <img src={gemIconUrl} alt="gem" height="30px" />
+          <img src={gemIconUrl} alt="gem" height="20px" />
           <div>
             {this.props.user ? (
               <span className={likeClass} onClick={() => this.handleLike()}>
                 {liked ? (
                   <>
-                    <i class="fas fa-heart"></i>
+                    <i className="fas fa-heart"></i>
                   </>
                 ) : (
                   <>
-                    <i class="far fa-heart"></i>
+                    <i className="far fa-heart"></i>
                   </>
                 )}
               </span>

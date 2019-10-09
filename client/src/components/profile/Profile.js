@@ -8,9 +8,9 @@ import Carousel from "react-bootstrap/Carousel";
 export default class Profile extends Component {
   state = {
     user: this.props.user,
-    popularGems: []
+    // popularGems: []
     //userProfilId ---params
-    userProfilId: "5d9b843efdd9bd1e03843772",
+    userProfilId: "5d9b843efdd9bd1e03843772"
   };
 
   componentDidMount() {

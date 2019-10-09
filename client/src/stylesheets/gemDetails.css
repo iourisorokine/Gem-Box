@@ -21,6 +21,7 @@
   width: 100%;
   object-fit: contain;
   height: auto;
+  padding-bottom: 1.5rem;
 }
 /* .gem-details {
   background-color: white;
@@ -68,4 +69,14 @@
 }
 .arrow-down {
   padding-top: 1rem;
+}
+
+.fa-heart .btn-like .btn-unlike {
+  margin: 0;
+  padding: 0;
+}
+.creatorDataOnGem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
