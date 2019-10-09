@@ -14,6 +14,7 @@ export default class GemDetails extends Component {
   };
 
   componentDidMount = () => {
+    console.log("CreatorData", this.state.creatorData);
     if (this.state.currentGemData && !this.state.creatorData)
       this.getCreatorData();
     if (!this.state.experienceGemData) this.getExperienceGemData();
@@ -74,6 +75,10 @@ export default class GemDetails extends Component {
   };
 
   getCreatorData = () => {
+    console.log(
+      "Here should be creator id included",
+      this.state.currentGemData
+    );
     const creatorId = this.state.currentGemData.creator;
     axios
       .get(`/api/user/${creatorId}`)
@@ -91,7 +96,7 @@ export default class GemDetails extends Component {
   };
 
   render() {
-    console.log("Gem details State: ", this.state);
+    const profileLink = "/profile/" + this.state.currentGemData.creator;
     const categoryStrings = {
       foodDrinks: "Food & Drinks",
       cultureArts: "Culture & Arts",
@@ -132,18 +137,17 @@ export default class GemDetails extends Component {
               <span className={likeClass} onClick={() => this.handleLike()}>
                 {liked ? (
                   <>
-                    <i className="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i> {currentGemData.likes.length}
                   </>
                 ) : (
                   <>
-                    <i className="far fa-heart"></i>
+                    <i class="far fa-heart"></i> {currentGemData.likes.length}
                   </>
                 )}
               </span>
             ) : (
-              <>Likes: </>
+              <>Likes: {currentGemData.likes.length}</>
             )}
-            {currentGemData.likes.length}
           </div>
         </div>
         {this.state.experienceGemData &&

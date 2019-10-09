@@ -71,8 +71,8 @@ router.get("/facebook", passport.authenticate("facebook"));
 router.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
-    successRedirect: "http://localhost:3000/profile", //check if dynamic possible
-    failureRedirect: "http://localhost:3000/login"
+    successRedirect: "https://gem-box.herokuapp.com/profile", //check if dynamic possible
+    failureRedirect: "https://gem-box.herokuapp.com/login"
   })
 );
 
@@ -88,10 +88,10 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:3000/login"
+    failureRedirect: "https://gem-box.herokuapp.com/login"
   }),
   function(req, res) {
-    res.redirect("http://localhost:3000/profile");
+    res.redirect("https://gem-box.herokuapp.com/profile");
   }
 );
 

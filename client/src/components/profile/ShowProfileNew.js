@@ -14,7 +14,8 @@ export default class Profile extends Component {
     popularGems: [],
     trips: [],
     discoveries: 0,
-    experiences: 0
+    experiences: 0,
+    creatorProfile: this.props.creatorProfile
   };
 
   handleFollowClick(userId) {

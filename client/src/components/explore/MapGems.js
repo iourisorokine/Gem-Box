@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import GemOnMap from "./GemOnMap";
 import ReactMapGL, {
@@ -24,7 +24,7 @@ class MapGems extends Component {
     displayDetails: false
   };
 
-  openPopup = gemData => {
+  openPopup = (gemData) => {
     this.setState({
       gemSelectedInfo: {
         ...gemData
@@ -46,7 +46,7 @@ class MapGems extends Component {
   };
 
   setUserLocation = () => {
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation.getCurrentPosition((position) => {
       let userLocation = {
         lat: position.coords.latitude,
         long: position.coords.longitude
@@ -104,12 +104,16 @@ class MapGems extends Component {
   };
 
   render() {
-    const gemsToRender = this.props.gems.map(gem => {
+    const gemsToRender = this.props.gems.map((gem) => {
       return <GemOnMap key={gem._id} data={gem} openPopup={this.openPopup} />;
     });
     this.setUserLocation();
     return (
+<<<<<<< HEAD
       <div className="page-wrapper">
+=======
+      <div>
+>>>>>>> 8e99d2819cb91eb159516fd4e0a21daabb5261ed
         {this.state.displayDetails && (
           <>
             <GemDetails
@@ -121,7 +125,7 @@ class MapGems extends Component {
         )}
         <ReactMapGL
           {...this.state.viewport}
-          onViewportChange={viewport =>
+          onViewportChange={(viewport) =>
             this.setState({
               viewport: viewport
             })
@@ -133,11 +137,20 @@ class MapGems extends Component {
         >
           <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
             <NavigationControl
-              onViewportChange={viewport => this.setState({ viewport })}
+              onViewportChange={(viewport) => this.setState({ viewport })}
             />
           </div>
           <div>
+<<<<<<< HEAD
             <Geocoder
+=======
+          <Button style={{ position: "absolute", right: "2vw", top: "2vh", backgroundColor:"#09d3ac" }} onClick={this.props.toggleFilters}>
+            <i className="fas fa-filter"></i>
+          </Button>
+          </div>
+          <div style={{ position: "absolute", left: "20%", top: "2vh" }}>
+          <Geocoder
+>>>>>>> 8e99d2819cb91eb159516fd4e0a21daabb5261ed
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               onSelected={this.onGeocontrolSelected}
               viewport={this.state.viewport}

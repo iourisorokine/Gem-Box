@@ -108,10 +108,9 @@ body {
 
 .filter-toggle-button {
   position: fixed;
-  top: 0;
-  left: 50%;
+  top: 50px;
+  left: 0;
   z-index: 20;
-  box-shadow: 2px 2px 4px #bbb;
 }
 
 .filters-block {
@@ -127,6 +126,30 @@ body {
   box-shadow: 2px 2px 4px #bbb;
 }
 
+<<<<<<< HEAD
+=======
+.gem-details {
+  background-color: white;
+  border: 1px solid black;
+  top: 0;
+  width: 100%;
+  max-width: 700px;
+  padding: 30px;
+  z-index: 20;
+}
+
+.gem-details-image {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.gem-details-image {
+  width: 90%;
+  max-width: 700px;
+  height: auto;
+}
+
+>>>>>>> 8e99d2819cb91eb159516fd4e0a21daabb5261ed
 .flex-row {
   display: flex;
 }
@@ -231,11 +254,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   align-items: center;
 }
 
-.btn-options {
+.btn-options,
+.btn-travelInterests {
   width: 400px;
   height: 100px;
   padding: 20px;
@@ -247,6 +270,7 @@ body {
   color: blue !important;
 }
 
+<<<<<<< HEAD
 .generalBtn {
   margin-top: 5vh;
   background-color: #4badb6 !important;
@@ -256,4 +280,94 @@ body {
 }
 .page-wrapper {
   width: 100vw;
+=======
+.profile-flexbox {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 90wh;
+}
+.headerinfo {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.profilpic {
+  padding: 20px;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.basiccounts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+.experiences-discoveries {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.travelinterests {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.populargems {
+  padding: 10px;
+}
+
+.trips {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.nameedit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.btn-triplist {
+  border-bottom: 1px solid black !important;
+  width: 100wh !important;
+  border-radius: 0 !important;
+  margin: 10px !important;
+}
+.btn-triplist a:focus {
+  text-decoration: none !important;
+  background-color: #4bafb8;
+}
+.accordion {
+  background-color: white !important;
+}
+
+.card-header {
+  padding: 0 !important ;
+  margin: 0 !important;
+  background-color: white !important;
+  border: none !important;
+}
+
+.card-header {
+  border: none !important;
+}
+
+.accordion > .card:first-of-type {
+  border: none !important;
+}
+
+.editprof {
+  font-size: 10px !important;
+>>>>>>> 8e99d2819cb91eb159516fd4e0a21daabb5261ed
 }
