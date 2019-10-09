@@ -118,6 +118,7 @@ export default class GemDetails extends Component {
     const gemIconUrl = currentGemData.discovery
       ? "images/blue_gem.png"
       : "images/black_gem.png";
+    console.log(currentGemData);
     const creatorData = this.state.creatorData;
     if (!currentGemData) return <></>;
     const liked =
@@ -191,13 +192,13 @@ export default class GemDetails extends Component {
             {currentGemData.created_at.slice(0, 10)}
           </p>
         </div>
-        {this.props.closeDetails ? (
+        {this.state.fromProfile ? (
           <div>
-            <Button onClick={this.props.closeDetails}>Back to Map</Button>
+            <Link to="/explore-places">Back to Map</Link>
           </div>
         ) : (
           <div>
-          <Link to="/profile">Back</Link>
+            <Button onClick={this.props.closeDetails}>Back to Map</Button>
           </div>
         )}
       </div>
