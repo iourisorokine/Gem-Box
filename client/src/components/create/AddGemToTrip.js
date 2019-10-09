@@ -8,6 +8,7 @@ export default class AddGemToTrip extends Component {
 
   showGems = () => {
     let GemsInTripIncluded = [];
+
     if (this.props.TripInfos.existingGems !== undefined) {
       GemsInTripIncluded = this.props.TripInfos.existingGems;
     }

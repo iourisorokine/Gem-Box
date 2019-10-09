@@ -21,14 +21,14 @@ import Geocoder from "react-mapbox-gl-geocoder";
 
 class CreateGem extends React.Component {
   state = {
-    stage: "AddToTrip",
+    stage: "SetGem",
     gem: {
       title: "",
       description: "",
       goodToKnow: "",
       imageUrl: "",
       creator: this.props.user._id,
-      discovery: false,
+      discovery: null,
       category: "",
       visitedDate: "",
       latitude: 0,
@@ -66,6 +66,7 @@ class CreateGem extends React.Component {
   };
 
   createGem = () => {
+    console.log("create gem with props", this.state.gem);
     let { ...pushObj } = this.state.gem;
     delete pushObj.stage;
     if (pushObj.creator === "") pushObj.creator = null;
@@ -79,7 +80,9 @@ class CreateGem extends React.Component {
   };
 
   fetchGemInfo = (gemInfos) => {
-    this.setState({ gem: { ...this.state.gem, ...gemInfos } });
+    this.setState({ gem: { ...this.state.gem, ...gemInfos } }, () => {
+      console.log("changed discovery to false", this.state.gem);
+    });
   };
 
   createTrip = () => {
@@ -119,8 +122,7 @@ class CreateGem extends React.Component {
           selectedTrip: tripid,
           allGems: gemArray,
           name: name,
-          existingGems: ["5d9c95fc601535dd6b04d096"]
-          //here needs to be selectedGem
+          existingGems: selectedGem
         }
       });
     });
