@@ -7,6 +7,7 @@ import ReactMapGL, {
   NavigationControl,
   GeolocateControl
 } from "react-map-gl";
+import Geocoder from "react-mapbox-gl-geocoder";
 import GemDetails from "./GemDetails";
 import { throws } from "assert";
 
@@ -57,6 +58,16 @@ class MapGems extends Component {
           longitude: userLocation.long
         }
       });
+    });
+  };
+
+  onGeocontrolSelected = (viewport, item) => {
+    this.setState({
+      viewport: viewport,
+      marker: {
+        longitude: viewport.longitude,
+        latitude: viewport.latitude
+      }
     });
   };
 
@@ -123,10 +134,12 @@ class MapGems extends Component {
               onViewportChange={viewport => this.setState({ viewport })}
             />
           </div>
-          <div style={{ position: "absolute", right: "2vw", top: "4vh" }}>
-            <GeolocateControl
-              positionOptions={{ enableHighAccuracy: true }}
-              trackUserLocation={true}
+          <div>
+          <Geocoder
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+              onSelected={this.onGeocontrolSelected}
+              viewport={this.state.viewport}
+              hideOnSelect={true}
             />
           </div>
           {gemsToRender}

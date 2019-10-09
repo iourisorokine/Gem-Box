@@ -7,12 +7,12 @@ export default class SuggestGem extends Component {
   };
 
   getGemsData = () => {
-    axios.get("/api/gem").then(gems => {
+    axios.get("/api/gem").then((gems) => {
       console.log(gems.data);
       console.log(this.props.locationName);
-      let newdata = gems.data.filter(gem => {
+      let newdata = gems.data.filter((gem) => {
         let count = 0;
-        this.props.locationName.split(",").forEach(element => {
+        this.props.locationName.split(",").forEach((element) => {
           if (gem.locationName.indexOf(element) !== -1) {
             count++;
             console.log(count);
@@ -27,17 +27,23 @@ export default class SuggestGem extends Component {
     });
   };
 
-  handleRouteExperience = val => {
+  handleRouteExperience = (val) => {
+    console.log("Experience called");
     console.log(val);
     this.props.fetchGemInfo({
       latitude: val.latitude,
       longitude: val.longitude,
-      locationName: val.locationName
+      locationName: val.locationName,
+      discovery: false
     });
     this.props.setStage("AddExperience");
   };
 
   handleRouteDiscovery = () => {
+    console.log("Discovery called");
+    this.props.fetchGemInfo({
+      discovery: true
+    });
     this.props.setStage("AddDiscovery");
   };
 
@@ -49,9 +55,8 @@ export default class SuggestGem extends Component {
     return (
       <div>
         <h4 className="headingSetGem">May be you mean one of these Gems?</h4>
-
         {this.state.suggestGemsData != null &&
-          this.state.suggestGemsData.map(val => (
+          this.state.suggestGemsData.map((val) => (
             <div className="item" key={val._id}>
               <div>
                 <p>{val.title}</p>

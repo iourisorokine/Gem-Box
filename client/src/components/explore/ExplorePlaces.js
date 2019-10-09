@@ -42,43 +42,51 @@ class ExplorePlaces extends Component {
     });
   };
 
-  filterGems=event=>{
+  filterGems = event => {
     event.preventDefault();
     const filter = this.state.filterStatus;
-    let gemsFiltered = this.state.gemsData.filter(gem => {
+    axios.get("/api/gem").then(foundGems => {
+      let gemsFiltered = foundGems.data.filter(gem => {
         return (
           filter.showGems &&
           (filter.userFilter.value === "all" ||
-            (filter.userFilter.value === "liked"&&gem.likes.includes(this.props.user._id)) ||
-            (filter.userFilter.value === "mine"&&gem.creator===this.props.user._id)) &&
+            (filter.userFilter.value === "liked" &&
+              gem.likes.includes(this.props.user._id)) ||
+            (filter.userFilter.value === "mine" &&
+              gem.creator === this.props.user._id)) &&
           filter[gem.category] === true &&
           filter.dateStart <= gem.created_at.slice(0, 10) &&
           gem.created_at.slice(0, 10) <= filter.dateEnd
         );
       });
+
       this.setState({
+        gemsData: foundGems.data,
         gemsToDisplay: gemsFiltered,
         displayFilters: false,
         gemSelectedInfo: null
-      })
-    }
+      });
+    });
+  };
 
   componentDidMount = () => {
     if (!this.state.gemsData) this.getGemsData();
   };
 
   handleSelectChange = userFilter => {
-    this.setState({ filterStatus:{...this.state.filterStatus, userFilter:userFilter} });
+    this.setState({
+      filterStatus: { ...this.state.filterStatus, userFilter: userFilter }
+    });
     console.log(`Option selected:`, userFilter);
   };
 
   handleChange = event => {
-    console.log(event.target)
+    console.log(event.target);
     const name = event.target.name;
     const value =
       event.target.type === "checkbox"
         ? event.target.checked
-        :event.target.value;
+        : event.target.value;
     this.setState({
       filterStatus: { ...this.state.filterStatus, [name]: value }
     });
@@ -92,8 +100,26 @@ class ExplorePlaces extends Component {
   };
 
   render() {
-    console.log("filter state: ",this.state.filterStatus);
-    if(!this.state.gemsToDisplay) return <></>
+    console.log("filter state: ", this.state.filterStatus);
+    // let gemsToDisplay = [];
+    // const filter = this.state.filterStatus;
+    // if (this.state.gemsData) {
+    //   gemsToDisplay = this.state.gemsData.filter(gem => {
+    //     return (
+    //       filter.showGems &&
+    //       (filter.userFilter.value === "all" ||
+    //         (filter.userFilter.value === "liked" &&
+    //           gem.likes.includes(this.props.user._id)) ||
+    //         (filter.userFilter.value === "mine" &&
+    //           gem.creator === this.props.user._id)) &&
+    //       filter[gem.category] === true &&
+    //       filter.dateStart <= gem.created_at.slice(0, 10) &&
+    //       gem.created_at.slice(0, 10) <= filter.dateEnd
+    //     );
+    //   });
+    // }
+
+    if (!this.state.gemsToDisplay) return <></>;
     return (
       <div className="explore-places">
         {this.state.displayFilters ? (
@@ -111,7 +137,11 @@ class ExplorePlaces extends Component {
             <i className="fas fa-filter"></i>
           </Button>
         )}
-        <MapGems gems={this.state.gemsToDisplay} user={this.props.user} gemSelectedInfo={this.state.gemSelectedInfo}/>
+        <MapGems
+          gems={this.state.gemsToDisplay}
+          user={this.props.user}
+          gemSelectedInfo={this.state.gemSelectedInfo}
+        />
       </div>
     );
   }
