@@ -135,11 +135,11 @@ class MapGems extends Component {
             />
           </div>
           <div>
-          <Button style={{ position: "absolute", right: "2vw", top: "25vh" }} onClick={this.props.toggleFilters}>
+          <Button style={{ position: "absolute", right: "2vw", top: "2vh", backgroundColor:"#09d3ac" }} onClick={this.props.toggleFilters}>
             <i className="fas fa-filter"></i>
           </Button>
           </div>
-          <div style={{ position: "absolute", right: "20vw", top: "5vh" }}>
+          <div style={{ position: "absolute", left: "20%", top: "2vh" }}>
           <Geocoder
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               onSelected={this.onGeocontrolSelected}
