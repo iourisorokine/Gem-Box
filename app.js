@@ -24,12 +24,12 @@ mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/gembox-database", {
     useNewUrlParser: true
   })
-  .then((x) => {
+  .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
-  .catch((err) => {
+  .catch(err => {
     console.error("Error connecting to mongo", err);
   });
 
@@ -58,7 +58,8 @@ app.use(
 
 // app.set("views", path.join(__dirname, "views"));
 // app.set("view engine", "hbs");
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/client/build")));
+
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // ADD SESSION SETTINGS HERE:
@@ -85,9 +86,6 @@ app.locals.title = "Express - Generated with IronGenerator";
 
 // ROUTES MIDDLEWARE STARTS HERE:
 
-const index = require("./routes/index");
-app.use("/", index);
-
 const tripRoutes = require("./routes/trip");
 app.use("/api/trip", tripRoutes);
 
@@ -102,5 +100,10 @@ app.use("/api/wisdom", wisdomRoutes);
 
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);
+
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/client/build/index.html");
+});
 
 module.exports = app;
