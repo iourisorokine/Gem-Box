@@ -133,11 +133,10 @@ class ExplorePlaces extends Component {
             />
           </>
         ) : (
-          <Button className="filter-toggle-button" onClick={this.toggleFilters}>
-            <i className="fas fa-filter"></i>
-          </Button>
+          <></>
         )}
         <MapGems
+          toggleFilters={this.toggleFilters}
           gems={this.state.gemsToDisplay}
           user={this.props.user}
           gemSelectedInfo={this.state.gemSelectedInfo}

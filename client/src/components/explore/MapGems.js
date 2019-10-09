@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import GemOnMap from "./GemOnMap";
 import ReactMapGL, {
@@ -108,7 +108,7 @@ class MapGems extends Component {
     });
     this.setUserLocation();
     return (
-      <div style={{ border: "1px solid green" }}>
+      <div>
         {this.state.displayDetails && (
           <>
             <GemDetails
@@ -135,6 +135,11 @@ class MapGems extends Component {
             />
           </div>
           <div>
+          <Button style={{ position: "absolute", right: "2vw", top: "25vh" }} onClick={this.props.toggleFilters}>
+            <i className="fas fa-filter"></i>
+          </Button>
+          </div>
+          <div style={{ position: "absolute", right: "20vw", top: "5vh" }}>
           <Geocoder
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               onSelected={this.onGeocontrolSelected}
