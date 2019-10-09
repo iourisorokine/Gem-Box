@@ -6,8 +6,7 @@ export default class GemDetails extends Component {
   state = {
     currentGemData: this.props.data,
     currentGemIndex: 0,
-    experienceGemData: null,
-    creatorData: null
+    experienceGemData: null
   };
 
   componentDidMount = () => {
