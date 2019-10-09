@@ -184,15 +184,19 @@ body {
 }
 
 .btn-like {
-  color: #4bafb8;
-  background-color: white;
-  border-color: #4bafb8 !important;
+  color: red;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 25px;
 }
 
 .btn-unlike {
-  color: white;
-  background-color: #4badb6 !important;
-  border-color: #4bafb8 !important;
+  color: red;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 25px;
 }
 
 .wrapper {
