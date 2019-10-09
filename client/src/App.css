@@ -106,10 +106,9 @@ body {
 
 .filter-toggle-button {
   position: fixed;
-  top: 0;
-  left: 50%;
+  top: 50px;
+  left: 0;
   z-index: 20;
-  box-shadow: 2px 2px 4px #bbb;
 }
 
 .filters-block {

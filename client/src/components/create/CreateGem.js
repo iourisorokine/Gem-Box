@@ -70,7 +70,7 @@ class CreateGem extends React.Component {
     let { ...pushObj } = this.state.gem;
     delete pushObj.stage;
     if (pushObj.creator === "") pushObj.creator = null;
-    pushGem(pushObj).then((n) => {
+    pushGem(pushObj).then(n => {
       this.setState({
         gem: {
           gemId: n._id
@@ -79,17 +79,15 @@ class CreateGem extends React.Component {
     });
   };
 
-  fetchGemInfo = (gemInfos) => {
-    this.setState({ gem: { ...this.state.gem, ...gemInfos } }, () => {
-      console.log("changed discovery to false", this.state.gem);
-    });
+  fetchGemInfo = gemInfos => {
+    this.setState({ gem: { ...this.state.gem, ...gemInfos } });
   };
 
   createTrip = () => {
     let { ...pushObj } = this.state.trip;
     delete pushObj.stage;
     if (pushObj.creator === "") pushObj.creator = null;
-    pushTrip(pushObj).then((n) => {
+    pushTrip(pushObj).then(n => {
       this.setState({
         trip: {
           tripId: n._id
@@ -100,12 +98,12 @@ class CreateGem extends React.Component {
     });
   };
 
-  fetchTripInfo = (tripInfos) => {
+  fetchTripInfo = tripInfos => {
     this.setState({ trip: { ...this.state.trip, ...tripInfos } });
   };
 
   getTrips = () => {
-    requestTrips().then((n) => {
+    requestTrips().then(n => {
       this.setState({
         trip: {
           tripId: n._id
@@ -115,7 +113,7 @@ class CreateGem extends React.Component {
   };
 
   selectTrip = (tripid, name, selectedGem) => {
-    specificGems(this.props.user._id).then((gemArray) => {
+    specificGems(this.props.user._id).then(gemArray => {
       this.setState({
         stage: "AddGemToTrip",
         trip: {
@@ -132,7 +130,7 @@ class CreateGem extends React.Component {
     let { ...pushObj } = this.state.trip;
     console.log("State Trip bevor query", this.state.trip);
     if (pushObj.creator === "") pushObj.creator = null;
-    updateTrip(pushObj).then((n) => {
+    updateTrip(pushObj).then(n => {
       console.log("Request saveGemsTrip done");
     });
   };
@@ -149,13 +147,13 @@ class CreateGem extends React.Component {
     });
   };
 
-  setStage = (stage) => {
+  setStage = stage => {
     this.setState({
       stage: stage
     });
   };
 
-  changeStage = (stage) => {
+  changeStage = stage => {
     switch (stage) {
       case "GemWelcome":
         return <GemWelcome setStage={this.setStage} />;

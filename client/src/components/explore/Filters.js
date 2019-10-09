@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import Select from "react-select";
+import "../../stylesheets/filters.css";
 
-const userFilterOptions = [
-  { value: "all", label: "All" },
-  { value: "liked", label: "Liked" },
-  { value: "mine", label: "Mine" }
-];
+// const userFilterOptions = [
+//   { value: "all", label: "All" },
+//   { value: "liked", label: "Liked" },
+//   { value: "mine", label: "Mine" }
+// ];
 
 class Filters extends Component {
   state = {
@@ -26,35 +27,41 @@ class Filters extends Component {
       <div className="filters-block">
         <h1>Filter by</h1>
         <form onSubmit={this.props.handleFilterSubmit}>
-          <div>
-            <input
-              type="checkbox"
-              name="showGems"
-              id="showGems"
-              checked={this.props.filterStatus.showGems}
-              onChange={this.props.handleFilterChange}
-            />
-            <label htmlFor="showGems">Gems</label>
-            <br />
-            <input
-              type="checkbox"
-              name="showTrips"
-              id="showTrips"
-              checked={this.props.filterStatus.showTrips}
-              onChange={this.props.handleFilterChange}
-            />
-            <label htmlFor="showTrips">Trips</label>
+          <div className="inputs-container">
+            <div className="inputs-col">
+              <input
+                type="checkbox"
+                name="showGems"
+                id="showGems"
+                checked={this.props.filterStatus.showGems}
+                onChange={this.props.handleFilterChange}
+              />
+              <label htmlFor="showGems">Gems</label>
+            </div>
+            <div className="inputs-col">
+              <input
+                type="checkbox"
+                name="showTrips"
+                id="showTrips"
+                checked={this.props.filterStatus.showTrips}
+                onChange={this.props.handleFilterChange}
+              />
+              <label htmlFor="showTrips">Trips</label>
+            </div>
           </div>
-          <div>
-            <Select
-              defaultValue="all"
-              value={this.props.filterStatus.userFilter}
-              onChange={this.props.handleSelectChange}
-              options={this.props.userFilterOptions}
-            />
+          <div className="inputs-container">
+            <div className="inputs-col">Show:</div>
+            <div className="inputs-col">
+              <Select
+                defaultValue="all"
+                value={this.props.filterStatus.userFilter}
+                onChange={this.props.handleSelectChange}
+                options={this.props.userFilterOptions}
+              />
+            </div>
           </div>
-          <div>
-            <h2>Show by date</h2>
+          <h2>Show by date</h2>
+          <div className="inputs-dates">
             <label htmlFor="dateStart">From:</label>
             <input
               type="date"
@@ -62,6 +69,8 @@ class Filters extends Component {
               name="dateStart"
               value={this.props.filterStatus.dateStart}
               onChange={this.props.handleFilterChange}></input>
+          </div>
+          <div className="inputs-dates">
             <label htmlFor="dateStart">To:</label>
             <input
               type="date"
@@ -71,8 +80,8 @@ class Filters extends Component {
               onChange={this.props.handleFilterChange}></input>
           </div>
           <h2>Categories</h2>
-          <div style={{ display: "flex" }}>
-            <div style={{ flex: "1" }}>
+          <div className="inputs-container">
+            <div className="inputs-col">
               <input
                 type="checkbox"
                 name="foodDrinks"
@@ -80,7 +89,7 @@ class Filters extends Component {
                 checked={this.props.filterStatus.foodDrinks}
                 onChange={this.props.handleFilterChange}
               />
-              <label htmlFor="foodDrinks">Food & Drinks</label> <br />
+              <label htmlFor="foodDrinks">Food & Drinks</label>
               <input
                 type="checkbox"
                 name="cultureArts"
@@ -88,7 +97,7 @@ class Filters extends Component {
                 checked={this.props.filterStatus.cultureArts}
                 onChange={this.props.handleFilterChange}
               />
-              <label htmlFor="cultureArts">Culture & Arts</label> <br />
+              <label htmlFor="cultureArts">Culture & Arts</label>
               <input
                 type="checkbox"
                 name="sports"
@@ -96,7 +105,7 @@ class Filters extends Component {
                 checked={this.props.filterStatus.sports}
                 onChange={this.props.handleFilterChange}
               />
-              <label htmlFor="sports">Sports</label> <br />
+              <label htmlFor="sports">Sports</label>
               <input
                 type="checkbox"
                 name="party"
@@ -106,7 +115,7 @@ class Filters extends Component {
               />
               <label htmlFor="party">Party</label>
             </div>
-            <div style={{ flex: "1" }}>
+            <div className="inputs-col">
               <input
                 type="checkbox"
                 name="hikes"
@@ -114,7 +123,7 @@ class Filters extends Component {
                 checked={this.props.filterStatus.hikes}
                 onChange={this.props.handleFilterChange}
               />
-              <label htmlFor="hikes">Hikes</label> <br />
+              <label htmlFor="hikes">Hikes</label>
               <input
                 type="checkbox"
                 name="nature"
@@ -122,7 +131,7 @@ class Filters extends Component {
                 checked={this.props.filterStatus.nature}
                 onChange={this.props.handleFilterChange}
               />
-              <label htmlFor="nature">Nature</label> <br />
+              <label htmlFor="nature">Nature</label>
               <input
                 type="checkbox"
                 name="other"

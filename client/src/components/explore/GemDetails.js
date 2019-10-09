@@ -133,18 +133,17 @@ export default class GemDetails extends Component {
               <span className={likeClass} onClick={() => this.handleLike()}>
                 {liked ? (
                   <>
-                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i> {currentGemData.likes.length}
                   </>
                 ) : (
                   <>
-                    <i class="far fa-heart"></i>
+                    <i class="far fa-heart"></i> {currentGemData.likes.length}
                   </>
                 )}
-              </span>
-            ) : (
-              <>Likes: </>
+                </span>) : (
+              <>Likes: {currentGemData.likes.length}</>
             )}
-            {currentGemData.likes.length}
+            
           </div>
         </div>
         {this.state.experienceGemData &&
