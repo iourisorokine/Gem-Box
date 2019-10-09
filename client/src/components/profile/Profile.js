@@ -10,11 +10,6 @@ export default class Profile extends Component {
   state = {
     ShowProfile: true,
     user: this.props.user,
-<<<<<<< HEAD
-    // popularGems: []
-    //userProfilId ---params
-=======
->>>>>>> 8e99d2819cb91eb159516fd4e0a21daabb5261ed
     userProfilId: "5d9b843efdd9bd1e03843772"
   };
 
@@ -53,29 +48,6 @@ export default class Profile extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div className="ProfilePageDetails mx-auto">
-        <div>
-          <h1>{user.username}</h1>
-          {user.username !== user.username && (
-            <Button
-              className="btn btn-primary btn-primary:hover btn-landingpage follow-button"
-              onClick={event => this.handleFollowClick(user._id)}
-            >
-              {isFollowing ? "Unfollow" : "Follow"}
-            </Button>
-          )}
-        </div>
-        <div>
-          <img src="{user.profilePic}" alt="" />
-        </div>
-
-        <Link to="/update-profile">
-          <Button variant="contained" type="button">
-            Edit your profile
-          </Button>
-        </Link>
-=======
       <div>
         {this.state.ShowProfile ? (
           <ShowProfile
@@ -88,7 +60,6 @@ export default class Profile extends Component {
             changeComponent={this.changeComponent}
             setUser={this.setUser}
           />
->>>>>>> 8e99d2819cb91eb159516fd4e0a21daabb5261ed
 
           // followButton Function
           // console.log("user.following", user.following);
