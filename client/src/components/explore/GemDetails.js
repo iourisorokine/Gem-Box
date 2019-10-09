@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../../stylesheets/gemDetails.css";
 
 export default class GemDetails extends Component {
   state = {
@@ -113,14 +114,18 @@ export default class GemDetails extends Component {
         : false;
     const likeClass = liked ? "btn-unlike" : "btn-like";
     return (
-      <div className="gem-details">
+      <div className="gem-details page-wrapper ">
+        <h3 className="gem-title">{currentGemData.title}</h3>
+
         <img
           className="gem-details-image"
           src={currentGemData.imageUrl}
           alt=""
         />
-        <div className="flex-row-sides">
-          {this.state.creatorData && <p>Created by {creatorData.username}</p>}
+        <div className="flex-row-sides creatorDataOnGem">
+          {this.state.creatorData && (
+            <p className="details-titles">Created by {creatorData.username}</p>
+          )}
           <img src={gemIconUrl} alt="gem" height="30px" />
           <div>
             {this.props.user ? (
@@ -134,7 +139,8 @@ export default class GemDetails extends Component {
                     <i class="far fa-heart"></i>
                   </>
                 )}
-                </span>) : (
+              </span>
+            ) : (
               <>Likes: </>
             )}
             {currentGemData.likes.length}
@@ -151,41 +157,55 @@ export default class GemDetails extends Component {
               </button>
             </div>
           )}
-        <div className="flex-row-sides">
-          <h3>{currentGemData.title}</h3>
-          {currentGemData.locationName && <p>{currentGemData.locationName}</p>}
-        </div>
-        <div className="flex-row-sides">
-          <h4>Category:</h4>
-          <h4>{categoryStrings[currentGemData.category]}</h4>
-        </div>
-        <div className="flex-row">
-          <p>
-            <strong>Descriprion: </strong>
-            {currentGemData.description}
-          </p>
-        </div>
-        <div className="flex-row">
-          <p>
-            <strong>Good to know: </strong>
-            {currentGemData.goodToKnow}
-          </p>
-        </div>
-        <div className="flex-row">
-          <p>
-            <strong>Created: </strong>
-            {currentGemData.created_at.slice(0, 10)}
-          </p>
+        <div className="gem-details-info">
+          <div className="flex-row-sides">
+            {currentGemData.locationName && (
+              <p>{currentGemData.locationName.substring(0, 30)}...</p>
+            )}
+          </div>
+
+          <div className="gem-divs">
+            <p className="details-titles">Descriprion: </p>
+            <p className="details-infos">{currentGemData.description}</p>
+          </div>
+          <div className="gem-divs">
+            <p className="details-titles">Good to know: </p>
+            <p className="details-infos">{currentGemData.goodToKnow}</p>
+          </div>
+          <div className="cat-creat-container">
+            <div className="gem-divs">
+              <p className="details-titles">Category: </p>
+              <p className="details-infos">
+                {categoryStrings[currentGemData.category]}
+              </p>
+            </div>
+            <div className="gem-divs">
+              <p className="details-titles">Created: </p>
+              <p className="details-infos">
+                {currentGemData.created_at.slice(0, 10)}
+              </p>
+            </div>
+          </div>
         </div>
         {this.state.fromProfile ? (
           <div>
-            <Link to="/explore-places">Back to Map</Link>
+            <Link className="back-Link" to="/explore-places">
+              Back to Map
+            </Link>
           </div>
         ) : (
           <div>
-            <Button onClick={this.props.closeDetails}>Back to Map</Button>
+            <Button
+              className="back-btn generalBtn"
+              onClick={this.props.closeDetails}
+            >
+              Back to Map
+            </Button>
           </div>
         )}
+        <div className="arrow-down">
+          <i className="fas fa-angle-down"></i>
+        </div>
       </div>
     );
   }

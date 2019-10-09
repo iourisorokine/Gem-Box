@@ -21,7 +21,7 @@ class MapGems extends Component {
       zoom: 2
     },
     gemSelectedInfo: this.props.gemSelectedInfo,
-    displayDetails: false,
+    displayDetails: false
   };
 
   openPopup = gemData => {
@@ -82,7 +82,8 @@ class MapGems extends Component {
           latitude={gemSelectedInfo.latitude}
           longitude={gemSelectedInfo.longitude}
           closeOnClick={false}
-          onClose={() => this.setState({ gemSelectedInfo: null })}>
+          onClose={() => this.setState({ gemSelectedInfo: null })}
+        >
           <div>
             <img
               className="gem-popup-img"
@@ -108,7 +109,7 @@ class MapGems extends Component {
     });
     this.setUserLocation();
     return (
-      <div style={{ border: "1px solid green" }}>
+      <div className="page-wrapper">
         {this.state.displayDetails && (
           <>
             <GemDetails
@@ -128,14 +129,15 @@ class MapGems extends Component {
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           mapStyle="mapbox://styles/mapbox/streets-v10"
           captureDoubleClick={false}
-          doubleClickZoom={false}>
+          doubleClickZoom={false}
+        >
           <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
             <NavigationControl
               onViewportChange={viewport => this.setState({ viewport })}
             />
           </div>
           <div>
-          <Geocoder
+            <Geocoder
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               onSelected={this.onGeocontrolSelected}
               viewport={this.state.viewport}
