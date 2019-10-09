@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 // import UpdateProfile from "./UpdateProfile";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
 
 export default class Profile extends Component {
   state = {
-    user: this.props.user
+    user: this.props.user,
+    //userProfilId ---params
+    userProfilId: "5d9b843efdd9bd1e03843772"
   };
 
   componentDidMount() {
@@ -24,7 +25,17 @@ export default class Profile extends Component {
 
   handleFollowClick(userId) {
     console.log("called");
-    axios.put("/api/user/updateFollower", { id: userId });
+    axios
+      .put("/api/user/updateFollower", {
+        userId: userId,
+        user: this.state.user
+      })
+      .then(response => {
+        console.log(response);
+        this.setState({
+          user: response.data
+        });
+      });
   }
 
   render() {
@@ -36,20 +47,22 @@ export default class Profile extends Component {
           <p> No user!</p>
         </>
       );
-
-    const isFollowing = user.following.includes(user.username);
+    console.log("user.following", user.following);
+    const isFollowing = user.following.includes(this.state.userProfilId);
     return (
       <div class="ProfilePageDetails mx-auto">
         <div>
           <h1>{user.username}</h1>
-          {user.username !== user.username && (
-            <Button
-              className="follow-button"
-              onClick={event => this.handleFollowClick(user._id)}
-            >
-              {isFollowing ? "Unfollow" : "Follow"}
-            </Button>
-          )}
+          {/* {user.username !== user.username && ( */}
+          <Button
+            className="follow-button"
+            onClick={event =>
+              this.handleFollowClick("5d9b843efdd9bd1e03843772")
+            }
+          >
+            {isFollowing ? "Unfollow" : "Follow"}
+          </Button>
+          {/* )} */}
         </div>
         <div>
           <img src="{user.profilePic}" alt="" />
