@@ -63,7 +63,7 @@ export default class UpdateProfile extends Component {
           })
           .then((response) => {
             this.props.setUser(response.data);
-            console.log("newUser set call component");
+            this.props.history.push(`/profile/${this.props.user._id}`);
           })
           .catch((err) => {
             console.log(err);
@@ -79,11 +79,17 @@ export default class UpdateProfile extends Component {
           .then((response) => {
             this.props.setUser(response.data);
             console.log("newUser set call component");
+            this.props.history.push(`/profile/${this.props.user._id}`);
           })
           .catch((err) => {
             console.log(err);
+            this.props.history.push();
           });
       });
+  };
+
+  directProfile = () => {
+    this.props.history.push(`/profile/${this.props.user._id}`);
   };
 
   render() {
@@ -133,10 +139,12 @@ export default class UpdateProfile extends Component {
             </Form.Group>
             <Form.Group>
               <Button
+                onClick={this.handleSubmit}
                 type="submit"
                 variant="contained"
                 size="small"
                 margin="theme.spacing(1)"
+                onClick
                 startIcon={<SaveIcon />}
               >
                 Save
@@ -144,7 +152,7 @@ export default class UpdateProfile extends Component {
             </Form.Group>
             <Form.Group>
               <Button
-                onClick={this.props.changeComponent}
+                onClick={this.directProfile}
                 variant="contained"
                 type="button"
               >

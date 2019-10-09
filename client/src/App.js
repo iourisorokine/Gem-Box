@@ -7,7 +7,6 @@ import Signup from "./components/auth/Signup";
 import Logout from "./components/auth/Logout";
 import Home from "./components/global/Home";
 import ExplorePlaces from "./components/explore/ExplorePlaces";
-import Profile from "./components/profile/Profile";
 import UpdateProfile from "./components/profile/UpdateProfile";
 import TripDetails from "./components/explore/TripDetails";
 import GemDetails from "./components/explore/GemDetails";
@@ -91,10 +90,9 @@ class App extends React.Component {
                 )}
               />
               <Route
-                exact
-                path="/profile"
+                path="/profile/:profileId"
                 render={(props) => (
-                  <Profile
+                  <ShowProfileNew
                     setUser={this.setUser}
                     {...props}
                     user={this.state.user}
@@ -102,9 +100,15 @@ class App extends React.Component {
                 )}
               />
               <Route
-                path="/profile/:profileId"
-                component={ShowProfileNew}
-                creatorProfile={this.state.creatorProfile}
+                exact
+                path="/profile"
+                render={(props) => (
+                  <UpdateProfile
+                    setUser={this.setUser}
+                    {...props}
+                    user={this.state.user}
+                  />
+                )}
               />
               <Route exact path="/trip" component={TripDetails} />
               <Route path="/trip/:tripId" component={TripDetails} />

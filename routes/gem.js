@@ -92,9 +92,11 @@ router.get("/creator/:creatorId", (req, res) => {
   const creatorId = req.params.creatorId;
   console.log("querying the database with", creatorId);
   Gem.find({ creator: creatorId })
+    .populate("creator")
     .then((gem) => {
       res.json(gem);
       console.log("Got all your gems made", gem);
+      console.log("Got your creator", gem[0].creator);
     })
     .catch((err) => {
       res.json(err);
