@@ -20,10 +20,10 @@ router.post("/", (req, res) => {
     image_url,
     category
   })
-    .then((gem) => {
+    .then(gem => {
       req.json(gem);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
@@ -31,10 +31,10 @@ router.post("/", (req, res) => {
 // to get the list of all gems
 router.get("/", (req, res) => {
   Gem.find()
-    .then((gems) => {
+    .then(gems => {
       res.json(gems);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
@@ -67,13 +67,13 @@ router.post("/create", (req, res) => {
     latitude,
     longitude,
     locationName,
-    likes:[]
+    likes: []
   })
-    .then((newgem) => {
+    .then(newgem => {
       console.log("user created");
       res.json(newgem);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
@@ -92,11 +92,11 @@ router.get("/creator/:creatorId", (req, res) => {
   const creatorId = req.params.creatorId;
   console.log("querying the database with", creatorId);
   Gem.find({ creator: creatorId })
-    .then((gem) => {
+    .then(gem => {
       res.json(gem);
       console.log("Got all your gems made", gem);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
@@ -105,23 +105,6 @@ router.get("/:gemId", (req, res) => {
   const id = req.params.gemId;
 
   Gem.findById(id)
-    .then((gem) => {
-      res.json(gem);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
-
-
-router.put("/:gemId", (req, res) => {
-  const { likes } = req.body;
-  console.log("#########Req Body: #######:", req.body)
-  console.log("#########Req Params: #######:", req.params)
-  Gem.findByIdAndUpdate(
-    req.params.gemId,
-    { likes: likes }
-  )
     .then(gem => {
       res.json(gem);
     })
@@ -130,5 +113,17 @@ router.put("/:gemId", (req, res) => {
     });
 });
 
+router.put("/:gemId", (req, res) => {
+  const { likes } = req.body;
+  console.log("#########Req Body: #######:", req.body);
+  console.log("#########Req Params: #######:", req.params);
+  Gem.findByIdAndUpdate(req.params.gemId, { likes: likes })
+    .then(gem => {
+      res.json(gem);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 module.exports = router;

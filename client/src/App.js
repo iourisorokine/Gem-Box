@@ -88,8 +88,21 @@ class App extends React.Component {
               <Route exact path="/logout" component={Logout} />
               {/* <Route path="/profile/:profileId" component={Profile} /> */}
               <Route path="/trip/:tripId" component={TripDetails} />
-              <Route exact path="/explore-places" component={ExplorePlaces} />
-              <Route path="/gem/:gemId" component={GemDetails} />
+              <Route
+                exact
+                path="/explore-places"
+                render={props => (
+                  <ExplorePlaces {...props} user={this.state.user} />
+                )}
+              />
+              <Route
+                exact
+                path="/gem/:gemId"
+                render={props => (
+                  <GemDetails {...props} user={this.state.user} />
+                )}
+              />
+
               <Route exact path="/about-us" component={AboutUs} />
               <Route component={NotFound} />
             </Switch>
