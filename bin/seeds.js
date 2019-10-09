@@ -9,36 +9,87 @@ const Gem = require("../models/Gem");
 const bcryptSalt = 10;
 mongoose
   .connect("mongodb://localhost/gembox-database", { useNewUrlParser: true })
-  .then(x => {
+  .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Error connecting to mongo", err);
   });
 let users = [
   {
     username: "alice",
+    travelInterests: "Biking"
     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt))
   },
   {
     username: "bob",
+    travelInterests: "Mountaining"
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt))
   }
 ];
+
 let wisdoms = [
   {
-    author: "Hari",
-    quote: "This is a test"
+    author: "Samuel Johnson",
+    quote:
+      "All travel has its advantages. If the passenger visits better countries, he may learn to improve his own. And if fortune carries him to worse, he may learn to enjoy it"
   },
   {
-    author: "Iouri",
-    quote: "Here is the second random quote"
+    author: "Frank Herbert",
+    quote:
+      "Without new experiences, something inside of us sleeps. The sleeper must awaken."
   },
   {
-    author: "Jörg",
-    quote: "This is leading a work"
+    author: "Samuel Johnson",
+    quote:
+      "he use of traveling is to regulate imagination by reality, and instead of thinking how things may be, to see them as they are."
+  },
+  {
+    author: "Henry David Thoreau",
+    quote:
+      "The man who goes alone can start today, but he who travels with another must wait till that other is ready."
+  },
+  {
+    author: "Lawrence Block",
+    quote:
+      "Our happiest moments as tourists always seem to come when we stumble upon one thing while in pursuit of something else."
+  },
+  {
+    author: "Samuel Johnson",
+    quote:
+      "he use of traveling is to regulate imagination by reality, and instead of thinking how things may be, to see them as they are."
+  },
+  {
+    author: "Martin Buber",
+    quote:
+      "All journeys have secret destinations of which the traveler is unaware."
+  },
+  {
+    quote:
+      "I would have wound up a little ignorant white Southern female, which was not my idea of a good life.",
+    author: "Lauren Hutton"
+  },
+  {
+    author: "Milton Glaser",
+    quote: "Travel penetrates your consciousness, but not in a rational way."
+  },
+  {
+    author: "Helen Keller",
+    quote: "Life is either a daring adventure or nothing."
+  },
+  {
+    author: "René Descartes",
+    quote: "Traveling is almost like talking with men of other centuries."
+  },
+  {
+    author: "Henry Miller",
+    quote: "One's destination is never a place, but a new way of seeing things."
+  },
+  {
+    author: "Caskie Stinnett",
+    quote: "I travel a lot; I hate having my life disrupted by routine."
   }
 ];
 let gems = [
@@ -138,24 +189,24 @@ let gems = [
     }
   }
 ];
-/*
+
 User.deleteMany()
   .then(() => {
     return User.create(users);
   })
-  .then((usersCreated) => {
+  .then(usersCreated => {
     console.log(`${usersCreated.length} users created with the following id:`);
-    console.log(usersCreated.map((u) => u._id));
+    console.log(usersCreated.map(u => u._id));
   })
   .then(() => {
     // Close properly the connection to Mongoose
     mongoose.disconnect();
   })
-  .catch((err) => {
+  .catch(err => {
     mongoose.disconnect();
     throw err;
-  });
-
+  }); */
+/*
 Wisdom.deleteMany()
   .then(() => {
     return Wisdom.create(wisdoms);
@@ -172,20 +223,26 @@ Wisdom.deleteMany()
     mongoose.disconnect();
     throw err;
   });
+<<<<<<< HEAD
   */
+/* Gem.deleteMany()
+=======
+
 Gem.deleteMany()
+>>>>>>> Loggout-revise
   .then(() => {
     return Gem.create(gems);
   })
-  .then(gems => {
+  .then((gems) => {
     console.log(`${gems.length} gems created with the following id:`);
-    console.log(gems.map(u => u._id));
+    console.log(gems.map((u) => u._id));
   })
   .then(() => {
     // Close properly the connection to Mongoose
     mongoose.disconnect();
   })
-  .catch(err => {
+  .catch((err) => {
     mongoose.disconnect();
     throw err;
   });
+ */

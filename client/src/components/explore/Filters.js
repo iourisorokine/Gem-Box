@@ -1,16 +1,27 @@
 import React, { Component } from "react";
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import Select from "react-select";
 
+const userFilterOptions = [
+  { value: "all", label: "All" },
+  { value: "liked", label: "Liked" },
+  { value: "mine", label: "Mine" }
+];
 
 class Filters extends Component {
   state = {
     displayFilters: false,
     gemsData: null,
-    filterStatus:{}
+    filterStatus: this.props.filterStatus,
+    selectedOption: null
+  };
+  handleSelectChange = selectedOption => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
   };
 
   render() {
-
+    const { selectedOption } = this.state;
     return (
       <div className="filters-block">
         <h1>Filter by</h1>
@@ -35,14 +46,20 @@ class Filters extends Component {
             <label htmlFor="showTrips">Trips</label>
           </div>
           <div>
-            <label htmlFor="userFilter">Show:</label>
+            <Select
+              value={this.props.filterStatus.userFilter}
+              onChange={this.props.handleSelectChange}
+              options={this.props.userFilterOptions}
+            />
+            {/* <label htmlFor="userFilter">Show:</label>
             <select
               id="userFilter"
               name="userFilter"
               onChange={this.props.handleFilterChange}>
               <option
-                value="All"
+                value="all"
                 name="userFilter"
+                selected={this.props.userFilter}
                 onChange={this.props.handleFilterChange}>
                 All
               </option>
@@ -58,7 +75,7 @@ class Filters extends Component {
                 onChange={this.props.handleFilterChange}>
                 Mine
               </option>
-            </select>
+            </select> */}
           </div>
           <div>
             <h2>Show by date</h2>

@@ -1,8 +1,21 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 // import ImageUploader from "react-images-upload";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import SaveIcon from "@material-ui/icons/Save";
+import Icon from "@material-ui/core/Icon";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 export default class UpdateProfile extends Component {
   state = {
@@ -49,48 +62,78 @@ export default class UpdateProfile extends Component {
     console.log(this.state.username);
     return (
       <>
-        <h2>Hello {this.props.user.username}</h2>
-        <Form onSubmit={this.handleSubmit}>
+        <Form.Group>
+          <h2>Hello {this.props.user.username}</h2>
+        </Form.Group>
+        <FormControl onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor="username">Change your username:</Form.Label>
-            <Form.Control
-              type="text"
+            <InputLabel htmlFor="username input-with-icon-adornment">
+              Change your username:
+            </InputLabel>
+            <Input
+              id="input-with-icon-adornment"
               onChange={this.handleChange}
               placeholder={this.props.user.username}
               // id="userName"
               name="username"
               value={this.state.username}
+              startAdornment={
+                <InputAdornment position="start">
+                  <AccountCircle />
+                </InputAdornment>
+              }
             />
           </Form.Group>
-          {/* <ImageUploader
-          withIcon={true}
-          buttonText="Choose images"
-          onChange={this.onDrop}
-          imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-          maxFileSize={5242880}
-        /> */}
+
           <Form.Group>
-            <Form.Label htmlFor="travelInterests">
-              Tell us about you...
-            </Form.Label>
-            <Form.Control
+            <Form.Label htmlFor="travelInterests"></Form.Label>
+            <TextField
+              id="outlined-multiline-static"
+              label="Tell us about you"
+              multiline
+              rows="4"
+              defaultValue="Test"
+              placeholder={this.props.user.travelInterests}
+              // className={classes.textField}
+              // margin="normal"
+              variant="outlined"
+            />
+            {/* <Form.Control
               type="text"
               onChange={this.handleChange}
               placeholder={this.props.user.travelInterests}
               name="travelInterests"
               // id="travelInterests"
               value={this.state.travelInterests}
-            />
+            /> */}
           </Form.Group>
-          <Button type="submit">Save</Button>
+          <Form.Group>
+            <Button
+              type="submit"
+              variant="contained"
+              size="small"
+              margin="theme.spacing(1)"
+              startIcon={<SaveIcon />}
+            >
+              Save
+            </Button>
+          </Form.Group>
 
-          <Link to="/profile">
-            <Button type="button">View your profile</Button>
-          </Link>
-          <Link to="/explore-places">
-            <Button type="button">Explore places</Button>
-          </Link>
-        </Form>
+          <Form.Group>
+            <Link to="/profile">
+              <Button variant="contained" type="button">
+                View your profile
+              </Button>
+            </Link>
+          </Form.Group>
+          <Form.Group>
+            <Link to="/explore-places">
+              <Button variant="contained" type="button">
+                Explore places
+              </Button>
+            </Link>
+          </Form.Group>
+        </FormControl>
       </>
     );
   }

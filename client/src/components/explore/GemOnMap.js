@@ -13,7 +13,7 @@ const GemOnMap = props => {
           offsetTop={-30}
           offsetLeft={-15}>
           <div className="gem-marker" onClick={
-                  ()=>props.openPopup(props.data)
+                  ()=>{props.openPopup(props.data)}
                 }>
             <img src="/images/blue_gem.png" alt="Gem"/>
           </div>

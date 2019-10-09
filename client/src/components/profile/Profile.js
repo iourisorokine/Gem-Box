@@ -1,15 +1,19 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import Button from "@material-ui/core/Button";
 // import UpdateProfile from "./UpdateProfile";
 import { Link } from "react-router-dom";
-// import axios from "axios";
+
+import axios from "axios";
+import Carousel from "react-bootstrap/Carousel";
 
 export default class Profile extends Component {
   state = {
-    user: this.props.user
+    user: this.props.user,
+    popularGems: []
   };
 
   componentDidMount() {
+    // console.log(this.props.user);
     if (!this.state.user) {
       console.log("cop did", this.props.user.data);
       this.setState(
@@ -19,9 +23,52 @@ export default class Profile extends Component {
         () => console.log("updated state", this.state)
       );
     }
+    this.getPopularGems();
   }
 
+  handleFollowClick(userId) {
+    console.log("called");
+    axios.put("/api/user/updateFollower", { id: userId });
+  }
+
+  getPopularGems = () => {
+    axios.get(`/api/user/${this.props.user._id}`).then(gems => {
+      console.log(gems.data);
+      this.setState({
+        popularGems: gems.data
+      });
+    });
+  };
+
+  displayPopularGems = () => {
+    return (
+      <Carousel>
+        {this.state.popularGems.map(gem => (
+          <Carousel.Item key={gem._id}>
+            <img
+              className="d-block w-100"
+              style={{ height: "40vh", objectFit: "cover" }}
+              src={gem.imageUrl}
+              alt="gem"
+            />
+            <Carousel.Caption>
+              <h3 style={{ fontWeight: 900 }}>{gem.title}</h3>
+              <p style={{ fontWeight: 500 }}>{gem.locationName}</p>
+              <a
+                className="btn btn-primary btn-primary:hover btn-landingpage generalBtn"
+                href={`/gem/${gem._id}`}
+              >
+                Explore
+              </a>
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    );
+  };
+
   render() {
+    console.log(this.state.popularGems);
     const user = this.state.user;
     if (!user)
       return (
@@ -30,18 +77,31 @@ export default class Profile extends Component {
           <p> No user!</p>
         </>
       );
+
+    const isFollowing = user.following.includes(user.username);
     return (
-      <div class="ProfilePageDetails mx-auto">
+      <div className="ProfilePageDetails mx-auto">
         <div>
           <h1>{user.username}</h1>
+          {user.username !== user.username && (
+            <Button
+              className="btn btn-primary btn-primary:hover btn-landingpage follow-button"
+              onClick={event => this.handleFollowClick(user._id)}
+            >
+              {isFollowing ? "Unfollow" : "Follow"}
+            </Button>
+          )}
         </div>
         <div>
           <img src="{user.profilePic}" alt="" />
         </div>
+
         <Link to="/update-profile">
-          <Button type="button">Edit</Button>
+          <Button variant="contained" type="button">
+            Edit your profile
+          </Button>
         </Link>
-        {/* <Button to={`/update-profile`}>Edit</Button> */}
+
         <div>
           <p>Score: {user.score}</p>
           <p>Followers: {user.followers}</p>
@@ -57,7 +117,7 @@ export default class Profile extends Component {
         </div>
         <div>
           <h2>Most popular gems</h2>
-          <p>Slider</p>
+          {this.displayPopularGems()}
         </div>
         <h2>Trips</h2>
         {/* <Link to={}>Trips</Link> */}

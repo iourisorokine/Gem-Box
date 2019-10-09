@@ -7,12 +7,12 @@ export default class SuggestGem extends Component {
   };
 
   getGemsData = () => {
-    axios.get("/api/gem").then((gems) => {
+    axios.get("/api/gem").then(gems => {
       console.log(gems.data);
       console.log(this.props.locationName);
-      let newdata = gems.data.filter((gem) => {
+      let newdata = gems.data.filter(gem => {
         let count = 0;
-        this.props.locationName.split(",").forEach((element) => {
+        this.props.locationName.split(",").forEach(element => {
           if (gem.locationName.indexOf(element) !== -1) {
             count++;
             console.log(count);
@@ -27,21 +27,20 @@ export default class SuggestGem extends Component {
     });
   };
 
-  handleRouteExperience = (val) => {
+  handleRouteExperience = val => {
     console.log(val);
     this.props.fetchGemInfo({
       latitude: val.latitude,
       longitude: val.longitude,
-      locationName: val.locationName,
-      stage: "AddExperience"
+      locationName: val.locationName
     });
+    this.props.setStage("AddExperience");
   };
 
   handleRouteDiscovery = () => {
-    this.props.fetchGemInfo({
-      stage: "AddDiscovery"
-    });
+    this.props.setStage("AddDiscovery");
   };
+
   componentDidMount = () => {
     if (!this.state.gemsData) this.getGemsData();
   };
@@ -49,23 +48,23 @@ export default class SuggestGem extends Component {
     console.log(this.state.gemsData);
     return (
       <div>
-        <h1>May be you mean one of these Gems?</h1>
-        <div className="SuggestGem">
-          {this.state.suggestGemsData != null &&
-            this.state.suggestGemsData.map((val) => (
-              <div className="item" key={val._id}>
-                <div>
-                  <p>{val.title}</p>
-                  <p>{val.locationName}</p>
-                </div>
-                <div>
-                  <button onClick={() => this.handleRouteExperience(val)}>
-                    That's it
-                  </button>
-                </div>
+        <h4 className="headingSetGem">May be you mean one of these Gems?</h4>
+
+        {this.state.suggestGemsData != null &&
+          this.state.suggestGemsData.map(val => (
+            <div className="item" key={val._id}>
+              <div>
+                <p>{val.title}</p>
+                <p>{val.locationName}</p>
               </div>
-            ))}
-        </div>
+              <div>
+                <button onClick={() => this.handleRouteExperience(val)}>
+                  That's it
+                </button>
+              </div>
+            </div>
+          ))}
+
         <div className="item">
           <div>
             <p>None it's a new Discovery!</p>
