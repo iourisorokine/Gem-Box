@@ -110,11 +110,7 @@ class MapGems extends Component {
     this.setUserLocation();
     return (
       <div className="page-wrapper">
-<<<<<<< HEAD
-        {this.state.displayDetails && (
-=======
         {this.state.displayDetails? (
->>>>>>> 50f05602803085944ff72deef67ff38d4447bd20
           <>
             <GemDetails
               data={this.state.gemSelectedInfo}
@@ -141,7 +137,6 @@ class MapGems extends Component {
             />
           </div>
           <div>
-<<<<<<< HEAD
             <Button
               style={{
                 position: "absolute",
@@ -156,14 +151,6 @@ class MapGems extends Component {
           </div>
           <div style={{ position: "absolute", left: "20%", top: "2vh" }}>
             <Geocoder
-=======
-          <Button style={{ position: "absolute", right: "2vw", top: "2vh", backgroundColor:"#09d3ac" }} onClick={this.props.toggleFilters}>
-            <i className="fas fa-filter"></i>
-          </Button>
-          </div>
-          <div style={{ position: "absolute", left: "20%", top: "2vh" }}>
-          <Geocoder
->>>>>>> 50f05602803085944ff72deef67ff38d4447bd20
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               onSelected={this.onGeocontrolSelected}
               viewport={this.state.viewport}

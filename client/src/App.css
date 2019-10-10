@@ -267,21 +267,30 @@ body {
   color: blue !important;
 }
 
-.generalBtn {
-  margin-top: 5vh;
+.generalBtnS {
   background-color: #4badb6 !important;
   border-color: #4bafb8 !important;
   font-family: "Montserrat", sans-serif;
-  /* font-weight: bolder !important; */
+  font-weight: 500 !important;
+}
+
+.generalBtnM {
+  background-color: #4badb6 !important;
+  border-color: #4bafb8 !important;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500 !important;
+  height: 3rem;
+}
+.btn-primary:hover {
+  background-color: #61dfeb !important;
 }
 .page-wrapper {
   width: 100vw;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 50f05602803085944ff72deef67ff38d4447bd20
-.profile-flexbox {
+<<<<<<<
+  head
+  =======>>>>>>>50f05602803085944ff72deef67ff38d4447bd20
+  .profile-flexbox {
   display: flex;
   flex-direction: column;
   height: 100vh;

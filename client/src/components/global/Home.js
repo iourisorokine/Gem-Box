@@ -107,6 +107,17 @@ class Home extends Component {
 
             {/* <Link to="/Login">Login</Link> */}
           </p>
+
+          <p>
+            <a
+              className="btn btn-primary btn-primary:hover generalBtnM"
+              href="/explore-places"
+              role="button"
+            >
+              Open the box
+            </a>
+          </p>
+
           {!this.state.user && (
             <div className="btn-signup-login">
               <p>
