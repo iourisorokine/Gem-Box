@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { login } from "../../services/api";
+import "../../stylesheets/login.css";
 
 export default class Login extends Component {
   state = {
@@ -41,39 +42,57 @@ export default class Login extends Component {
   render() {
     return (
       <>
-        <h2>Login</h2>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Label htmlFor="username">User Name: </Form.Label>
-            <Form.Control
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={this.handleChange}
-              id="username"
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="password">Password: </Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              id="password"
-            />
-          </Form.Group>
-          {this.state.message && (
-            <Alert variant="danger">{this.state.message}</Alert>
-          )}
-          <Button type="submit">Login</Button>
-        </Form>
-        <a href="http://localhost:5555/api/auth/google">
-          <button>Login with Google</button>
-        </a>
-        <a href="http://localhost:5555/api/auth/facebook">
-          <button>Login with Facebook</button>
-        </a>
+        <div className="app-wrapper">
+          <div className="pageheader py-2">Login</div>
+
+          <Form onSubmit={this.handleSubmit} className="login-form">
+            <Form.Group>
+              <Form.Label htmlFor="username" className="label-title">
+                Username:{" "}
+              </Form.Label>
+              <Form.Control
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                id="username"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label htmlFor="password" className="label-title">
+                Password:{" "}
+              </Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                id="password"
+              />
+            </Form.Group>
+            {this.state.message && (
+              <Alert variant="danger">{this.state.message}</Alert>
+            )}
+            <button
+              type="submit"
+              className="btn loginBtn generalBtn btn-primary"
+            >
+              Login
+            </button>
+          </Form>
+          <div className="social-login">
+            <a href="http://localhost:5555/api/auth/google">
+              <button className="btn socialLoginBtn generalBtn btn-primary">
+                Login with Google<i class="fab fa-google icon-padding"></i>
+              </button>
+            </a>
+            <a href="http://localhost:5555/api/auth/facebook">
+              <button className="btn socialLoginBtn generalBtn btn-primary">
+                Login with Facebook <i class="fab fa-facebook"></i>
+              </button>
+            </a>
+          </div>
+        </div>
       </>
     );
   }
