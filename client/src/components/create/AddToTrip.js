@@ -75,12 +75,21 @@ export default class AddToTrip extends Component {
           <h4> To which Trip you want to add the Gem?</h4>
         </div>
         <div className="padding-wrapper trip-flex">
-          <Button
-            className="btn btn-primary generalBtn btntrip"
-            onClick={this.toogleForm}
-          >
-            Create a new Trip >
-          </Button>
+          {!this.state.formStatus ? (
+            <button
+              className="btn btn-primary generalBtn-disabled btntrip"
+              onClick={this.toogleForm}
+            >
+              Open Form to Create Trip
+            </button>
+          ) : (
+            <button
+              className="btn btn-primary generalBtn btntrip"
+              onClick={this.toogleForm}
+            >
+              Close Form
+            </button>
+          )}
           {this.state.formStatus ? (
             <Form onSubmit={this.handleSubmit}>
               <Form.Group>

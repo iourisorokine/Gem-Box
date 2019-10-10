@@ -158,9 +158,12 @@ export default class Profile extends Component {
     } else {
       return this.state.trips.map((element) => {
         return (
-          <Link to={`/trip/${element._id}`}>
-            <Button className="btn-triplist">{element.name} ></Button>
-          </Link>
+          <div>
+            <Link to={`/trip/${element._id}`}>
+              <Button className="btn-triplist">{element.name} ></Button>
+            </Link>
+            <hr />
+          </div>
         );
       });
     }
@@ -186,7 +189,7 @@ export default class Profile extends Component {
                   <Button
                     variant="contained"
                     type="button"
-                    className="editprof"
+                    className="editprof btn-primary btn generalBtn"
                   >
                     Edit
                   </Button>
@@ -276,7 +279,7 @@ export default class Profile extends Component {
             <div className="topicheader">
               <h2>All Trips</h2>
               <hr />
-              <div className="triplist">{this.showTrips()}</div>
+              <div>{this.showTrips()}</div>
             </div>
           </div>
         </div>

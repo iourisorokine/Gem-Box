@@ -1,0 +1,22 @@
+.tripdetails {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.creatorinfos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.mapposition {
+  display: flex;
+  width: 100vw;
+  max-width: 800px;
+}
+
+.padding-wrapper {
+  text-align: left !important;
+}

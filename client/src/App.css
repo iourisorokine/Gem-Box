@@ -228,14 +228,6 @@ body {
   padding-right: 20px;
 }
 
-.triplist,
-.gemlist {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .btn-options,
 .btn-travelInterests {
   width: 400px;
@@ -255,7 +247,7 @@ body {
 
 .app-wrapper {
   height: 100vh;
-  width: 100wh;
+  width: 100vw;
   overflow: scroll;
 }
 
@@ -314,7 +306,6 @@ body {
 
 .pageheader {
   background-color: #4badb6;
-  height: 3rem;
   font-family: "Montserrat", sans-serif !important;
   color: white;
   text-align: center;
@@ -348,7 +339,7 @@ body {
 
 .react-geocoder-item {
   padding: 0 0.5rem;
-  background-color: white ;
+  background-color: white;
   color: #4badb6;
   font-size: 1.5rem;
 }
@@ -358,7 +349,7 @@ body {
   color: white;
 }
 
-.filters-btn{
+.filters-btn {
   position: absolute;
   right: 2vw;
   top: 2vh;
