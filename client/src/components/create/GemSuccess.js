@@ -35,8 +35,12 @@ export default class GemSuccess extends React.Component {
     console.log(shareUrl);
     console.log({ ...this.props });
     return (
+      <>
+      <div className="gem-success-header">
+      <h2>Congrats! You just created a new Gem!</h2>
+      </div>
       <div className="success-container">
-        <h2>Congrats! You just created a new Gem!</h2>
+
         <div className="success-flex-share">
           <p>Share your newest Discovery:</p>
           <div className="success-flex-container">
@@ -75,6 +79,7 @@ export default class GemSuccess extends React.Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }

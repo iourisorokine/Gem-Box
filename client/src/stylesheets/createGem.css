@@ -1,5 +1,16 @@
 .success-container {
-  padding: 10%;
+  padding: 5%;
+}
+
+.gem-success-header{
+  background-color: #4badb6;
+  padding: 1rem 0;
+  font-family: "Montserrat", sans-serif !important;
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 500;
+  box-shadow: 0 0 10px black !important;
 }
 
 .success-flex-share {
