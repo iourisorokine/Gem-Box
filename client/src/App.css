@@ -197,7 +197,6 @@ body {
 
 .header-box {
   background-color: #4badb6;
-  opacity: 0.6;
   text-align: center;
   padding: 20px;
   color: white;
@@ -360,8 +359,12 @@ body {
 
 .filters-btn{
   position: absolute;
-  right: 2vw;
-  top: 2vh;
+  right: 1vw;
+  top: 1vh;
   width: 2.6rem;
   height: 2.6rem;
+}
+
+.carousel-caption{
+  z-index: 150;
 }
