@@ -16,7 +16,7 @@ export class SetGem extends Component {
   state = {
     viewport: {
       width: "100%",
-      height: "100vh",
+      height: "95vh",
       latitude: 52.520008,
       longitude: 13.404954,
       zoom: 1,

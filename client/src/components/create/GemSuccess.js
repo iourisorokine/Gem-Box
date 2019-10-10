@@ -5,11 +5,12 @@ import {
   WhatsappShareButton,
   EmailShareButton
 } from "react-share";
+import "../../stylesheets/createGem.css";
 
 import { FacebookIcon, WhatsappIcon, EmailIcon } from "react-share";
 
 export default class GemSuccess extends React.Component {
-  handleRoute = (event) => {
+  handleRoute = event => {
     switch (event.target.name) {
       case "view":
         this.props.history.push(`/gem/${this.props.gemId}`);
@@ -34,11 +35,11 @@ export default class GemSuccess extends React.Component {
     console.log(shareUrl);
     console.log({ ...this.props });
     return (
-      <div>
-        <h1>Your gem has successfully been created! Wuhuuu!</h1>
-        <div className="success-flex-column">
-          <h4>Share your newest Discovery:</h4>
-          <div className="sharing-box">
+      <div className="success-container">
+        <h2>Congrats! You just created a new Gem!</h2>
+        <div className="success-flex-share">
+          <p>Share your newest Discovery:</p>
+          <div className="success-flex-container">
             <div>
               <FacebookShareButton url={shareUrl}>
                 <FacebookIcon size={32} round={true} />
@@ -55,17 +56,23 @@ export default class GemSuccess extends React.Component {
               </EmailShareButton>
             </div>
           </div>
-
-          <Button onClick={this.handleRoute} name="view">
-            View Gem
-          </Button>
-
-          <Button onClick={this.handleRoute} name="add">
-            Add to a Trip
-          </Button>
-          <Button onClick={this.handleRoute} name="map">
-            Back to Map
-          </Button>
+        </div>
+        <div>
+          <div className="success-btn-container">
+            <Button className="btn btn-primary" onClick={this.handleRoute} name="view">
+              View Gem  <i class="fas fa-eye"></i>
+            </Button>
+          </div>
+          <div className="success-btn-container">
+            <Button className="btn btn-primary" onClick={this.handleRoute} name="add">
+              Add to a Trip  <i class="fas fa-plus"></i>
+            </Button>
+          </div>
+          <div className="success-btn-container">
+            <Button className="btn btn-primary" onClick={this.handleRoute} name="map">
+              Back to Map  <i class="fa fa-globe" aria-hidden="true"></i>
+            </Button>
+          </div>
         </div>
       </div>
     );

@@ -4,6 +4,19 @@ const User = require("../models/User");
 
 const uploader = require("../configs/cloudinary");
 
+// router.get("/user/:creatorId", (req, res) => {
+//   const creatorId = req.params.creatorId;
+//   console.log("querying the database with", creatorId);
+//   Gem.find({ creator: creatorId })
+//     .then((gem) => {
+//       res.json(gem);
+//       console.log("Got all your gems made", gem);
+//     })
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
+
 router.post("/", (req, res) => {
   const username = req.body.username;
   const profilePic = req.body.profilePic;
@@ -22,25 +35,10 @@ router.post("/", (req, res) => {
     });
 });
 
-router.get("/:creatorId", (req, res) => {
-  const creatorId = req.params.creatorId;
-  console.log("querying the database with", creatorId);
-  Gem.find({ creator: creatorId })
-    .then((gem) => {
-      res.json(gem);
-      console.log("Got all your gems made", gem);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
-
-router.get("/user/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   const id = req.params.id;
-  console.log("req id ##############:",req.params.id)
   User.findById(id)
     .then((user) => {
-      console.log("Here are the data for the user :########", user);
       res.json(user);
     })
     .catch((err) => {

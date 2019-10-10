@@ -100,24 +100,6 @@ class ExplorePlaces extends Component {
   };
 
   render() {
-    console.log("filter state: ", this.state.filterStatus);
-    // let gemsToDisplay = [];
-    // const filter = this.state.filterStatus;
-    // if (this.state.gemsData) {
-    //   gemsToDisplay = this.state.gemsData.filter(gem => {
-    //     return (
-    //       filter.showGems &&
-    //       (filter.userFilter.value === "all" ||
-    //         (filter.userFilter.value === "liked" &&
-    //           gem.likes.includes(this.props.user._id)) ||
-    //         (filter.userFilter.value === "mine" &&
-    //           gem.creator === this.props.user._id)) &&
-    //       filter[gem.category] === true &&
-    //       filter.dateStart <= gem.created_at.slice(0, 10) &&
-    //       gem.created_at.slice(0, 10) <= filter.dateEnd
-    //     );
-    //   });
-    // }
 
     if (!this.state.gemsToDisplay) return <></>;
     return (

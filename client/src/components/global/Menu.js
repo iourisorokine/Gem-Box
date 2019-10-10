@@ -1,15 +1,8 @@
 import React from "react";
-import { NavDropdown, DropdownButton,Navbar,Nav } from "react-bootstrap";
+import { NavDropdown,Navbar,Nav } from "react-bootstrap";
 import { logout } from "../../services/api";
 
 class Menu extends React.Component {
-  state = {
-    user: this.props.user
-  };
-
-  componentDidMount(){
-    if(!this.state.user) this.props.setUser();
-  }
 
   handleLogout = props => {
     console.log("LOGOUT PROPS: ", props);
@@ -29,10 +22,10 @@ class Menu extends React.Component {
       <NavDropdown title="☰" id="collasible-nav-dropdown">
         <NavDropdown.Item href="/">Home</NavDropdown.Item>
         <NavDropdown.Item href="/explore-places">Explore places</NavDropdown.Item>
-        {this.state.user ? (
+        {this.props.user ? (
           <>
             <NavDropdown.Item href="/create-gem">Create Gem</NavDropdown.Item>
-            <NavDropdown.Item href={this.state.user?"/profile/"+this.props.user._id:"/"}>Profile</NavDropdown.Item>
+            <NavDropdown.Item href={this.props.user?"/profile/"+this.props.user._id:"/"}>Profile</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={this.handleLogout}>Logout</NavDropdown.Item>
           </>
