@@ -37,9 +37,10 @@ router.get("/:creatorId", (req, res) => {
 
 router.get("/user/:id", (req, res) => {
   const id = req.params.id;
-  User.findOne({ _id: id })
+  console.log("req id ##############:",req.params.id)
+  User.findById(id)
     .then((user) => {
-      console.log("Here are the data for the user :", user);
+      console.log("Here are the data for the user :########", user);
       res.json(user);
     })
     .catch((err) => {

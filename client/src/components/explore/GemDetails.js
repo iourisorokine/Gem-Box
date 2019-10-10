@@ -84,8 +84,7 @@ export default class GemDetails extends Component {
 
   getCreatorData = () => {
     console.log(
-      "Here should be creator id included",
-      this.state.currentGemData
+      "get creator data called", this.state.currentGemData.creator
     );
     const creatorId = this.state.currentGemData.creator;
     axios
@@ -104,6 +103,7 @@ export default class GemDetails extends Component {
   };
 
   render() {
+    console.log("Creator data: ",this.state.creatorData)
     if(!this.state.currentGemData)return <></>
     const profileLink = (this.state.currentGemData)?"/profile/" + this.state.currentGemData.creator:"#";
     const categoryStrings = {
@@ -119,7 +119,6 @@ export default class GemDetails extends Component {
     const gemIconUrl = currentGemData.discovery
       ? "images/blue_gem.png"
       : "images/black_gem.png";
-    const creatorData = this.state.creatorData;
     if (!currentGemData) return <></>;
     const liked =
       this.props.user && currentGemData.likes.includes(this.props.user._id)
@@ -137,7 +136,7 @@ export default class GemDetails extends Component {
         />
         <div className="flex-row-sides creatorDataOnGem">
           {this.state.creatorData && (
-            <p className="details-titles">Created by {creatorData.username}</p>
+            <p className="details-titles">Created by {this.state.creatorData.username}</p>
           )}
           <img src={gemIconUrl} alt="gem" height="20px" />
           <div>
@@ -202,7 +201,7 @@ export default class GemDetails extends Component {
         {!this.props.closeDetails ? (
           <div>
             <Link className="back-Link" to="/explore-places">
-              Back to Map
+            <Button className="back-btn generalBtn">Back to Map</Button>
             </Link>
           </div>
         ) : (
