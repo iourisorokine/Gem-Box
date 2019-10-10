@@ -1,0 +1,121 @@
+.wrapper-update {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 600px;
+  padding: 2vh;
+}
+
+.profile-flexbox {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 600px;
+}
+.headerinfo {
+  display: flex;
+  justify-content: space-between;
+  padding: 0vh 2vh 2vh 2vh;
+}
+
+.profilpic {
+  padding-top: 2vh;
+  width: 80%;
+  height: auto;
+  max-height: 200px;
+}
+
+.basiccounts {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.nameedit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2vh 2vh 2vh 2vh;
+}
+
+.follow-button img {
+  height: 30px;
+  margin-top: 1vh;
+}
+
+.generalBtn,
+.generalBtn-disabled {
+  width: 150px;
+  margin: 5px;
+}
+
+.experiences-discoveries img {
+  height: 40px;
+  padding-right: 1vh;
+}
+
+.basiccounts .Score {
+  font-size: 1.5rem;
+  padding-left: 2vh;
+}
+
+.experiences-discoveries .Score {
+  font-size: 1.5rem;
+  padding-right: 1vh;
+}
+
+.experiences-discoveries {
+  display: flex;
+  justify-content: space-between;
+  padding: 2vh;
+  font-size: 0.7rem;
+}
+
+.MuiButton-root {
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.travelinterests {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-size: 20px !important;
+}
+
+.topicheader {
+  padding: 2vh;
+  width: 100%;
+}
+
+.trips {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 2vh;
+}
+
+.triplist {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: "Montserrat" !important;
+  font-size: 28px !important;
+}
+
+.btn-triplist a:focus {
+  text-decoration: none !important;
+  background-color: #4bafb8;
+}
+.editprof {
+  font-size: 10px !important;
+}
+
+.slider {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+}

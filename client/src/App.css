@@ -100,7 +100,7 @@ body {
   font-size: 0.8rem;
 }
 
-.gem-popup-btn{
+.gem-popup-btn {
   padding: 0 0.5rem;
   color: #4badb6;
   border: 2px #4badb6 solid;
@@ -108,7 +108,7 @@ body {
   background-color: white;
 }
 
-.gem-popup-btn:hover{
+.gem-popup-btn:hover {
   color: white;
   border-radius: 0.3rem;
   background-color: #4badb6;
@@ -292,103 +292,29 @@ body {
   /* font-weight: bolder !important; */
 }
 
-.page-wrapper {
-  heigth: 100vh;
-  width: 100vw;
-}
-
-.profile-flexbox {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  max-width: 90wh;
-}
-.headerinfo {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 10px;
-}
-
-.profilpic {
-  padding: 20px;
-  display: inline-block;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
-
-.basiccounts {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 20px;
-}
-.experiences-discoveries {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.travelinterests {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-}
-
-.populargems {
-  padding: 10px;
-}
-
-.trips {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-}
-
-.nameedit {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  padding: 10px;
-}
-
-.btn-triplist {
-  border-bottom: 1px solid black !important;
-  width: 100wh !important;
-  border-radius: 0 !important;
-  margin: 10px !important;
-}
-.btn-triplist a:focus {
-  text-decoration: none !important;
-  background-color: #4bafb8;
-}
-.accordion {
-  background-color: white !important;
-}
-
-.card-header {
-  padding: 0 !important ;
-  margin: 0 !important;
-  background-color: white !important;
-  border: none !important;
-}
-
-.card-header {
-  border: none !important;
-}
-
-.accordion > .card:first-of-type {
-  border: none !important;
-}
-
-.editprof {
-  font-size: 10px !important;
-}
-
 .app-wrapper {
   height: 100vh;
   width: 100wh;
   overflow: scroll;
+}
+
+.padding-wrapper {
+  padding: 2vh;
+}
+
+.generalBtn {
+  background-color: #4badb6 !important;
+  background-image: none !important;
+  border-color: #4bafb8 !important;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500 !important;
+}
+
+.generalBtn-disabled {
+  background-color: white !important;
+  background-image: none !important;
+  border-color: #4bafb8 !important;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500 !important;
+  color: #4bafb8 !important;
 }
