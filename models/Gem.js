@@ -14,7 +14,8 @@ const GemSchema = new Schema(
     locationName: String,
     imageUrl: {
       type: String,
-      default: "some default url we need to add for image"
+      default:
+        "https://res.cloudinary.com/dy9sawxrm/image/upload/v1570694936/gembox/defaults/default-gem_vuc6tg.png"
     },
     creator: { type: Schema.Types.ObjectId, ref: "User" },
     discovery: Boolean,

@@ -23,7 +23,8 @@ const UserSchema = new Schema(
     following: Array,
     profilePic: {
       type: String,
-      default: "../client/public/images/defaultprofilepic.png"
+      default:
+        "https://res.cloudinary.com/dy9sawxrm/image/upload/v1570694942/gembox/defaults/default-profile_u9fsrx.png"
     },
     score: Number,
     travelInterests: String,
