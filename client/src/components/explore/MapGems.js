@@ -15,7 +15,7 @@ class MapGems extends Component {
   state = {
     viewport: {
       width: "100%",
-      height: "100vh",
+      height: "95vh",
       latitude: 70.520008,
       longitude: 70.404954,
       zoom: 2
@@ -73,6 +73,15 @@ class MapGems extends Component {
 
   renderPopup = () => {
     const { gemSelectedInfo } = this.state;
+    const categoryRender = {
+      foodDrinks: ["Food & Drinks", "#363"],
+      cultureArts: ["Culture & Arts", "#229"],
+      hikes: ["Hikes", "#4badb6"],
+      nature: ["Nature & Sight", "#2b2"],
+      party: ["Party", "#811"],
+      sports: ["Sports", "#292"],
+      others: ["Others", "#555"]
+    };
     return (
       gemSelectedInfo && (
         <Popup
@@ -81,6 +90,7 @@ class MapGems extends Component {
           anchor="top"
           latitude={gemSelectedInfo.latitude}
           longitude={gemSelectedInfo.longitude}
+          closeButton={true}
           closeOnClick={false}
           onClose={() => this.setState({ gemSelectedInfo: null })}>
           <div>
@@ -89,11 +99,18 @@ class MapGems extends Component {
               src={gemSelectedInfo.imageUrl}
               alt=""
             />
-            <p className="gem-popup-title">{gemSelectedInfo.title}</p>
-            <p className="gem-popup-date">
-              {gemSelectedInfo.created_at.slice(0, 10)}
+            <p className="gem-popup-title">
+              <strong>{gemSelectedInfo.title}</strong>
             </p>
-            <button onClick={this.openDetails} className="gem-popup-link">
+            <p className="gem-popup-category">
+              <span
+                style={{
+                  color: `${categoryRender[gemSelectedInfo.category][1]}`
+                }}>
+                {categoryRender[gemSelectedInfo.category][0]}
+              </span>
+            </p>
+            <button onClick={this.openDetails} className="gem-popup-btn">
               Explore
             </button>
           </div>

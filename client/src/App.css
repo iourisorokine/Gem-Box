@@ -81,7 +81,7 @@ body {
 }
 
 .gem-popup-img {
-  border-radius: 0.4rem;
+  border-radius: 0.5rem;
   padding: 1rem 0;
   margin: 0;
   width: 200px;
@@ -94,10 +94,25 @@ body {
   margin: 0;
 }
 
-.gem-popup-date {
-  padding: 0;
+.gem-popup-category {
+  padding: 0.5rem 0;
   margin: 0;
-  font-size: 10px;
+  font-size: 0.8rem;
+}
+
+.gem-popup-btn{
+  padding: 0 0.5rem;
+  color: #4badb6;
+  border: 2px #4badb6 solid;
+  border-radius: 0.3rem;
+  background-color: white;
+}
+
+.gem-popup-btn:hover{
+  color: white;
+  border-radius: 0.3rem;
+  background-color: #4badb6;
+  transition-duration: 0.5s;
 }
 
 .main-menu {
@@ -276,7 +291,9 @@ body {
   font-family: "Montserrat", sans-serif;
   /* font-weight: bolder !important; */
 }
+
 .page-wrapper {
+  heigth: 100vh;
   width: 100vw;
 }
 
