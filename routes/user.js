@@ -10,7 +10,6 @@ const uploader = require("../configs/cloudinary");
 //   Gem.find({ creator: creatorId })
 //     .then((gem) => {
 //       res.json(gem);
-//       console.log("Got all your gems made", gem);
 //     })
 //     .catch((err) => {
 //       res.json(err);
@@ -89,13 +88,13 @@ router.put("/updateFollower", (req, res) => {
       },
       { new: true }
     ).then((user) => {
-      console.log("new user gefollowed", user);
+      console.log("new user unfollowed");
       User.findByIdAndUpdate(
         userId,
         { $pull: { following: id } },
         { new: true }
-      ).then((user) => {
-        console.log("new user loggedin", user);
+      ).then((userSelf) => {
+        console.log("new user loggedin");
         res.json(user);
       });
     });
@@ -107,13 +106,13 @@ router.put("/updateFollower", (req, res) => {
       },
       { new: true }
     ).then((user) => {
-      console.log("new user gefollowed", user);
+      console.log("new user gefollowed");
       User.findByIdAndUpdate(
         userId,
         { $push: { following: id } },
         { new: true }
-      ).then((user) => {
-        console.log("new user loggedin", user);
+      ).then((userSelf) => {
+        console.log("new user loggedin");
         res.json(user);
       });
     });
