@@ -1,18 +1,23 @@
 
 
-.filters-block {
+.filters-block-wrapper {
   box-sizing: border-box;
   position: fixed;
   top: 0;
   background-color: white;
-  padding: 30px 20px;
+  padding: 1rem;
   z-index: 20;
   width: 100%;
   max-width: 700px;
-  height: 90vh;
-  border: 1px solid black;
-  border-radius: 20px;
-  box-shadow: 2px 2px 4px #bbb;
+  height: 100vh;
+  border-radius: 1rem;
+}
+
+.filters-block-inside{
+  margin: 0.4rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: solid 2px #4badb6;
 }
 
 .inputs-container {
@@ -27,11 +32,11 @@
 
 .inputs-col > label {
   text-align: left;
-  width: 80%;
+  width: 90%;
 }
 .inputs-col > input {
   text-align: left;
-  width: 20%;
+  width: 10%;
 }
 
 .inputs-col > * {
@@ -45,4 +50,10 @@
 .inputs-dates > input {
   text-align: left;
   width: 60%;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 8px;
+  }
 }
