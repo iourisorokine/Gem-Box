@@ -16,6 +16,13 @@ import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import {
+  Image,
+  Video,
+  Transformation,
+  CloudinaryContext
+} from "cloudinary-react";
+import "../../stylesheets/profile.css";
 
 export default class UpdateProfile extends Component {
   state = {
@@ -24,116 +31,148 @@ export default class UpdateProfile extends Component {
     travelInterests: this.props.user.travelInterests
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-
     const { username, profilePic, travelInterests } = this.state;
-
     this.setState({
       [name]: value
     });
   };
 
-  // onDrop(profilePic) {
-  //   this.setState({
-  //     profilePic: this.state.profilePic.concat(profilePic)
-  //   });
-  // }
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
-
+    const files = event.target.profilePic.files[0];
+    const uploadData = new FormData();
+    uploadData.append("profilePic", files);
     axios
-      .patch("/api/user/update", {
-        username: this.state.username,
-        profilePic: this.state.profilePic,
-        travelInterests: this.state.travelInterests
+      .post("/api/user/add-image", uploadData)
+      .then((response) => {
+        this.setState(
+          {
+            profilePic: response.data.secure_url
+          },
+          () => {
+            console.log("Profile pic updated", this.state.profilePic);
+          }
+        );
+        axios
+          .patch("/api/user/update", {
+            username: this.state.username,
+            profilePic: this.state.profilePic,
+            travelInterests: this.state.travelInterests
+          })
+          .then((response) => {
+            this.props.setUser(response.data);
+            this.props.history.push(`/profile/${this.props.user._id}`);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
-      .then(response => {
-        this.props.setUser(response.data);
-        this.props.history.push("/profile");
-      })
-      .catch(err => {
-        console.log(err);
+      .catch((err) => {
+        axios
+          .patch("/api/user/update", {
+            username: this.state.username,
+            profilePic: this.state.profilePic,
+            travelInterests: this.state.travelInterests
+          })
+          .then((response) => {
+            this.props.setUser(response.data);
+            console.log("newUser set call component");
+            this.props.history.push(`/profile/${this.props.user._id}`);
+          })
+          .catch((err) => {
+            console.log(err);
+            this.props.history.push();
+          });
       });
+  };
+
+  directProfile = () => {
+    this.props.history.push(`/profile/${this.props.user._id}`);
   };
 
   render() {
     console.log(this.state.username);
     return (
       <>
-        <Form.Group>
-          <h2>Hello {this.props.user.username}</h2>
-        </Form.Group>
-        <FormControl onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <InputLabel htmlFor="username input-with-icon-adornment">
-              Change your username:
-            </InputLabel>
-            <Input
-              id="input-with-icon-adornment"
-              onChange={this.handleChange}
-              placeholder={this.props.user.username}
-              // id="userName"
-              name="username"
-              value={this.state.username}
-              startAdornment={
-                <InputAdornment position="start">
-                  <AccountCircle />
-                </InputAdornment>
-              }
-            />
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label htmlFor="travelInterests"></Form.Label>
-            <TextField
-              id="outlined-multiline-static"
-              label="Tell us about you"
-              multiline
-              rows="4"
-              defaultValue="Test"
-              placeholder={this.props.user.travelInterests}
-              // className={classes.textField}
-              // margin="normal"
-              variant="outlined"
-            />
-            {/* <Form.Control
-              type="text"
-              onChange={this.handleChange}
-              placeholder={this.props.user.travelInterests}
-              name="travelInterests"
-              // id="travelInterests"
-              value={this.state.travelInterests}
-            /> */}
-          </Form.Group>
-          <Form.Group>
-            <Button
-              type="submit"
-              variant="contained"
-              size="small"
-              margin="theme.spacing(1)"
-              startIcon={<SaveIcon />}
-            >
-              Save
-            </Button>
-          </Form.Group>
-
-          <Form.Group>
-            <Link to="/profile">
-              <Button variant="contained" type="button">
-                View your profile
-              </Button>
-            </Link>
-          </Form.Group>
-          <Form.Group>
-            <Link to="/explore-places">
-              <Button variant="contained" type="button">
-                Explore places
-              </Button>
-            </Link>
-          </Form.Group>
-        </FormControl>
+        <div className="wrapper-update">
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group>
+              <h2>Hello {this.props.user.username}</h2>
+            </Form.Group>
+            <FormControl>
+              <Form.Group>
+                <InputLabel htmlFor="username input-with-icon-adornment">
+                  Change your username:
+                </InputLabel>
+                <Input
+                  id="input-with-icon-adornment"
+                  onChange={this.handleChange}
+                  placeholder={this.props.user.username}
+                  // id="userName"
+                  name="username"
+                  value={this.state.username}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  }
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="profilePic">
+                  Update your Picture
+                </Form.Label>
+                <Form.Control id="profilePic" type="file" name="profilePic" />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="travelInterests"></Form.Label>
+                <TextField
+                  onChange={this.handleChange}
+                  id="travelInterests"
+                  name="travelInterests"
+                  label="Tell us about you"
+                  multiline
+                  rows="4"
+                  value={this.state.travelInterests}
+                  placeholder={this.props.user.travelInterests}
+                  variant="outlined"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Button
+                  onClick={this.handleSubmit}
+                  type="submit"
+                  variant="contained"
+                  size="small"
+                  margin="theme.spacing(1)"
+                  onClick
+                  startIcon={<SaveIcon />}
+                >
+                  Save
+                </Button>
+              </Form.Group>
+              <Form.Group>
+                <Button
+                  onClick={this.directProfile}
+                  variant="contained"
+                  type="button"
+                >
+                  Discard Changes
+                </Button>
+              </Form.Group>
+              <Form.Group>
+                <Link to="/explore-places">
+                  <Button variant="contained" type="button">
+                    Explore places
+                  </Button>
+                </Link>
+              </Form.Group>
+            </FormControl>
+          </Form>
+        </div>
       </>
     );
   }

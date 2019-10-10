@@ -2,7 +2,7 @@ import React from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 
 const GemOnMap = props => {
-  const coordinates=props.data.latitude.toFixed(3) + "," + props.data.longitude.toFixed(3)
+  const coordinates=[props.data.latitude, props.data.longitude];
   return (
     <div>
         <Marker

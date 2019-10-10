@@ -1,11 +1,8 @@
 import React from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { NavDropdown,Navbar,Nav } from "react-bootstrap";
 import { logout } from "../../services/api";
 
 class Menu extends React.Component {
-  state = {
-    user: this.props.user
-  };
 
   handleLogout = props => {
     console.log("LOGOUT PROPS: ", props);
@@ -19,26 +16,28 @@ class Menu extends React.Component {
     console.log("Menu state: ", this.state);
     console.log("Menu props: ", this.props);
     return (
-      <DropdownButton
-        id="dropdown-basic-button"
-        className="main-menu"
-        title="☰">
-        <Dropdown.Item href="/">Home</Dropdown.Item>
-        <Dropdown.Item href="/explore-places">Explore places</Dropdown.Item>
-        {this.state.user ? (
+      <Navbar bg="light" variant="light">
+        <Navbar.Brand href="#home">GemBox</Navbar.Brand>
+      <Nav className="mr-auto">
+      <NavDropdown title="☰" id="collasible-nav-dropdown">
+        <NavDropdown.Item href="/">Home</NavDropdown.Item>
+        <NavDropdown.Item href="/explore-places">Explore places</NavDropdown.Item>
+        {this.props.user ? (
           <>
-            <Dropdown.Item href="/create-gem">Create Gem</Dropdown.Item>
-            <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>
+            <NavDropdown.Item href="/create-gem">Create Gem</NavDropdown.Item>
+            <NavDropdown.Item href={this.props.user?"/profile/"+this.props.user._id:"/"}>Profile</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={this.handleLogout}>Logout</NavDropdown.Item>
           </>
         ) : (
           <>
-            <Dropdown.Item href="/login">Login</Dropdown.Item>
-            <Dropdown.Item href="/signup">Signup</Dropdown.Item>
+            <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+            <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
           </>
         )}
-      </DropdownButton>
+        </NavDropdown>
+        </Nav>
+      </Navbar>
     );
   }
 }
