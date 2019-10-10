@@ -28,8 +28,11 @@
 .input-login-signup {
   height: 40px !important;
 }
-.button-link {
+
+.login-form {
+  font-family: "Montserrat", sans-serif !important;
+  color: white !important;
+  padding: 10%;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
