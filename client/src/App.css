@@ -6,7 +6,7 @@
 }
 body {
   margin: 0;
-  background: #000;
+  background: rgba(40, 39, 39, 0.8);
 }
 .App {
   text-align: center;
@@ -276,7 +276,6 @@ body {
   color: #4badb6 !important;
 }
 
-
 .btn-primary:hover {
   background-color: #61dfeb !important;
 }
@@ -346,7 +345,7 @@ body {
   font-family: "Montserrat", sans-serif !important;
   color: white;
   text-align: center;
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: 500;
   width: 100vw;
   box-shadow: 0 0 10px black !important;
