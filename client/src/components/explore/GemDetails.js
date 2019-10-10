@@ -138,6 +138,7 @@ export default class GemDetails extends Component {
               {currentGemData.discovery ? (
                 <>
                   <img
+                  className="gem-discovery-icon"
                     src="images/diamond-icon-gold.png"
                     alt="gem"
                     height="20px"
@@ -147,6 +148,7 @@ export default class GemDetails extends Component {
               ) : (
                 <>
                   <img
+                  className="gem-discovery-icon"
                     src="images/diamond-icon-green.png"
                     alt="gem"
                     height="20px"

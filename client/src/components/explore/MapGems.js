@@ -135,49 +135,6 @@ class MapGems extends Component {
               closeDetails={this.closeDetails}
             />
           </>
-        ):(
-        <ReactMapGL
-          {...this.state.viewport}
-          onViewportChange={viewport =>
-            this.setState({
-              viewport: viewport
-            })
-          }
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          mapStyle="mapbox://styles/mapbox/streets-v10"
-          captureDoubleClick={false}
-          doubleClickZoom={false}
-        >
-          <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
-            <NavigationControl
-              onViewportChange={viewport => this.setState({ viewport })}
-            />
-          </div>
-          <div>
-            <Button
-              style={{
-                position: "absolute",
-                right: "2vw",
-                top: "2vh",
-                backgroundColor: "#09d3ac"
-              }}
-              onClick={this.props.toggleFilters}
-            >
-              <i className="fas fa-filter"></i>
-            </Button>
-          </div>
-          <div style={{ position: "absolute", left: "20%", top: "2vh" }}>
-            <Geocoder
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-              onSelected={this.onGeocontrolSelected}
-              viewport={this.state.viewport}
-              hideOnSelect={true}
-            />
-          </div>
-          {gemsToRender}
-          {this.renderPopup()}
-        </ReactMapGL>)}
-=======
         ) : (
           <ReactMapGL
             {...this.state.viewport}
@@ -219,7 +176,6 @@ class MapGems extends Component {
             {this.renderPopup()}
           </ReactMapGL>
         )}
->>>>>>> ac9aa234b004129e13db3060ad3ca9c479a21e24
       </div>
     );
   }
