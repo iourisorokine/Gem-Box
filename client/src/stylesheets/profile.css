@@ -18,12 +18,12 @@
   padding: 0vh 2vh 2vh 2vh;
 }
 
-.profilpic {
+.profilepic {
   padding-top: 2vh;
   width: 80%;
   height: auto;
   max-height: 200px;
-}
+ }
 
 .basiccounts {
   display: flex;

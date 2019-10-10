@@ -146,7 +146,7 @@ class Filters extends Component {
               </div>
             </div>
             <hr/>
-            <Button className="btn btn-primary" type="submit">
+            <Button className="btn btn-primary generalBtn" type="submit">
               Apply & Close
             </Button>
           </form>

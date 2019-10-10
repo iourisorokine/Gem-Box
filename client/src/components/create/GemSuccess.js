@@ -59,17 +59,17 @@ export default class GemSuccess extends React.Component {
         </div>
         <div>
           <div className="success-btn-container">
-            <Button className="btn btn-primary" onClick={this.handleRoute} name="view">
+            <Button className="btn btn-primary generalBtn" onClick={this.handleRoute} name="view">
               View Gem  <i class="fas fa-eye"></i>
             </Button>
           </div>
           <div className="success-btn-container">
-            <Button className="btn btn-primary" onClick={this.handleRoute} name="add">
+            <Button className="btn btn-primary generalBtn" onClick={this.handleRoute} name="add">
               Add to a Trip  <i class="fas fa-plus"></i>
             </Button>
           </div>
           <div className="success-btn-container">
-            <Button className="btn btn-primary" onClick={this.handleRoute} name="map">
+            <Button className="btn btn-primary generalBtn" onClick={this.handleRoute} name="map">
               Back to Map  <i class="fa fa-globe" aria-hidden="true"></i>
             </Button>
           </div>

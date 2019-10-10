@@ -160,7 +160,7 @@ export class SetGem extends Component {
             />
           </div>
           <div className="setGem">
-            <button className="btn btn-primary" onClick={this.onSubmit}>
+            <button className="btn btn-primary generalBtn" onClick={this.onSubmit}>
               <strong>Create Gem</strong>
             </button>
           </div>
