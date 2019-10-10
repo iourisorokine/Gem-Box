@@ -21,9 +21,9 @@ export default class Logout extends React.Component {
     console.log(this.state);
     return (
       <div>
-        <div className="wrapper">
+        <div className="wisdom-wrapper">
           <div className="header-box">
-            <h1>Happy Travel my Friend</h1>
+            <h1>Enjoy your Trip!</h1>
           </div>
 
           <div className="wisdom">

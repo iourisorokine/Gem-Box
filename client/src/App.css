@@ -8,6 +8,7 @@ body {
   margin: 0;
   /* background: rgba(40, 39, 39, 0.8); */
 }
+
 .App {
   text-align: center;
   max-width: 800px;
@@ -185,12 +186,12 @@ body {
   font-size: 25px;
 }
 
-.wrapper {
+.wisdom-wrapper {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url("https://images.unsplash.com/photo-1498889444388-e67ea62c464b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1601&q=80");
+  background-image: url("/images/landscape-logout-1.jpg");
   background-size: cover;
 }
 
@@ -325,4 +326,33 @@ body {
 
 .navbar {
   margin-bottom: 0 !important;
+}
+
+.geocoder-container {
+  position: absolute;
+  width: 50%;
+  left: 2rem;
+  top: 2vh;
+  z-index: 100;
+}
+
+.react-geocoder input {
+  color: #4badb6;
+  height: 2.5rem;
+  width: 100%;
+  border: 1px #4badb6 solid;
+  font-size: 1.5rem;
+  border-radius: 5px;
+}
+
+.react-geocoder-item {
+  background-color: #4badb6;
+  color: white;
+  font-size: 1.5rem;
+  z-index: 100;
+}
+
+.react-geocoder-item:hover {
+  background-color: white;
+  color: #4badb6;
 }
