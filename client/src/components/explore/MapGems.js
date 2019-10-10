@@ -164,12 +164,14 @@ class MapGems extends Component {
                 <i className="fas fa-filter"></i>
               </Button>
             </div>
-            <div style={{ position: "absolute", left: "20%", top: "2vh" }}>
+            <div className="geocoder-container">
               <Geocoder
+                style={{height:"100px"}}
+                placeholder="Search for a Gem..."
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                 onSelected={this.onGeocontrolSelected}
                 viewport={this.state.viewport}
-                hideOnSelect={true}
+                // hideOnSelect={true}
               />
             </div>
             {gemsToRender}
