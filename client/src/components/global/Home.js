@@ -98,19 +98,7 @@ class Home extends Component {
         <>
           <p>
             <a
-              className="btn btn-primary btn-primary:hover btn-landingpage generalBtn-landing "
-              href="/explore-places"
-              role="button"
-            >
-              Open the box
-            </a>
-
-            {/* <Link to="/Login">Login</Link> */}
-          </p>
-
-          <p>
-            <a
-              className="btn btn-primary btn-primary:hover generalBtnM"
+              className="btn btn-primary btn-landingpage generalBtn-landing"
               href="/explore-places"
               role="button"
             >
