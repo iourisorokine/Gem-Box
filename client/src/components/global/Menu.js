@@ -32,7 +32,7 @@ class Menu extends React.Component {
         {this.state.user ? (
           <>
             <NavDropdown.Item href="/create-gem">Create Gem</NavDropdown.Item>
-            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+            <NavDropdown.Item href={this.state.user?"/profile/"+this.props.user._id:"/"}>Profile</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={this.handleLogout}>Logout</NavDropdown.Item>
           </>

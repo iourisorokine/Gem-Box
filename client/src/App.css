@@ -129,6 +129,7 @@ body {
 .gem-details {
   background-color: white;
   border: 1px solid black;
+  min-height: 85vh;
   top: 0;
   width: 100%;
   max-width: 700px;
@@ -138,7 +139,6 @@ body {
 
 .gem-details-image {
   width: 100%;
-  min-height: 100vh;
 }
 
 .gem-details-image {
@@ -277,6 +277,10 @@ body {
 .page-wrapper {
   width: 100vw;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 50f05602803085944ff72deef67ff38d4447bd20
 .profile-flexbox {
   display: flex;
   flex-direction: column;
