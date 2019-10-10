@@ -1,28 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-// import ImageUploader from "react-images-upload";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import SaveIcon from "@material-ui/icons/Save";
-import Icon from "@material-ui/core/Icon";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+
 import {
   Image,
   Video,
   Transformation,
   CloudinaryContext
 } from "cloudinary-react";
-import "../../stylesheets/profile.css";
+
+import "../../stylesheets/updateProfile.css";
 
 export default class UpdateProfile extends Component {
   state = {
@@ -95,13 +82,11 @@ export default class UpdateProfile extends Component {
   };
 
   render() {
-    console.log(this.state.username);
     return (
       <>
-        {" "}
         <div className="pageheader py-2">Update yor profile</div>
         <div className="wrapper-update">
-          <Form onSubmit={this.handleSubmit} className="login-form">
+          <div onSubmit={this.handleSubmit} className="login-form">
             <Form.Group>
               <h2>Hello {this.props.user.username}</h2>
             </Form.Group>
@@ -137,16 +122,19 @@ export default class UpdateProfile extends Component {
                 placeholder={this.props.user.travelInterests}
               />
             </Form.Group>
+
             <div className="update-btn-row1">
-              <Form.Group>
+              <div className="col-12">
                 <button
                   className="btn loginBtn generalBtn btn-primary"
                   type="submit"
                 >
                   Save
                 </button>
-              </Form.Group>
-              <Form.Group>
+              </div>
+            </div>
+            <div className="update-btn-row1">
+              <div className="col-12">
                 <button
                   className="btn loginBtn generalBtn btn-primary"
                   onClick={this.directProfile}
@@ -155,28 +143,33 @@ export default class UpdateProfile extends Component {
                 >
                   <i class="fas fa-trash-alt"></i>
                 </button>
-              </Form.Group>
+              </div>
             </div>
-            <div className="update-btn-row2">
-              <Form.Group>
-                <a
-                  className="btn-primary btn-landingpage generalBtn-landing"
+            <div className="update-btn-row1">
+              <div className="col-12">
+              <a
+                  className="btn btn-primary btn-landingpage generalBtn-landing"
                   href="/explore-places"
                   role="button"
                 >
                   Explore places
                 </a>
-
-                <a
-                  className="btn-primary btn-landingpage generalBtn-landing"
+              </div>
+            </div>
+            {/* <div className="update-btn-row1">
+              <div className="col-12">
+              <a
+                  className="btn loginBtn generalBtn btn-primary"
                   href="/profile"
                   role="button"
                 >
                   See your profile
                 </a>
-              </Form.Group>
-            </div>
-          </Form>
+              </div>
+            </div> */}
+            
+
+          </div>
         </div>
       </>
     );
