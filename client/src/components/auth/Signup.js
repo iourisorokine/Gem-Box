@@ -46,39 +46,57 @@ export default class Signup extends React.Component {
   render() {
     return (
       <>
-        <h2>Signup</h2>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Label htmlFor="username">User Name: </Form.Label>
-            <Form.Control
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={this.handleChange}
-              id="username"
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="password">Password: </Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              id="password"
-            />
-          </Form.Group>
-          {this.state.message && (
-            <Alert variant="danger">{this.state.message}</Alert>
-          )}
-          <Button type="submit">Signup</Button>
-        </Form>
-        <a href="http://localhost:5555/api/auth/google">
-          <button>Sign in Google</button>
-        </a>
-        <a href="http://localhost:5555/api/auth/facebook">
-          <button>Sign in with Facebook</button>
-        </a>
+        <div className="app-wrapper">
+          <div className="pageheader py-2">Signup</div>
+
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group>
+              <Form.Label htmlFor="username" className="label-title">
+                User Name:
+              </Form.Label>
+              <Form.Control
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                id="username"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label htmlFor="password" className="label-title">
+                Password:{" "}
+              </Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                id="password"
+              />
+            </Form.Group>
+            {this.state.message && (
+              <Alert variant="danger">{this.state.message}</Alert>
+            )}
+            <button
+              type="submit"
+              className="btn loginBtn generalBtn btn-primary"
+            >
+              Signup
+            </button>
+          </Form>
+          <div className="social-login">
+            <a href="http://localhost:5555/api/auth/google">
+              <button className="btn socialLoginBtn generalBtn btn-primary">
+                Sign in Google <i class="fab fa-google icon-padding"></i>
+              </button>
+            </a>
+            <a href="http://localhost:5555/api/auth/facebook">
+              <button className="btn socialLoginBtn generalBtn btn-primary">
+                Login with Facebook <i class="fab fa-facebook"></i>
+              </button>
+            </a>
+          </div>
+        </div>
       </>
     );
   }

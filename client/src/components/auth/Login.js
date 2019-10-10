@@ -83,7 +83,7 @@ export default class Login extends Component {
           <div className="social-login">
             <a href="http://localhost:5555/api/auth/google">
               <button className="btn socialLoginBtn generalBtn btn-primary">
-                Login with Google<i class="fab fa-google icon-padding"></i>
+                Login with Google <i class="fab fa-google icon-padding"></i>
               </button>
             </a>
             <a href="http://localhost:5555/api/auth/facebook">
