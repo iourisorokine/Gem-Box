@@ -276,13 +276,6 @@ body {
   color: #4badb6 !important;
 }
 
-.generalBtn {
-  background-color: #4badb6 !important;
-  background-image: none !important;
-  border-color: #4bafb8 !important;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500 !important;
-}
 
 .btn-primary:hover {
   background-color: #61dfeb !important;
