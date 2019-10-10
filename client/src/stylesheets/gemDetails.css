@@ -4,7 +4,14 @@
 }
 
 .gem-title {
+  background-color: #4badb6;
+  padding: 1rem 0;
+  font-family: "Montserrat", sans-serif !important;
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
   font-weight: 500;
+  box-shadow: 0 0 10px black !important;
 }
 
 .gem-details {
@@ -80,8 +87,8 @@
 }
 
 .btn-previous, .btn-next{
-  background-color: #282727;
-  color: white;
+  background-color: white;
+  color: black;
   border: none;
   font-size: 1.2rem;
 }
