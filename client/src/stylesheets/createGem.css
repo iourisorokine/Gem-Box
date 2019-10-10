@@ -65,7 +65,8 @@
 .newdiscovery,
 .btnexperience,
 .btntrip {
-  width: 300px;
+  width: 300px !important;
+  margin:auto;
 }
 
 .item-existing .generalBtn {
@@ -80,7 +81,7 @@
 }
 
 .btn-select {
-  width: 300px;
+  width: 300px !important;
   height: 100px;
 }
 

@@ -1,0 +1,17 @@
+.image-uploader {
+  font-size: 18px !important;
+  font-family: "Montserrat", sans-serif;
+}
+
+.update-btn-row1 {
+  display: flex !important;
+  text-align: center !important;
+  flex-direction: row !important;
+  padding: 0.5rem;
+}
+
+.update-btn-row2 {
+  display: flex !important;
+  text-align: center !important;
+  flex-direction: column !important;
+}

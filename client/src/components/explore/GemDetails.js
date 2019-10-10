@@ -17,7 +17,8 @@ export default class GemDetails extends Component {
     if (!this.state.currentGemData) this.getGemData();
     if (this.state.currentGemData && !this.state.creatorData)
       this.getCreatorData();
-    if (this.state.currentGemData&&!this.state.experienceGemData) this.getExperienceGemData();
+    if (this.state.currentGemData && !this.state.experienceGemData)
+      this.getExperienceGemData();
   };
 
   getGemData = () => {
@@ -124,125 +125,133 @@ export default class GemDetails extends Component {
         : false;
     const likeClass = liked ? "btn-unlike" : "btn-like";
     return (
-      <div className="gem-details page-wrapper ">
-        <h3 className="gem-title">{currentGemData.title}</h3>
-
-        <img
-          className="gem-details-image"
-          src={currentGemData.imageUrl}
-          alt=""
-        />
-        <div className="flex-row-sides creatorDataOnGem">
-          {this.state.creatorData && (
-            <p className="details-titles">
-              {currentGemData.discovery ? (
-                <>
-                  <img
-                  className="gem-discovery-icon"
-                    src="images/diamond-icon-gold.png"
-                    alt="gem"
-                    height="20px"
-                  />{" "}
-                  Discovered
-                </>
-              ) : (
-                <>
-                  <img
-                  className="gem-discovery-icon"
-                    src="images/diamond-icon-green.png"
-                    alt="gem"
-                    height="20px"
-                  />{" "}
-                  Experienced
-                </>
-              )}{" "}
-              by <a href={`/profile/${this.state.creatorData._id}`}>{this.state.creatorData.username}</a>
-            </p>
-          )}
-          <div>
-            {this.props.user ? (
-              <span className={likeClass} onClick={() => this.handleLike()}>
-                {liked ? (
+      <>
+        <div className="pageheader shadow">
+          <h3>{currentGemData.title}</h3>
+        </div>
+        <div className="gem-details page-wrapper ">
+          <img
+            className="gem-details-image"
+            src={currentGemData.imageUrl}
+            alt=""
+          />
+          <div className="flex-row-sides creatorDataOnGem">
+            {this.state.creatorData && (
+              <p className="details-titles">
+                {currentGemData.discovery ? (
                   <>
-                    <i class="fas fa-heart"></i> {currentGemData.likes.length}
+                    <img
+                      className="gem-discovery-icon"
+                      src="images/diamond-icon-gold.png"
+                      alt="gem"
+                      height="20px"
+                    />{" "}
+                    Discovered
                   </>
                 ) : (
                   <>
-                    <i class="far fa-heart"></i> {currentGemData.likes.length}
+                    <img
+                      className="gem-discovery-icon"
+                      src="images/diamond-icon-green.png"
+                      alt="gem"
+                      height="20px"
+                    />{" "}
+                    Experienced
                   </>
-                )}
-              </span>
-            ) : (
-              <>Likes: {currentGemData.likes.length}</>
+                )}{" "}
+                by{" "}
+                <a href={`/profile/${this.state.creatorData._id}`}>
+                  {this.state.creatorData.username}
+                </a>
+              </p>
             )}
+            <div>
+              {this.props.user ? (
+                <span className={likeClass} onClick={() => this.handleLike()}>
+                  {liked ? (
+                    <>
+                      <i className="fas fa-heart"></i>{" "}
+                      {currentGemData.likes.length}
+                    </>
+                  ) : (
+                    <>
+                      <i className="far fa-heart"></i>{" "}
+                      {currentGemData.likes.length}
+                    </>
+                  )}
+                </span>
+              ) : (
+                <>Likes: {currentGemData.likes.length}</>
+              )}
+            </div>
           </div>
-        </div>
-        {this.state.experienceGemData &&
-          this.state.experienceGemData.length > 1 && (
+          {this.state.experienceGemData &&
+            this.state.experienceGemData.length > 1 && (
+              <div className="flex-row-sides">
+                <button
+                  className="btn-previous"
+                  name="previous"
+                  onClick={this.getGemExperience}>
+                  <i class="fa fa-chevron-left"></i> Previous
+                </button>
+                <button
+                  className="btn-next"
+                  name="next"
+                  onClick={this.getGemExperience}>
+                  Next <i class="fa fa-chevron-right"></i>
+                </button>
+              </div>
+            )}
+          <div className="gem-details-info">
             <div className="flex-row-sides">
-              <button
-                className="btn-previous"
-                name="previous"
-                onClick={this.getGemExperience}>
-                <i class="fa fa-chevron-left"></i> Previous
-              </button>
-              <button
-                className="btn-next"
-                name="next"
-                onClick={this.getGemExperience}>
-                Next <i class="fa fa-chevron-right"></i>
-              </button>
+              {currentGemData.locationName && (
+                <p>{currentGemData.locationName.substring(0, 30)}...</p>
+              )}
+            </div>
+
+            <div className="gem-divs">
+              <p className="details-titles">Descriprion: </p>
+              <p className="details-infos">{currentGemData.description}</p>
+            </div>
+            <div className="gem-divs">
+              <p className="details-titles">Good to know: </p>
+              <p className="details-infos">{currentGemData.goodToKnow}</p>
+            </div>
+            <div className="cat-creat-container">
+              <div className="gem-divs">
+                <p className="details-titles">Category: </p>
+                <p className="details-infos">
+                  {categoryStrings[currentGemData.category]}
+                </p>
+              </div>
+              <div className="gem-divs">
+                <p className="details-titles">Created: </p>
+                <p className="details-infos">
+                  {currentGemData.created_at.slice(0, 10)}
+                </p>
+              </div>
+            </div>
+          </div>
+          {!this.props.closeDetails ? (
+            <div>
+              <Link className="back-Link" to="/explore-places">
+                <Button className="back-btn generalBtn">Back to Map</Button>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Button
+                className="back-btn generalBtn"
+                onClick={this.props.closeDetails}>
+                Back to Map
+              </Button>
             </div>
           )}
-        <div className="gem-details-info">
-          <div className="flex-row-sides">
-            {currentGemData.locationName && (
-              <p>{currentGemData.locationName.substring(0, 30)}...</p>
-            )}
-          </div>
-
-          <div className="gem-divs">
-            <p className="details-titles">Descriprion: </p>
-            <p className="details-infos">{currentGemData.description}</p>
-          </div>
-          <div className="gem-divs">
-            <p className="details-titles">Good to know: </p>
-            <p className="details-infos">{currentGemData.goodToKnow}</p>
-          </div>
-          <div className="cat-creat-container">
-            <div className="gem-divs">
-              <p className="details-titles">Category: </p>
-              <p className="details-infos">
-                {categoryStrings[currentGemData.category]}
-              </p>
-            </div>
-            <div className="gem-divs">
-              <p className="details-titles">Created: </p>
-              <p className="details-infos">
-                {currentGemData.created_at.slice(0, 10)}
-              </p>
-            </div>
+          <div className="arrow-down">
+            <i className="fas fa-angle-down"></i>
           </div>
         </div>
-        {!this.props.closeDetails ? (
-          <div>
-            <Link className="back-Link" to="/explore-places">
-              <Button className="back-btn generalBtn">Back to Map</Button>
-            </Link>
-          </div>
-        ) : (
-          <div>
-            <Button
-              className="back-btn generalBtn"
-              onClick={this.props.closeDetails}>
-              Back to Map
-            </Button>
-          </div>
-        )}
-        <div className="arrow-down">
-          <i className="fas fa-angle-down"></i>
-        </div>
-      </div>
+      </>
     );
   }
 }

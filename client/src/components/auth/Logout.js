@@ -8,7 +8,7 @@ export default class Logout extends React.Component {
   };
 
   componentDidMount() {
-    getQuote().then((n) => {
+    getQuote().then(n => {
       console.log(n);
       this.setState({
         quote: n.quote,
@@ -27,8 +27,13 @@ export default class Logout extends React.Component {
           </div>
 
           <div className="wisdom">
-            <div className="quote">{this.state.quote}</div>
-            <div className="author">- {this.state.author}</div>
+            {/*    <div className="quote">{this.state.quote}</div>
+            <div className="author">- {this.state.author}</div> */}
+
+            <p>
+              <q>"{this.state.quote}"</q>
+            </p>
+            <p>- {this.state.author}</p>
           </div>
         </div>
       </div>

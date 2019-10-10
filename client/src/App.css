@@ -203,8 +203,10 @@ body {
 }
 
 .wisdom {
-  background-color: #4badb6;
+  background-color: rgba(75, 173, 182, 0.8);
   padding: 20px;
+  color: white;
+  margin: 0 5% 50% 5%;
 }
 
 .quote {
@@ -320,7 +322,7 @@ body {
 
 .geocoder-container {
   position: absolute;
-  width: 70%;
+  width: 80%;
   margin: auto;
   left: 2rem;
   top: 2vh;
@@ -330,7 +332,8 @@ body {
 .react-geocoder input {
   color: #4badb6;
   height: 2.5rem;
-  width: 100%;
+  width: 90%;
+  margin-left:5%;
   border: 1px #4badb6 solid;
   font-size: 1.5rem;
   border-radius: 5px;
@@ -352,8 +355,12 @@ body {
   position: absolute;
   right: 1vw;
   top: 1vh;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 2.6rem !important;
+  height: 2.6rem !important;
+}
+
+#collasible-nav-dropdown{
+  color:#4badb6 !important;
 }
 
 .carousel-caption{

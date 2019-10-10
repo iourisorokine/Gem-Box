@@ -1,23 +1,7 @@
-import React from "react";
-import { NavDropdown, Navbar, Nav } from "react-bootstrap";
-import { logout } from "../../services/api";
-
-class Menu extends React.Component {
-  handleLogout = props => {
-    console.log("LOGOUT PROPS: ", props);
-    logout().then(() => {
-      this.props.setUser(null);
-      this.props.history.push("/logout");
-    });
-  };
-
-  render() {
-    return (
-      <Navbar className="bg-light" in="setOpen" variant="light">
-        <Navbar.Brand href="/"><svg
-          className="Logo-navbar"
-          width="50"
-          height="36"
+<svg
+          className="Logo"
+          width="200"
+          height="144"
           viewBox="0 0 200 144"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -76,38 +60,4 @@ class Menu extends React.Component {
               xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAFK0lEQVRoge2aXYhVVRTHf3dGZyZTNC0rgiQ0pkgiLTWmJiPUSCSsQH2olKKyCSyo7Msg+yINKuslsHDMCiyjIi2yEgwaH/qiiSx7KEhKjdIa89Z83dPDWru975597j3nnnvvJPiHw5yz1tprr33O3vu/9roDx3AM/yuMA/4CoipfR4AJ9RrEWKC7BoMwV7f2UVOMAnY6nW6PsWsGPlCbH/SKVNYc02a747cLGF21qD00Ae9qR4f17wMBu0bgNdUfAFqBycAvKnsLGBFot0r1f2IH3VLVEQSC+1Lv53h2OWC96v4Apjm6qcDvqtuoti7mqu5zigc9slqDaABeUceHgBlAHiggi97FWuyibQ/4moX9mus83VhgEPgbmA78pnavIy8yE3LA89hPPgO4QJ93e7b3q7wPuKKEzznAP2p7n6f7VuXnA+chLy4CNjD0C6aCecN5YLbKbnOcGyxX2SCwOIHfq4ABbXO7I+9UWYc+t2G3ef8LJsZqddALzHfkG1V+qxdUAbglhf9l2mYQWKKyDvXd6di5X/ChFP4BeUuRBrjI032nuuleJ/em7QSZWmY6zkemVIRMMRcLgX7V3ZPU+Q3ImyoAN3q6cdgF2U78wk2DNdjpexl2IznBs7tW+y5gZ0MsyhmbLXI/cFDvXyDbQsypj0h97tf7uQHbUi/5P7ifb2WMzYMUpxNvEia3tGgENnu+V8XYlpr2iRfUVqejj4hPNypBE/Ce4/+dErbBjagdIbBaJYG1vo4A7Q3Il8jMnMOIRmQMANyM3TmmxbUA7sBOq1phB0OJ0sdULFHe5CtfVMX3xJ8HxmCz03MzBFsqwALQUyaG3RrDppBBC/CZGrxN/Jb6rNqsrzzeWJhtOI6XckgSGQFfIeejICZhs867Y2ymIFyTB06sLN4gxiMLt4CcYUJYic3CJ5dzuAAJdIAwKQFsI5y9ZoHJnrfG6C9FeK6A5HeJ8Cj2EHVaQD9P9T9TnYPPCGAv8Yx+Cvaw9Ugaxw1YctqFkJUPU4BIkraXwxL19Q1D1+ZI4GPVf0gFVDEeWzR4JqA3Z5CutI4D2KW+QseAdar7CTip0g5mYlOX6zzdKOzGMLPSDrCp+0HgeE+3GJvmt2XoA5AsOEII6BxPZ06Qwf08IV5WH2s8eSuWs5Zn8F+EDepwD8VEdTqyk/QR3hTK4VQk8RsAznDko5H1EiGFj6qhBSnTREiJxl2QW1S+ugK/D2MrJQY5bOmpmxKkVymmYKsadzrydpX9SrqCWjP2EHWxI79LZT3AWRniLYkFCCH1Y6sqAJ9q50tT+Fqmbb5wZG3INC0AV2cJNAkexx53zbpYGgiqHMzgr9fnkxGCjYDHqhJpGTQA72M5pAmZJvtUFqow+rgEmzm0IMxuiuM7qOP5aALwo3b8lMrM8XNLgvZvUHysflqf95KB9CrFLCxZLgIm6rO/lfqYhKyxXiSHWoisiT7gohrGWxKmfHoYIctN+ry2RJsn1eYlikmvo0SbuqATS5Zm7h9iaLoBwgnmp4XZWNJ7tR6BlsNxyG4VIXWuLuLTCpPufIKtY31NeNDDgjORH3YibJF7D8UZQA571jY2PcDZdY00Aa7EkuUBJNB5jv5ybAbQq7bX1DnGxDAFaVPc3ubozO+PZnE/UffoUqAR++usKYa3IlNvUC9DetWoGdcUE7Hn7wgpHz3nPO9D0vejAhciBGeql3m976c40z0qsIKhBecVwxpRBrj/JbFzmGPJhDFI9TBPHf6/pNZoJb4EWjX8C2RUC1duuJhSAAAAAElFTkSuQmCC"
             />
           </defs>
-        </svg></Navbar.Brand>
-        {/* <Nav className="mr-auto"> */}
-        <NavDropdown title="Menu" id="collasible-nav-dropdown" className="menu-navbar">
-          <NavDropdown.Item href="/">Home</NavDropdown.Item>
-          <NavDropdown.Item href="/explore-places">
-            Explore places
-          </NavDropdown.Item>
-          {this.props.user ? (
-            <>
-              <NavDropdown.Item href="/create-gem">Create Gem</NavDropdown.Item>
-              <NavDropdown.Item
-                href={
-                  this.props.user ? "/profile/" + this.props.user._id : "/"
-                }>
-                Profile
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={this.handleLogout}>
-                Logout
-              </NavDropdown.Item>
-            </>
-          ) : (
-            <>
-              <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-              <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
-            </>
-          )}
-        </NavDropdown>
-        {/* </Nav> */}
-      </Navbar>
-    );
-  }
-}
-
-export default Menu;
+        </svg>
