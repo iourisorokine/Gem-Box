@@ -24,13 +24,13 @@ class App extends React.Component {
     user: this.props.user
   };
 
-  setUser = (user) => {
+  setUser = user => {
     this.setState({
       user: user
     });
   };
 
-  setUserProfile = (userid) => {
+  setUserProfile = userid => {
     console.log("HERE setUser called", userid);
     this.setState({
       creatorProfile: userid
@@ -44,13 +44,13 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={(props) => (
+            render={props => (
               <Home user={this.state.user} setUser={this.setUser} {...props} />
             )}
           />
           <>
             <Route
-              render={(props) => (
+              render={props => (
                 <Menu
                   user={this.state.user}
                   setUser={this.setUser}
@@ -62,18 +62,18 @@ class App extends React.Component {
               <Route
                 exact
                 path="/login"
-                render={(props) => <Login setUser={this.setUser} {...props} />}
+                render={props => <Login setUser={this.setUser} {...props} />}
               />
               <Route
                 exact
                 path="/signup"
-                render={(props) => <Signup setUser={this.setUser} {...props} />}
+                render={props => <Signup setUser={this.setUser} {...props} />}
               />
               )} />
               <Route
                 exact
                 path="/create-gem"
-                render={(props) => (
+                render={props => (
                   <CreateGem {...props} user={this.state.user} />
                 )}
               />
@@ -81,7 +81,7 @@ class App extends React.Component {
               <Route
                 exact
                 path="/explore-places"
-                render={(props) => (
+                render={props => (
                   <ExplorePlaces
                     setUser={this.setUser}
                     {...props}
@@ -93,7 +93,7 @@ class App extends React.Component {
               <Route
                 exact
                 path="/profile"
-                render={(props) => (
+                render={props => (
                   <Profile
                     setUser={this.setUser}
                     {...props}
@@ -107,11 +107,17 @@ class App extends React.Component {
                 creatorProfile={this.state.creatorProfile}
               />
               <Route exact path="/trip" component={TripDetails} />
-              <Route path="/trip/:tripId" component={TripDetails} />
+              <Route
+                exact
+                path="/trip/:tripId"
+                render={props => (
+                  <TripDetails {...props} user={this.state.user} />
+                )}
+              />
               <Route
                 exact
                 path="/gem/:gemId"
-                render={(props) => (
+                render={props => (
                   <GemDetails {...props} user={this.state.user} />
                 )}
               />

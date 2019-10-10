@@ -1,17 +1,33 @@
 const express = require("express");
 const router = express.Router();
 const Trip = require("../models/Trip");
+const Gem = require("../models/Gem");
 
 router.get("/:creatorid", (req, res) => {
   console.log("Get request");
   const creatorid = req.params.creatorid;
   console.log("Received Param on Server with", creatorid);
   Trip.find({ creator: creatorid })
-    .then((trips) => {
+    .then(trips => {
       res.json(trips);
       console.log("Send data back", trips);
     })
-    .catch((err) => {
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+router.get("/tripgems/:tripid", (req, res) => {
+  console.log("Get request");
+  const tripid = req.params.tripid;
+  console.log("Received Param on Server with", tripid);
+  Trip.findById(tripid)
+    .populate("gemsVisited")
+    .then(trips => {
+      res.json(trips);
+      console.log("Send data back", trips);
+    })
+    .catch(err => {
       res.json(err);
     });
 });
@@ -24,11 +40,11 @@ router.put("/update", (req, res) => {
     { $set: { gemsVisited: gemsVisited } },
     { new: true }
   )
-    .then((updatedtrip) => {
+    .then(updatedtrip => {
       console.log("Data Updated, new updates:", updatedtrip);
       res.json(updatedtrip);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     });
 });
@@ -41,11 +57,11 @@ router.post("/create", (req, res) => {
     creator,
     name
   })
-    .then((newtrip) => {
+    .then(newtrip => {
       console.log("trip created");
       res.json(newtrip);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
