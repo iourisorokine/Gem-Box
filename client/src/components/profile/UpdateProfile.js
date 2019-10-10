@@ -42,6 +42,7 @@ export default class UpdateProfile extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Event Target Pic", event.target);
     const files = event.target.profilePic.files[0];
     const uploadData = new FormData();
     uploadData.append("profilePic", files);
@@ -142,7 +143,8 @@ export default class UpdateProfile extends Component {
                 />
               </Form.Group>
               <Form.Group>
-                <Button
+                <button
+                  className="btn btn-primary generalBtn"
                   onClick={this.handleSubmit}
                   type="submit"
                   variant="contained"
@@ -152,23 +154,17 @@ export default class UpdateProfile extends Component {
                   startIcon={<SaveIcon />}
                 >
                   Save
-                </Button>
+                </button>
               </Form.Group>
               <Form.Group>
-                <Button
+                <button
+                  className="btn btn-primary generalBtn discard-changes"
                   onClick={this.directProfile}
                   variant="contained"
                   type="button"
                 >
                   Discard Changes
-                </Button>
-              </Form.Group>
-              <Form.Group>
-                <Link to="/explore-places">
-                  <Button variant="contained" type="button">
-                    Explore places
-                  </Button>
-                </Link>
+                </button>
               </Form.Group>
             </FormControl>
           </Form>

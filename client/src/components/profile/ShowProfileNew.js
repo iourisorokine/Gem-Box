@@ -40,76 +40,81 @@ export default class Profile extends Component {
           new: true
         }
       )
-      .then(updatedfollow => {
+      .then((updatedfollow) => {
         console.log("My updated follwing array", updatedfollow);
         this.setState({
           isFollowing: !this.state.isFollowing
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
 
   getpopularGems = () => {
     console.log("Get Popular call made");
-    axios.get(`/api/gem/creator/${this.state.creatorProfileId}`).then(gems => {
-      let discoveries = gems.data.filter(gems => gems.discovery).length;
-      let experiences = gems.data.filter(gems => !gems.discovery).length;
-      this.setState({
-        popularGems: gems.data,
-        discoveries,
-        experiences
-      });
-      axios
-        .get(`/api/user/user/${this.state.creatorProfileId}`)
-        .then(user => {
-          this.setState(
-            {
-              creatorInfos: user.data,
-              followers: user.data.followers.length
-            },
-            () => {
-              console.log(
-                "Here are the Follower Infors of creator",
-                this.state.followers
-              );
-            }
-          );
-        })
-        .catch(err => {
-          console.log("Problem getting gems");
-          axios
-            .get(`/api/user/${this.state.creatorProfileId}`)
-            .then(user => {
-              this.setState(
-                {
-                  creatorInfos: user.data
-                },
-                () => {
-                  console.log(
-                    "Here are the Follower Infors of creator",
-                    this.state.creatorInfos
-                  );
-                }
-              );
-            })
-            .catch(err => {
-              console.log("Problem getting user", this.state.creatorProfileId);
-            });
+    axios
+      .get(`/api/gem/creator/${this.state.creatorProfileId}`)
+      .then((gems) => {
+        let discoveries = gems.data.filter((gems) => gems.discovery).length;
+        let experiences = gems.data.filter((gems) => !gems.discovery).length;
+        this.setState({
+          popularGems: gems.data,
+          discoveries,
+          experiences
         });
-    });
+        axios
+          .get(`/api/user/user/${this.state.creatorProfileId}`)
+          .then((user) => {
+            this.setState(
+              {
+                creatorInfos: user.data,
+                followers: user.data.followers.length
+              },
+              () => {
+                console.log(
+                  "Here are the Follower Infors of creator",
+                  this.state.followers
+                );
+              }
+            );
+          })
+          .catch((err) => {
+            console.log("Problem getting gems");
+            axios
+              .get(`/api/user/${this.state.creatorProfileId}`)
+              .then((user) => {
+                this.setState(
+                  {
+                    creatorInfos: user.data
+                  },
+                  () => {
+                    console.log(
+                      "Here are the Follower Infors of creator",
+                      this.state.creatorInfos
+                    );
+                  }
+                );
+              })
+              .catch((err) => {
+                console.log(
+                  "Problem getting user",
+                  this.state.creatorProfileId
+                );
+              });
+          });
+      });
   };
 
   componentDidMount = () => {
     requestTrips(this.state.creatorProfileId)
-      .then(trips => {
+      .then((trips) => {
         this.setState({ trips }, () => {
           this.getpopularGems();
           this.showTrips();
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
     if (
@@ -123,7 +128,7 @@ export default class Profile extends Component {
   displayPopularGems = () => {
     return (
       <Carousel className="slider">
-        {this.state.popularGems.map(gem => (
+        {this.state.popularGems.map((gem) => (
           <Carousel.Item key={gem._id}>
             <img
               className="d-block w-100 slider"
@@ -137,7 +142,8 @@ export default class Profile extends Component {
               <a href={`/gem/${gem._id}`}>
                 <div
                   className="generalBtn btn btn-primary"
-                  onClick={() => console.log("test")}>
+                  onClick={() => console.log("test")}
+                >
                   Explore
                 </div>
               </a>
@@ -153,11 +159,14 @@ export default class Profile extends Component {
     if (!this.state.trips) {
       return <div>No trips created yet. Start to create a Gem :)</div>;
     } else {
-      return this.state.trips.map(element => {
+      return this.state.trips.map((element) => {
         return (
-          <Link to={`/trip/${element._id}`}>
-            <Button className="btn-triplist">{element.name} ></Button>
-          </Link>
+          <div>
+            <Link to={`/trip/${element._id}`}>
+              <Button className="btn-triplist">{element.name} ></Button>
+            </Link>
+            <hr />
+          </div>
         );
       });
     }
@@ -183,7 +192,8 @@ export default class Profile extends Component {
                   <Button
                     variant="contained"
                     type="button"
-                    className="editprof">
+                    className="editprof btn-primary btn generalBtn"
+                  >
                     Edit
                   </Button>
                 </Link>
@@ -192,14 +202,16 @@ export default class Profile extends Component {
                   {this.state.isFollowing ? (
                     <button
                       className="follow-button btn btn-primary generalBtn"
-                      onClick={event => this.handleFollowClick(user._id)}>
+                      onClick={(event) => this.handleFollowClick(user._id)}
+                    >
                       Unfollow{" "}
                       <img src="https://res.cloudinary.com/dy9sawxrm/image/upload/v1570697521/gembox/icons/followed-user_dlgqrl.png" />
                     </button>
                   ) : (
                     <button
                       className="follow-button btn btn-primary generalBtn-disabled"
-                      onClick={event => this.handleFollowClick(user._id)}>
+                      onClick={(event) => this.handleFollowClick(user._id)}
+                    >
                       Follow{" "}
                       <img src="https://res.cloudinary.com/dy9sawxrm/image/upload/v1570697521/gembox/icons/follow-user_xix0yg.png" />
                     </button>
@@ -270,7 +282,7 @@ export default class Profile extends Component {
             <div className="topicheader">
               <h2>All Trips</h2>
               <hr />
-              <div className="triplist">{this.showTrips()}</div>
+              <div>{this.showTrips()}</div>
             </div>
           </div>
         </div>

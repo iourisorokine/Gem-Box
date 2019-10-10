@@ -41,7 +41,7 @@
 }
 
 .pageheader {
-  height: 80px;
+  height: 15vh;
   display: flex;
   align-items: center;
   padding: 0 2vh;
@@ -133,4 +133,13 @@ h3 {
 
 .action-status {
   font-size: 12px;
+}
+
+.padding-wrapper {
+  text-align: center;
+  width: 100vw;
+}
+
+.padding-wrapper input {
+  height: 40px !important;
 }
