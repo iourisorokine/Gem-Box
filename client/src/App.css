@@ -295,18 +295,8 @@ body {
 .btn-primary:hover {
   background-color: #61dfeb !important;
 }
-<<<<<<< HEAD
-.page-wrapper {
-  width: 100vw;
-}
-
-.profile-flexbox {
-  display: flex;
-  flex-direction: column;
-=======
 
 .app-wrapper {
->>>>>>> ac9aa234b004129e13db3060ad3ca9c479a21e24
   height: 100vh;
   width: 100wh;
   overflow: scroll;
