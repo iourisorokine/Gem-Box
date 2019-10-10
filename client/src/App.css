@@ -386,3 +386,9 @@ body {
 .editprof {
   font-size: 10px !important;
 }
+
+.app-wrapper {
+  height: 100vh;
+  width: 100wh;
+  overflow: scroll;
+}
