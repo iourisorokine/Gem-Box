@@ -322,7 +322,7 @@ body {
 
 .geocoder-container {
   position: absolute;
-  width: 70%;
+  width: 80%;
   margin: auto;
   left: 2rem;
   top: 2vh;
@@ -332,7 +332,8 @@ body {
 .react-geocoder input {
   color: #4badb6;
   height: 2.5rem;
-  width: 100%;
+  width: 90%;
+  margin-left:5%;
   border: 1px #4badb6 solid;
   font-size: 1.5rem;
   border-radius: 5px;

@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+.shadow{
+  box-shadow: 0 0 10px black !important;
+}
 
 .gem-title {
   background-color: #4badb6;
