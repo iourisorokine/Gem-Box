@@ -98,28 +98,27 @@ class Home extends Component {
         <>
           <p>
             <a
-              className="btn btn-primary btn-primary:hover btn-landingpage generalBtn "
+              className="btn btn-primary btn-landingpage generalBtn-landing"
               href="/explore-places"
               role="button"
             >
               Open the box
             </a>
-
-            {/* <Link to="/Login">Login</Link> */}
           </p>
-          {!this.state.user&&
-          (<div className="btn-signup-login">
-            <p>
-              <Link className="btn btn-link btn-lp " to="/Signup">
-                Join the community
-              </Link>
-            </p>
-            <p>
-              <Link className="btn btn-link btn-lp" to="/Login">
-                Login
-              </Link>
-            </p>
-          </div>
+
+          {!this.state.user && (
+            <div className="btn-signup-login">
+              <p>
+                <Link className="btn btn-link btn-lp " to="/Signup">
+                  Join the community
+                </Link>
+              </p>
+              <p>
+                <Link className="btn btn-link btn-lp" to="/Login">
+                  Login
+                </Link>
+              </p>
+            </div>
           )}
         </>
         {this.state.message && (

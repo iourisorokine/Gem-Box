@@ -4,6 +4,19 @@ const User = require("../models/User");
 
 const uploader = require("../configs/cloudinary");
 
+// router.get("/user/:creatorId", (req, res) => {
+//   const creatorId = req.params.creatorId;
+//   console.log("querying the database with", creatorId);
+//   Gem.find({ creator: creatorId })
+//     .then((gem) => {
+//       res.json(gem);
+//       console.log("Got all your gems made", gem);
+//     })
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
+
 router.post("/", (req, res) => {
   const username = req.body.username;
   const profilePic = req.body.profilePic;
@@ -22,24 +35,10 @@ router.post("/", (req, res) => {
     });
 });
 
-router.get("/:creatorId", (req, res) => {
-  const creatorId = req.params.creatorId;
-  console.log("querying the database with", creatorId);
-  Gem.find({ creator: creatorId })
-    .then((gem) => {
-      res.json(gem);
-      console.log("Got all your gems made", gem);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
-
 router.get("/:id", (req, res) => {
   const id = req.params.id;
-  User.find({ _id: id })
+  User.findById(id)
     .then((user) => {
-      console.log("Here are the data for the user :", user);
       res.json(user);
     })
     .catch((err) => {
@@ -76,10 +75,11 @@ router.patch("/update", (req, res) => {
 
 router.put("/updateFollower", (req, res) => {
   console.log("hi");
-  console.log(req.body._id);
-  const id = req.body.userId; //profil dem ich folgen möchte
+  console.log("Here is the User I want to follow", req.body.creatorId);
+  const id = req.body.creatorId; //profil dem ich folgen möchte
   const userId = req.user._id; //eingeloggter uiser
-  const userArr = req.body.user.following; //Loggedin userse Array
+  console.log("User making request", req.user);
+  const userArr = req.user.following; //Loggedin userse Array
 
   if (userArr.includes(id)) {
     User.findByIdAndUpdate(

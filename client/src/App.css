@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,900,900i&display=swap");
 * {
   font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 body {
   margin: 0;
-  background: white;
 }
 .App {
   text-align: center;
@@ -40,9 +41,9 @@ body {
   border: none;
   background: none;
   cursor: pointer;
-  background-image: url("/images/blue_gem.png");
-  width: 50px;
-  height: 50px;
+  /* background-image: url("/images/diamond-icon-green.png"); */
+  width: 30px;
+  height: 30px;
   background-position: center;
 }
 
@@ -56,33 +57,40 @@ body {
 }
 
 .gem-marker img {
-  width: 30px;
-  height: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+.gem-marker-set {
+  height: 50px;
+  width: 50px;
 }
 
 .setGem button {
   width: 40%;
   position: absolute;
-  bottom: 5%;
+  bottom: 15%;
   right: 30%;
   border-radius: 5%;
 }
 
-.generalBtn {
+/* .generalBtn {
   margin-top: 5vh;
   background-color: #4badb6 !important;
   border-color: #4bafb8 !important;
-}
+} */
 
 .gem-popup {
   box-shadow: 2px 2px 4px #bbb;
 }
 
 .gem-popup-img {
-  padding: 12px 0;
+  border-radius: 0.5rem;
+  padding: 1rem 0;
   margin: 0;
   width: 200px;
-  height: auto;
+  height: 200px;
+  object-fit: cover;
 }
 
 .gem-popup-title {
@@ -90,10 +98,25 @@ body {
   margin: 0;
 }
 
-.gem-popup-date {
-  padding: 0;
+.gem-popup-category {
+  padding: 0.5rem 0;
   margin: 0;
-  font-size: 10px;
+  font-size: 0.8rem;
+}
+
+.gem-popup-btn {
+  padding: 0 0.5rem;
+  color: #4badb6;
+  border: 2px #4badb6 solid;
+  border-radius: 0.3rem;
+  background-color: white;
+}
+
+.gem-popup-btn:hover {
+  color: white;
+  border-radius: 0.3rem;
+  background-color: #4badb6;
+  transition-duration: 0.5s;
 }
 
 .main-menu {
@@ -106,44 +129,9 @@ body {
 
 .filter-toggle-button {
   position: fixed;
-  top: 0;
-  left: 50%;
+  top: 50px;
+  left: 0;
   z-index: 20;
-  box-shadow: 2px 2px 4px #bbb;
-}
-
-.filters-block {
-  position: fixed;
-  top: 100px;
-  background-color: white;
-  padding: 30px 0;
-  z-index: 20;
-  width: 100%;
-  max-width: 700px;
-  border: 1px solid black;
-  border-radius: 20px;
-  box-shadow: 2px 2px 4px #bbb;
-}
-
-.gem-details {
-  background-color: white;
-  border: 1px solid black;
-  top: 0;
-  width: 100%;
-  max-width: 700px;
-  padding: 30px;
-  z-index: 20;
-}
-
-.gem-details-image {
-  width: 100%;
-  min-height: 100vh;
-}
-
-.gem-details-image {
-  width: 90%;
-  max-width: 700px;
-  height: auto;
 }
 
 .flex-row {
@@ -263,95 +251,92 @@ body {
 
 .gem-inactive {
   background-color: white !important;
-  color: blue !important;
+  color: #4badb6 !important;
 }
 
-.profile-flexbox {
-  display: flex;
-  flex-direction: column;
+.generalBtn {
+  background-color: #4badb6 !important;
+  background-image: none !important;
+  border-color: #4bafb8 !important;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500 !important;
+}
+
+.btn-primary:hover {
+  background-color: #61dfeb !important;
+}
+
+.app-wrapper {
   height: 100vh;
-  max-width: 90wh;
-}
-.headerinfo {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 10px;
+  width: 100wh;
+  overflow: scroll;
 }
 
-.profilpic {
-  padding: 20px;
-  display: inline-block;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+.padding-wrapper {
+  padding: 2vh;
 }
 
-.basiccounts {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 20px;
-}
-.experiences-discoveries {
-  display: flex;
-  justify-content: space-evenly;
+.generalBtn {
+  background-color: #4badb6 !important;
+  background-image: none !important;
+  border-color: #4bafb8 !important;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500 !important;
 }
 
-.travelinterests {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-}
-
-.populargems {
-  padding: 10px;
-}
-
-.trips {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-}
-
-.nameedit {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  padding: 10px;
-}
-
-.btn-triplist {
-  border-bottom: 1px solid black !important;
-  width: 100wh !important;
-  border-radius: 0 !important;
-  margin: 10px !important;
-}
-.btn-triplist a:focus {
-  text-decoration: none !important;
-  background-color: #4bafb8;
-}
-.accordion {
+.generalBtn-disabled {
   background-color: white !important;
+  background-image: none !important;
+  border-color: #4bafb8 !important;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500 !important;
+  color: #4bafb8 !important;
 }
 
-.card-header {
-  padding: 0 !important ;
-  margin: 0 !important;
+.icon-padding {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  size: 5x;
+}
+
+.btn-inactive {
+  background-image: none !important;
+  border-color: #4badb6 !important;
+  color: #4badb6 !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 500 !important;
+  width: 20rem;
+  overflow: none !important;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+.generalBtn-disabled {
   background-color: white !important;
-  border: none !important;
+  background-image: none !important;
+  border-color: #4bafb8 !important;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500 !important;
+  color: #4badb6 !important;
 }
 
-.card-header {
-  border: none !important;
+.pageheader {
+  background-color: #4badb6;
+  height: 3rem;
+  font-family: "Montserrat", sans-serif !important;
+  color: white;
+  text-align: center;
+  font-size: 1em;
+  font-weight: 500;
+  width: 100vw;
+  box-shadow: 0 0 10px black !important;
 }
 
-.accordion > .card:first-of-type {
-  border: none !important;
-}
-
-.editprof {
-  font-size: 10px !important;
+.navbar {
+  margin-bottom: 0 !important;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import GemOnMap from "./GemOnMap";
 import ReactMapGL, {
@@ -15,7 +15,7 @@ class MapGems extends Component {
   state = {
     viewport: {
       width: "100%",
-      height: "100vh",
+      height: "95vh",
       latitude: 70.520008,
       longitude: 70.404954,
       zoom: 2
@@ -24,7 +24,7 @@ class MapGems extends Component {
     displayDetails: false
   };
 
-  openPopup = (gemData) => {
+  openPopup = gemData => {
     this.setState({
       gemSelectedInfo: {
         ...gemData
@@ -46,7 +46,7 @@ class MapGems extends Component {
   };
 
   setUserLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition(position => {
       let userLocation = {
         lat: position.coords.latitude,
         long: position.coords.longitude
@@ -73,6 +73,15 @@ class MapGems extends Component {
 
   renderPopup = () => {
     const { gemSelectedInfo } = this.state;
+    const categoryRender = {
+      foodDrinks: ["Food & Drinks", "#363"],
+      cultureArts: ["Culture & Arts", "#229"],
+      hikes: ["Hikes", "#4badb6"],
+      nature: ["Nature & Sight", "#2b2"],
+      party: ["Party", "#811"],
+      sports: ["Sports", "#292"],
+      others: ["Others", "#555"]
+    };
     return (
       gemSelectedInfo && (
         <Popup
@@ -81,20 +90,27 @@ class MapGems extends Component {
           anchor="top"
           latitude={gemSelectedInfo.latitude}
           longitude={gemSelectedInfo.longitude}
+          closeButton={true}
           closeOnClick={false}
-          onClose={() => this.setState({ gemSelectedInfo: null })}
-        >
+          onClose={() => this.setState({ gemSelectedInfo: null })}>
           <div>
             <img
               className="gem-popup-img"
               src={gemSelectedInfo.imageUrl}
               alt=""
             />
-            <p className="gem-popup-title">{gemSelectedInfo.title}</p>
-            <p className="gem-popup-date">
-              {gemSelectedInfo.created_at.slice(0, 10)}
+            <p className="gem-popup-title">
+              <strong>{gemSelectedInfo.title}</strong>
             </p>
-            <button onClick={this.openDetails} className="gem-popup-link">
+            <p className="gem-popup-category">
+              <span
+                style={{
+                  color: `${categoryRender[gemSelectedInfo.category][1]}`
+                }}>
+                {categoryRender[gemSelectedInfo.category][0]}
+              </span>
+            </p>
+            <button onClick={this.openDetails} className="gem-popup-btn">
               Explore
             </button>
           </div>
@@ -104,13 +120,14 @@ class MapGems extends Component {
   };
 
   render() {
-    const gemsToRender = this.props.gems.map((gem) => {
+    const gemsToRender = this.props.gems.map(gem => {
       return <GemOnMap key={gem._id} data={gem} openPopup={this.openPopup} />;
     });
     this.setUserLocation();
     return (
-      <div style={{ border: "1px solid green" }}>
-        {this.state.displayDetails && (
+      <div className="page-wrapper">
+
+        {this.state.displayDetails ? (
           <>
             <GemDetails
               data={this.state.gemSelectedInfo}
@@ -118,35 +135,47 @@ class MapGems extends Component {
               closeDetails={this.closeDetails}
             />
           </>
+        ) : (
+          <ReactMapGL
+            {...this.state.viewport}
+            onViewportChange={viewport =>
+              this.setState({
+                viewport: viewport
+              })
+            }
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            mapStyle="mapbox://styles/iouri/ck1kkzpus4iir1dmi0h34dz0s"
+            captureDoubleClick={false}
+            doubleClickZoom={false}>
+            <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
+              <NavigationControl
+                onViewportChange={viewport => this.setState({ viewport })}
+              />
+            </div>
+            <div>
+              <Button
+                style={{
+                  position: "absolute",
+                  right: "2vw",
+                  top: "2vh",
+                  backgroundColor: "#09d3ac"
+                }}
+                onClick={this.props.toggleFilters}>
+                <i className="fas fa-filter"></i>
+              </Button>
+            </div>
+            <div style={{ position: "absolute", left: "20%", top: "2vh" }}>
+              <Geocoder
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                onSelected={this.onGeocontrolSelected}
+                viewport={this.state.viewport}
+                hideOnSelect={true}
+              />
+            </div>
+            {gemsToRender}
+            {this.renderPopup()}
+          </ReactMapGL>
         )}
-        <ReactMapGL
-          {...this.state.viewport}
-          onViewportChange={(viewport) =>
-            this.setState({
-              viewport: viewport
-            })
-          }
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          mapStyle="mapbox://styles/mapbox/streets-v10"
-          captureDoubleClick={false}
-          doubleClickZoom={false}
-        >
-          <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
-            <NavigationControl
-              onViewportChange={(viewport) => this.setState({ viewport })}
-            />
-          </div>
-          <div>
-            <Geocoder
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-              onSelected={this.onGeocontrolSelected}
-              viewport={this.state.viewport}
-              hideOnSelect={true}
-            />
-          </div>
-          {gemsToRender}
-          {this.renderPopup()}
-        </ReactMapGL>
       </div>
     );
   }

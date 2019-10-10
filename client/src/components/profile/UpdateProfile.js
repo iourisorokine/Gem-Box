@@ -22,6 +22,7 @@ import {
   Transformation,
   CloudinaryContext
 } from "cloudinary-react";
+import "../../stylesheets/profile.css";
 
 export default class UpdateProfile extends Component {
   state = {
@@ -63,7 +64,7 @@ export default class UpdateProfile extends Component {
           })
           .then((response) => {
             this.props.setUser(response.data);
-            console.log("newUser set call component");
+            this.props.history.push(`/profile/${this.props.user._id}`);
           })
           .catch((err) => {
             console.log(err);
@@ -79,87 +80,99 @@ export default class UpdateProfile extends Component {
           .then((response) => {
             this.props.setUser(response.data);
             console.log("newUser set call component");
+            this.props.history.push(`/profile/${this.props.user._id}`);
           })
           .catch((err) => {
             console.log(err);
+            this.props.history.push();
           });
       });
+  };
+
+  directProfile = () => {
+    this.props.history.push(`/profile/${this.props.user._id}`);
   };
 
   render() {
     console.log(this.state.username);
     return (
       <>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <h2>Hello {this.props.user.username}</h2>
-          </Form.Group>
-          <FormControl>
+        <div className="wrapper-update">
+          <Form onSubmit={this.handleSubmit}>
             <Form.Group>
-              <InputLabel htmlFor="username input-with-icon-adornment">
-                Change your username:
-              </InputLabel>
-              <Input
-                id="input-with-icon-adornment"
-                onChange={this.handleChange}
-                placeholder={this.props.user.username}
-                // id="userName"
-                name="username"
-                value={this.state.username}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <AccountCircle />
-                  </InputAdornment>
-                }
-              />
+              <h2>Hello {this.props.user.username}</h2>
             </Form.Group>
-            <Form.Group>
-              <Form.Label htmlFor="profilePic">Update your Picture</Form.Label>
-              <Form.Control id="profilePic" type="file" name="profilePic" />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label htmlFor="travelInterests"></Form.Label>
-              <TextField
-                onChange={this.handleChange}
-                id="travelInterests"
-                name="travelInterests"
-                label="Tell us about you"
-                multiline
-                rows="4"
-                value={this.state.travelInterests}
-                placeholder={this.props.user.travelInterests}
-                variant="outlined"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Button
-                type="submit"
-                variant="contained"
-                size="small"
-                margin="theme.spacing(1)"
-                startIcon={<SaveIcon />}
-              >
-                Save
-              </Button>
-            </Form.Group>
-            <Form.Group>
-              <Button
-                onClick={this.props.changeComponent}
-                variant="contained"
-                type="button"
-              >
-                Discard Changes
-              </Button>
-            </Form.Group>
-            <Form.Group>
-              <Link to="/explore-places">
-                <Button variant="contained" type="button">
-                  Explore places
+            <FormControl>
+              <Form.Group>
+                <InputLabel htmlFor="username input-with-icon-adornment">
+                  Change your username:
+                </InputLabel>
+                <Input
+                  id="input-with-icon-adornment"
+                  onChange={this.handleChange}
+                  placeholder={this.props.user.username}
+                  // id="userName"
+                  name="username"
+                  value={this.state.username}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  }
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="profilePic">
+                  Update your Picture
+                </Form.Label>
+                <Form.Control id="profilePic" type="file" name="profilePic" />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="travelInterests"></Form.Label>
+                <TextField
+                  onChange={this.handleChange}
+                  id="travelInterests"
+                  name="travelInterests"
+                  label="Tell us about you"
+                  multiline
+                  rows="4"
+                  value={this.state.travelInterests}
+                  placeholder={this.props.user.travelInterests}
+                  variant="outlined"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Button
+                  onClick={this.handleSubmit}
+                  type="submit"
+                  variant="contained"
+                  size="small"
+                  margin="theme.spacing(1)"
+                  onClick
+                  startIcon={<SaveIcon />}
+                >
+                  Save
                 </Button>
-              </Link>
-            </Form.Group>
-          </FormControl>
-        </Form>
+              </Form.Group>
+              <Form.Group>
+                <Button
+                  onClick={this.directProfile}
+                  variant="contained"
+                  type="button"
+                >
+                  Discard Changes
+                </Button>
+              </Form.Group>
+              <Form.Group>
+                <Link to="/explore-places">
+                  <Button variant="contained" type="button">
+                    Explore places
+                  </Button>
+                </Link>
+              </Form.Group>
+            </FormControl>
+          </Form>
+        </div>
       </>
     );
   }

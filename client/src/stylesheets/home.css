@@ -47,12 +47,13 @@
 .button {
   background-color: none !important;
 }
-.generalBtn {
+.generalBtn-landing {
   margin-top: 1rem;
+  background-image: none !important;
   background-color: #4badb6 !important;
   border-color: #4bafb8 !important;
   font-family: "Montserrat", sans-serif;
-  font-weight: bold !important;
+  font-weight: 500 !important;
 }
 .btn-primary:hover {
   background-color: #61dfeb !important;
@@ -61,8 +62,9 @@
 .btn-lp {
   color: white !important;
   font-size: 18px !important;
-  font-weight: bold !important;
+  /* font-weight: bold !important; */
   font-family: "Montserrat", sans-serif;
+  text-decoration: underline !important;
 }
 .btn-signup-login {
   padding-top: 7%;

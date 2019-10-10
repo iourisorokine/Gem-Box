@@ -1,13 +1,12 @@
 import React from "react";
 import Menu from "./components/global/Menu";
 import AboutUs from "./components/global/AboutUs";
-import "./App.css";
+// import "./App.css";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Logout from "./components/auth/Logout";
 import Home from "./components/global/Home";
 import ExplorePlaces from "./components/explore/ExplorePlaces";
-import Profile from "./components/profile/Profile";
 import UpdateProfile from "./components/profile/UpdateProfile";
 import TripDetails from "./components/explore/TripDetails";
 import GemDetails from "./components/explore/GemDetails";
@@ -24,13 +23,13 @@ class App extends React.Component {
     user: this.props.user
   };
 
-  setUser = (user) => {
+  setUser = user => {
     this.setState({
       user: user
     });
   };
 
-  setUserProfile = (userid) => {
+  setUserProfile = userid => {
     console.log("HERE setUser called", userid);
     this.setState({
       creatorProfile: userid
@@ -39,18 +38,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app-wrapper">
         <Switch>
           <Route
             exact
             path="/"
-            render={(props) => (
+            render={props => (
               <Home user={this.state.user} setUser={this.setUser} {...props} />
             )}
           />
           <>
             <Route
-              render={(props) => (
+              render={props => (
                 <Menu
                   user={this.state.user}
                   setUser={this.setUser}
@@ -62,18 +61,18 @@ class App extends React.Component {
               <Route
                 exact
                 path="/login"
-                render={(props) => <Login setUser={this.setUser} {...props} />}
+                render={props => <Login setUser={this.setUser} {...props} />}
               />
               <Route
                 exact
                 path="/signup"
-                render={(props) => <Signup setUser={this.setUser} {...props} />}
+                render={props => <Signup setUser={this.setUser} {...props} />}
               />
               )} />
               <Route
                 exact
                 path="/create-gem"
-                render={(props) => (
+                render={props => (
                   <CreateGem {...props} user={this.state.user} />
                 )}
               />
@@ -81,7 +80,7 @@ class App extends React.Component {
               <Route
                 exact
                 path="/explore-places"
-                render={(props) => (
+                render={props => (
                   <ExplorePlaces
                     setUser={this.setUser}
                     {...props}
@@ -91,10 +90,9 @@ class App extends React.Component {
                 )}
               />
               <Route
-                exact
-                path="/profile"
-                render={(props) => (
-                  <Profile
+                path="/profile/:profileId"
+                render={props => (
+                  <ShowProfileNew
                     setUser={this.setUser}
                     {...props}
                     user={this.state.user}
@@ -102,16 +100,22 @@ class App extends React.Component {
                 )}
               />
               <Route
-                path="/profile/:profileId"
-                component={ShowProfileNew}
-                creatorProfile={this.state.creatorProfile}
+                exact
+                path="/profile"
+                render={props => (
+                  <UpdateProfile
+                    setUser={this.setUser}
+                    {...props}
+                    user={this.state.user}
+                  />
+                )}
               />
               <Route exact path="/trip" component={TripDetails} />
               <Route path="/trip/:tripId" component={TripDetails} />
               <Route
                 exact
                 path="/gem/:gemId"
-                render={(props) => (
+                render={props => (
                   <GemDetails {...props} user={this.state.user} />
                 )}
               />

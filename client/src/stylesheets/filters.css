@@ -1,0 +1,59 @@
+
+
+.filters-block-wrapper {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  padding: 1rem;
+  z-index: 20;
+  width: 100%;
+  max-width: 700px;
+  height: 100vh;
+  border-radius: 1rem;
+}
+
+.filters-block-inside{
+  margin: 0.4rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: solid 2px #4badb6;
+}
+
+.inputs-container {
+  display: flex;
+}
+.inputs-col, .inputs-dates {
+  padding-bottom: 20px;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inputs-col > label {
+  text-align: left;
+  width: 90%;
+}
+.inputs-col > input {
+  text-align: left;
+  width: 10%;
+}
+
+.inputs-col > * {
+  text-align: left;
+}
+
+.inputs-dates > label {
+  text-align: left;
+  width: 40%;
+}
+.inputs-dates > input {
+  text-align: left;
+  width: 60%;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 8px;
+  }
+}

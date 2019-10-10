@@ -80,9 +80,7 @@ class CreateGem extends React.Component {
   };
 
   fetchGemInfo = (gemInfos) => {
-    this.setState({ gem: { ...this.state.gem, ...gemInfos } }, () => {
-      console.log("changed discovery to false", this.state.gem);
-    });
+    this.setState({ gem: { ...this.state.gem, ...gemInfos } });
   };
 
   createTrip = () => {
@@ -165,60 +163,72 @@ class CreateGem extends React.Component {
         );
       case "SuggestGem":
         return (
-          <SuggestGem
-            locationName={this.state.gem.locationName}
-            setStage={this.setStage}
-            fetchGemInfo={this.fetchGemInfo}
-          />
+          <div className="padding-wrapper">
+            <SuggestGem
+              locationName={this.state.gem.locationName}
+              setStage={this.setStage}
+              fetchGemInfo={this.fetchGemInfo}
+            />{" "}
+          </div>
         );
       case "AddExperience":
         return (
-          <AddExperience
-            locationName={this.state.gem.locationName}
-            fetchGemInfo={this.fetchGemInfo}
-            setStage={this.setStage}
-            checkStatus={this.checkStatus}
-            createGem={this.createGem}
-          />
+          <div className="padding-wrapper">
+            <AddExperience
+              locationName={this.state.gem.locationName}
+              fetchGemInfo={this.fetchGemInfo}
+              setStage={this.setStage}
+              checkStatus={this.checkStatus}
+              createGem={this.createGem}
+            />
+          </div>
         );
       case "AddDiscovery":
         return (
-          <AddDiscovery
-            locationName={this.state.gem.locationName}
-            fetchGemInfo={this.fetchGemInfo}
-            setStage={this.setStage}
-            checkStatus={this.checkStatus}
-            createGem={this.createGem}
-          />
+          <div className="padding-wrapper">
+            <AddDiscovery
+              locationName={this.state.gem.locationName}
+              fetchGemInfo={this.fetchGemInfo}
+              setStage={this.setStage}
+              checkStatus={this.checkStatus}
+              createGem={this.createGem}
+            />
+          </div>
         );
       case "GemSuccess":
         return (
-          <GemSuccess
-            gemId={this.state.gem.gemId}
-            setStage={this.setStage}
-            {...this.props}
-          />
+          <div className="padding-wrapper">
+            <GemSuccess
+              gemId={this.state.gem.gemId}
+              setStage={this.setStage}
+              {...this.props}
+            />
+          </div>
         );
       case "AddToTrip":
         return (
-          <AddToTrip
-            fetchTripInfos={this.fetchTripInfo}
-            setStage={this.setStage}
-            createTrip={this.createTrip}
-            creatorid={this.props.user._id}
-            selectTrip={this.selectTrip}
-          />
+          <div className="padding-wrapper">
+            <AddToTrip
+              fetchTripInfos={this.fetchTripInfo}
+              setStage={this.setStage}
+              createTrip={this.createTrip}
+              creatorid={this.props.user._id}
+              selectTrip={this.selectTrip}
+            />
+          </div>
         );
       // case "GemList":
       //   return <GemList />;
       case "AddGemToTrip":
         return (
-          <AddGemToTrip
-            TripInfos={this.state.trip}
-            updateGemStatus={this.updateGemStatus}
-            saveGemsInTrip={this.saveGemsInTrip}
-            tripName={this.state.trip.name}
-          />
+          <div className="padding-wrapper">
+            <AddGemToTrip
+              TripInfos={this.state.trip}
+              updateGemStatus={this.updateGemStatus}
+              saveGemsInTrip={this.saveGemsInTrip}
+              tripName={this.state.trip.name}
+            />
+          </div>
         );
     }
   };
