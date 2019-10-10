@@ -49,12 +49,13 @@ export default class Signup extends React.Component {
         <div className="app-wrapper">
           <div className="pageheader py-2">Signup</div>
 
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Group>
               <Form.Label htmlFor="username" className="label-title">
-                User Name:
+                Username:
               </Form.Label>
               <Form.Control
+                className="input-login-signup"
                 type="text"
                 name="username"
                 value={this.state.username}
@@ -67,6 +68,7 @@ export default class Signup extends React.Component {
                 Password:{" "}
               </Form.Label>
               <Form.Control
+                className="input-login-signup"
                 type="password"
                 name="password"
                 value={this.state.password}
@@ -77,12 +79,15 @@ export default class Signup extends React.Component {
             {this.state.message && (
               <Alert variant="danger">{this.state.message}</Alert>
             )}
-            <button
-              type="submit"
-              className="btn loginBtn generalBtn btn-primary"
-            >
-              Signup
-            </button>
+
+            <a href="/update-profile" className="button-link">
+              <button
+                type="submit"
+                className="btn loginBtn generalBtn btn-primary"
+              >
+                Signup
+              </button>
+            </a>
           </Form>
           <div className="social-login">
             <a href="http://localhost:5555/api/auth/google">

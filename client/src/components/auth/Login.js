@@ -51,6 +51,7 @@ export default class Login extends Component {
                 Username:{" "}
               </Form.Label>
               <Form.Control
+                className="input-login-signup"
                 type="text"
                 name="username"
                 value={this.state.username}
@@ -63,6 +64,7 @@ export default class Login extends Component {
                 Password:{" "}
               </Form.Label>
               <Form.Control
+                className="input-login-signup"
                 type="password"
                 name="password"
                 value={this.state.password}
@@ -73,12 +75,14 @@ export default class Login extends Component {
             {this.state.message && (
               <Alert variant="danger">{this.state.message}</Alert>
             )}
-            <button
-              type="submit"
-              className="btn loginBtn generalBtn btn-primary"
-            >
-              Login
-            </button>
+            <a href="/explore-places" className="button-link">
+              <button
+                type="submit"
+                className="btn loginBtn generalBtn btn-primary"
+              >
+                Login
+              </button>
+            </a>
           </Form>
           <div className="social-login">
             <a href="http://localhost:5555/api/auth/google">

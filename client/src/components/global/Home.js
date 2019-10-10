@@ -90,7 +90,7 @@ class Home extends Component {
           <div className="TeaserTextContainer">
             <div className="TeaserText">
               <p>Get inspired.</p>
-              <p>Find places.</p>
+              <p>Explore places.</p>
               <p>Share discoveries.</p>
             </div>
           </div>

@@ -15,12 +15,21 @@
   display: block;
 }
 .social-login {
-  display: block;
-  /* flex-direction: column;
-  align-items: center; */
-  padding-left: 10% !important;
+  display: flex;
+  align-items: center !important;
+  flex-direction: column;
+  align-items: center;
 }
 .socialLoginBtn {
-  width: 20rem !important;
+  width: 15rem !important;
   text-align: center;
+}
+
+.input-login-signup {
+  height: 40px !important;
+}
+.button-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
