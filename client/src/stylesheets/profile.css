@@ -22,7 +22,7 @@
   padding-top: 2vh;
   width: 80%;
   height: auto;
-  max-height: 200px;
+  max-height: 00px;
 }
 
 .basiccounts {
@@ -103,6 +103,7 @@ h2 {
   align-items: flex-start;
   font-family: "Montserrat" !important;
   font-size: 28px !important;
+  padding: 2vh;
 }
 
 .btn-triplist a:focus {
