@@ -65,7 +65,7 @@ body {
 .setGem button {
   width: 40%;
   position: absolute;
-  bottom: 5%;
+  bottom: 15%;
   right: 30%;
   border-radius: 5%;
 }
@@ -81,10 +81,12 @@ body {
 }
 
 .gem-popup-img {
-  padding: 12px 0;
+  border-radius: 0.4rem;
+  padding: 1rem 0;
   margin: 0;
   width: 200px;
-  height: auto;
+  height: 200px;
+  object-fit: cover;
 }
 
 .gem-popup-title {

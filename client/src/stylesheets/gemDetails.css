@@ -19,8 +19,9 @@
 .gem-details-image {
   border-radius: 8px;
   width: 100%;
-  object-fit: contain;
+  max-height: 400px;
   height: auto;
+  object-fit: cover;
   padding-bottom: 1.5rem;
 }
 /* .gem-details {
@@ -35,6 +36,7 @@
 
 .gem-details-info {
   text-align: left;
+  padding-top: 1rem;
 }
 
 .details-titles {
@@ -79,4 +81,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.btn-previous, .btn-next{
+  background-color: #282727;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
 }

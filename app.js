@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const favicon = require("serve-favicon");
-const hbs = require("hbs");
+// const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
@@ -19,9 +19,8 @@ const passport = require("passport");
 require("./configs/passport");
 
 // IF YOU STILL DIDN'T, GO TO 'configs/passport.js' AND UN-COMMENT OUT THE WHOLE FILE
-
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost/gembox-database", {
+  .connect(process.env.MONGODB_URI ||"mongodb://localhost/gembox-database", {
     useNewUrlParser: true
   })
   .then((x) => {

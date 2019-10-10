@@ -14,19 +14,20 @@ export default class GemDetails extends Component {
   };
 
   componentDidMount = () => {
-    if(!this.state.currentGemData) this.getGemData()
-    if (this.state.currentGemData && !this.state.creatorData) this.getCreatorData();
+    if (!this.state.currentGemData) this.getGemData();
+    if (this.state.currentGemData && !this.state.creatorData)
+      this.getCreatorData();
     if (!this.state.experienceGemData) this.getExperienceGemData();
   };
 
-  getGemData=()=>{
-    const gemId=this.props.match.params.gemId
-    axios.get(`/api/gem/${gemId}`).then(resp=>{
+  getGemData = () => {
+    const gemId = this.props.match.params.gemId;
+    axios.get(`/api/gem/${gemId}`).then(resp => {
       this.setState({
         currentGemData: resp.data
-      })
-    })
-  }
+      });
+    });
+  };
 
   handleLike = () => {
     const likes = [...this.state.currentGemData.likes];
@@ -83,9 +84,7 @@ export default class GemDetails extends Component {
   };
 
   getCreatorData = () => {
-    console.log(
-      "get creator data called", this.state.currentGemData.creator
-    );
+    console.log("get creator data called", this.state.currentGemData.creator);
     const creatorId = this.state.currentGemData.creator;
     axios
       .get(`/api/user/${creatorId}`)
@@ -103,9 +102,11 @@ export default class GemDetails extends Component {
   };
 
   render() {
-    console.log("Creator data: ",this.state.creatorData)
-    if(!this.state.currentGemData)return <></>
-    const profileLink = (this.state.currentGemData)?"/profile/" + this.state.currentGemData.creator:"#";
+    console.log("Creator data: ", this.state.creatorData);
+    if (!this.state.currentGemData) return <></>;
+    const profileLink = this.state.currentGemData
+      ? "/profile/" + this.state.currentGemData.creator
+      : "#";
     const categoryStrings = {
       foodDrinks: "Food & Drinks",
       cultureArts: "Culture & Arts",
@@ -116,9 +117,6 @@ export default class GemDetails extends Component {
       others: "Others"
     };
     const currentGemData = this.state.currentGemData;
-    const gemIconUrl = currentGemData.discovery
-      ? "images/blue_gem.png"
-      : "images/black_gem.png";
     if (!currentGemData) return <></>;
     const liked =
       this.props.user && currentGemData.likes.includes(this.props.user._id)
@@ -136,9 +134,29 @@ export default class GemDetails extends Component {
         />
         <div className="flex-row-sides creatorDataOnGem">
           {this.state.creatorData && (
-            <p className="details-titles">Created by {this.state.creatorData.username}</p>
+            <p className="details-titles">
+              {currentGemData.discovery ? (
+                <>
+                  <img
+                    src="images/diamond-icon-gold.png"
+                    alt="gem"
+                    height="20px"
+                  />{" "}
+                  Discovered
+                </>
+              ) : (
+                <>
+                  <img
+                    src="images/diamond-icon-green.png"
+                    alt="gem"
+                    height="20px"
+                  />{" "}
+                  Experienced
+                </>
+              )}{" "}
+              by <a href={`/profile/${this.state.creatorData._id}`}>{this.state.creatorData.username}</a>
+            </p>
           )}
-          <img src={gemIconUrl} alt="gem" height="20px" />
           <div>
             {this.props.user ? (
               <span className={likeClass} onClick={() => this.handleLike()}>
@@ -160,11 +178,17 @@ export default class GemDetails extends Component {
         {this.state.experienceGemData &&
           this.state.experienceGemData.length > 1 && (
             <div className="flex-row-sides">
-              <button name="previous" onClick={this.getGemExperience}>
-                Previous
+              <button
+                className="btn-previous"
+                name="previous"
+                onClick={this.getGemExperience}>
+                <i class="fa fa-chevron-left"></i> Previous
               </button>
-              <button name="next" onClick={this.getGemExperience}>
-                Next
+              <button
+                className="btn-next"
+                name="next"
+                onClick={this.getGemExperience}>
+                Next <i class="fa fa-chevron-right"></i>
               </button>
             </div>
           )}
@@ -201,15 +225,14 @@ export default class GemDetails extends Component {
         {!this.props.closeDetails ? (
           <div>
             <Link className="back-Link" to="/explore-places">
-            <Button className="back-btn generalBtn">Back to Map</Button>
+              <Button className="back-btn generalBtn">Back to Map</Button>
             </Link>
           </div>
         ) : (
           <div>
             <Button
               className="back-btn generalBtn"
-              onClick={this.props.closeDetails}
-            >
+              onClick={this.props.closeDetails}>
               Back to Map
             </Button>
           </div>
