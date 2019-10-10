@@ -31,7 +31,7 @@ export default class UpdateProfile extends Component {
     travelInterests: this.props.user.travelInterests
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     const name = event.target.name;
     const value = event.target.value;
     const { username, profilePic, travelInterests } = this.state;
@@ -40,14 +40,15 @@ export default class UpdateProfile extends Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
+    console.log(event.target);
     const files = event.target.profilePic.files[0];
     const uploadData = new FormData();
     uploadData.append("profilePic", files);
     axios
       .post("/api/user/add-image", uploadData)
-      .then((response) => {
+      .then(response => {
         this.setState(
           {
             profilePic: response.data.secure_url
@@ -62,27 +63,27 @@ export default class UpdateProfile extends Component {
             profilePic: this.state.profilePic,
             travelInterests: this.state.travelInterests
           })
-          .then((response) => {
+          .then(response => {
             this.props.setUser(response.data);
             this.props.history.push(`/profile/${this.props.user._id}`);
           })
-          .catch((err) => {
+          .catch(err => {
             console.log(err);
           });
       })
-      .catch((err) => {
+      .catch(err => {
         axios
           .patch("/api/user/update", {
             username: this.state.username,
             profilePic: this.state.profilePic,
             travelInterests: this.state.travelInterests
           })
-          .then((response) => {
+          .then(response => {
             this.props.setUser(response.data);
             console.log("newUser set call component");
             this.props.history.push(`/profile/${this.props.user._id}`);
           })
-          .catch((err) => {
+          .catch(err => {
             console.log(err);
             this.props.history.push();
           });
@@ -97,80 +98,84 @@ export default class UpdateProfile extends Component {
     console.log(this.state.username);
     return (
       <>
+        {" "}
+        <div className="pageheader py-2">Update yor profile</div>
         <div className="wrapper-update">
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Group>
               <h2>Hello {this.props.user.username}</h2>
             </Form.Group>
-            <FormControl>
+            <Form.Group>
+              <Form.Label htmlFor="username" className="label-title">
+                Change your username:
+              </Form.Label>
+              <Form.Control
+                className="input-login-signup"
+                onChange={this.handleChange}
+                placeholder={this.props.user.username}
+                type="text"
+                name="username"
+                id="username"
+                value={this.state.username}
+              />
+            </Form.Group>
+            <Form.Group className="image-uploader">
+              <Form.Label htmlFor="profilePic">Update your Picture</Form.Label>
+
+              <Form.Control id="profilePic" type="file" name="profilePic" />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label htmlFor="travelInterests" className="label-title">
+                Tell us something about you:
+              </Form.Label>
+              <Form.Control
+                className="input-login-signup"
+                onChange={this.handleChange}
+                id="travelInterests"
+                name="travelInterests"
+                value={this.state.travelInterests}
+                placeholder={this.props.user.travelInterests}
+              />
+            </Form.Group>
+            <div className="update-btn-row1">
               <Form.Group>
-                <InputLabel htmlFor="username input-with-icon-adornment">
-                  Change your username:
-                </InputLabel>
-                <Input
-                  id="input-with-icon-adornment"
-                  onChange={this.handleChange}
-                  placeholder={this.props.user.username}
-                  // id="userName"
-                  name="username"
-                  value={this.state.username}
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <AccountCircle />
-                    </InputAdornment>
-                  }
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="profilePic">
-                  Update your Picture
-                </Form.Label>
-                <Form.Control id="profilePic" type="file" name="profilePic" />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="travelInterests"></Form.Label>
-                <TextField
-                  onChange={this.handleChange}
-                  id="travelInterests"
-                  name="travelInterests"
-                  label="Tell us about you"
-                  multiline
-                  rows="4"
-                  value={this.state.travelInterests}
-                  placeholder={this.props.user.travelInterests}
-                  variant="outlined"
-                />
-              </Form.Group>
-              <Form.Group>
-                <Button
-                  onClick={this.handleSubmit}
+                <button
+                  className="btn loginBtn generalBtn btn-primary"
                   type="submit"
-                  variant="contained"
-                  size="small"
-                  margin="theme.spacing(1)"
-                  onClick
-                  startIcon={<SaveIcon />}
                 >
                   Save
-                </Button>
+                </button>
               </Form.Group>
               <Form.Group>
-                <Button
+                <button
+                  className="btn loginBtn generalBtn btn-primary"
                   onClick={this.directProfile}
                   variant="contained"
                   type="button"
                 >
-                  Discard Changes
-                </Button>
+                  <i class="fas fa-trash-alt"></i>
+                </button>
               </Form.Group>
+            </div>
+            <div className="update-btn-row2">
               <Form.Group>
-                <Link to="/explore-places">
-                  <Button variant="contained" type="button">
-                    Explore places
-                  </Button>
-                </Link>
+                <a
+                  className="btn-primary btn-landingpage generalBtn-landing"
+                  href="/explore-places"
+                  role="button"
+                >
+                  Explore places
+                </a>
+
+                <a
+                  className="btn-primary btn-landingpage generalBtn-landing"
+                  href="/profile"
+                  role="button"
+                >
+                  See your profile
+                </a>
               </Form.Group>
-            </FormControl>
+            </div>
           </Form>
         </div>
       </>

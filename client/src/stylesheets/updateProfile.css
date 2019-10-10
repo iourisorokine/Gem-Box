@@ -1,0 +1,15 @@
+.image-uploader {
+  color: white !important;
+  font-size: 18px !important;
+  font-family: "Montserrat", sans-serif;
+}
+
+.update-btn-row1 {
+  display: flex !important;
+  flex-direction: row !important;
+  text-align: center !important;
+}
+
+.update-btn-row2 {
+  text-align: center !important;
+}
