@@ -125,19 +125,23 @@ export default class Profile extends Component {
       <Carousel className="slider">
         {this.state.popularGems.map(gem => (
           <Carousel.Item key={gem._id}>
-            <a href={`/gem/${gem._id}`}>
-              <img
-                className="d-block w-100 slider"
-                src={gem.imageUrl}
-                alt="gem"
-              />
-              <Carousel.Caption>
-                <h3 style={{ fontWeight: 900 }}>{gem.title}</h3>
-                <p style={{ fontWeight: 500 }}>{gem.locationName}</p>
+            <img
+              className="d-block w-100 slider"
+              src={gem.imageUrl}
+              alt="gem"
+            />
+            <Carousel.Caption>
+              <h3 style={{ fontWeight: 900 }}>{gem.title}</h3>
+              <p style={{ fontWeight: 500 }}>{gem.locationName}</p>
 
-                <div className="generalBtn btn btn-primary">Explore</div>
-              </Carousel.Caption>
-            </a>
+              <a href={`/gem/${gem._id}`}>
+                <div
+                  className="generalBtn btn btn-primary"
+                  onClick={() => console.log("test")}>
+                  Explore
+                </div>
+              </a>
+            </Carousel.Caption>
           </Carousel.Item>
         ))}
       </Carousel>
