@@ -203,8 +203,10 @@ body {
 }
 
 .wisdom {
-  background-color: #4badb6;
+  background-color: rgba(75, 173, 182, 0.8);
   padding: 20px;
+  color: white;
+  margin: 0 5% 50% 5%;
 }
 
 .quote {

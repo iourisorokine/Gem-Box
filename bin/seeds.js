@@ -9,23 +9,23 @@ const Gem = require("../models/Gem");
 const bcryptSalt = 10;
 mongoose
   .connect("mongodb://localhost/gembox-database", { useNewUrlParser: true })
-  .then((x) => {
+  .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
-  .catch((err) => {
+  .catch(err => {
     console.error("Error connecting to mongo", err);
   });
 let users = [
   {
     username: "alice",
-    travelInterests: "Biking"
+    travelInterests: "Biking",
     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt))
   },
   {
     username: "bob",
-    travelInterests: "Mountaining"
+    travelInterests: "Mountaining",
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt))
   }
 ];
@@ -205,31 +205,26 @@ User.deleteMany()
   .catch(err => {
     mongoose.disconnect();
     throw err;
-  }); */
-/*
+  });
+
 Wisdom.deleteMany()
   .then(() => {
     return Wisdom.create(wisdoms);
   })
-  .then((wisdoms) => {
+  .then(wisdoms => {
     console.log(`${wisdoms.length} wisdoms created with the following id:`);
-    console.log(wisdoms.map((u) => u._id));
+    console.log(wisdoms.map(u => u._id));
   })
   .then(() => {
     // Close properly the connection to Mongoose
     mongoose.disconnect();
   })
-  .catch((err) => {
+  .catch(err => {
     mongoose.disconnect();
     throw err;
   });
-<<<<<<< HEAD
-  */
-/* Gem.deleteMany()
-=======
-
+/*
 Gem.deleteMany()
->>>>>>> Loggout-revise
   .then(() => {
     return Gem.create(gems);
   })
@@ -244,5 +239,4 @@ Gem.deleteMany()
   .catch((err) => {
     mongoose.disconnect();
     throw err;
-  });
- */
+  });  */
