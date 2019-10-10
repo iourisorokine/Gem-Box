@@ -85,7 +85,7 @@ export class SetGem extends Component {
             })
           }
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          mapStyle="mapbox://styles/iouri/ck1kkzpus4iir1dmi0h34dz0s"
+          mapStyle="mapbox://styles/iouri/ck1kx1czi1r971cpj0s2ngu2q"
           captureDoubleClick={false}
           doubleClickZoom={false}
           onDblClick={event => {
@@ -161,7 +161,7 @@ export class SetGem extends Component {
           </div>
           <div className="setGem">
             <button className="btn btn-primary generalBtn" onClick={this.onSubmit}>
-              <strong>Create Gem</strong>
+              Create Gem
             </button>
           </div>
         </ReactMapGL>

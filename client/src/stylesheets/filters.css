@@ -11,6 +11,7 @@
   max-width: 700px;
   height: 100vh;
   border-radius: 1rem;
+  z-index: 150;
 }
 
 .filters-block-inside{

@@ -144,7 +144,7 @@ class MapGems extends Component {
               })
             }
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            mapStyle="mapbox://styles/iouri/ck1kkzpus4iir1dmi0h34dz0s"
+            mapStyle="mapbox://styles/iouri/ck1kx1czi1r971cpj0s2ngu2q"
             captureDoubleClick={false}
             doubleClickZoom={false}>
             <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
@@ -153,13 +153,8 @@ class MapGems extends Component {
               />
             </div>
             <div>
-              <Button
-                style={{
-                  position: "absolute",
-                  right: "2vw",
-                  top: "2vh",
-                  backgroundColor: "#09d3ac"
-                }}
+              <Button 
+                className="btn btn-primary generalBtn filters-btn"
                 onClick={this.props.toggleFilters}>
                 <i className="fas fa-filter"></i>
               </Button>

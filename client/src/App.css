@@ -330,7 +330,8 @@ body {
 
 .geocoder-container {
   position: absolute;
-  width: 50%;
+  width: 70%;
+  margin: auto;
   left: 2rem;
   top: 2vh;
   z-index: 100;
@@ -346,13 +347,21 @@ body {
 }
 
 .react-geocoder-item {
-  background-color: #4badb6;
-  color: white;
+  padding: 0 0.5rem;
+  background-color: white ;
+  color: #4badb6;
   font-size: 1.5rem;
-  z-index: 100;
 }
 
 .react-geocoder-item:hover {
-  background-color: white;
-  color: #4badb6;
+  background-color: #4badb6;
+  color: white;
+}
+
+.filters-btn{
+  position: absolute;
+  right: 2vw;
+  top: 2vh;
+  width: 2.6rem;
+  height: 2.6rem;
 }

@@ -31,7 +31,7 @@ export default class GemSuccess extends React.Component {
   };
 
   render() {
-    let shareUrl = `https://localhost:3000/gem/${this.props.gemId}`;
+    let shareUrl = `https://gem-box.herokuapp.com/gem/${this.props.gemId}`;
     console.log(shareUrl);
     console.log({ ...this.props });
     return (

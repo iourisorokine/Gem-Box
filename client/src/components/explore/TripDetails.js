@@ -139,7 +139,7 @@ class TripDetails extends Component {
             })
           }
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          mapStyle="mapbox://styles/iouri/ck1kkzpus4iir1dmi0h34dz0s"
+          mapStyle="mapbox://styles/iouri/ck1kx1czi1r971cpj0s2ngu2q"
           /* captureDoubleClick={false}
           doubleClickZoom={false}
  */
