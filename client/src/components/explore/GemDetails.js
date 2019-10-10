@@ -17,7 +17,8 @@ export default class GemDetails extends Component {
     if (!this.state.currentGemData) this.getGemData();
     if (this.state.currentGemData && !this.state.creatorData)
       this.getCreatorData();
-    if (this.state.currentGemData&&!this.state.experienceGemData) this.getExperienceGemData();
+    if (this.state.currentGemData && !this.state.experienceGemData)
+      this.getExperienceGemData();
   };
 
   getGemData = () => {
@@ -138,7 +139,7 @@ export default class GemDetails extends Component {
               {currentGemData.discovery ? (
                 <>
                   <img
-                  className="gem-discovery-icon"
+                    className="gem-discovery-icon"
                     src="images/diamond-icon-gold.png"
                     alt="gem"
                     height="20px"
@@ -148,7 +149,7 @@ export default class GemDetails extends Component {
               ) : (
                 <>
                   <img
-                  className="gem-discovery-icon"
+                    className="gem-discovery-icon"
                     src="images/diamond-icon-green.png"
                     alt="gem"
                     height="20px"
@@ -156,7 +157,10 @@ export default class GemDetails extends Component {
                   Experienced
                 </>
               )}{" "}
-              by <a href={`/profile/${this.state.creatorData._id}`}>{this.state.creatorData.username}</a>
+              by{" "}
+              <a href={`/profile/${this.state.creatorData._id}`}>
+                {this.state.creatorData.username}
+              </a>
             </p>
           )}
           <div>
@@ -164,11 +168,13 @@ export default class GemDetails extends Component {
               <span className={likeClass} onClick={() => this.handleLike()}>
                 {liked ? (
                   <>
-                    <i class="fas fa-heart"></i> {currentGemData.likes.length}
+                    <i className="fas fa-heart"></i>{" "}
+                    {currentGemData.likes.length}
                   </>
                 ) : (
                   <>
-                    <i class="far fa-heart"></i> {currentGemData.likes.length}
+                    <i className="far fa-heart"></i>{" "}
+                    {currentGemData.likes.length}
                   </>
                 )}
               </span>
@@ -183,13 +189,15 @@ export default class GemDetails extends Component {
               <button
                 className="btn-previous"
                 name="previous"
-                onClick={this.getGemExperience}>
+                onClick={this.getGemExperience}
+              >
                 <i class="fa fa-chevron-left"></i> Previous
               </button>
               <button
                 className="btn-next"
                 name="next"
-                onClick={this.getGemExperience}>
+                onClick={this.getGemExperience}
+              >
                 Next <i class="fa fa-chevron-right"></i>
               </button>
             </div>
@@ -234,7 +242,8 @@ export default class GemDetails extends Component {
           <div>
             <Button
               className="back-btn generalBtn"
-              onClick={this.props.closeDetails}>
+              onClick={this.props.closeDetails}
+            >
               Back to Map
             </Button>
           </div>
