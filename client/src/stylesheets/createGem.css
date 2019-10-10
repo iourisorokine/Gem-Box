@@ -1,30 +1,125 @@
-.success-container{
+.success-container {
   padding: 10%;
 }
 
-.success-flex-share{
+.success-flex-share {
   border: solid #4badb6 2px;
   border-radius: 0.3rem;
   margin-top: 3rem;
   padding: 5% 5%;
 }
 
-.success-flex-share p{
+.success-flex-share p {
   margin: 0;
   padding: 0;
 }
 
-.success-flex-container{
-padding-top: 2rem;
-display: flex;
-justify-content: space-around;
+.success-flex-container {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-around;
 }
 
-.success-btn-container{
+.success-btn-container {
   padding-top: 1.5rem;
 }
 
-.success-btn-container button{
+.success-btn-container button {
   width: 100%;
   height: 3rem;
+}
+
+.pageheader {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0 2vh;
+}
+
+.item-new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.item-existing {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.item-new .generalBtn,
+.newdiscovery,
+.btnexperience,
+.btntrip {
+  width: 300px;
+}
+
+.item-existing .generalBtn {
+  width: 100px;
+}
+
+.item-existing img,
+.item-new img,
+.newdiscovery img {
+  height: 40px;
+  padding-left: 20px;
+}
+
+.btn-select {
+  width: 300px;
+  height: 100px;
+}
+
+.triplist {
+  padding-top: 3vh;
+}
+
+.dangerMessage {
+  font-size: 12px;
+}
+.dangerMessage p {
+  padding-left: 1vh;
+  color: red;
+  font-weight: 600;
+}
+
+.dangerMessage .generalBtn {
+  width: 80px;
+  height: 40px;
+}
+
+.trip-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3 {
+  font-size: 0.6rem;
+}
+
+.trip-flex button:nth-child(1) {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.gemlist {
+  padding-bottom: 10vh;
+}
+
+.savetrip {
+  width: 200px;
+}
+
+.successMessage p {
+  text-align: center;
+  color: #4badb6;
+  font-weight: 600;
+}
+
+.action-status {
+  font-size: 12px;
 }

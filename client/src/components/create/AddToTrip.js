@@ -5,7 +5,8 @@ import { requestTrips } from "../../services/api";
 export default class AddToTrip extends Component {
   state = {
     formStatus: false,
-    trips: []
+    trips: [],
+    successMessage: ""
   };
 
   handleChanges = (event) => {
@@ -20,7 +21,12 @@ export default class AddToTrip extends Component {
     this.props.createTrip();
     requestTrips(this.props.creatorid)
       .then((trips) => {
-        this.setState({ trips });
+        this.setState({ trips, successMessage: "Your Trip has been created" });
+        setTimeout(() => {
+          this.setState({
+            successMessage: ""
+          });
+        }, 3000);
       })
       .catch((err) => {
         console.log(err);
@@ -31,7 +37,7 @@ export default class AddToTrip extends Component {
     return this.state.trips.map((element) => {
       return (
         <Button
-          className="btn-options"
+          className="btn btn-primary generalBtn btn-select"
           onClick={() =>
             this.props.selectTrip(
               element._id,
@@ -65,27 +71,50 @@ export default class AddToTrip extends Component {
   render() {
     return (
       <div>
-        <h1>Which Trip you want to add the Gem?</h1>
-        <Button onClick={this.toogleForm}>Create a new Trip</Button>
-        {this.state.formStatus ? (
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group>
-              <Form.Label htmlFor="name">Trip Name: </Form.Label>
-              <Form.Control
-                required
-                onChange={this.handleChanges}
-                type="text"
-                name="name"
-                id="name"
-                value={this.props.title}
-              />
-            </Form.Group>
-            <Button type="submit">Create Trip</Button>
-          </Form>
-        ) : (
-          <div></div>
-        )}
-        <div className="triplist">{this.showTrips()}</div>
+        <div className="pageheader">
+          <h4> To which Trip you want to add the Gem?</h4>
+        </div>
+        <div className="padding-wrapper trip-flex">
+          <Button
+            className="btn btn-primary generalBtn btntrip"
+            onClick={this.toogleForm}
+          >
+            Create a new Trip >
+          </Button>
+          {this.state.formStatus ? (
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group>
+                <Form.Label htmlFor="name">Trip Name </Form.Label>
+                <Form.Control
+                  required
+                  onChange={this.handleChanges}
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={this.props.title}
+                />
+              </Form.Group>
+              {this.state.successMessage && (
+                <div className="successMessage">
+                  <p>{this.state.successMessage}</p>
+                </div>
+              )}
+              <Button className="btn btn-primary generalBtn" type="submit">
+                Create Trip
+              </Button>
+            </Form>
+          ) : (
+            <div></div>
+          )}
+          {this.state.trips.length > 0 ? (
+            <div className="triplist">
+              <h3>Choose an existing Trip</h3>
+              {this.showTrips()}
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     );
   }

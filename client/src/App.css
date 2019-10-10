@@ -6,7 +6,7 @@
 }
 body {
   margin: 0;
-  background: rgba(40, 39, 39, 0.8);
+  /* background: rgba(40, 39, 39, 0.8); */
 }
 .App {
   text-align: center;
@@ -160,13 +160,6 @@ body {
   align-content: center;
   align-items: center;
 } */
-
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-content: flex-start;
-  align-items: center;
-}
 
 .headingSetGem {
   width: 100%;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "../../stylesheets/createGem.css";
 
 export default class SuggestGem extends Component {
   state = {
@@ -51,35 +52,53 @@ export default class SuggestGem extends Component {
     if (!this.state.gemsData) this.getGemsData();
   };
   render() {
-    console.log(this.state.gemsData);
+    console.log("How many gems", this.state.gemsData);
     return (
       <div>
-        <h4 className="headingSetGem">May be you mean one of these Gems?</h4>
-        {this.state.suggestGemsData != null &&
-          this.state.suggestGemsData.map((val) => (
-            <div className="item" key={val._id}>
-              <div>
-                <p>{val.title}</p>
-                <p>{val.locationName}</p>
-              </div>
-              <div>
-                <button onClick={() => this.handleRouteExperience(val)}>
-                  That's it
-                </button>
-              </div>
-            </div>
-          ))}
+        <div className="pageheader">
+          <h4>
+            {this.state.gemsData === undefined
+              ? "May be you mean one of these Gems?"
+              : "Wow it's a new Discovery!"}
+          </h4>
+        </div>
+        <div className="padding-wrapper">
+          {this.state.suggestGemsData != null &&
+            this.state.suggestGemsData.map((val) => (
+              <div className="item-existing" key={val._id}>
+                <div>
+                  <p>
+                    <strong>{val.title}</strong>
+                  </p>
+                  <p>{val.locationName}</p>
+                  <hr />
+                </div>
 
-        <div className="item">
-          <div>
-            <p>None it's a new Discovery!</p>
-            <p>Take current location</p>
-          </div>
-          <div>
-            <button onClick={this.handleRouteDiscovery}>That's it</button>
+                <div>
+                  <button
+                    class="btn btn-primary generalBtn"
+                    onClick={() => this.handleRouteExperience(val)}
+                  >
+                    <span>Thats it ></span>
+                  </button>
+                </div>
+              </div>
+            ))}
+
+          <div className="item-new">
+            <div>
+              <button
+                class="btn btn-primary generalBtn"
+                onClick={this.handleRouteDiscovery}
+              >
+                <span>
+                  Create a new Discovery!
+                  <img src="https://res.cloudinary.com/dy9sawxrm/image/upload/v1570697079/gembox/icons/diamond-icon-gold_a6lkxq.png" />
+                </span>
+              </button>
+            </div>
           </div>
         </div>
-        <button>Add Details &#129130;</button>
       </div>
     );
   }

@@ -163,37 +163,31 @@ class CreateGem extends React.Component {
         );
       case "SuggestGem":
         return (
-          <div className="padding-wrapper">
-            <SuggestGem
-              locationName={this.state.gem.locationName}
-              setStage={this.setStage}
-              fetchGemInfo={this.fetchGemInfo}
-            />{" "}
-          </div>
+          <SuggestGem
+            locationName={this.state.gem.locationName}
+            setStage={this.setStage}
+            fetchGemInfo={this.fetchGemInfo}
+          />
         );
       case "AddExperience":
         return (
-          <div className="padding-wrapper">
-            <AddExperience
-              locationName={this.state.gem.locationName}
-              fetchGemInfo={this.fetchGemInfo}
-              setStage={this.setStage}
-              checkStatus={this.checkStatus}
-              createGem={this.createGem}
-            />
-          </div>
+          <AddExperience
+            locationName={this.state.gem.locationName}
+            fetchGemInfo={this.fetchGemInfo}
+            setStage={this.setStage}
+            checkStatus={this.checkStatus}
+            createGem={this.createGem}
+          />
         );
       case "AddDiscovery":
         return (
-          <div className="padding-wrapper">
-            <AddDiscovery
-              locationName={this.state.gem.locationName}
-              fetchGemInfo={this.fetchGemInfo}
-              setStage={this.setStage}
-              checkStatus={this.checkStatus}
-              createGem={this.createGem}
-            />
-          </div>
+          <AddDiscovery
+            locationName={this.state.gem.locationName}
+            fetchGemInfo={this.fetchGemInfo}
+            setStage={this.setStage}
+            checkStatus={this.checkStatus}
+            createGem={this.createGem}
+          />
         );
       case "GemSuccess":
         return (
@@ -207,28 +201,24 @@ class CreateGem extends React.Component {
         );
       case "AddToTrip":
         return (
-          <div className="padding-wrapper">
-            <AddToTrip
-              fetchTripInfos={this.fetchTripInfo}
-              setStage={this.setStage}
-              createTrip={this.createTrip}
-              creatorid={this.props.user._id}
-              selectTrip={this.selectTrip}
-            />
-          </div>
+          <AddToTrip
+            fetchTripInfos={this.fetchTripInfo}
+            setStage={this.setStage}
+            createTrip={this.createTrip}
+            creatorid={this.props.user._id}
+            selectTrip={this.selectTrip}
+          />
         );
       // case "GemList":
       //   return <GemList />;
       case "AddGemToTrip":
         return (
-          <div className="padding-wrapper">
-            <AddGemToTrip
-              TripInfos={this.state.trip}
-              updateGemStatus={this.updateGemStatus}
-              saveGemsInTrip={this.saveGemsInTrip}
-              tripName={this.state.trip.name}
-            />
-          </div>
+          <AddGemToTrip
+            TripInfos={this.state.trip}
+            updateGemStatus={this.updateGemStatus}
+            saveGemsInTrip={this.saveGemsInTrip}
+            tripName={this.state.trip.name}
+          />
         );
     }
   };

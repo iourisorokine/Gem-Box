@@ -23,7 +23,7 @@
   width: 80%;
   height: auto;
   max-height: 200px;
- }
+}
 
 .basiccounts {
   display: flex;
@@ -103,6 +103,7 @@ h2 {
   align-items: flex-start;
   font-family: "Montserrat" !important;
   font-size: 28px !important;
+  padding: 2vh;
 }
 
 .btn-triplist a:focus {

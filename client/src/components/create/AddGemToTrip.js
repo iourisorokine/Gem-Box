@@ -3,12 +3,26 @@ import { Form, Button, Alert } from "react-bootstrap";
 
 export default class AddGemToTrip extends Component {
   state = {
-    availableGems: []
+    availableGems: [],
+    message: "",
+    showTripButton: false
+  };
+
+  saveTrip = () => {
+    this.setState({
+      message: "Your changes have successfully been saved",
+      showTripButton: true
+    });
+    this.props.saveGemsInTrip();
+    setTimeout(() => {
+      this.setState({
+        message: ""
+      });
+    }, 3000);
   };
 
   showGems = () => {
     let GemsInTripIncluded = [];
-
     if (this.props.TripInfos.existingGems !== undefined) {
       GemsInTripIncluded = this.props.TripInfos.existingGems;
     }
@@ -17,25 +31,31 @@ export default class AddGemToTrip extends Component {
       if (GemsInTripIncluded.includes(element._id)) {
         return (
           <div>
-            <Button
-              className="btn-options gem-active"
+            <button
+              className="btn btn-primary generalBtn btn-select"
               onClick={() => this.props.updateGemStatus(element._id)}
             >
-              {element.title} Is already in Trip
-            </Button>
+              <p> {element.title}</p>
+              <p className="action-status">
+                Click to <strong>remove</strong>
+              </p>
+            </button>
           </div>
         );
       } else {
         return (
           <div>
-            <Button
-              className="btn-options gem-inactive"
+            <button
+              class="btn btn-primary generalBtn-disabled btn-select"
               onClick={() => {
                 this.props.updateGemStatus(element._id);
               }}
             >
-              {element.title} not included.
-            </Button>
+              <p>{element.title}</p>
+              <p className="action-status">
+                Click to <strong>add</strong>
+              </p>
+            </button>
           </div>
         );
       }
@@ -50,15 +70,35 @@ export default class AddGemToTrip extends Component {
   };
 
   render() {
-    console.log(
-      "All gem Information stored",
-      this.props.TripInfos.existingGems
-    );
+    console.log("All TRIP INFOS HERE", this.props.TripInfos);
     return (
       <div>
-        <h1>Which Gems do you want to add to {this.props.tripName}</h1>
-        <div className="gemlist">{this.showGems()}</div>
-        <Button onClick={this.props.saveGemsInTrip}>Save Gem to Trip</Button>
+        <div className="pageheader">
+          <h4>Which Gems do you want to add to {this.props.tripName}</h4>
+        </div>
+        <div className="padding-wrapper trip-flex">
+          <div className="gemlist">{this.showGems()}</div>
+          {this.state.message && (
+            <div className="successMessage">
+              <p>{this.state.message}</p>
+            </div>
+          )}
+          <button
+            class="btn btn-primary generalBtn savetrip"
+            onClick={this.saveTrip}
+          >
+            Save Gem to Trip
+          </button>
+          {this.state.showTripButton ? (
+            <a href={`/trip/${this.props.TripInfos.selectedTrip}`}>
+              <button class="btn btn-primary generalBtn savetrip">
+                View Trip
+              </button>
+            </a>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     );
   }
