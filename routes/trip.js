@@ -22,6 +22,7 @@ router.get("/tripgems/:tripid", (req, res) => {
   const tripid = req.params.tripid;
   console.log("Received Param on Server with", tripid);
   Trip.findById(tripid)
+    .populate("creator")
     .populate("gemsVisited")
     .then(trips => {
       res.json(trips);

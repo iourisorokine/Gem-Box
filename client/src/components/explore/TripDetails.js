@@ -152,6 +152,12 @@ class TripDetails extends Component {
             />
           </div>
         </ReactMapGL>
+        <h1>this.state.trip.title</h1>
+        <p>
+          <a href={`/profile/${this.state.trip.creator._id}`}>
+            this.state.trip.creator.username
+          </a>
+        </p>
       </>
     );
   }
