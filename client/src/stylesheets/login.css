@@ -1,6 +1,5 @@
 .login-form {
   font-family: "Montserrat", sans-serif !important;
-  color: white !important;
   padding: 10%;
   display: flex;
   flex-direction: column;
@@ -8,8 +7,8 @@
 
 .label-title {
   font-family: "Montserrat", sans-serif !important;
-  color: white !important;
 }
+
 .loginBtn {
   margin: auto !important;
   display: block;
