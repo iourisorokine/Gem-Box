@@ -85,7 +85,7 @@ export class SetGem extends Component {
             })
           }
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          mapStyle="mapbox://styles/mapbox/streets-v10"
+          mapStyle="mapbox://styles/iouri/ck1kkzpus4iir1dmi0h34dz0s"
           captureDoubleClick={false}
           doubleClickZoom={false}
           onDblClick={event => {
@@ -118,7 +118,9 @@ export class SetGem extends Component {
               })
             }
           >
-            <div className="gem-style"></div>
+            <div className="gem-marker gem-marker-set">
+              <img src="/images/diamond-icon-green.png" alt="gem"/>
+            </div>
           </Marker>
           {/*        {this.state.marker.markerClicked ? (
             <Popup
@@ -158,8 +160,8 @@ export class SetGem extends Component {
             />
           </div>
           <div className="setGem">
-            <button onClick={this.onSubmit}>
-              <strong>Create Gem &#129130;</strong>
+            <button className="btn btn-primary" onClick={this.onSubmit}>
+              <strong>Create Gem</strong>
             </button>
           </div>
         </ReactMapGL>
