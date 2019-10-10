@@ -16,7 +16,7 @@ class Menu extends React.Component {
     console.log("Menu props: ", this.props);
     return (
       <Navbar className="bg-light" in="setOpen" variant="light">
-        <Navbar.Brand href="/home">GemBox</Navbar.Brand>
+        <Navbar.Brand href="/">GemBox</Navbar.Brand>
         {/* <Nav className="mr-auto"> */}
         <NavDropdown title="Menu" id="collasible-nav-dropdown">
           <NavDropdown.Item href="/">Home</NavDropdown.Item>
