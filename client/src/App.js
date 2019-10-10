@@ -111,7 +111,13 @@ class App extends React.Component {
                 )}
               />
               <Route exact path="/trip" component={TripDetails} />
-              <Route path="/trip/:tripId" component={TripDetails} />
+              <Route
+                exact
+                path="/trip/:tripId"
+                render={props => (
+                  <TripDetails {...props} user={this.state.user} />
+                )}
+              />
               <Route
                 exact
                 path="/gem/:gemId"

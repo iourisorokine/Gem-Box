@@ -5,7 +5,7 @@ const TripSchema = new Schema(
   {
     name: String,
     creator: { type: Schema.Types.ObjectId, ref: "User" },
-    gemsVisited: Array,
+    gemsVisited: [{ type: Schema.Types.ObjectId, ref: "Gem" }],
 
     startDate: {
       type: Date

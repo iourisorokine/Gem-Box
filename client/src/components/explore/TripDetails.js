@@ -1,109 +1,158 @@
-import React, { Component } from "react";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import axios from "axios";
-import ReactMapGL from "react-map-gl";
-import PolyLineOverlay from "./PolyLineOverlay";
-import GemForTrip from "./GemForTrip";
+import React, { Component } from "react";
+import ReactMapGL, {
+  Marker,
+  // Popup,
+  GeolocateControl,
+  NavigationControl
+} from "react-map-gl";
 
 class TripDetails extends Component {
   state = {
     viewport: {
-      width: "500px",
-      height: "500px",
-      latitude: 53.520008,
+      width: "80%",
+      height: "50vh",
+      latitude: 52.520008,
       longitude: 13.404954,
-      zoom: 3
+      zoom: 4,
+      bearing: 0,
+      pitch: 0
     },
-    gemsData: null,
-    tripStages: [],
-    points: []
+    coordinates: [],
+    trip_details: {}
   };
 
   componentDidMount() {
-    if (!this.state.gemsData) this.getGemsData();
+    let coordinates = [];
+    let trip_details = {};
+    axios
+      .get(`/api/trip/tripgems/${this.props.match.params.tripId}`)
+      .then(async trip => {
+        trip_details = { ...trip.data };
+        console.log(trip.data.gemsVisited);
+        // const promises = trip.data.gemsVisited.map((gem, index) => {
+        // trip.data.gemsVisited.map((gem, index) => {
+        for (const [index, gem] of trip.data.gemsVisited.entries()) {
+          if (index !== trip.data.gemsVisited.length - 1) {
+            const res = await axios.get(
+              `https://api.mapbox.com/directions/v5/mapbox/cycling/${gem.longitude},${gem.latitude};${trip.data.gemsVisited[index + 1].longitude},${trip.data.gemsVisited[index + 1].latitude}?geometries=geojson&access_token=` +
+                process.env.REACT_APP_MAPBOX_TOKEN
+            );
+            console.log(res.data.routes[0].geometry.coordinates);
+            coordinates.push(...res.data.routes[0].geometry.coordinates);
+            //  console.log("coordinates", coordinates);
+          }
+          console.log(index);
+        }
+        // return Promise.all(promises);
+        // })
+        // .then(x => {
+        //   console.log("done", x);
+        if (coordinates.length > 0) {
+          console.log(coordinates[Math.floor(coordinates.length / 2)][0]);
+          console.log(coordinates[Math.floor(coordinates.length / 2)][1]);
+
+          this.setState({
+            coordinates: coordinates,
+            viewport: {
+              ...this.state.viewport,
+              latitude: coordinates[Math.floor(coordinates.length / 2)][1],
+              longitude: coordinates[Math.floor(coordinates.length / 2)][0]
+            },
+
+            trip_details: trip_details
+          });
+
+          this.drawTrip(coordinates);
+        }
+      });
   }
 
-  getGemsData = () => {
-    axios.get("/api/gem").then(gems => {
-      this.setState({
-        gemsData: gems.data
+  drawTrip = coordinates => {
+    const map = this.reactMap.getMap();
+    map.on("load", () => {
+      //add the GeoJSON layer here
+      map.addLayer({
+        id: "route",
+        type: "line",
+        source: {
+          type: "geojson",
+          data: {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "LineString",
+              coordinates: coordinates
+            }
+          }
+        },
+        layout: {
+          "line-join": "round",
+          "line-cap": "round"
+        },
+        paint: {
+          "line-color": "#1B4F72",
+          "line-width": 4
+        }
       });
     });
   };
 
-  addTripStage = coord => {
-    console.log("clicked")
-    const currentStages = this.state.tripStages;
-    currentStages.push(coord);
-    this.setState({
-      tripStages: currentStages
-    });
-  };
-
-  getSimpleRoute=()=>{
-    this.setState({
-      points: this.state.tripStages
-    });
-  }
-
-  // getRoute = () => {
-  //   const mapboxApiAccessToken = process.env.REACT_APP_MAPBOX_TOKEN;
-  //   const coordinates = this.state.tripStages.join(";");
-  //   // https://api.mapbox.com/directions/v5/mapbox/cycling/-122.42,37.78;-77.03,38.91?steps=true&access_token=pk.eyJ1IjoiaW91cmkiLCJhIjoiY2swaTRnZGxnMDhyYjNmbXp1cTh4aGY0YSJ9.MmEIAiv3ZCEZzc_VLtZnCg
-  //   let url= `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinates}?steps=true&access_token=pk.eyJ1IjoiaW91cmkiLCJhIjoiY2swaTRnZGxnMDhyYjNmbXp1cTh4aGY0YSJ9.MmEIAiv3ZCEZzc_VLtZnCg`
-  //   let url3 = `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinates}.json?access_token=${mapboxApiAccessToken}`;
-  //   axios
-  //     .get(url)
-  //     .then(response => {
-  //       console.log("Response data: ", response.data);
-  //       const points = response.data.routes[0].legs[0].steps.reduce(
-  //         (acc, val) => {
-  //           console.log("Acc: ", acc)
-  //           const newPoint= val.intersections[0].location
-  //           console.log("New Point: ",newPoint)
-  //           return acc.concat([newPoint])
-  //         },
-  //         []);
-  //       console.log("Points: ",points);
-  //       this.setState({
-  //         points
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
-
-  render() {
-    let gemsToRender = [];
-    console.log(this.state.tripStages)
-    if (this.state.gemsData) {
-      gemsToRender = this.state.gemsData.map(gem => {
+  gemsDisplay = () => {
+    if (Object.keys(this.state.trip_details).length !== 0) {
+      return this.state.trip_details.gemsVisited.map(gem => {
         return (
-            <GemForTrip key={gem._id} data={gem} addToTrip={this.addTripStage}/>
+          <Marker
+            latitude={gem.latitude}
+            longitude={gem.longitude}
+            offsetTop={-30}
+            offsetLeft={-15}
+            captureClick={false}
+            draggable={false}
+          >
+            <div className="gem-marker">
+              <img src="/images/diamond-icon-green.png" alt="Gem" />
+            </div>
+          </Marker>
         );
       });
     }
-    console.log(this.state.tripStages);
+  };
+
+  render() {
+    //  console.log(this.state.trip);
+    console.log(this.state.coordinates);
+    console.log(this.state);
     return (
-      <div>
-        <h2>Route details</h2>
-        <button onClick={this.getSimpleRoute}>Get route</button>
+      <>
+        <div>
+          <h2>Route details</h2>
+        </div>
         <ReactMapGL
           {...this.state.viewport}
+          ref={reactMap => (this.reactMap = reactMap)}
           onViewportChange={viewport =>
             this.setState({
               viewport: viewport
             })
           }
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          mapStyle="mapbox://styles/mapbox/streets-v10"
-          captureDoubleClick={false}
-          doubleClickZoom={false}>
-          {this.state.points && <PolyLineOverlay points={this.state.points} />}
-          {gemsToRender}
+          mapStyle="mapbox://styles/iouri/ck1kkzpus4iir1dmi0h34dz0s"
+          /* captureDoubleClick={false}
+          doubleClickZoom={false}
+ */
+        >
+          {this.gemsDisplay()}
 
+          <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
+            <NavigationControl
+              onViewportChange={viewport => this.setState({ viewport })}
+            />
+          </div>
         </ReactMapGL>
-      </div>
+      </>
     );
   }
 }
