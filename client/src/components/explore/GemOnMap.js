@@ -16,7 +16,7 @@ const GemOnMap = props => {
           onClick={() => {
             props.openPopup(props.data);
           }}>
-          <img src="/images/diamond-icon-black.png" alt="Gem" />
+          <img src="/images/diamond-icon-green.png" alt="Gem" />
         </div>
       </Marker>
     </div>

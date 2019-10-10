@@ -17,7 +17,7 @@ export default class GemDetails extends Component {
     if (!this.state.currentGemData) this.getGemData();
     if (this.state.currentGemData && !this.state.creatorData)
       this.getCreatorData();
-    if (!this.state.experienceGemData) this.getExperienceGemData();
+    if (this.state.currentGemData&&!this.state.experienceGemData) this.getExperienceGemData();
   };
 
   getGemData = () => {

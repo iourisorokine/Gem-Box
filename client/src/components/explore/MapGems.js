@@ -143,7 +143,7 @@ class MapGems extends Component {
               })
             }
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            mapStyle="mapbox://styles/mapbox/streets-v10"
+            mapStyle="mapbox://styles/iouri/ck1kkzpus4iir1dmi0h34dz0s"
             captureDoubleClick={false}
             doubleClickZoom={false}>
             <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
