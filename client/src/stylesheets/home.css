@@ -48,6 +48,7 @@
   background-color: none !important;
 }
 .generalBtn-landing {
+  margin-top: 1rem;
   background-image: none !important;
   background-color: #4badb6 !important;
   border-color: #4bafb8 !important;
@@ -65,9 +66,7 @@
   font-family: "Montserrat", sans-serif;
   text-decoration: underline !important;
 }
-.btn-signup-login {
-  padding-top: 7%;
-}
+
 /* .btn-landingpage {
   padding-top: 7%;
 } */
