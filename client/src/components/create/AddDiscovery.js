@@ -114,7 +114,7 @@ export default class AddDiscovery extends React.Component {
                 as="select"
               >
                 <option value="">Choose a category</option>
-                <option value="cultureArts">Culter & Arts</option>
+                <option value="cultureArts">Culture & Arts</option>
                 <option value="foodDrinks">Food & Drinks</option>
                 <option value="hikes">Hikes</option>
                 <option value="nature">Nature</option>
