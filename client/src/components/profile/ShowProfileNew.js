@@ -221,9 +221,8 @@ export default class Profile extends Component {
             </div>
           </div>
           <div className="headerinfo">
-            <div>
+            <div className="profilepic">
               <img
-                className="profilepic"
                 src={
                   this.state.creatorInfos !== null &&
                   this.state.creatorInfos.profilePic
