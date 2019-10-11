@@ -32,9 +32,11 @@ class TripDetails extends Component {
     let trip_details = {};
     axios
       .get(`/api/trip/tripgems/${this.props.match.params.tripId}`)
-      .then(async (trip) => {
+      .then(async trip => {
         trip_details = { ...trip.data };
+
         console.log(trip.data.gemsVisited);
+        console.log(trip_details);
         // const promises = trip.data.gemsVisited.map((gem, index) => {
         // trip.data.gemsVisited.map((gem, index) => {
         for (const [index, gem] of trip.data.gemsVisited.entries()) {
@@ -43,36 +45,49 @@ class TripDetails extends Component {
               `https://api.mapbox.com/directions/v5/mapbox/cycling/${gem.longitude},${gem.latitude};${trip.data.gemsVisited[index + 1].longitude},${trip.data.gemsVisited[index + 1].latitude}?geometries=geojson&access_token=` +
                 process.env.REACT_APP_MAPBOX_TOKEN
             );
-            console.log(res.data.routes[0].geometry.coordinates);
-            coordinates.push(...res.data.routes[0].geometry.coordinates);
-            //  console.log("coordinates", coordinates);
+            // .then(ress => console.log(ress));
+            console.log(res);
+            /* console.log(res.data.routes[0].geometry.coordinates); */
+            if (res.data.routes.length) {
+              coordinates.push(...res.data.routes[0].geometry.coordinates);
+            }
+            // console.log("coordinates", coordinates);
+            //console.log(index);
           }
-          console.log(index);
         }
-        // return Promise.all(promises);
-        // })
-        // .then(x => {
-        //   console.log("done", x);
-        if (coordinates.length > 0) {
-          console.log(coordinates[Math.floor(coordinates.length / 2)][0]);
-          console.log(coordinates[Math.floor(coordinates.length / 2)][1]);
 
-          this.setState({
-            coordinates: coordinates,
-            viewport: {
-              ...this.state.viewport,
-              latitude: coordinates[Math.floor(coordinates.length / 2)][1],
-              longitude: coordinates[Math.floor(coordinates.length / 2)][0]
-            },
-            trip_details: trip_details
-          });
-
+        console.log(coordinates);
+        this.setState({
+          coordinates: coordinates,
+          viewport: {
+            ...this.state.viewport,
+            latitude:
+              trip_details.gemsVisited[
+                Math.floor(trip_details.gemsVisited.length / 2)
+              ].latitude,
+            longitude:
+              trip_details.gemsVisited[
+                Math.floor(trip_details.gemsVisited.length / 2)
+              ].longitude
+          },
+          trip_details: trip_details
+        });
+        console.log(coordinates);
+        if (coordinates.length !== 0) {
           this.drawTrip(coordinates);
+        } else {
+          this.drawTrip(
+            trip_details.gemsVisited.map(gem => {
+              return [gem.longitude, gem.latitude];
+            })
+          );
         }
+        //  }
       });
   }
 
-  drawTrip = (coordinates) => {
+  drawTrip = coordinates => {
+    console.log(coordinates);
     const map = this.reactMap.getMap();
     map.on("load", () => {
       //add the GeoJSON layer here
@@ -108,9 +123,9 @@ class TripDetails extends Component {
       this.state.trip_details.gemsVisited
     );
     if (this.state.trip_details && this.state.trip_details.gemsVisited) {
-      return this.state.trip_details.gemsVisited.map((element) => {
+      return this.state.trip_details.gemsVisited.map(element => {
         return (
-          <div>
+          <div key={element._id}>
             <Link to={`/gem/${element._id}`}>
               <Button className="btn-triplist">{element.title} ></Button>
             </Link>
@@ -121,8 +136,9 @@ class TripDetails extends Component {
     }
   };
   gemsDisplay = () => {
+    console.log(this.state.trip_details.gemsVisited);
     if (Object.keys(this.state.trip_details).length !== 0) {
-      return this.state.trip_details.gemsVisited.map((gem) => {
+      return this.state.trip_details.gemsVisited.map(gem => {
         return (
           <Marker
             latitude={gem.latitude}
@@ -131,6 +147,7 @@ class TripDetails extends Component {
             offsetLeft={-15}
             captureClick={false}
             draggable={false}
+            key={gem._id}
           >
             <div className="gem-marker">
               <img src="/images/diamond-icon-green.png" alt="Gem" />
@@ -142,6 +159,7 @@ class TripDetails extends Component {
   };
 
   render() {
+    console.log(this.state.coordinates);
     return (
       <>
         <div>
@@ -153,8 +171,8 @@ class TripDetails extends Component {
           <div className="mapposition">
             <ReactMapGL
               {...this.state.viewport}
-              ref={(reactMap) => (this.reactMap = reactMap)}
-              onViewportChange={(viewport) =>
+              ref={reactMap => (this.reactMap = reactMap)}
+              onViewportChange={viewport =>
                 this.setState({
                   viewport: viewport
                 })
@@ -169,7 +187,7 @@ class TripDetails extends Component {
 
               <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
                 <NavigationControl
-                  onViewportChange={(viewport) => this.setState({ viewport })}
+                  onViewportChange={viewport => this.setState({ viewport })}
                 />
               </div>
             </ReactMapGL>
