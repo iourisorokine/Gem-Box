@@ -23,27 +23,24 @@ export default class Profile extends Component {
   };
 
   handleFollowClick() {
-    if (this.state.isFollowing) {
-      this.setState({
-        followers: this.state.followers - 1
-      });
-    } else {
-      this.setState({
-        followers: this.state.followers + 1
-      });
-    }
+    // if (this.state.isFollowing) {
+    //   this.setState({
+    //     followers: this.state.followers
+    //   });
+    // } else {
+    //   this.setState({
+    //     followers: this.state.followers + 1
+    //   });
+    // }
     axios
-      .put(
-        "/api/user/updateFollower",
-        { creatorId: this.state.creatorProfileId },
-        {
-          new: true
-        }
-      )
+      .put("/api/user/updateFollower", {
+        creatorId: this.state.creatorProfileId
+      })
       .then((updatedfollow) => {
         console.log("My updated follwing array", updatedfollow);
         this.setState({
-          isFollowing: !this.state.isFollowing
+          isFollowing: !this.state.isFollowing,
+          followers: updatedfollow.data.followers.length
         });
       })
       .catch((err) => {
@@ -64,18 +61,21 @@ export default class Profile extends Component {
           experiences
         });
         axios
-          .get(`/api/user/user/${this.state.creatorProfileId}`)
+          .get(`/api/user/${this.state.creatorProfileId}`)
           .then((user) => {
+            console.log(user.data);
             this.setState(
               {
                 creatorInfos: user.data,
                 followers: user.data.followers.length
               },
               () => {
-                console.log(
-                  "Here are the Follower Infors of creator",
-                  this.state.followers
-                );
+                // console.log(
+                //   "here is the creatorinfo",
+                //   this.state.creatorInfos,
+                //   "Here are the Follower Infors of creator",
+                //   this.state.followers
+                // );
               }
             );
           })
