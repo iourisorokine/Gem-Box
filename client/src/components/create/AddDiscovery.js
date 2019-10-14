@@ -29,7 +29,6 @@ export default class AddDiscovery extends React.Component {
         {
           isEnabled: this.props.checkStatus()
         }
-        // () => console.log("updated state", this.state)
       );
     }, 10);
   };

@@ -90,12 +90,12 @@ export default class Signup extends React.Component {
             </a>
           </Form>
           <div className="social-login">
-            <a href="http://localhost:5555/api/auth/google">
+            <a href="http://gem-box.herokuapp.com/api/auth/google">
               <button className="btn socialLoginBtn generalBtn btn-primary">
                 Sign in Google <i class="fab fa-google icon-padding"></i>
               </button>
             </a>
-            <a href="http://localhost:5555/api/auth/facebook">
+            <a href="http://gem-box.herokuapp.com/api/auth/facebook">
               <button className="btn socialLoginBtn generalBtn btn-primary">
                 Login with Facebook <i class="fab fa-facebook"></i>
               </button>

@@ -20,7 +20,6 @@ export default class AddExperience extends React.Component {
 
   handleChanges = (event) => {
     const { name, value } = event.target;
-    console.log(event.target.visitedDate);
     this.props.fetchGemInfo({
       [name]: value
     });
@@ -30,8 +29,7 @@ export default class AddExperience extends React.Component {
       this.setState(
         {
           isEnabled: this.props.checkStatus()
-        },
-        () => console.log("updated state", this.state)
+        }
       );
     }, 10);
   };

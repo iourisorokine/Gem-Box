@@ -4,8 +4,6 @@ import axios from "axios";
 import React, { Component } from "react";
 import ReactMapGL, {
   Marker,
-  // Popup,
-  GeolocateControl,
   NavigationControl
 } from "react-map-gl";
 
@@ -122,24 +120,6 @@ export class SetGem extends Component {
               <img src="/images/diamond-icon-green.png" alt="gem"/>
             </div>
           </Marker>
-          {/*        {this.state.marker.markerClicked ? (
-            <Popup
-              latitude={this.state.marker.latitude}
-              longitude={this.state.marker.longitude}
-              closeButton={true}
-              closeOnClick={false}
-              onClose={() => {
-                this.setState({
-                  marker: { ...this.state.marker, markerClicked: false }
-                });
-              }}
-            >
-              <div>
-                latitude={this.state.marker.latitude}
-                longitude={this.state.marker.longitude}{" "}
-              </div>
-            </Popup>
-          ) : null} */}
           <div style={{ position: "absolute", right: "2vw", top: "10vh" }}>
             <NavigationControl
               onViewportChange={viewport => this.setState({ viewport })}

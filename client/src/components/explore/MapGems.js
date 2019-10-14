@@ -4,8 +4,7 @@ import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import GemOnMap from "./GemOnMap";
 import ReactMapGL, {
   Popup,
-  NavigationControl,
-  GeolocateControl
+  NavigationControl
 } from "react-map-gl";
 import Geocoder from "react-mapbox-gl-geocoder";
 import GemDetails from "./GemDetails";
@@ -44,6 +43,10 @@ class MapGems extends Component {
       displayDetails: true
     });
   };
+
+  componentDidMount=()=>{
+    this.setUserLocation();
+  }
 
   setUserLocation = () => {
     navigator.geolocation.getCurrentPosition(position => {
@@ -123,7 +126,6 @@ class MapGems extends Component {
     const gemsToRender = this.props.gems.map(gem => {
       return <GemOnMap key={gem._id} data={gem} openPopup={this.openPopup} />;
     });
-    this.setUserLocation();
     return (
       <div className="page-wrapper">
 
@@ -166,7 +168,6 @@ class MapGems extends Component {
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                 onSelected={this.onGeocontrolSelected}
                 viewport={this.state.viewport}
-                // hideOnSelect={true}
               />
             </div>
             {gemsToRender}
