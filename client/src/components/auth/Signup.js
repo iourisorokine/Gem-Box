@@ -77,7 +77,9 @@ export default class Signup extends React.Component {
               />
             </Form.Group>
             {this.state.message && (
-              <Alert variant="danger">{this.state.message}</Alert>
+              <Alert className="opa" variant="danger">
+                {this.state.message}
+              </Alert>
             )}
 
             <a href="/update-profile" className="button-link">
