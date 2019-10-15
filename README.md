@@ -57,7 +57,7 @@ Add a filter for the trips.
 ## Extras and Special thanks
 Initial mockups of the app are available [here](https://marvelapp.com/project/4346573/).
 
-Special thanks to the people who helped us during the development - the Ironhack teaching staff - [Montasar] (https://github.com/mjarraya), [Svenja](https://github.com/Svemakawe), [Bruno](https://github.com/brudolce), [Min](https://github.com/angminsheng), and [Pierre](https://github.com/pierreportal)
+Special thanks to the people who helped us during the development - the Ironhack teaching staff - [Montasar](https://github.com/mjarraya), [Svenja](https://github.com/Svemakawe), [Bruno](https://github.com/brudolce), [Min](https://github.com/angminsheng), and [Pierre](https://github.com/pierreportal)
 
 
 
