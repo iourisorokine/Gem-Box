@@ -26,18 +26,18 @@ The Transport model, initially planned, is set but not used in the current versi
 
 Cloudinary API is used for managing the upload of photos such as profile pics and gem related photos.
 
-![Welcome screen of the app](https://github.com/iourisorokine/Gem-Box/tree/master/public/screenshots/welcome-screen.png)
+![Welcome screen of the app](https://github.com/iourisorokine/Gem-Box/blob/master/public/screenshots/welcome-screen.png)
 
 ## Technology - Frontend
 
 The frontend is built with React.js, as well as React Bootstrap and custom CSS. react-mapbox-gl is used for the creation of map, visualization of the gems and creation of the trips.
 The app is planned for a mobile usege first and all views have been built to fit the design of a narrow screen.
 
-![Map view with Gem popup](https://github.com/iourisorokine/Gem-Box/tree/master/public/screenshots/map-view-1.png)
+![Map view with Gem popup](https://github.com/iourisorokine/Gem-Box/blob/master/public/screenshots/map-view-1.png)
 
 The visualization of the trip, as a connection of several gems together with a route, is made possible by calling the Mapbox GL API that returns a serie of coordinates used to visializa a route point by point. For some locations, the API doesn't provide a detailed route, in which case a backup function draws a strait line between the Gems to provide a schematic visualization.
 
-![The visualization of a trip](https://github.com/iourisorokine/Gem-Box/tree/master/public/screenshots/trip-screen.png)
+![The visualization of a trip](https://github.com/iourisorokine/Gem-Box/blob/master/public/screenshots/trip-screen.png)
 
 ## Further Developments
 
