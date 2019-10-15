@@ -177,7 +177,7 @@ export default class Profile extends Component {
     console.log("Creator Infos", this.state.creatorInfos);
     return (
       <>
-        <div className="profile-flexbox">
+        <div className="profile-flexbox page-wrapper-narrow">
           <div className="nameedit">
             <div>
               <h1>

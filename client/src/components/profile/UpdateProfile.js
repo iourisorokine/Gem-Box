@@ -85,7 +85,7 @@ export default class UpdateProfile extends Component {
     return (
       <>
         <div className="pageheader">Update your profile</div>
-        <div className="wrapper-update">
+        <div className="wrapper-update page-wrapper-narrow">
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Group>
               <h2>Hello {this.props.user.username}</h2>

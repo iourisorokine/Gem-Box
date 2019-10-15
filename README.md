@@ -31,14 +31,33 @@ Cloudinary API is used for managing the upload of photos such as profile pics an
 ## Technology - Frontend
 
 The frontend is built with React.js, as well as React Bootstrap and custom CSS. react-mapbox-gl is used for the creation of map, visualization of the gems and creation of the trips.
-
-The app is planned for a mobile usege first.
-
-Initial mockups of the app are available [here](https://marvelapp.com/project/4346573/)
+The app is planned for a mobile usege first and all views have been built to fit the design of a narrow screen.
 
 ![Map view with Gem popup](https://github.com/iourisorokine/gem-box/public/screenshots/map-view-1.png)
 
+The visualization of the trip, as a connection of several gems together with a route, is made possible by calling the Mapbox GL API that returns a serie of coordinates used to visializa a route point by point. For some locations, the API doesn't provide a detailed route, in which case a backup function draws a strait line between the Gems to provide a schematic visualization.
+
+![The visualization of a trip](https://github.com/iourisorokine/gem-box/public/screenshots/trip-screen.png)
+
 ## Further Developments
+
+The initial app was planned, buit and deployed in 10 days, which forced us to stick to the core features. Here are some additional developments that we would like to add progressively to the app:
+
+### Gamification
+The user profile features a dummy score. This sccore should be connected to the activity of the user in order to add fun and interactivity to the app usage and encourage the user to use the app.
+### Trips
+Add means of transportation to the trips in a way that each pair of gems get joined with the information of how the user traveled (bycicle, train, plane, car...).
+Add Interactivity to the trip details view, being able for exaple to add/remove gems, to change their order, or to update the trip in a more independant way (currently, it is bout to the process of creating the gems)
+Track the travel location during the travel and adding the trip to the travel.
+Display the trips on the Explore places map.
+### Filters
+Add a filter per interactions (most popular gems)
+Add a filter for the trips.
+
+## Extras and Special thanks
+Initial mockups of the app are available [here](https://marvelapp.com/project/4346573/).
+
+Special thanks to the people who helped us during the development - the Ironhack teaching staff - [Montasar] (https://github.com/mjarraya), [Svenja](https://github.com/Svemakawe), [Bruno](https://github.com/brudolce), [Min](https://github.com/angminsheng), and [Pierre](https://github.com/pierreportal)
 
 
 

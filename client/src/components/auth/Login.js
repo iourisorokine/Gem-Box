@@ -84,7 +84,7 @@ export default class Login extends Component {
               </button>
             </a>
           </Form>
-          <div className="social-login">
+          {/* <div className="social-login">
             <a href="http://localhost:5555/api/auth/google">
               <button className="btn socialLoginBtn generalBtn btn-primary">
                 Login with Google <i class="fab fa-google icon-padding"></i>
@@ -95,7 +95,7 @@ export default class Login extends Component {
                 Login with Facebook <i class="fab fa-facebook"></i>
               </button>
             </a>
-          </div>
+          </div> */}
         </div>
       </>
     );
