@@ -89,7 +89,7 @@ export default class Signup extends React.Component {
               </button>
             </a>
           </Form>
-          <div className="social-login">
+          {/* <div className="social-login">
             <a href="http://gem-box.herokuapp.com/api/auth/google">
               <button className="btn socialLoginBtn generalBtn btn-primary">
                 Sign in Google <i class="fab fa-google icon-padding"></i>
@@ -100,7 +100,7 @@ export default class Signup extends React.Component {
                 Login with Facebook <i class="fab fa-facebook"></i>
               </button>
             </a>
-          </div>
+          </div> */}
         </div>
       </>
     );

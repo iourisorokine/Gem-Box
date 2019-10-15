@@ -129,7 +129,7 @@ export default class GemDetails extends Component {
         <div className="pageheader shadow">
           <h3>{currentGemData.title}</h3>
         </div>
-        <div className="gem-details page-wrapper">
+        <div className="gem-details page-wrapper page-wrapper-narrow">
           <img
             className="gem-details-image"
             src={currentGemData.imageUrl}
