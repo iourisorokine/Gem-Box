@@ -372,3 +372,9 @@ body {
   max-width: 500px;
   margin: auto;
 }
+
+.blurry-bg{
+  background-image: url(images/bg-landscape-1.jpg);
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
