@@ -8,9 +8,17 @@ body {
   margin: 0;
 }
 
-.App {
+/* .App {
   text-align: center;
   max-width: 800px;
+} */
+
+h3{
+  font-size: 2rem;
+}
+
+.dropdown-item{
+  font-size: 1.4rem;
 }
 
 .App-logo {
@@ -72,57 +80,11 @@ body {
   border-radius: 5%;
 }
 
-.gem-popup{
-  box-shadow: 2px 2px 2px #bbb;
-}
 
 .nav-custom{
   display: flex;
   justify-content: space-between;
   box-shadow: 2px 2px 2px #bbb;
-}
-
-.gem-popup-img {
-  border-radius: 0.5rem;
-  padding: 1rem 0;
-  margin: 0;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-}
-
-.gem-popup-title {
-  padding: 0;
-  margin: 0;
-}
-
-.gem-popup-category {
-  padding: 0.5rem 0;
-  margin: 0;
-  font-size: 0.8rem;
-}
-
-.gem-popup-btn {
-  padding: 0 0.5rem;
-  color: #4badb6;
-  border: 2px #4badb6 solid;
-  border-radius: 0.3rem;
-  background-color: white;
-}
-
-.gem-popup-btn:hover {
-  color: white;
-  border-radius: 0.3rem;
-  background-color: #4badb6;
-  transition-duration: 0.5s;
-}
-
-.mapboxgl-popup-close-button{
-  font-size: 2rem;
-  line-height: 1.7rem;
-  width: 1.7rem;
-  color: white;
-  background-color:#777;
 }
 
 .main-menu {
@@ -166,15 +128,7 @@ body {
   align-items: center;
 }
 
-.btn-like {
-  color: red;
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-  font-size: 25px;
-}
-
-.btn-unlike {
+.btn-like, .btn-unlike {
   color: red;
   width: 40px;
   height: 40px;

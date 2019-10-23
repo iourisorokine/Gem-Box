@@ -46,7 +46,7 @@ export default class AddExperience extends React.Component {
     }
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     event.persist();
     const files = event.target.imageUrl.files[0];

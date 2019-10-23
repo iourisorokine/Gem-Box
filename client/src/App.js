@@ -1,7 +1,6 @@
 import React from "react";
 import Menu from "./components/global/Menu";
 import AboutUs from "./components/global/AboutUs";
-// import "./App.css";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Logout from "./components/auth/Logout";
@@ -15,8 +14,9 @@ import NotFound from "./components/global/NotFound";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+import "./stylesheets/explorePlaces.css";
 import { Switch, Route } from "react-router-dom";
-import ShowProfileNew from "./components/profile/ShowProfileNew";
+import Profile from "./components/profile/Profile";
 
 class App extends React.Component {
   state = {
@@ -92,7 +92,7 @@ class App extends React.Component {
               <Route
                 path="/profile/:profileId"
                 render={props => (
-                  <ShowProfileNew
+                  <Profile
                     setUser={this.setUser}
                     {...props}
                     user={this.state.user}

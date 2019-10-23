@@ -1,11 +1,47 @@
-.explore-places {
-  background-color: #282727;
-  background-size: cover;
-  color: white;
-  padding: 1.5rem;
-  padding-top: 1rem;
+.gem-popup{
+  box-shadow: 2px 2px 2px #bbb;
 }
 
-.explore-places-map {
-  padding: 10%;
+.gem-popup-img {
+  border-radius: 0.5rem;
+  padding: 1rem 0;
+  margin: 0;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.gem-popup-title {
+  padding: 0;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.gem-popup-category {
+  padding: 0.5rem 0;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.gem-popup-btn {
+  padding: 0.3rem 2rem;
+  font-size: 1.4rem;
+  color: #4badb6;
+  border: 2px #4badb6 solid;
+  border-radius: 0.3rem;
+  background-color: white;
+}
+
+.gem-popup-btn:hover {
+  color: white;
+  background-color: #4badb6;
+  transition-duration: 0.5s;
+}
+
+.mapboxgl-popup-close-button{
+  font-size: 2rem;
+  line-height: 1.7rem;
+  width: 1.7rem;
+  color: white;
+  background-color:#777;
 }

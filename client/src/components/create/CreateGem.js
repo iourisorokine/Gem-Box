@@ -2,13 +2,10 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import React, { Component } from "react";
 import SetGem from "./SetGem";
-import GemWelcome from "./GemWelcome";
 import SuggestGem from "./SuggestGem";
-import AddExperience from "./AddExperience";
 import AddDiscovery from "./AddDiscovery";
 import GemSuccess from "./GemSuccess";
 import AddToTrip from "./AddToTrip";
-import GemList from "./GemList";
 import AddGemToTrip from "./AddGemToTrip";
 import {
   pushGem,
@@ -17,7 +14,6 @@ import {
   specificGems,
   updateTrip
 } from "../../services/api.js";
-import Geocoder from "react-mapbox-gl-geocoder";
 
 class CreateGem extends React.Component {
   state = {
@@ -155,8 +151,6 @@ class CreateGem extends React.Component {
 
   changeStage = (stage) => {
     switch (stage) {
-      case "GemWelcome":
-        return <GemWelcome setStage={this.setStage} />;
       case "SetGem":
         return (
           <SetGem fetchGemInfo={this.fetchGemInfo} setStage={this.setStage} />
@@ -171,12 +165,13 @@ class CreateGem extends React.Component {
         );
       case "AddExperience":
         return (
-          <AddExperience
+          <AddDiscovery
             locationName={this.state.gem.locationName}
             fetchGemInfo={this.fetchGemInfo}
             setStage={this.setStage}
             checkStatus={this.checkStatus}
             createGem={this.createGem}
+            discovery={false}
           />
         );
       case "AddDiscovery":
@@ -187,6 +182,7 @@ class CreateGem extends React.Component {
             setStage={this.setStage}
             checkStatus={this.checkStatus}
             createGem={this.createGem}
+            discovery={true}
           />
         );
       case "GemSuccess":

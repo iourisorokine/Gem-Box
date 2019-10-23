@@ -24,10 +24,6 @@ export default class GemSuccess extends React.Component {
         this.props.history.push("/explore-places");
         break;
     }
-
-    // componentDidMount = () => {
-    //   let shareUrl = `http://localhost:3000/gem/${this.props.gemId}`;
-    // };
   };
 
   render() {

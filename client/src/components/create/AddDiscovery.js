@@ -37,7 +37,7 @@ export default class AddDiscovery extends React.Component {
     event.preventDefault();
     if (event.target.name === "yes") {
       this.props.fetchGemInfo({
-        discovery: true
+        discovery: this.props.discovery
       });
       this.props.setStage("GemSuccess");
       this.props.createGem();
@@ -48,7 +48,7 @@ export default class AddDiscovery extends React.Component {
     }
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     event.persist();
     const files = event.target.imageUrl.files[0];
@@ -59,7 +59,7 @@ export default class AddDiscovery extends React.Component {
       .then((response) => {
         this.props.fetchGemInfo({
           imageUrl: response.data.secure_url,
-          discovery: true
+          discovery: this.props.discovery
         });
         this.props.setStage("GemSuccess");
         this.props.createGem();

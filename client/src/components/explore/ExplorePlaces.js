@@ -104,7 +104,6 @@ class ExplorePlaces extends Component {
     if (!this.state.gemsToDisplay) return <></>;
     return (
       <div>
-        
         <div className="explore-places page-wrapper">
           <div className="explore-places-map">
             {this.state.displayFilters && (

@@ -8,7 +8,6 @@ import ReactMapGL, {
 } from "react-map-gl";
 import Geocoder from "react-mapbox-gl-geocoder";
 import GemDetails from "./GemDetails";
-import { throws } from "assert";
 
 class MapGems extends Component {
   state = {

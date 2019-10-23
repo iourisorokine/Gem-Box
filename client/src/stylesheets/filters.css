@@ -53,9 +53,3 @@
   text-align: left;
   width: 60%;
 }
-
-@media screen and (max-width: 480px) {
-  body {
-    font-size: 8px;
-  }
-}

@@ -4,7 +4,6 @@ import axios from "axios";
 import React, { Component } from "react";
 import ReactMapGL, {
   Marker,
-  // Popup,
   GeolocateControl,
   NavigationControl
 } from "react-map-gl";
@@ -34,25 +33,15 @@ class TripDetails extends Component {
       .get(`/api/trip/tripgems/${this.props.match.params.tripId}`)
       .then(async trip => {
         trip_details = { ...trip.data };
-
-        console.log(trip.data.gemsVisited);
-        console.log(trip_details);
-        // const promises = trip.data.gemsVisited.map((gem, index) => {
-        // trip.data.gemsVisited.map((gem, index) => {
         for (const [index, gem] of trip.data.gemsVisited.entries()) {
           if (index !== trip.data.gemsVisited.length - 1) {
             const res = await axios.get(
               `https://api.mapbox.com/directions/v5/mapbox/cycling/${gem.longitude},${gem.latitude};${trip.data.gemsVisited[index + 1].longitude},${trip.data.gemsVisited[index + 1].latitude}?geometries=geojson&access_token=` +
                 process.env.REACT_APP_MAPBOX_TOKEN
             );
-            // .then(ress => console.log(ress));
-            console.log(res);
-            /* console.log(res.data.routes[0].geometry.coordinates); */
             if (res.data.routes.length) {
               coordinates.push(...res.data.routes[0].geometry.coordinates);
             }
-            // console.log("coordinates", coordinates);
-            //console.log(index);
           }
         }
 
@@ -179,9 +168,6 @@ class TripDetails extends Component {
               }
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               mapStyle="mapbox://styles/iouri/ck1kx1czi1r971cpj0s2ngu2q"
-              /* captureDoubleClick={false}
-          doubleClickZoom={false}
- */
             >
               {this.gemsDisplay()}
 
