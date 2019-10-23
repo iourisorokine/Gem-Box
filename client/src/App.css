@@ -6,14 +6,11 @@
 }
 body {
   margin: 0;
-  /* background: rgba(40, 39, 39, 0.8); */
 }
 
 .App {
   text-align: center;
   max-width: 800px;
-  /* margin: auto; */
-  /* height: 736px; */
 }
 
 .App-logo {
@@ -43,7 +40,6 @@ body {
   border: none;
   background: none;
   cursor: pointer;
-  /* background-image: url("/images/diamond-icon-green.png"); */
   width: 30px;
   height: 30px;
   background-position: center;
@@ -76,14 +72,14 @@ body {
   border-radius: 5%;
 }
 
-/* .generalBtn {
-  margin-top: 5vh;
-  background-color: #4badb6 !important;
-  border-color: #4bafb8 !important;
-} */
+.gem-popup{
+  box-shadow: 2px 2px 2px #bbb;
+}
 
-.gem-popup {
-  box-shadow: 2px 2px 4px #bbb;
+.nav-custom{
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 2px 2px 2px #bbb;
 }
 
 .gem-popup-img {
@@ -121,6 +117,14 @@ body {
   transition-duration: 0.5s;
 }
 
+.mapboxgl-popup-close-button{
+  font-size: 2rem;
+  line-height: 1.7rem;
+  width: 1.7rem;
+  color: white;
+  background-color:#777;
+}
+
 .main-menu {
   position: fixed;
   width: 100px;
@@ -153,14 +157,6 @@ body {
   height: 50vh;
   padding-top: 40px;
 }
-
-/* .SuggestGem {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-} */
 
 .headingSetGem {
   width: 100%;
@@ -370,11 +366,12 @@ body {
 
 .page-wrapper-narrow{
   max-width: 500px;
+  background-color: white;
   margin: auto;
 }
 
-.blurry-bg{
-  background-image: url(images/bg-landscape-1.jpg);
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+.narrow-view-bg{
+  background-image: url(/images/bg-landscape-1.jpg);
 }
+
+

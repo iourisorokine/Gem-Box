@@ -126,10 +126,10 @@ export default class GemDetails extends Component {
     const likeClass = liked ? "btn-unlike" : "btn-like";
     return (
       <>
-        <div className="pageheader shadow">
-          <h3>{currentGemData.title}</h3>
-        </div>
-        <div className="blurry-bg">
+        <div className="narrow-view-bg">
+          <div className="pageheader shadow">
+            <h3>{currentGemData.title}</h3>
+          </div>
           <div className="gem-details page-wrapper page-wrapper-narrow">
             <img
               className="gem-details-image"
@@ -248,9 +248,6 @@ export default class GemDetails extends Component {
                 </Button>
               </div>
             )}
-            <div className="arrow-down">
-              <i className="fas fa-angle-down"></i>
-            </div>
           </div>
         </div>
       </>

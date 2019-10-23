@@ -13,7 +13,7 @@ class Menu extends React.Component {
 
   render() {
     return (
-      <Navbar className="bg-light" in="setOpen" variant="light">
+      <Navbar className="bg-light nav-custom" in="setOpen" variant="light">
         <Navbar.Brand href="/">
           <svg
             className="Logo-navbar"
@@ -76,7 +76,8 @@ class Menu extends React.Component {
         </Navbar.Brand>
         {/* <Nav className="mr-auto"> */}
         <NavDropdown
-          title="Menu"
+          drop="left"
+          title="☰"
           id="collasible-nav-dropdown"
           className="menu-navbar">
           <NavDropdown.Item href="/">Home</NavDropdown.Item>

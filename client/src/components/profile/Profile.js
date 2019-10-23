@@ -69,3 +69,5 @@ export default class Profile extends Component {
             Edit your profile
           </Button>
         </Link>
+        </div>
+    )}}

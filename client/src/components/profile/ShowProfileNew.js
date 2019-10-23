@@ -176,7 +176,7 @@ export default class Profile extends Component {
     let user = this.state.creatorInfos;
     console.log("Creator Infos", this.state.creatorInfos);
     return (
-      <>
+      <div className="narrow-view-bg">
         <div className="profile-flexbox page-wrapper-narrow">
           <div className="nameedit">
             <div>
@@ -285,7 +285,7 @@ export default class Profile extends Component {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
