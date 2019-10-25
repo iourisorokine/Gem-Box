@@ -2,14 +2,9 @@
 
 .filters-block-wrapper {
   box-sizing: border-box;
-  position: fixed;
-  top: 0;
   background-color: white;
   padding: 1rem;
   z-index: 20;
-  width: 100%;
-  max-width: 700px;
-  height: 100vh;
   overflow: scroll;
   border-radius: 1rem;
   z-index: 150;
@@ -17,7 +12,7 @@
 
 .filters-block-inside{
   margin: 0.4rem;
-  padding: 2rem;
+  padding: 1rem 2rem;
   border-radius: 1rem;
   border: solid 2px #4badb6;
 }

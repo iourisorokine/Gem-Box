@@ -106,7 +106,7 @@ class ExplorePlaces extends Component {
       <div>
         <div className="explore-places page-wrapper">
           <div className="explore-places-map">
-            {this.state.displayFilters && (
+            {this.state.displayFilters&& (
               <>
                 <Filters
                   handleFilterChange={this.handleChange}

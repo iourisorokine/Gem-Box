@@ -1,13 +1,7 @@
 import React, { Component } from "react";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import Select from "react-select";
 import "../../stylesheets/filters.css";
-
-// const userFilterOptions = [
-//   { value: "all", label: "All" },
-//   { value: "liked", label: "Liked" },
-//   { value: "mine", label: "Mine" }
-// ];
 
 class Filters extends Component {
   state = {
@@ -24,12 +18,12 @@ class Filters extends Component {
   render() {
     const { selectedOption } = this.state;
     return (
-      <div className="filters-block-wrapper">
+      <div className="filters-block-wrapper page-wrapper-narrow">
         <div className="filters-block-inside">
           <h1>Filter by</h1>
-          <hr/>
+          <hr />
           <form onSubmit={this.props.handleFilterSubmit}>
-          <div className="inputs-container">
+            <div className="inputs-container">
               <div className="inputs-col">
                 <Select
                   defaultValue="all"
@@ -61,7 +55,7 @@ class Filters extends Component {
                 <label htmlFor="showTrips">Trips</label>
               </div>
             </div>
-            <hr/>
+            <hr />
             <h2>Show by date</h2>
             <div className="inputs-dates">
               <label htmlFor="dateStart">From:</label>
@@ -81,7 +75,7 @@ class Filters extends Component {
                 value={this.props.filterStatus.dateEnd}
                 onChange={this.props.handleFilterChange}></input>
             </div>
-            <hr/>
+            <hr />
             <h2>Categories</h2>
             <div className="inputs-container">
               <div className="inputs-col">
@@ -145,7 +139,7 @@ class Filters extends Component {
                 <label htmlFor="other">Other</label>
               </div>
             </div>
-            <hr/>
+            <hr />
             <Button className="btn btn-primary generalBtn" type="submit">
               Apply & Close
             </Button>
