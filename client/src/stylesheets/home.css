@@ -3,29 +3,32 @@
   padding: 0;
 }
 
+.wrapper-home{
+  background-color: #CCE7F2;
+}
+
 .Landingpage {
   background-image: url(../../src/jeremy-bishop-dvACrXUExLs-unsplash_cut.png);
   text-align: center;
-  /* max-width: 700px; */
-  /* margin: auto; */
   background-size: cover;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  max-width: 768px;
+  margin: auto;
   overflow: scroll;
 }
 
 .Logo {
   margin-top: 10%;
-
   justify-content: center;
   align-content: center;
   align-items: center;
 }
+
 .Teaser {
-  padding-top: 5%;
-  margin-top: 7%;
+  padding-top: 1rem;
+  margin-top: 4rem;
   background-color: rgba(40, 39, 39, 0.5);
-  /* opacity: 0.6; */
   font-family: "Montserrat", sans-serif;
   font-size: 22px;
   color: whitesmoke;
@@ -33,9 +36,6 @@
   text-align: left;
 }
 
-/* .TeaserText {
-  text-align: left;
-} */
 .TeaserTextContainer {
   display: flex;
   flex-flow: row wrap;
@@ -62,15 +62,7 @@
 .btn-lp {
   color: white !important;
   font-size: 18px !important;
-  /* font-weight: bold !important; */
   font-family: "Montserrat", sans-serif;
   text-decoration: underline !important;
 }
 
-/* .btn-landingpage {
-  padding-top: 7%;
-} */
-
-/* .btn-link {
-  text-decoration: underline;
-} */
