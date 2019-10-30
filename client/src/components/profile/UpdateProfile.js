@@ -84,9 +84,9 @@ export default class UpdateProfile extends Component {
   render() {
     return (
       <>
-        <div className="pageheader py-2">Update yor profile</div>
+        <div className="pageheader">Update your profile</div>
         <div className="wrapper-update">
-          <div onSubmit={this.handleSubmit} className="login-form">
+          <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Group>
               <h2>Hello {this.props.user.username}</h2>
             </Form.Group>
@@ -127,8 +127,7 @@ export default class UpdateProfile extends Component {
               <div className="col-12">
                 <button
                   className="btn loginBtn generalBtn btn-primary"
-                  type="submit"
-                >
+                  type="submit">
                   Save
                 </button>
               </div>
@@ -139,21 +138,9 @@ export default class UpdateProfile extends Component {
                   className="btn loginBtn generalBtn btn-primary"
                   onClick={this.directProfile}
                   variant="contained"
-                  type="button"
-                >
+                  type="button">
                   <i class="fas fa-trash-alt"></i>
                 </button>
-              </div>
-            </div>
-            <div className="update-btn-row1">
-              <div className="col-12">
-              <a
-                  className="btn btn-primary btn-landingpage generalBtn-landing"
-                  href="/explore-places"
-                  role="button"
-                >
-                  Explore places
-                </a>
               </div>
             </div>
             {/* <div className="update-btn-row1">
@@ -167,9 +154,7 @@ export default class UpdateProfile extends Component {
                 </a>
               </div>
             </div> */}
-            
-
-          </div>
+          </Form>
         </div>
       </>
     );
