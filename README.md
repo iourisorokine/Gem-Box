@@ -3,7 +3,7 @@
 
 ## Project Owners
 
-The app was co-created with [Anna-Marie Nauruschat](https://github.com/annamarie-now), [Harinath Vulta](https://github.com/harinathvutla), and [Jörg Stommel](https://github.com/Jrgsto). All features and functionnalities were planned and designed together as the third and final project of Ironhack Full Stack Web Development Bootcamp Berlin.
+The app was co-created with [Anna-Marie Nauruschat](https://github.com/annamarie-now), [Harinath Vulta](https://github.com/harinathvutla), and [Jörg Stommel](https://github.com/Jrgsto). All features and functionalities were planned and designed together as the third and final project of Ironhack Full Stack Web Development Bootcamp Berlin.
 
 ## Concept of the App
 
@@ -26,14 +26,18 @@ The Transport model, initially planned, is set but not used in the current versi
 
 Cloudinary API is used for managing the upload of photos such as profile pics and gem related photos.
 
-![Welcome screen of the app](https://github.com/iourisorokine/Gem-Box/blob/master/public/screenshots/welcome-screen.png)
+<p align="center"> 
+<img src="./public/screenshots/welcome-screen.png">
+</p>
 
 ## Technology - Frontend
 
 The frontend is built with React.js, as well as React Bootstrap and custom CSS. react-mapbox-gl is used for the creation of map, visualization of the gems and creation of the trips.
 The app is planned for a mobile usege first and all views have been built to fit the design of a narrow screen.
 
-![Map view with Gem popup](https://github.com/iourisorokine/Gem-Box/blob/master/public/screenshots/map-view-1.png)
+<p align="center"> 
+<img src="./public/screenshots/map-view-1.png">
+</p>
 
 The visualization of the trip, as a connection of several gems together with a route, is made possible by calling the Mapbox GL API that returns a serie of coordinates used to visializa a route point by point. For some locations, the API doesn't provide a detailed route, in which case a backup function draws a strait line between the Gems to provide a schematic visualization.
 
